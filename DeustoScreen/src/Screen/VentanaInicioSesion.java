@@ -20,14 +20,14 @@ public class VentanaInicioSesion extends JFrame {
 	private JPanel pNorte,pCentro,pSur,pCentroIzquierda,pCentroDerecha;
 	private JLabel lblNombre,lblApellido ,lblFechaNacimiento, lbltlf, lblCorreoElectronico,lblContrasenia,lblTituloIS;
 	private JTextField txtNombre,txtApellido,txtFechaNacimiento,txttlf ,txtCorreoElectronico;
-	//private JFrame vActual;
+	private JFrame vActual;
 	private JButton btnSalir, BtnIniciarSesion;
 	private JTextField textField;
 	private JPasswordField contrasenia;
 
 	public VentanaInicioSesion() {
 		super();
-		//vActual = this;
+		vActual = this;
 		setBounds(200, 300, 600, 400);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		
@@ -95,6 +95,11 @@ public class VentanaInicioSesion extends JFrame {
 	}
 	
 	//Eventos
+	
+	
+	
+	
+
 	
 
 	public static void main(String[] args) {

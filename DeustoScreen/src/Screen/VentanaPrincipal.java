@@ -29,29 +29,33 @@ public class VentanaPrincipal extends JFrame{
 		setContentPane(Panel1);
 		
 		JButton BotonPrecios = new JButton("Precios");
-		BotonPrecios.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		
 		JButton btnIniciarSesion = new JButton("Iniciar Sesion");
-		btnIniciarSesion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		
 		JButton btnCartelera = new JButton("Cartelera");
-		btnCartelera.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		
+
 		Panel1.add(btnIniciarSesion);
 		Panel1.add(BotonPrecios);
 		Panel1.add(btnCartelera);
 
+		
+		//Eventos Botones
+		
+		BotonPrecios.addActionListener((e)->{
+			VentanaPrecios ventanaPrecios = new VentanaPrecios();
+			ventanaPrecios.setVisible(true);
+		});
+		
+		btnIniciarSesion.addActionListener((e)->{
+			VentanaInicioSesion ventanaInicioSesion = new VentanaInicioSesion();
+			ventanaInicioSesion.setVisible(true);
+		});
+		
+		btnCartelera.addActionListener((e)->{
+			VentanaCartelera ventanaCartelera = new VentanaCartelera();
+			ventanaCartelera.setVisible(true);
+		});
+		
+		
+		
 		setVisible(true);
 	}
 	
