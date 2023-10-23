@@ -95,6 +95,7 @@ public class VentanaInicioSesion extends JFrame {
 		BtnIniciarSesion.addActionListener((e)->{
 			VentanaEntradas ventanaEntradas = new VentanaEntradas();
 			ventanaEntradas.setVisible(true);
+		
 		});
 		btnSalir.addActionListener((e)->{
 			System.exit(0);
