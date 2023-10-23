@@ -65,7 +65,7 @@ public class VentanaInicioSesion extends JFrame {
 		txtCorreoElectronico= new JTextField();
 		
 		
-		// Enlazar los paneles con los labely txtField
+		// Enlazar los paneles con los label y txtField
 		
 		pCentroIzquierda.add(lblNombre);
 		pCentroIzquierda.add(txtNombre);
@@ -81,7 +81,6 @@ public class VentanaInicioSesion extends JFrame {
 		textField = new JTextField();
 		pCentroIzquierda.add(textField);
 		textField.setColumns(10);
-		//pCentroIzquierda.add(txttlf);
 		pCentroIzquierda.add(lblCorreoElectronico);
 		pCentroIzquierda.add(txtCorreoElectronico);
 		
@@ -91,15 +90,17 @@ public class VentanaInicioSesion extends JFrame {
 		pSur.add(BtnIniciarSesion);
 		pSur.add(btnSalir);
 	
+		
+	//eventos botones 
+		BtnIniciarSesion.addActionListener((e)->{
+			VentanaEntradas ventanaEntradas = new VentanaEntradas();
+			ventanaEntradas.setVisible(true);
+		});
+		btnSalir.addActionListener((e)->{
+			System.exit(0);
+		});
 		setVisible(true);
 	}
-	
-	//Eventos
-	
-	
-	
-	
-
 	
 
 	public static void main(String[] args) {
