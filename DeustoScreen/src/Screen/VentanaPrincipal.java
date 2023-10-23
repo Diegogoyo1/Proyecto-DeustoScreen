@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
@@ -46,6 +47,7 @@ public class VentanaPrincipal extends JFrame{
 				
 			}
 		});
+		
 		Panel1.add(btnIniciarSesion);
 		Panel1.add(BotonPrecios);
 		Panel1.add(btnCartelera);

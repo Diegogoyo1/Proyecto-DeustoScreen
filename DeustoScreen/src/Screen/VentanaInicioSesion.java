@@ -11,13 +11,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.Color;
 
 public class VentanaInicioSesion extends JFrame {
 	private JPanel pNorte,pCentro,pSur,pCentroIzquierda,pCentroDerecha;
-	private JLabel lblNombre,lblApellido ,lblFechaNacimiento, lbltlf, lblCorreoElectronico;
+	private JLabel lblNombre,lblApellido ,lblFechaNacimiento, lbltlf, lblCorreoElectronico, lblTituloIS;
 	private JTextField txtNombre,txtApellido,txtFechaNacimiento,txttlf, txtCorreoElectronico;
 	//private JFrame vActual;
 	private JButton btnSalir, BtnIniciarSesion;
+	private JTextField textField;
 
 	public VentanaInicioSesion() {
 		super();
@@ -30,7 +34,7 @@ public class VentanaInicioSesion extends JFrame {
 		pCentro = new JPanel(new GridLayout(1, 2));
 		pSur = new JPanel();
 
-		pCentroIzquierda = new JPanel(new GridLayout(2, 2));
+		pCentroIzquierda = new JPanel(new GridLayout(5, 1));
 		pCentroDerecha = new JPanel(new GridLayout(4, 2));
 		pCentro.add(pCentroIzquierda);
 		pCentro.add(pCentroDerecha);
@@ -41,14 +45,18 @@ public class VentanaInicioSesion extends JFrame {
 		getContentPane().add(pSur, BorderLayout.SOUTH);
 		
 		//Labels
-		lblNombre= new JLabel("Nombre: ");
-		lblApellido= new JLabel("Apellido");
-		lblFechaNacimiento = new JLabel("fecha de nacimiento");
+		lblNombre= new JLabel("  Nombre: ");
+		lblApellido= new JLabel("  Apellido");
+		lblFechaNacimiento = new JLabel("  Fecha de nacimiento");
 		lbltlf = new JLabel(" Tlf");
-		lblCorreoElectronico = new JLabel("Correo electronico");
+		lblCorreoElectronico = new JLabel("  Correo electronico");
+		lblTituloIS = new JLabel("     Iniciar Sesion");
 		
 		//TextField
 		txtNombre = new JTextField();
+		txtNombre.setBackground(new Color(255, 255, 255));
+		txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		txtNombre.setHorizontalAlignment(SwingConstants.LEFT);
 		txtApellido= new JTextField();
 		txtFechaNacimiento= new JTextField();
 		txtCorreoElectronico= new JTextField();
@@ -62,6 +70,13 @@ public class VentanaInicioSesion extends JFrame {
 		pCentroIzquierda.add(lblFechaNacimiento);
 		pCentroIzquierda.add(txtFechaNacimiento);
 		pCentroIzquierda.add(lbltlf);
+		
+		pNorte.add(lblTituloIS);
+		
+		
+		textField = new JTextField();
+		pCentroIzquierda.add(textField);
+		textField.setColumns(10);
 		//pCentroIzquierda.add(txttlf);
 		pCentroIzquierda.add(lblCorreoElectronico);
 		pCentroIzquierda.add(txtCorreoElectronico);
