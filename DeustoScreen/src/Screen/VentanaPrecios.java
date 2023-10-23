@@ -78,45 +78,9 @@ public class VentanaPrecios  extends JFrame{
 		setVisible(true);
 		
 	}
-	public static void main1(String[] args) {
-		VentanaPrecios VP = new VentanaPrecios();
-	
-}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public static void main(String[] args) {
-		VentanaPrincipal VP = new VentanaPrincipal();
-}
+		VentanaPrecios VPr = new VentanaPrecios();
+	
+	}
+	
 }
