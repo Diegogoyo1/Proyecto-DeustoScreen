@@ -1,5 +1,7 @@
 package Screen;
 
-public class VentanaEntradas {
+import javax.swing.JFrame;
+
+public class VentanaEntradas extends JFrame{
 
 }

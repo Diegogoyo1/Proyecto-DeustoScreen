@@ -1,5 +1,7 @@
 package Screen;
 
-public class VentanaPuntos {
+import javax.swing.JFrame;
+
+public class VentanaPuntos extends JFrame{
 
 }

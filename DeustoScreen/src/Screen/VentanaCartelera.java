@@ -1,5 +1,7 @@
 package Screen;
 
-public class VentanaCartelera {
+import javax.swing.JFrame;
+
+public class VentanaCartelera extends JFrame{
 
 }
