@@ -1,5 +1,7 @@
 package Screen;
 
-public class VentanaPelicula {
+import javax.swing.JFrame;
 
+public class VentanaPelicula extends JFrame{
+	
 }
