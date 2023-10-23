@@ -40,32 +40,24 @@ public class VentanaPrincipal extends JFrame{
 			}
 		});
 		
-		JScrollPane scrollPane = new JScrollPane();
-		Panel1.add(scrollPane);
-		Panel1.add(btnIniciarSesion);
-		
-		JPanel panel2 = new JPanel();
-		panel2.setLayout(new GridLayout(2, 2));
-		Panel1.add(panel2);
-		getContentPane().add(panel2, BorderLayout.SOUTH);
-		
 		JButton btnCartelera = new JButton("Cartelera");
-		Panel1.add(btnCartelera);
+		btnCartelera.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		Panel1.add(btnIniciarSesion);
 		Panel1.add(BotonPrecios);
+		Panel1.add(btnCartelera);
+
+		setVisible(true);
 	}
 	
 	// Prueba con main
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaPrincipal frame = new VentanaPrincipal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		VentanaPrincipal VP = new VentanaPrincipal();	
+			
+	
 	}
 
 }
