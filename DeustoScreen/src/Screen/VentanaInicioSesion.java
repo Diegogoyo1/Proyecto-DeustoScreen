@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -17,11 +18,12 @@ import java.awt.Color;
 
 public class VentanaInicioSesion extends JFrame {
 	private JPanel pNorte,pCentro,pSur,pCentroIzquierda,pCentroDerecha;
-	private JLabel lblNombre,lblApellido ,lblFechaNacimiento, lbltlf, lblCorreoElectronico, lblTituloIS;
-	private JTextField txtNombre,txtApellido,txtFechaNacimiento,txttlf, txtCorreoElectronico;
+	private JLabel lblNombre,lblApellido ,lblFechaNacimiento, lbltlf, lblCorreoElectronico,lblContrasenia,lblTituloIS;
+	private JTextField txtNombre,txtApellido,txtFechaNacimiento,txttlf ,txtCorreoElectronico;
 	//private JFrame vActual;
 	private JButton btnSalir, BtnIniciarSesion;
 	private JTextField textField;
+	private JPasswordField contrasenia;
 
 	public VentanaInicioSesion() {
 		super();
@@ -51,6 +53,7 @@ public class VentanaInicioSesion extends JFrame {
 		lbltlf = new JLabel(" Tlf");
 		lblCorreoElectronico = new JLabel("  Correo electronico");
 		lblTituloIS = new JLabel("     Iniciar Sesion");
+		lblContrasenia = new JLabel("  COntrasenia");
 		
 		//TextField
 		txtNombre = new JTextField();
@@ -60,6 +63,7 @@ public class VentanaInicioSesion extends JFrame {
 		txtApellido= new JTextField();
 		txtFechaNacimiento= new JTextField();
 		txtCorreoElectronico= new JTextField();
+		
 		
 		// Enlazar los paneles con los labely txtField
 		
