@@ -16,30 +16,29 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Color;
 
-public class VentanaInicioSesion extends JFrame {
-	private JPanel pNorte,pCentro,pSur,pCentroIzquierda,pCentroDerecha;
-	private JLabel lblNombre,lblApellido ,lblFechaNacimiento, lbltlf, lblCorreoElectronico,lblContrasenia,lblTituloIS;
-	private JTextField txtNombre,txtApellido,txtFechaNacimiento,txttlf ,txtCorreoElectronico;
+public class VentanaRegistros extends JFrame {
+	private JPanel pNorte,pCentro,pSur,pCentroIzquierda;
+	private JLabel lblNombre,lblApellido ,lblFechaNacimiento, lbltlf, lblCorreoElectronico,lblContraseniaIs,lblCotraseniaR,lblTituloIS;
+	private JTextField txtNombre,txtApellido,txtFechaNacimiento,txtCorreoElectronico;
 	private JFrame vActual;
 	private JButton btnSalir, BtnIniciarSesion;
 	private JTextField textField;
-	private JPasswordField contrasenia;
+	private JPasswordField contraseniaR;
 
-	public VentanaInicioSesion() {
+	public VentanaRegistros() {
 		super();
 		vActual = this;
 		setBounds(200, 300, 600, 400);
-		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		/*CREACIÓN DE PANELES Y COMPONENTES*/
 		pNorte = new JPanel(new GridLayout(1, 2));
 		pCentro = new JPanel(new GridLayout(1, 2));
 		pSur = new JPanel();
 
-		pCentroIzquierda = new JPanel(new GridLayout(5, 1));
-		pCentroDerecha = new JPanel(new GridLayout(4, 2));
+		pCentroIzquierda = new JPanel(new GridLayout(6, 1));
 		pCentro.add(pCentroIzquierda);
-		pCentro.add(pCentroDerecha);
+		
 		
 		
 		getContentPane().add(pNorte, BorderLayout.NORTH);
@@ -52,10 +51,11 @@ public class VentanaInicioSesion extends JFrame {
 		lblFechaNacimiento = new JLabel("  Fecha de nacimiento");
 		lbltlf = new JLabel(" Tlf");
 		lblCorreoElectronico = new JLabel("  Correo electronico");
-		lblTituloIS = new JLabel("     Iniciar Sesion");
-		lblContrasenia = new JLabel("  COntrasenia");
+		lblTituloIS = new JLabel("     REGISTRARSE");
+		lblCotraseniaR = new JLabel("  Contrasenia");
 		
-		//TextField
+		
+		//TextField nuevos
 		txtNombre = new JTextField();
 		txtNombre.setBackground(new Color(255, 255, 255));
 		txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -63,7 +63,7 @@ public class VentanaInicioSesion extends JFrame {
 		txtApellido= new JTextField();
 		txtFechaNacimiento= new JTextField();
 		txtCorreoElectronico= new JTextField();
-		
+		contraseniaR= new JPasswordField();
 		
 		// Enlazar los paneles con los label y txtField
 		
@@ -74,18 +74,19 @@ public class VentanaInicioSesion extends JFrame {
 		pCentroIzquierda.add(lblFechaNacimiento);
 		pCentroIzquierda.add(txtFechaNacimiento);
 		pCentroIzquierda.add(lbltlf);
-		
-		pNorte.add(lblTituloIS);
-		
-		
 		textField = new JTextField();
 		pCentroIzquierda.add(textField);
 		textField.setColumns(10);
 		pCentroIzquierda.add(lblCorreoElectronico);
 		pCentroIzquierda.add(txtCorreoElectronico);
+		pCentroIzquierda.add(lblCotraseniaR);
+		pCentroIzquierda.add(lblCotraseniaR);
+		pCentroIzquierda.add(contraseniaR);
 		
-		//botones
-		BtnIniciarSesion = new JButton("INICIAR SESIÓN");
+		pNorte.add(lblTituloIS);
+		
+	//botones
+		BtnIniciarSesion = new JButton("INICIAR SESION");
 		btnSalir = new JButton("SALIR");
 		pSur.add(BtnIniciarSesion);
 		pSur.add(btnSalir);
@@ -105,7 +106,7 @@ public class VentanaInicioSesion extends JFrame {
 	
 
 	public static void main(String[] args) {
-		VentanaInicioSesion VIS = new VentanaInicioSesion();
+		VentanaRegistros VIS = new VentanaRegistros();
 		
 	}
 
