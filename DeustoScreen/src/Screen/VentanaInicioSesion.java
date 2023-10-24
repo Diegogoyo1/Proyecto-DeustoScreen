@@ -23,6 +23,8 @@ public class VentanaInicioSesion extends JFrame {
 	
 	public VentanaInicioSesion() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+
 		
 		pNorte = new JPanel(new GridLayout(1, 2));
 		pCentro = new JPanel(new GridLayout(1, 2));

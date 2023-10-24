@@ -45,8 +45,8 @@ public class VentanaPrincipal extends JFrame{
 		});
 		
 		btnIniciarSesion.addActionListener((e)->{
-			VentanaRegistros ventanaRegistros = new VentanaRegistros();
-			ventanaRegistros.setVisible(true);
+			VentanaPregunta1 ventanaPregunta1 = new VentanaPregunta1();
+			ventanaPregunta1.setVisible(true);
 		});
 		
 		btnCartelera.addActionListener((e)->{
