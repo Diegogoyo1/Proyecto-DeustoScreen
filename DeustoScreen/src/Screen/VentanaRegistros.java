@@ -9,6 +9,7 @@ import java.awt.image.PackedColorModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -95,7 +96,10 @@ public class VentanaRegistros extends JFrame {
 	//eventos botones 
 		BtnIniciarSesion.addActionListener((e)->{
 			VentanaEntradas ventanaEntradas = new VentanaEntradas();
+			JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
 			ventanaEntradas.setVisible(true);
+			
+			
 		
 		});
 		btnSalir.addActionListener((e)->{
