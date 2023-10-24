@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 public class VentanaCartelera extends JFrame{
+	
 	public VentanaCartelera() {
 }
 }

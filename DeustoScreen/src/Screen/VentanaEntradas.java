@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 public class VentanaEntradas extends JFrame{
 	private JTextField textField;
 	public VentanaEntradas() {
+		setBounds(100, 100,500, 500);
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.NORTH);

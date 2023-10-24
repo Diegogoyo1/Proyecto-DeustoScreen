@@ -67,7 +67,6 @@ public class VentanaInicioSesion extends JFrame {
 			JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
 			ventanaEntradas.setVisible(true);
 		
-		
 		});
 		
 		btnSalir.addActionListener((e)->{
