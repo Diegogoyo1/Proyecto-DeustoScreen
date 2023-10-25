@@ -38,6 +38,7 @@ public class VentanaPrincipal extends JFrame{
 		//Imagen
 		 ImageIcon logo = new ImageIcon(" 23.54.19_90281ec4.gif"); 
 	     JLabel gifLabelLogo = new JLabel(logo);
+	     
 
 		PanelNorte.add(btnIniciarSesion);
 		PanelNorte.add(BotonPrecios);

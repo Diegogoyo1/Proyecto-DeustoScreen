@@ -21,9 +21,10 @@ public class VentanaRegistros extends JFrame {
 	private JPanel pNorte,pCentro,pSur,pCentroIzquierda;
 	private JLabel lblNombre,lblApellido ,lblFechaNacimiento, lbltlf, lblCorreoElectronico,lblContraseniaIs,lblCotraseniaR,lblTituloIS;
 	private JTextField txtNombre,txtApellido,txtFechaNacimiento,txtCorreoElectronico;
+	private JTextField textFieldTlf;
 	private JFrame vActual;
 	private JButton btnSalir, BtnIniciarSesion;
-	private JTextField textField;
+	
 	private JPasswordField contraseniaR;
 
 	public VentanaRegistros() {
@@ -32,7 +33,7 @@ public class VentanaRegistros extends JFrame {
 		setBounds(200, 300, 600, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		/*CREACIÓN DE PANELES Y COMPONENTES*/
+	//CREACIÓN DE PANELES Y COMPONENTES
 		pNorte = new JPanel(new GridLayout(1, 2));
 		pCentro = new JPanel(new GridLayout(1, 2));
 		pSur = new JPanel();
@@ -63,6 +64,7 @@ public class VentanaRegistros extends JFrame {
 		txtNombre.setHorizontalAlignment(SwingConstants.LEFT);
 		txtApellido= new JTextField();
 		txtFechaNacimiento= new JTextField();
+		textFieldTlf = new JTextField();
 		txtCorreoElectronico= new JTextField();
 		contraseniaR= new JPasswordField();
 		
@@ -75,9 +77,7 @@ public class VentanaRegistros extends JFrame {
 		pCentroIzquierda.add(lblFechaNacimiento);
 		pCentroIzquierda.add(txtFechaNacimiento);
 		pCentroIzquierda.add(lbltlf);
-		textField = new JTextField();
-		pCentroIzquierda.add(textField);
-		textField.setColumns(10);
+		pCentroIzquierda.add(textFieldTlf);
 		pCentroIzquierda.add(lblCorreoElectronico);
 		pCentroIzquierda.add(txtCorreoElectronico);
 		pCentroIzquierda.add(lblCotraseniaR);
@@ -86,14 +86,14 @@ public class VentanaRegistros extends JFrame {
 		
 		pNorte.add(lblTituloIS);
 		
-	//botones
+		//botones
 		BtnIniciarSesion = new JButton("INICIAR SESION");
 		btnSalir = new JButton("SALIR");
 		pSur.add(BtnIniciarSesion);
 		pSur.add(btnSalir);
 	
 		
-	//eventos botones 
+		//eventos botones 
 		BtnIniciarSesion.addActionListener((e)->{
 			VentanaEntradas ventanaEntradas = new VentanaEntradas();
 			JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
@@ -103,7 +103,8 @@ public class VentanaRegistros extends JFrame {
 		
 		});
 		btnSalir.addActionListener((e)->{
-			System.exit(0);
+			VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+			
 		});
 		setVisible(true);
 	}
