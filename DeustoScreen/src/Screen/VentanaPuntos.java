@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class VentanaPuntos extends JFrame{
-	private JPanel pSur, pCentro, pCentroArribaIz, pCentroArribaDe, pCentroAbajoIz, pCentroAbajoDe;
+	private JPanel pSur, pCentro; 
 	private JLabel lblUsuario, lblNumPuntos;
 	private JButton btnAniadir, btnOmitir;
 	private JTextField txtUsuario, txtNumPuntos;
@@ -27,16 +27,6 @@ public class VentanaPuntos extends JFrame{
 		pCentro = new JPanel (new GridLayout (2, 2));
 		pSur = new JPanel();
 		
-		pCentroArribaIz = new JPanel();
-		pCentroArribaDe = new JPanel();
-		pCentroAbajoIz = new JPanel ();
-		pCentroAbajoDe = new JPanel ();
-		
-		pCentro.add(pCentroArribaIz);
-		pCentro.add(pCentroArribaDe);
-		pCentro.add(pCentroAbajoIz);
-		pCentro.add(pCentroAbajoDe);
-		
 		getContentPane().add(pCentro, BorderLayout.CENTER);
 		getContentPane().add(pSur, BorderLayout.SOUTH);
 		
@@ -46,17 +36,17 @@ public class VentanaPuntos extends JFrame{
 		lblNumPuntos = new JLabel (" NÚMERO DE PUNTOS: ");
 		
 		//TEXTFIELD
-		txtUsuario = new JTextField();
+		txtUsuario = new JTextField(5);
 		txtUsuario.setBackground(new Color(255, 255, 255));
 		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtUsuario.setHorizontalAlignment(SwingConstants.LEFT);
-		txtNumPuntos = new JTextField();
+		txtNumPuntos = new JTextField(5);
 		
 		//ENLAZAR PANELES CON LABELS Y TEXTFIELDS
-		pCentroArribaIz.add(lblUsuario);
-		pCentroArribaDe.add(txtUsuario);
-		pCentroAbajoIz.add(lblNumPuntos);
-		pCentroAbajoDe.add(txtNumPuntos);
+		pCentro.add(lblUsuario);
+		pCentro.add(txtUsuario);
+		pCentro.add(lblNumPuntos);
+		pCentro.add(txtNumPuntos);
 		
 		
 		//BOTONES
