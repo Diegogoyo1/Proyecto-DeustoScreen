@@ -70,7 +70,7 @@ public class VentanaInicioSesion extends JFrame {
 		});
 		
 		btnSalir.addActionListener((e)->{
-			System.exit(0);
+			dispose();
 		});
 		setVisible(true);
 	}
