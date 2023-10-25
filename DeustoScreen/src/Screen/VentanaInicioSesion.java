@@ -69,11 +69,14 @@ public class VentanaInicioSesion extends JFrame {
 		
 		});
 		
+
+
 		btnSalir.addActionListener((e)->{
-			VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+			dispose();
 		});
 		setVisible(true);
-	}
+
+		}
 	
 	
 	

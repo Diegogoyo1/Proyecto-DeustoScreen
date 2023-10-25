@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 public class VentanaEntradas extends JFrame{
 	private JTextField textField;
 	public VentanaEntradas() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100,500, 500);
 		
 		JPanel panel = new JPanel();
@@ -22,43 +23,19 @@ public class VentanaEntradas extends JFrame{
 		
 		JPanel panel_1 = new JPanel();
 		getContentPane().add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		JPanel panel_5 = new JPanel();
-		panel_1.add(panel_5);
-		panel_5.setLayout(new GridLayout(0, 2, 0, 0));
+		panel_1.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		JLabel lblPelicula = new JLabel("Pelicula");
-		panel_5.add(lblPelicula);
+		panel_1.add(lblPelicula);
 		
 		JComboBox comBoxPelicula = new JComboBox();
-		panel_5.add(comBoxPelicula);
+		panel_1.add(comBoxPelicula);
 		
 		JLabel lblHorarios = new JLabel("Horarios");
-		panel_5.add(lblHorarios);
+		panel_1.add(lblHorarios);
 		
 		JComboBox comBoxHorarios = new JComboBox();
-		panel_5.add(comBoxHorarios);
-		
-		JPanel panel_6 = new JPanel();
-		panel_1.add(panel_6);
-		panel_6.setLayout(new GridLayout(0, 4, 0, 0));
-		
-		JLabel lblJunior = new JLabel("Junior");
-		panel_6.add(lblJunior);
-		
-		JButton btnJuniorMenos = new JButton("-");
-		panel_6.add(btnJuniorMenos);
-		
-		textField = new JTextField();
-		panel_6.add(textField);
-		textField.setColumns(10);
-		
-		JButton btnJuniorMas = new JButton("+");
-		panel_6.add(btnJuniorMas);
-		
-		JLabel lbl = new JLabel("New label");
-		panel_6.add(lbl);
+		panel_1.add(comBoxHorarios);
 		
 		JPanel panel_2 = new JPanel();
 		getContentPane().add(panel_2, BorderLayout.SOUTH);
@@ -67,14 +44,29 @@ public class VentanaEntradas extends JFrame{
 		JPanel panel_3 = new JPanel();
 		panel_2.add(panel_3);
 		
-		JButton btnNewButton = new JButton("New button");
-		panel_3.add(btnNewButton);
+		JButton btnSiguiente = new JButton("Siguiente");
+		panel_3.add(btnSiguiente);
 		
 		JPanel panel_4 = new JPanel();
 		panel_2.add(panel_4);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		panel_4.add(btnNewButton_1);
+		JButton btnCancelar = new JButton ("Cancelar");
+		panel_4.add(btnCancelar);
+	
+		btnCancelar.addActionListener((e)->{
+			dispose();
+		});
+		
+		btnSiguiente.addActionListener((e)->{
+			VentanaSeleccionEntradas VentanaSeleccionEntradas = new VentanaSeleccionEntradas();
+			VentanaSeleccionEntradas.setVisible(true);
+		});
+		setVisible(true);
+	}
+	
+	
+	public static void main (String[] args) {
+		VentanaEntradas VPt = new VentanaEntradas();
 	}
 
 }
