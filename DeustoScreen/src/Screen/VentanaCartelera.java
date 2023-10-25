@@ -53,25 +53,21 @@ public class VentanaCartelera extends JFrame{
 		modelo.setColumnIdentifiers(titulos);
 		tabla = new JTable(modelo);
 		layoutTabla = new FlowLayout();
-		layoutTabla.setVgap(200);
-		layoutTabla.setHgap(60);
-		pCentro.setLayout(getLayout());
+		layoutTabla.setVgap(175);
+		pCentro.setLayout(layoutTabla);
 		scroll = new JScrollPane(tabla);
 		
-		getContentPane().add(scroll, BorderLayout.CENTER);
+		getContentPane().add(scroll, BorderLayout.EAST);
 		
-		tabla.getColumnModel().getColumn(0).setPreferredWidth(75);
-		tabla.getColumnModel().getColumn(1).setPreferredWidth(75);
-		tabla.getColumnModel().getColumn(2).setPreferredWidth(75);
-		tabla.getColumnModel().getColumn(3).setPreferredWidth(75);
-		tabla.getColumnModel().getColumn(4).setPreferredWidth(75);
-		tabla.getColumnModel().getColumn(5).setPreferredWidth(75);
-		tabla.getColumnModel().getColumn(6).setPreferredWidth(75);
-		tabla.getColumnModel().getColumn(7).setPreferredWidth(75);
-		tabla.getColumnModel().getColumn(8).setPreferredWidth(75);
-		tabla.getColumnModel().getColumn(9).setPreferredWidth(75);
-		tabla.getColumnModel().getColumn(10).setPreferredWidth(75);
-		tabla.setRowHeight(50);
+		tabla.getColumnModel().getColumn(0).setPreferredWidth(100);
+		tabla.getColumnModel().getColumn(1).setPreferredWidth(100);
+		tabla.getColumnModel().getColumn(2).setPreferredWidth(100);
+		tabla.getColumnModel().getColumn(3).setPreferredWidth(100);
+		tabla.getColumnModel().getColumn(4).setPreferredWidth(100);
+		tabla.getColumnModel().getColumn(5).setPreferredWidth(100);
+		tabla.getColumnModel().getColumn(6).setPreferredWidth(100);
+		tabla.getColumnModel().getColumn(7).setPreferredWidth(100);
+		tabla.setRowHeight(75);
 		
 		
 		String fila1[] =  {"7:00","P1(sala1)","P3(sala1)","P3(sala1)", "P1(sala1)", "P1(sala1)", "P1(sala1)", "P1(sala1)"};

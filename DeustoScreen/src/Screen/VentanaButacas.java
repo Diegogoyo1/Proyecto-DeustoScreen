@@ -122,6 +122,7 @@ public class VentanaButacas extends JFrame{
 		tblButacas2.setRowHeight(75);
 		/*tblButacas2.setIntercellSpacing(new Dimension(10,10));*/
 		
+		
 		String fila5[] =  {"06","07","08","09", "10"};
 		String fila6[] =  {"06","07","08","09", "10"};
 		String fila7[] =  {"06","07","08","09", "10"};
