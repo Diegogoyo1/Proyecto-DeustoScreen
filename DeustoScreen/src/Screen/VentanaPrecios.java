@@ -25,13 +25,13 @@ public class VentanaPrecios  extends JFrame{
 		//Creacion de Labels
 		JLabel lblPrecios = new JLabel("PRECIOS");
 		JLabel lblVIP = new JLabel("VIP                         :");
-		JLabel lblPreciosVIP_1 = new JLabel("17€");
+		JLabel lblPreciosVIP_1 = new JLabel("10€");
 		JLabel lblMenores = new JLabel("Menores de 18 años      :");
-		JLabel lblPreciosMenores_1 = new JLabel("10€");
+		JLabel lblPreciosMenores_1 = new JLabel("4€");
 		JLabel lblEntreAños = new JLabel("Entre 18 y 65 años       :");
-		JLabel lblPreciosEntre_1 = new JLabel("14€");
+		JLabel lblPreciosEntre_1 = new JLabel("7€");
 		JLabel lblMayores = new JLabel("Mayores de 65 años      :");
-		JLabel lblPrecioMayores_1 = new JLabel("12€");
+		JLabel lblPrecioMayores_1 = new JLabel("5€");
 		
 		
 		//Añadir y editar Panels 
