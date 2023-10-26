@@ -1,6 +1,7 @@
 package Screen;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -14,28 +15,33 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
 public class VentanaCartelera extends JFrame{
-
-	private JPanel pCentro, pSur;
+	private JPanel pCentro, pSur, pNorte;
 	private JButton btnAtras; 
 	private DefaultTableModel modelo;
 	private JTable tabla;
 	private JScrollPane scroll;
 	private FlowLayout layoutTabla;
+	private JLabel lblTituloH;
 	
 	 
 	
 	public VentanaCartelera() {
-		super();
-		setBounds(300, 300, 600, 400);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		//LABEL
+		lblTituloH = new JLabel("HORARIOS");
+		
 		
 		//PANELES
 		pCentro = new JPanel();
 		pSur = new JPanel();
+		pNorte = new JPanel();
 		
 		//POSICION DE PANELES
+		
 		getContentPane().add(pCentro, BorderLayout.CENTER);
 		getContentPane().add(pSur, BorderLayout.SOUTH);
+		getContentPane().add(pNorte, BorderLayout.NORTH);
+		
 		
 		//BOTONES
 		btnAtras = new JButton("ATRÁS");
@@ -43,9 +49,11 @@ public class VentanaCartelera extends JFrame{
 		//ACCIONES DE BOTONES
 				btnAtras.addActionListener((e)-> {
 					dispose();
-					
 						
 					});
+				
+		//LABEL
+		pNorte.add(lblTituloH);
 		
 		//CREACIÓN TABLA
 		Object [] titulos = {"HORA","LUNES","MARTES", "MIÉRCOLES", "JUEVES", "VIERNES", "SABADO", "DOMINGO"};
@@ -74,6 +82,7 @@ public class VentanaCartelera extends JFrame{
 		String fila2[] =  {"----","P2(sala2)","P3(sala1)","P3(sala1)", "P1(sala1)", "P1(sala1)", "P1(sala1)", "P1(sala1)"};
 		String fila3[] =  {"8:15"," X ","P3(sala1)","P3(sala1)", "P1(sala1)", "P1(sala1)", "P1(sala1)", "P1(sala1)"};
 		String fila4[] =  {"9:30","P1(sala4)","P3(sala1)","P3(sala1)", "P1(sala1)", "P1(sala1)", "P1(sala1)", "P1(sala1)"};
+		modelo.addRow(titulos);
 		modelo.addRow(fila1);
 		modelo.addRow(fila2);
 		modelo.addRow(fila3);
