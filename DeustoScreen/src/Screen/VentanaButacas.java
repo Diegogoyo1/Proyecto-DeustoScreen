@@ -22,7 +22,6 @@ public class VentanaButacas extends JFrame{
 	private JTable tblButacas1, tblButacas2;
 	private DefaultTableModel modTblButacas1, modTblButacas2;
 	private FlowLayout layoutTabButacas1, layoutTabButacas2;
-	private JLabel lblPasillo;
 	
 	
 	
@@ -45,8 +44,8 @@ public class VentanaButacas extends JFrame{
 		getContentPane().add(pOeste, BorderLayout.WEST);
 
 		
-		//LABELS
-		lblPasillo = new JLabel("P"); //¿Como poner un label en vertical?
+		//LABELS		
+		
 		
 		
 		//BOTONES
@@ -69,38 +68,40 @@ public class VentanaButacas extends JFrame{
 		
 		
 		//CREACION PRIMERA TABLA BUTACAS
-		Object [] titulos1 = {"A", "B", "C", "D", "E"};
+		Object [] titulos1 = {"", "", "", "", "",""};
 		modTblButacas1 = new DefaultTableModel();
 		modTblButacas1.setColumnIdentifiers(titulos1);
 		tblButacas1 = new JTable(modTblButacas1);
 		layoutTabButacas1  = new FlowLayout();
-		layoutTabButacas1.setVgap(200);
-		layoutTabButacas1.setHgap(60);
+		layoutTabButacas1.setVgap(250);
+		layoutTabButacas1.setHgap(100);
 		pOeste.setLayout(layoutTabButacas1);
 		
-		tblButacas1.getColumnModel().getColumn(0).setPreferredWidth(75);
-		tblButacas1.getColumnModel().getColumn(1).setPreferredWidth(75);
-		tblButacas1.getColumnModel().getColumn(2).setPreferredWidth(75);
-		tblButacas1.getColumnModel().getColumn(3).setPreferredWidth(75);
-		tblButacas1.getColumnModel().getColumn(4).setPreferredWidth(75);
-		tblButacas1.setRowHeight(75);
-		/*tblButacas1.setIntercellSpacing(new Dimension(10,10));  //Para dejar espacio entre celdas
-		
-		JTableHeader header = tblButacas1.getTableHeader();
-		DefaultTableCellRenderer headerRenderer = (DefaultTableCellRenderer) header.getDefaultRenderer();
-        headerRenderer.setHorizontalAlignment(SwingConstants.LEFT);*/  //Para mover los titulos a la derecha
-		
+		tblButacas1.getColumnModel().getColumn(0).setPreferredWidth(100);
+		tblButacas1.getColumnModel().getColumn(1).setPreferredWidth(100);
+		tblButacas1.getColumnModel().getColumn(2).setPreferredWidth(100);
+		tblButacas1.getColumnModel().getColumn(3).setPreferredWidth(100);
+		tblButacas1.getColumnModel().getColumn(4).setPreferredWidth(100);
+		tblButacas1.getColumnModel().getColumn(5).setPreferredWidth(100);
+
+		tblButacas1.setRowHeight(100);
+		tblButacas1.setIntercellSpacing(new Dimension(10,10));  //Para dejar espacio entre celdas
 
 
 		
-		String fila1[] =  {"01","02","03","04", "05"};
-		String fila2[] =  {"01","02","03","04", "05"};
-		String fila3[] =  {"01","02","03","04", "05"};
-		String fila4[] =  {"01","02","03","04", "05"};
+		String fila1[] =  {"A","01","02","03","04", "05"};
+		String fila2[] =  {"B","01","02","03","04", "05"};
+		String fila3[] =  {"C","01","02","03","04", "05"};
+		String fila4[] =  {"D","01","02","03","04", "05"};
+		String fila5[] =  {"E","01","02","03","04", "05"};
+		
 		modTblButacas1.addRow(fila1);
 		modTblButacas1.addRow(fila2);
 		modTblButacas1.addRow(fila3);
 		modTblButacas1.addRow(fila4);
+		modTblButacas1.addRow(fila5);
+		
+		
 		
 		
 		
@@ -110,28 +111,30 @@ public class VentanaButacas extends JFrame{
 		modTblButacas2.setColumnIdentifiers(titulos2);
 		tblButacas2 = new JTable(modTblButacas2);
 		layoutTabButacas2  = new FlowLayout();
-		layoutTabButacas2.setVgap(200);
-		layoutTabButacas2.setHgap(60);
+		layoutTabButacas2.setVgap(250);
+		layoutTabButacas2.setHgap(200);
 		pEste.setLayout(layoutTabButacas2);
 		
-		tblButacas2.getColumnModel().getColumn(0).setPreferredWidth(75);
-		tblButacas2.getColumnModel().getColumn(1).setPreferredWidth(75);
-		tblButacas2.getColumnModel().getColumn(2).setPreferredWidth(75);
-		tblButacas2.getColumnModel().getColumn(3).setPreferredWidth(75);
-		tblButacas2.getColumnModel().getColumn(4).setPreferredWidth(75);
-		tblButacas2.setRowHeight(75);
-		/*tblButacas2.setIntercellSpacing(new Dimension(10,10));*/
+		tblButacas2.getColumnModel().getColumn(0).setPreferredWidth(100);
+		tblButacas2.getColumnModel().getColumn(1).setPreferredWidth(100);
+		tblButacas2.getColumnModel().getColumn(2).setPreferredWidth(100);
+		tblButacas2.getColumnModel().getColumn(3).setPreferredWidth(100);
+		tblButacas2.getColumnModel().getColumn(4).setPreferredWidth(100);
+		tblButacas2.setRowHeight(100);
+		tblButacas2.setIntercellSpacing(new Dimension(10,10));
 		
 		
-		String fila5[] =  {"06","07","08","09", "10"};
 		String fila6[] =  {"06","07","08","09", "10"};
 		String fila7[] =  {"06","07","08","09", "10"};
 		String fila8[] =  {"06","07","08","09", "10"};
+		String fila9[] =  {"06","07","08","09", "10"};
+		String fila10[] = {"06","07","08","09", "10"};
 		
-		modTblButacas2.addRow(fila5);
 		modTblButacas2.addRow(fila6);
 		modTblButacas2.addRow(fila7);
 		modTblButacas2.addRow(fila8);
+		modTblButacas2.addRow(fila9);
+		modTblButacas2.addRow(fila10);
 		
 		
 		
@@ -139,6 +142,7 @@ public class VentanaButacas extends JFrame{
 		//ANYADIR LOS COMPONENTES A LOS PANELES
 		pOeste.add(tblButacas1);
 		pEste.add(tblButacas2);
+		
 		pSur.add(btnAtras);
 		pSur.add(btnSiguiente);
 		
@@ -146,8 +150,10 @@ public class VentanaButacas extends JFrame{
 		
 		//DEFINIR LA VENTANA
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds (0,0,1000,750);
+		setBounds(-10,0, 600, 400);
 		setVisible(true);
+		setTitle("BUTACAS");
+		
 		
 
 		
