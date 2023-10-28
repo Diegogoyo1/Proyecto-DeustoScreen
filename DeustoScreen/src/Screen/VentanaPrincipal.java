@@ -22,8 +22,6 @@ public class VentanaPrincipal extends JFrame{
 	
 	public VentanaPrincipal() {
 	
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
 		
 		PanelNorte = new JPanel();
 		PanelCentro = new JPanel();
@@ -54,8 +52,8 @@ public class VentanaPrincipal extends JFrame{
 		});
 		
 		btnIniciarSesion.addActionListener((e)->{
-			VentanaPregunta1 ventanaPregunta1 = new VentanaPregunta1();
-			ventanaPregunta1.setVisible(true);
+			VentanaInicioSesion ventanaInicioSesion = new VentanaInicioSesion();
+			ventanaInicioSesion.setVisible(true);
 		});
 		
 		btnCartelera.addActionListener((e)->{
@@ -63,7 +61,11 @@ public class VentanaPrincipal extends JFrame{
 			ventanaCartelera.setVisible(true);
 		});
 		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(600, 300, 450, 300);
+		setTitle("INICIO");
 		setVisible(true);
+		
 	}
 	
 	// Prueba con main

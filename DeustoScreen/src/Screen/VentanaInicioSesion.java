@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -22,7 +24,7 @@ public class VentanaInicioSesion extends JFrame {
 	private JPanel pNorte,pCentro,pSur,pCentroIzquierda;
 	private JLabel lblTituloIS ,lblCorreoElectronico,lblContraseniaIs;
 	private JTextField txtCorreoElectronico;
-	private JButton btnSalir, BtnIniciarSesion;
+	private JButton btnSalir, btnIniciarSesion, btnRegistrarse;
 	private JPasswordField contraseniaIs;
 	
 	private static Usuario usuario;
@@ -39,9 +41,7 @@ public class VentanaInicioSesion extends JFrame {
 	
 	
 	public VentanaInicioSesion() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-
+	
 		
 		pNorte = new JPanel(new GridLayout(1, 2));
 		pCentro = new JPanel(new GridLayout(1, 2));
@@ -73,27 +73,45 @@ public class VentanaInicioSesion extends JFrame {
 			pNorte.add(lblTituloIS);
 				
 		//botones
-		BtnIniciarSesion = new JButton("INICIAR SESION");
-		btnSalir = new JButton("SALIR");
-		pSur.add(BtnIniciarSesion);
+		btnIniciarSesion = new JButton("Iniciar Sesion");
+		btnSalir = new JButton("Salir");
+		btnRegistrarse = new JButton("Registrarse");
+		pSur.add(btnIniciarSesion);
+		pSur.add(btnRegistrarse);
 		pSur.add(btnSalir);
 		
+		
 		//Eventos
-		BtnIniciarSesion.addActionListener((e)->{
+		btnIniciarSesion.addActionListener((e)->{
 			String CorreoElectronico = txtCorreoElectronico.getText();
 			String con = contraseniaIs.getText();
-			JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Inicio de sesion correcto","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
 			VentanaEntradas ventanaEntradas = new VentanaEntradas();
-			
+			ventanaEntradas.setVisible(true);
 			
 		});
 		
 
 
-		btnSalir.addActionListener((e)->{
-			VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
-			dispose();
+		btnSalir.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+				
+			}
 		});
+			
+		
+		btnRegistrarse.addActionListener((e)->{
+			VentanaRegistros ventanaRegistros = new VentanaRegistros();
+			ventanaRegistros.setVisible(true);
+		
+		});
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(600, 300, 450, 300);
+		setTitle("INICIO SESION");
 		setVisible(true);
 
 		}

@@ -6,60 +6,48 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class VentanaSeleccionEntradas extends JFrame{
-	protected JButton btnSiguiente, btnAtras;
+public class VentanaPago extends JFrame {
+	protected JButton btnFinalizarCompra, btnAtras;
 	protected JPanel pNorte, pSur, pEste, pOeste;
 	
-	public VentanaSeleccionEntradas() {
+	public VentanaPago() {
 		
 		pNorte = new JPanel();
 		pSur = new JPanel();
 		pEste = new JPanel();
 		pOeste = new JPanel();
 		
-		
 		getContentPane().add(pNorte, BorderLayout.NORTH);
 		getContentPane().add(pSur, BorderLayout.SOUTH);
 		getContentPane().add(pEste, BorderLayout.EAST);
 		getContentPane().add(pOeste, BorderLayout.WEST);
 		
-		
-		btnSiguiente = new JButton("Siguiente");
+		btnFinalizarCompra = new JButton("Finalizar Compra");
 		btnAtras = new JButton("Atras");
 		
 		
-		btnSiguiente.addActionListener((e)->{
-			VentanaButacas ventanaButacas = new VentanaButacas();
-			ventanaButacas.setVisible(true);
+		btnFinalizarCompra.addActionListener((e)->{
+			
 		});
 		
-		btnAtras.addActionListener((e)-> {
+		btnAtras.addActionListener((e)->{
 			dispose();
 		});
 		
-		
 		pSur.add(btnAtras);
-		pSur.add(btnSiguiente);
+		pSur.add(btnFinalizarCompra);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setBounds(600, 300, 600, 400);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds (600,300,380,400);
+		setTitle("FINALIZAR COMPRA");
 		setVisible(true);
-		setTitle("SELECCION ENTRADAS");
-	
+		
 	}
+	
 	
 	public static void main(String[] args) {
-		VentanaSeleccionEntradas VSE = new  VentanaSeleccionEntradas();
-		
+		VentanaPago VP = new VentanaPago();
 	}
+	
 
 }

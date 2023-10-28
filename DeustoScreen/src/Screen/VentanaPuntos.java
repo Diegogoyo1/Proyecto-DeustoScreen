@@ -22,8 +22,7 @@ public class VentanaPuntos extends JFrame{
 	private JTextField txtUsuario, txtNumPuntos;
 	
 	public VentanaPuntos() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds (100,100,380,400);
+		
 		
 		//CREACIÓN PANELES
 		pCentro = new JPanel (new GridLayout (2, 2));
@@ -52,28 +51,34 @@ public class VentanaPuntos extends JFrame{
 		
 		
 		//BOTONES
-		btnAniadir = new JButton("AÑADIR");
-		btnOmitir = new JButton ("OMITIR");
-		pSur.add(btnAniadir);
+		btnAniadir = new JButton("Añadir");
+		btnOmitir = new JButton ("Omitir");
 		pSur.add(btnOmitir);
+		pSur.add(btnAniadir);
 		
 		
 		//EVENTOS BOTONES
 		btnOmitir.addActionListener((e)->{
-			System.exit(0);
+			dispose(); //Este DISPOSE cerrara la ventana y nos llevara a la de PAGO directamente sin AÑADIR los puntos
+			VentanaPago ventanaPago = new VentanaPago();
+			ventanaPago.setVisible(true);
+			 
 		});
-		setVisible(true);
+		
 		
 		//btnAniadir
 		//sin terminar
-		btnAniadir.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+		btnAniadir.addActionListener((e)-> {
+			dispose();//Este DISPOSE cerrara la ventana y nos llevara a la de PAGO AÑADIENDO los puntos
+			VentanaPago ventanaPago = new VentanaPago();
+			ventanaPago.setVisible(true);
+			 
 		});
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds (600,300,380,400);
+		setTitle("PUNTOS");
+		setVisible(true);
 	
 	}
 	

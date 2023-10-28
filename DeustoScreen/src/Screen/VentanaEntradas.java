@@ -12,8 +12,7 @@ import javax.swing.JTextField;
 public class VentanaEntradas extends JFrame{
 	private JTextField textField;
 	public VentanaEntradas() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100,500, 500);
+		
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.NORTH);
@@ -44,16 +43,16 @@ public class VentanaEntradas extends JFrame{
 		JPanel panel_3 = new JPanel();
 		panel_2.add(panel_3);
 		
-		JButton btnSiguiente = new JButton("Siguiente");
-		panel_3.add(btnSiguiente);
+		JButton btnAtras = new JButton("Atras");
+		panel_3.add(btnAtras);
 		
 		JPanel panel_4 = new JPanel();
 		panel_2.add(panel_4);
 		
-		JButton btnCancelar = new JButton ("Cancelar");
-		panel_4.add(btnCancelar);
+		JButton btnSiguiente = new JButton ("Siguiente");
+		panel_4.add(btnSiguiente);
 	
-		btnCancelar.addActionListener((e)->{
+		btnAtras.addActionListener((e)->{
 			dispose();
 		});
 		
@@ -61,6 +60,10 @@ public class VentanaEntradas extends JFrame{
 			VentanaSeleccionEntradas VentanaSeleccionEntradas = new VentanaSeleccionEntradas();
 			VentanaSeleccionEntradas.setVisible(true);
 		});
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(600, 300,500, 500);
+		setTitle("ENTRRADAS");
 		setVisible(true);
 	}
 	

@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -62,14 +63,20 @@ public class VentanaButacas extends JFrame{
 			});
 		
 		btnSiguiente.addActionListener((e)-> {
-			
+			VentanaPuntos ventanaPuntos = new VentanaPuntos();
+			ventanaPuntos.setVisible(true);
 		});
 					
 		
 		
 		//CREACION PRIMERA TABLA BUTACAS
 		Object [] titulos1 = {"", "", "", "", "",""};
-		modTblButacas1 = new DefaultTableModel();
+		modTblButacas1 = new DefaultTableModel() {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
 		modTblButacas1.setColumnIdentifiers(titulos1);
 		tblButacas1 = new JTable(modTblButacas1);
 		layoutTabButacas1  = new FlowLayout();
@@ -83,10 +90,9 @@ public class VentanaButacas extends JFrame{
 		tblButacas1.getColumnModel().getColumn(3).setPreferredWidth(100);
 		tblButacas1.getColumnModel().getColumn(4).setPreferredWidth(100);
 		tblButacas1.getColumnModel().getColumn(5).setPreferredWidth(100);
-
 		tblButacas1.setRowHeight(100);
-		tblButacas1.setIntercellSpacing(new Dimension(10,10));  //Para dejar espacio entre celdas
-
+		/*tblButacas1.setIntercellSpacing(new Dimension(10,10));*/  //Para dejar espacio entre celdas
+		tblButacas1.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
 		
 		String fila1[] =  {"A","01","02","03","04", "05"};
@@ -107,7 +113,12 @@ public class VentanaButacas extends JFrame{
 		
 		//CREACION SEGUNDA TABLA BUTACAS
 		Object [] titulos2 = {"", "", "", "", ""};
-		modTblButacas2 = new DefaultTableModel();
+		modTblButacas2 = new DefaultTableModel() {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
 		modTblButacas2.setColumnIdentifiers(titulos2);
 		tblButacas2 = new JTable(modTblButacas2);
 		layoutTabButacas2  = new FlowLayout();
@@ -121,7 +132,8 @@ public class VentanaButacas extends JFrame{
 		tblButacas2.getColumnModel().getColumn(3).setPreferredWidth(100);
 		tblButacas2.getColumnModel().getColumn(4).setPreferredWidth(100);
 		tblButacas2.setRowHeight(100);
-		tblButacas2.setIntercellSpacing(new Dimension(10,10));
+		/*tblButacas2.setIntercellSpacing(new Dimension(10,10));*/
+		tblButacas2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		
 		String fila6[] =  {"06","07","08","09", "10"};
@@ -135,6 +147,9 @@ public class VentanaButacas extends JFrame{
 		modTblButacas2.addRow(fila8);
 		modTblButacas2.addRow(fila9);
 		modTblButacas2.addRow(fila10);
+		
+		//RENDERER DE LAS TABLAS
+		
 		
 		
 		
@@ -150,9 +165,10 @@ public class VentanaButacas extends JFrame{
 		
 		//DEFINIR LA VENTANA
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(-10,0, 600, 400);
-		setVisible(true);
+		setBounds(600,300, 600, 400);
 		setTitle("BUTACAS");
+		setVisible(true);
+		
 		
 		
 

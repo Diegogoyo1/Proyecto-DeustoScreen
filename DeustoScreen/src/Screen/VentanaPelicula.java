@@ -82,7 +82,8 @@ public class VentanaPelicula extends JFrame{
 		
 		//DEFINIR VENTANA
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds (100,100,380,400);
+		setBounds (600,300,380,400);
+		setTitle("PRELICULAS");
 		setVisible(true);
 		
 	}

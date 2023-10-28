@@ -23,15 +23,14 @@ public class VentanaRegistros extends JFrame {
 	private JTextField txtNombre,txtApellido,txtFechaNacimiento,txtCorreoElectronico;
 	private JTextField textFieldTlf;
 	private JFrame vActual;
-	private JButton btnSalir, BtnIniciarSesion;
+	private JButton btnSalir, btnIniciarSesion;
 	
 	private JPasswordField contraseniaR;
 
 	public VentanaRegistros() {
 		super();
 		vActual = this;
-		setBounds(200, 300, 600, 400);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		
 	//CREACIÓN DE PANELES Y COMPONENTES
 		pNorte = new JPanel(new GridLayout(1, 2));
@@ -87,31 +86,33 @@ public class VentanaRegistros extends JFrame {
 		pNorte.add(lblTituloIS);
 		
 		//botones
-		BtnIniciarSesion = new JButton("INICIAR SESION");
-		btnSalir = new JButton("SALIR");
-		pSur.add(BtnIniciarSesion);
+		btnIniciarSesion = new JButton("Iniciar Sesion");
+		btnSalir = new JButton("Salir");
+		pSur.add(btnIniciarSesion);
 		pSur.add(btnSalir);
 	
 		
 		//eventos botones 
-		BtnIniciarSesion.addActionListener((e)->{
-			VentanaEntradas ventanaEntradas = new VentanaEntradas();
+		btnIniciarSesion.addActionListener((e)->{
 			JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
+			VentanaEntradas ventanaEntradas = new VentanaEntradas();
 			ventanaEntradas.setVisible(true);
-			
-			
 		
 		});
 		btnSalir.addActionListener((e)->{
-			VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+			dispose();
 			
 		});
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(600,300, 600, 400);
+		setTitle("REGISTRO");
 		setVisible(true);
 	}
 	
 
 	public static void main(String[] args) {
-		VentanaRegistros VIS = new VentanaRegistros();
+		VentanaRegistros VR = new VentanaRegistros();
 		
 	}
 

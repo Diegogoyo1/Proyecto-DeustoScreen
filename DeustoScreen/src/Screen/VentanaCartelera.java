@@ -96,9 +96,10 @@ public class VentanaCartelera extends JFrame{
 		
 		//DEFINIR VENTANA
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds (0,0,1000,750);
-		setVisible(true);
+		setBounds (600,300,1000,750);
 		setTitle("CARTELERA");
+		setVisible(true);
+		
 }
 	
 	//PRUEBA DE LA VENTANA CON MAIN

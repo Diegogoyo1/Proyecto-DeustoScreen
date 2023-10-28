@@ -11,8 +11,7 @@ import javax.swing.JButton;
 
 public class VentanaPrecios  extends JFrame{
 	public VentanaPrecios() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds (100,100,380,400);
+		
 		//Creacion de Paneles
 		JPanel PanelNorth = new JPanel();
 		JPanel PanelCentral = new JPanel();
@@ -75,6 +74,10 @@ public class VentanaPrecios  extends JFrame{
 		btnAtras.addActionListener((e)->{
 			dispose();
 		});
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds (600,300,380,400);
+		setTitle("PRECIOS");
 		setVisible(true);
 		
 	}
