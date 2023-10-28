@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,7 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 public class VentanaPrincipal extends JFrame{
 	private JPanel PanelNorte, PanelCentro;
-	private JButton BotonPrecios, btnIniciarSesion,btnCartelera;;
+	private JButton btnPrecios, btnIniciarSesion,btnHorario, btnCartelera;
 	
 	public VentanaPrincipal() {
 	
@@ -29,24 +30,32 @@ public class VentanaPrincipal extends JFrame{
 		getContentPane().add(PanelCentro,BorderLayout.CENTER);
 		
 				
-		BotonPrecios = new JButton("Precios");
+		btnPrecios = new JButton("Precios");
 		btnIniciarSesion = new JButton("Iniciar Sesion");
 		btnCartelera = new JButton("Cartelera");
+		btnHorario = new JButton("Horario");
 		
 		//Imagen
-		 ImageIcon logo = new ImageIcon(" 23.54.19_90281ec4.gif"); 
-	     JLabel gifLabelLogo = new JLabel(logo);
+		 File logo = new File("src\\Logo.mp4");
+		 
+		 /*Media media = new Media(logo.toURI().toString());
+	        MediaPlayer mediaPlayer = new MediaPlayer(media);
+	        MediaView mediaView = new MediaView(mediaPlayer);
+	     
+		 
+		 /*JLabel gifLabelLogo = new JLabel(logo);*/
 	     
 
 		PanelNorte.add(btnIniciarSesion);
-		PanelNorte.add(BotonPrecios);
+		PanelNorte.add(btnPrecios);
 		PanelNorte.add(btnCartelera);
-		PanelCentro.add(gifLabelLogo);
+		PanelNorte.add(btnHorario);
+		
 
 		
 		//Eventos Botones
 		
-		BotonPrecios.addActionListener((e)->{
+		btnPrecios.addActionListener((e)->{
 			VentanaPrecios ventanaPrecios = new VentanaPrecios();
 			ventanaPrecios.setVisible(true);
 		});
@@ -56,10 +65,17 @@ public class VentanaPrincipal extends JFrame{
 			ventanaInicioSesion.setVisible(true);
 		});
 		
-		btnCartelera.addActionListener((e)->{
+		btnHorario.addActionListener((e)->{
+			VentanaHorario ventanaHorario = new VentanaHorario();
+			ventanaHorario.setVisible(true);
+		});
+		
+		btnCartelera.addActionListener((e)-> {
 			VentanaCartelera ventanaCartelera = new VentanaCartelera();
 			ventanaCartelera.setVisible(true);
+			
 		});
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 300, 450, 300);

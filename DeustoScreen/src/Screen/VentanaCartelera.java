@@ -1,111 +1,118 @@
 package Screen;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import javax.swing.border.EmptyBorder;
 
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.table.DefaultTableModel;
-
-public class VentanaCartelera extends JFrame{
-	private JPanel pCentro, pSur, pNorte;
-	private JButton btnAtras; 
-	private DefaultTableModel modelo;
-	private JTable tabla;
-	private JScrollPane scroll;
-	private FlowLayout layoutTabla;
-	private JLabel lblTituloH;
+public class VentanaCartelera extends JFrame {
+	protected JPanel pNorte, pSur, pEste, pOeste, pCentro;
+	protected JButton btnAtras,btnOppenheimer, btnBarbie, btnSawX, btnCampeonex, btnTrolls3;
+	protected JLabel lblPeliculas;
 	
-	 
 	
 	public VentanaCartelera() {
 		
-		//LABEL
-		lblTituloH = new JLabel("HORARIOS");
-		
-		
-		//PANELES
-		pCentro = new JPanel();
-		pSur = new JPanel();
 		pNorte = new JPanel();
+		pSur = new JPanel();
+		pEste = new  JPanel();
+		pOeste = new JPanel();
+		pCentro = new JPanel();
 		
-		//POSICION DE PANELES
-		
-		getContentPane().add(pCentro, BorderLayout.CENTER);
-		getContentPane().add(pSur, BorderLayout.SOUTH);
 		getContentPane().add(pNorte, BorderLayout.NORTH);
+		getContentPane().add(pSur, BorderLayout.SOUTH);
+		getContentPane().add(pEste, BorderLayout.EAST);
+		getContentPane().add(pOeste, BorderLayout.WEST);
+		getContentPane().add(pCentro, BorderLayout.CENTER);
+		int espacioEntrePeneles1 = 200;
+		pCentro.setBorder(new EmptyBorder(espacioEntrePeneles1,espacioEntrePeneles1,espacioEntrePeneles1,espacioEntrePeneles1));
+		
+		btnAtras = new JButton("Atras");
+		btnAtras.addActionListener((e)->{
+			dispose();
+			
+		});
 		
 		
-		//BOTONES
-		btnAtras = new JButton("ATRÁS");
 		
-		//ACCIONES DE BOTONES
-				btnAtras.addActionListener((e)-> {
-					dispose();
-						
-					});
-				
-		//LABEL
-		pNorte.add(lblTituloH);
-		
-		//CREACIÓN TABLA
-		Object [] titulos = {"HORA","LUNES","MARTES", "MIÉRCOLES", "JUEVES", "VIERNES", "SABADO", "DOMINGO"};
-		modelo = new DefaultTableModel();
-		modelo.setColumnIdentifiers(titulos);
-		tabla = new JTable(modelo);
-		layoutTabla = new FlowLayout();
-		layoutTabla.setVgap(175);
-		pCentro.setLayout(layoutTabla);
-		scroll = new JScrollPane(tabla);
-		
-		getContentPane().add(scroll, BorderLayout.EAST);
-		
-		tabla.getColumnModel().getColumn(0).setPreferredWidth(100);
-		tabla.getColumnModel().getColumn(1).setPreferredWidth(100);
-		tabla.getColumnModel().getColumn(2).setPreferredWidth(100);
-		tabla.getColumnModel().getColumn(3).setPreferredWidth(100);
-		tabla.getColumnModel().getColumn(4).setPreferredWidth(100);
-		tabla.getColumnModel().getColumn(5).setPreferredWidth(100);
-		tabla.getColumnModel().getColumn(6).setPreferredWidth(100);
-		tabla.getColumnModel().getColumn(7).setPreferredWidth(100);
-		tabla.setRowHeight(75);
+		btnOppenheimer = new JButton("Oppenhaimer");
+		btnOppenheimer.setPreferredSize(new Dimension(250, 350));
+		btnOppenheimer.addActionListener((e)->{
+			VentanaOppenheimer ventanaOppenheimer = new VentanaOppenheimer();
+			ventanaOppenheimer.setVisible(true);
+			
+		});
 		
 		
-		String fila1[] =  {"7:00","P1(sala1)","P3(sala1)","P3(sala1)", "P1(sala1)", "P1(sala1)", "P1(sala1)", "P1(sala1)"};
-		String fila2[] =  {"----","P2(sala2)","P3(sala1)","P3(sala1)", "P1(sala1)", "P1(sala1)", "P1(sala1)", "P1(sala1)"};
-		String fila3[] =  {"8:15"," X ","P3(sala1)","P3(sala1)", "P1(sala1)", "P1(sala1)", "P1(sala1)", "P1(sala1)"};
-		String fila4[] =  {"9:30","P1(sala4)","P3(sala1)","P3(sala1)", "P1(sala1)", "P1(sala1)", "P1(sala1)", "P1(sala1)"};
-		modelo.addRow(titulos);
-		modelo.addRow(fila1);
-		modelo.addRow(fila2);
-		modelo.addRow(fila3);
-		modelo.addRow(fila4);
+		btnBarbie = new JButton("Barbie");
+		btnBarbie.setPreferredSize(new Dimension(250, 350));
+		btnBarbie.addActionListener((e)->{
+			VentanaBarbie ventanaBarbie = new VentanaBarbie();
+			ventanaBarbie.setVisible(true);
+			
+			
+		});
 		
 		
-		//AÑADIR LOS COMPONENTES A LOS PANELES
-		pCentro.add(tabla);
+		btnSawX = new JButton("Saw X");
+		btnSawX.setPreferredSize(new Dimension(250, 350));
+		btnSawX.addActionListener((e)->{
+			VentanaSawX ventanaSawX = new VentanaSawX();
+			ventanaSawX.setVisible(true);
+			
+		});
+		
+		
+		btnCampeonex = new JButton("Campeonex");
+		btnCampeonex.setPreferredSize(new Dimension(250, 350));
+		btnCampeonex.addActionListener((e)->{
+			VentanaCampeonex ventanaCampeonex = new VentanaCampeonex();
+			ventanaCampeonex.setVisible(true);
+			
+		});
+		
+		
+		btnTrolls3 = new JButton("Trolls 3");
+		btnTrolls3.setPreferredSize(new Dimension(250, 350));
+		btnTrolls3.addActionListener((e)->{
+			VentanaTrolls3 ventanaTrolls3 = new VentanaTrolls3();
+			ventanaTrolls3.setVisible(true);
+			
+		});
+		
+		
+		lblPeliculas = new JLabel("PELICULAS");
+		
+		
+		
+		
+		
+		
+		
 		pSur.add(btnAtras);
+		pNorte.add(lblPeliculas);
+		pCentro.add(btnOppenheimer);
+		pCentro.add(btnBarbie);
+		pCentro.add(btnSawX);
+		pCentro.add(btnCampeonex);
+		pCentro.add(btnTrolls3);
 		
 		
-		//DEFINIR VENTANA
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds (600,300,1000,750);
-		setTitle("CARTELERA");
+		setBounds (600,300,380,400);
+		setTitle("PELICULAS");
 		setVisible(true);
 		
-}
-	
-	//PRUEBA DE LA VENTANA CON MAIN
-		public static void main(String[] args) {
-			VentanaCartelera VC = new VentanaCartelera();	
-				
 		
-		}
+		
+	}
+	
+	public static void main(String[] args) {
+		VentanaCartelera VPs = new VentanaCartelera();
+	}
+
 }

@@ -11,13 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class VentanaPelicula extends JFrame{
+public class VentanaOppenheimer extends JFrame{
 	private JPanel pNorte, pSur, pCentro, pCentroIz, pCentroDe; 
 	private JLabel lblPeli, lblSip, lblDur, lblCategoria;
 	private JButton btnOk, btnCancel;
-	private JTextField txtPeli, txtSip, txtDur, txtCategoria;
+	private JTextField txtPeli, txtSinp, txtDur, txtCategoria;
 	
-	public VentanaPelicula() {
+	public VentanaOppenheimer() {
 		
 		//CREACIÓN PANELES
 		pCentro = new JPanel (new GridLayout (1, 2));
@@ -42,7 +42,7 @@ public class VentanaPelicula extends JFrame{
 		
 		//TEXTFIELD
 		txtPeli = new JTextField();
-		txtSip = new JTextField();
+		txtSinp = new JTextField();
 		txtDur = new JTextField();
 		txtCategoria = new JTextField();
 		
@@ -50,7 +50,7 @@ public class VentanaPelicula extends JFrame{
 		pCentroIz.add(lblPeli);
 		pCentroIz.add(txtPeli);
 		pCentroIz.add(lblSip);
-		pCentroIz.add(txtSip);
+		pCentroIz.add(txtSinp);
 		pCentroIz.add(lblDur);
 		pCentroIz.add(txtDur);
 		pCentroIz.add(lblCategoria);
@@ -77,19 +77,19 @@ public class VentanaPelicula extends JFrame{
 		btnCancel.addActionListener((e) -> {
 			dispose();
 		});
-		setVisible(true);
+		
 		
 		
 		//DEFINIR VENTANA
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds (600,300,380,400);
-		setTitle("PRELICULAS");
+		setTitle("OPPENHEIMER");
 		setVisible(true);
 		
 	}
 	//PRUEBA DE LA VENTANA CON MAIN
 	public static void main(String[] args) {
-		VentanaPelicula VP = new VentanaPelicula();	
+		VentanaOppenheimer VO = new VentanaOppenheimer();	
 					
 	}
 
