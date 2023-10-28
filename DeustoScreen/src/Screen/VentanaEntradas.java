@@ -7,63 +7,55 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import java.awt.GridLayout;
 import javax.swing.JButton;
-import javax.swing.JTextField;
+
 
 public class VentanaEntradas extends JFrame{
-	private JTextField textField;
 	public VentanaEntradas() {
 		
 		
-		JPanel panel = new JPanel();
-		getContentPane().add(panel, BorderLayout.NORTH);
+		JPanel panelNorth = new JPanel();
+		JPanel panelEast = new JPanel();
+		JPanel panelWest = new JPanel();
+		JPanel panelCenter = new JPanel();
+		JPanel panelSouth = new JPanel();
+		
+		getContentPane().add(panelNorth, BorderLayout.NORTH);
+		getContentPane().add(panelEast, BorderLayout.EAST);
+		getContentPane().add(panelEast, BorderLayout.EAST);
+		getContentPane().add(panelCenter, BorderLayout.CENTER);
+		getContentPane().add(panelSouth, BorderLayout.SOUTH);
+		
+		panelCenter.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		JLabel lblEntradas = new JLabel("Entradas");
-		panel.add(lblEntradas);
-		
-		JPanel panel_1 = new JPanel();
-		getContentPane().add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new GridLayout(0, 2, 0, 0));
-		
 		JLabel lblPelicula = new JLabel("Pelicula");
-		panel_1.add(lblPelicula);
-		
-		JComboBox comBoxPelicula = new JComboBox();
-		panel_1.add(comBoxPelicula);
-		
 		JLabel lblHorarios = new JLabel("Horarios");
-		panel_1.add(lblHorarios);
-		
+		JComboBox comBoxPelicula = new JComboBox();
 		JComboBox comBoxHorarios = new JComboBox();
-		panel_1.add(comBoxHorarios);
+		JButton BtnAtras = new JButton("Atrás");
+		JButton BtnSiguiente = new JButton("Siguiente");
 		
-		JPanel panel_2 = new JPanel();
-		getContentPane().add(panel_2, BorderLayout.SOUTH);
-		panel_2.setLayout(new GridLayout(0, 2, 0, 0));
+		panelNorth.add(lblEntradas);
+		panelCenter.add(lblPelicula);
+		panelCenter.add(comBoxPelicula);
+		panelCenter.add(lblHorarios);
+		panelCenter.add(comBoxHorarios);
+		panelSouth.add(BtnSiguiente);
+		panelSouth.add(BtnAtras);
 		
-		JPanel panel_3 = new JPanel();
-		panel_2.add(panel_3);
 		
-		JButton btnAtras = new JButton("Atras");
-		panel_3.add(btnAtras);
-		
-		JPanel panel_4 = new JPanel();
-		panel_2.add(panel_4);
-		
-		JButton btnSiguiente = new JButton ("Siguiente");
-		panel_4.add(btnSiguiente);
-	
-		btnAtras.addActionListener((e)->{
+		BtnAtras.addActionListener((e)->{
 			dispose();
 		});
 		
-		btnSiguiente.addActionListener((e)->{
-			VentanaSeleccionEntradas VentanaSeleccionEntradas = new VentanaSeleccionEntradas();
-			VentanaSeleccionEntradas.setVisible(true);
+		BtnSiguiente.addActionListener((e)->{
+			VentanaSeleccionEntradas ventanaSeleccionEntradas = new VentanaSeleccionEntradas();
+			ventanaSeleccionEntradas.setVisible(true);
 		});
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(600, 300,500, 500);
-		setTitle("ENTRRADAS");
+		setTitle("ENTRADAS");
 		setVisible(true);
 	}
 	

@@ -75,7 +75,7 @@ public class VentanaPrecios  extends JFrame{
 			dispose();
 		});
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds (600,300,380,400);
 		setTitle("PRECIOS");
 		setVisible(true);
