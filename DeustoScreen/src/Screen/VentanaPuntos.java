@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class VentanaPuntos extends JFrame{
-	private JPanel pSur, pCentro; 
+	private JPanel pSur, pCentro, pNorte; 
 	private JLabel lblUsuario, lblNumPuntos;
 	private JButton btnAniadir, btnOmitir;
 	private JTextField txtUsuario, txtNumPuntos;
@@ -27,9 +27,11 @@ public class VentanaPuntos extends JFrame{
 		//CREACIÓN PANELES
 		pCentro = new JPanel (new GridLayout (2, 2));
 		pSur = new JPanel();
+		pNorte = new JPanel();
 		
 		getContentPane().add(pCentro, BorderLayout.CENTER);
 		getContentPane().add(pSur, BorderLayout.SOUTH);
+		getContentPane().add(pNorte, BorderLayout.NORTH);
 		
 		
 		//LABELS
@@ -41,7 +43,7 @@ public class VentanaPuntos extends JFrame{
 		txtUsuario.setBackground(new Color(255, 255, 255));
 		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtUsuario.setHorizontalAlignment(SwingConstants.LEFT);
-		txtNumPuntos = new JTextField(5);
+		txtNumPuntos = new JTextField(10);
 		
 		//ENLAZAR PANELES CON LABELS Y TEXTFIELDS
 		pCentro.add(lblUsuario);
@@ -65,9 +67,6 @@ public class VentanaPuntos extends JFrame{
 			 
 		});
 		
-		
-		//btnAniadir
-		//sin terminar
 		btnAniadir.addActionListener((e)-> {
 			dispose();//Este DISPOSE cerrara la ventana y nos llevara a la de PAGO AÑADIENDO los puntos
 			VentanaPago ventanaPago = new VentanaPago();
@@ -75,7 +74,7 @@ public class VentanaPuntos extends JFrame{
 			 
 		});
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds (600,300,380,400);
 		setTitle("PUNTOS");
 		setVisible(true);
