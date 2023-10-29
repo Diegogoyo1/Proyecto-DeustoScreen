@@ -1,7 +1,6 @@
 package Screen;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -69,9 +68,9 @@ public class VentanaBarbie extends JFrame {
 		//IMAGEN
 		pCentroDe = new JPanel();
 		pCentroDe.setLayout(new FlowLayout(FlowLayout.LEFT));
-		ImageIcon imBarbie = new ImageIcon("src\\Imagenes\\Barbie.jpg");
+		ImageIcon imBarbie = new ImageIcon("src\\Imagenes\\PortadaBarbie.jpg");
 		Image imagen = imBarbie.getImage();
-		Image imagenRedimensionada = imagen.getScaledInstance(700, 700, Image.SCALE_SMOOTH);
+		Image imagenRedimensionada = imagen.getScaledInstance(400, 600, Image.SCALE_SMOOTH);
 		ImageIcon imagenRedimensionadaIcon = new ImageIcon(imagenRedimensionada);
 		lblImg = new JLabel(imagenRedimensionadaIcon);
 		pCentroDe.add(lblImg);

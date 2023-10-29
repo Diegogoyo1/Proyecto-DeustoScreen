@@ -1,7 +1,6 @@
 package Screen;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -78,9 +77,9 @@ public class VentanaOppenheimer extends JFrame{
 		//IMAGEN
 		pCentroDe = new JPanel();
 		pCentroDe.setLayout(new FlowLayout(FlowLayout.LEFT));
-		ImageIcon imOppenheimer = new ImageIcon("src\\Imagenes\\Oppenheimer.jpg");
+		ImageIcon imOppenheimer = new ImageIcon("src\\Imagenes\\PortadaOppenheimer.jpg");
 		Image imagen = imOppenheimer.getImage();
-		Image imagenRedimensionada = imagen.getScaledInstance(700, 700, Image.SCALE_SMOOTH);
+		Image imagenRedimensionada = imagen.getScaledInstance(500, 700, Image.SCALE_SMOOTH);
 		ImageIcon imagenRedimensionadaIcon = new ImageIcon(imagenRedimensionada);
 		lblImg = new JLabel(imagenRedimensionadaIcon);
 		pCentroDe.add(lblImg);

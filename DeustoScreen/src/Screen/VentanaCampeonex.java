@@ -1,7 +1,6 @@
 package Screen;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -81,7 +80,7 @@ public class VentanaCampeonex extends JFrame {
 		pCentroDe.setLayout(new FlowLayout(FlowLayout.LEFT));
 		ImageIcon imCampeonex = new ImageIcon("src\\Imagenes\\Campeonex.jpg");
 		Image imagen = imCampeonex.getImage();
-		Image imagenRedimensionada = imagen.getScaledInstance(700, 700, Image.SCALE_SMOOTH);
+		Image imagenRedimensionada = imagen.getScaledInstance(300, 500, Image.SCALE_SMOOTH);
 		ImageIcon imagenRedimensionadaIcon = new ImageIcon(imagenRedimensionada);
 		lblImg = new JLabel(imagenRedimensionadaIcon);
 		pCentroDe.add(lblImg);

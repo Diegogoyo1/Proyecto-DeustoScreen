@@ -2,6 +2,7 @@ package Screen;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
@@ -39,11 +40,15 @@ public class VentanaPuntos extends JFrame{
 		lblNumPuntos = new JLabel (" NÚMERO DE PUNTOS: ");
 		
 		//TEXTFIELD
-		txtUsuario = new JTextField(5);
+		txtUsuario = new JTextField();
 		txtUsuario.setBackground(new Color(255, 255, 255));
-		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		txtUsuario.setHorizontalAlignment(SwingConstants.LEFT);
-		txtNumPuntos = new JTextField(10);
+		//txtUsuario.setSize(2, 4);
+		//txtUsuario.setPreferredSize(new Dimension(2, 4));
+		txtNumPuntos = new JTextField();
+		txtNumPuntos.setEditable(false);
+		
 		
 		//ENLAZAR PANELES CON LABELS Y TEXTFIELDS
 		pCentro.add(lblUsuario);
@@ -53,8 +58,8 @@ public class VentanaPuntos extends JFrame{
 		
 		
 		//BOTONES
-		btnAniadir = new JButton("Añadir");
-		btnOmitir = new JButton ("Omitir");
+		btnAniadir = new JButton("AÑADIR");
+		btnOmitir = new JButton ("OMITIR");
 		pSur.add(btnOmitir);
 		pSur.add(btnAniadir);
 		

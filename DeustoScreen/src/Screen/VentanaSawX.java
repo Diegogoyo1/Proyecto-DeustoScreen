@@ -85,7 +85,7 @@ public class VentanaSawX extends JFrame {
 		pCentroDe.setLayout(new FlowLayout(FlowLayout.LEFT));
 		ImageIcon imSawX = new ImageIcon("src\\Imagenes\\SawX.jpg");
 		Image imagen = imSawX.getImage();
-		Image imagenRedimensionada = imagen.getScaledInstance(700, 700, Image.SCALE_SMOOTH);
+		Image imagenRedimensionada = imagen.getScaledInstance(300, 400, Image.SCALE_SMOOTH);
 		ImageIcon imagenRedimensionadaIcon = new ImageIcon(imagenRedimensionada);
 		lblImg = new JLabel(imagenRedimensionadaIcon);
 		pCentroDe.add(lblImg);
