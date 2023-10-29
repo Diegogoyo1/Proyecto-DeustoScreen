@@ -7,35 +7,94 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 public class VentanaTrolls3 extends JFrame {
-	protected JPanel pNorte, pSur, pEste, pOeste;
-	protected JButton btnAtras;
-	protected JLabel lblSetNombre,lblNombre,lblSetReparto, lblReparto, lblSetDuracion, lblDuracion, lblSetCategoria,lblCategoria, lblSetSinopsis;  ;
-	
+	private JPanel pNorte, pSur, pCentro, pCentroIz, pCentroDe; 
+	private JLabel lblSetNom, lblSetCat, lblSetDur, lblSetRep, lblSetSip, lblNom, lblCat, lblDur, lblRep;
+	private JButton btnA;
+	private JTextArea txtSinp;
+	//private JScrollPane scrollTxtArea;
 	
 	public VentanaTrolls3() {
 		
-		pNorte = new JPanel();
+		//CREACIÓN PANELES
+		pCentro = new JPanel (new GridLayout (1, 2));
+		pCentroIz = new JPanel (new GridLayout (5, 2));
+		pCentroDe = new JPanel();
 		pSur = new JPanel();
-		pEste = new JPanel(new GridLayout(2,0));
-		pOeste = new JPanel();
+		pNorte = new JPanel();
 		
-		getContentPane().add(pNorte, BorderLayout.NORTH);
+		getContentPane().add(pCentro, BorderLayout.CENTER);
 		getContentPane().add(pSur, BorderLayout.SOUTH);
-		getContentPane().add(pEste, BorderLayout.EAST);
-		getContentPane().add(pOeste, BorderLayout.WEST);
+		getContentPane().add(pNorte, BorderLayout.NORTH);
 		
 		
-		btnAtras = new JButton("Atras");
-		btnAtras.addActionListener((e)-> {
+		pCentro.add(pCentroIz);
+		pCentro.add(pCentroDe);
+		
+		//LABELS
+		lblSetNom = new JLabel(" NOMBRE: ");
+		lblSetCat = new JLabel (" CATEGORÍA: ");
+		lblSetDur = new JLabel(" DURACIÓN: ");
+		lblSetRep = new JLabel (" REPARTO: ");
+		lblSetSip = new JLabel (" SINOPSIS: ");
+		lblNom = new JLabel(" Trolls 3: Todos Juntos ");
+		lblCat = new JLabel (" Animación "); // poner desde la ventana
+		lblDur = new JLabel(" 1h 31m ");
+		lblRep = new JLabel (" Justin Timberlake ");
+		
+		
+		//TEXTAREA
+		txtSinp = new JTextArea(16, 58);
+		txtSinp = new JTextArea("Poppy y Branch son oficialmente, por fin, pareja. "
+				+ " A medida que se relacionan, Poppy descubre que Branch "
+				+ "tiene un pasado secreto. Una vez formó parte de su fenómeno boyband "
+				+ "favorito, BroZone, con sus cuatro hermanos: Floyd, John Dory, "
+				+ "Spruce y Clay. BroZone se disolvió cuando Branch era todavía un bebé, "
+				+ "al igual que la familia, y Branch no ha vuelto a ver a sus hermanos "
+				+ "desde entonces. Pero cuando Floyd, el hermano de Branch, es secuestrado "
+				+ "por sus talentos musicales por un par de nefastos villanos estrellas del "
+				+ "pop, Velvet y Veneer, Branch y Poppy se embarcan en un angustioso y "
+				+ "emotivo viaje para reunir a los otros hermanos y rescatar a Floyd de un "
+				+ "destino aún peor que la oscuridad de la cultura pop.");
+		txtSinp.setLineWrap(true);
+		txtSinp.setWrapStyleWord(true);
+		txtSinp.setEditable(false);
+		//scrollTxtArea = new JScrollPane(txtSinp);
+		//getContentPane().add(scrollTxtArea, BorderLayout.CENTER);
+		
+		//ENLAZER PANELES CON LABELS Y TEXTFIELDS
+		pCentroIz.add(lblSetNom);
+		pCentroIz.add(lblNom);
+		pCentroIz.add(lblSetCat);
+		pCentroIz.add(lblCat);
+		pCentroIz.add(lblSetDur);
+		pCentroIz.add(lblDur);
+		pCentroIz.add(lblSetCat);
+		pCentroIz.add(lblCat);
+		pCentroIz.add(lblSetRep);
+		pCentroIz.add(lblRep);
+		pCentroIz.add(lblSetSip);
+		pCentroIz.add(txtSinp);
+		
+		
+		//BOTONES
+		btnA = new JButton("ATRÁS");
+		pSur.add(btnA);
+		
+		
+		//EVENTOS BOTONES
+		btnA.addActionListener((e) -> {
 			dispose();
-			
 		});
+		
+		
+		
 		//DEFINIR VENTANA
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds (600,300,380,400);
-		setTitle("BARBIE");
+		setTitle("TROLLS 3: Todos Juntos");
 		setVisible(true);
 		
 	}

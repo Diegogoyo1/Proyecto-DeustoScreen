@@ -41,7 +41,7 @@ public class VentanaCampeonex extends JFrame {
 		lblSetSip = new JLabel (" SINOPSIS: ");
 		lblNom = new JLabel(" Campeonex ");
 		lblCat = new JLabel (" Comedia "); // poner desde la ventana
-		lblDur = new JLabel(" 2h 4mins ");
+		lblDur = new JLabel(" 2h 4m ");
 		lblRep = new JLabel (" Elisa Hipólito ");
 		
 		
