@@ -33,7 +33,7 @@ public class VentanaSawX extends JFrame {
 			
 		});
 		//DEFINIR VENTANA
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds (600,300,380,400);
 		setTitle("BARBIE");
 		setVisible(true);

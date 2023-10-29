@@ -10,31 +10,38 @@ import javax.swing.JButton;
 
 
 public class VentanaEntradas extends JFrame{
+	protected JPanel panelNorth, panelEast, panelWest, panelCenter, panelSouth;
+	protected JButton BtnAtras, BtnSiguiente;
+	private JLabel lblEntradas, lblPelicula, lblHorarios;
+	
 	public VentanaEntradas() {
 		
-		
-		JPanel panelNorth = new JPanel();
-		JPanel panelEast = new JPanel();
-		JPanel panelWest = new JPanel();
-		JPanel panelCenter = new JPanel();
-		JPanel panelSouth = new JPanel();
-		
+		//Creacion de Paneles
+		 panelNorth = new JPanel();
+		 panelEast = new JPanel();
+		 panelWest = new JPanel();
+		 panelCenter = new JPanel();
+		 panelSouth = new JPanel();
+		 
+		//Añadimos localizacion a paneles y columnas
 		getContentPane().add(panelNorth, BorderLayout.NORTH);
 		getContentPane().add(panelEast, BorderLayout.EAST);
 		getContentPane().add(panelEast, BorderLayout.EAST);
 		getContentPane().add(panelCenter, BorderLayout.CENTER);
 		getContentPane().add(panelSouth, BorderLayout.SOUTH);
-		
 		panelCenter.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		JLabel lblEntradas = new JLabel("Entradas");
-		JLabel lblPelicula = new JLabel("Pelicula");
-		JLabel lblHorarios = new JLabel("Horarios");
+		//Creacion de Labels, ComboBox y Botones
+		lblEntradas = new JLabel("Entradas");
+		lblPelicula = new JLabel("Pelicula");
+		lblHorarios = new JLabel("Horarios");
 		JComboBox comBoxPelicula = new JComboBox();
 		JComboBox comBoxHorarios = new JComboBox();
-		JButton BtnAtras = new JButton("Atrás");
-		JButton BtnSiguiente = new JButton("Siguiente");
+		BtnAtras = new JButton("Atrás");
+		BtnSiguiente = new JButton("Siguiente");
 		
+		
+		//Añadimos todo lo anterior a paneles
 		panelNorth.add(lblEntradas);
 		panelCenter.add(lblPelicula);
 		panelCenter.add(comBoxPelicula);
@@ -43,7 +50,7 @@ public class VentanaEntradas extends JFrame{
 		panelSouth.add(BtnSiguiente);
 		panelSouth.add(BtnAtras);
 		
-		
+		//ActionListener de los botones
 		BtnAtras.addActionListener((e)->{
 			dispose();
 		});
