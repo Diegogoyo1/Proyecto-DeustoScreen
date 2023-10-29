@@ -1,8 +1,12 @@
 package Screen;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,7 +15,7 @@ import javax.swing.JTextArea;
 
 public class VentanaCampeonex extends JFrame {
 	private JPanel pNorte, pSur, pCentro, pCentroIz, pCentroDe; 
-	private JLabel lblSetNom, lblSetCat, lblSetDur, lblSetRep, lblSetSip, lblNom, lblCat, lblDur, lblRep;
+	private JLabel lblImg, lblSetNom, lblSetCat, lblSetDur, lblSetRep, lblSetSip, lblNom, lblCat, lblDur, lblRep;
 	private JButton btnA;
 	private JTextArea txtSinp;
 	//private JScrollPane scrollTxtArea;
@@ -72,6 +76,17 @@ public class VentanaCampeonex extends JFrame {
 		pCentroIz.add(lblSetSip);
 		pCentroIz.add(txtSinp);
 		
+		//IMAGEN
+		pCentroDe = new JPanel();
+		pCentroDe.setLayout(new FlowLayout(FlowLayout.LEFT));
+		ImageIcon imCampeonex = new ImageIcon("src\\Imagenes\\Campeonex.jpg");
+		Image imagen = imCampeonex.getImage();
+		Image imagenRedimensionada = imagen.getScaledInstance(700, 700, Image.SCALE_SMOOTH);
+		ImageIcon imagenRedimensionadaIcon = new ImageIcon(imagenRedimensionada);
+		lblImg = new JLabel(imagenRedimensionadaIcon);
+		pCentroDe.add(lblImg);
+		
+		pCentro.add(pCentroDe);
 		
 		//BOTONES
 		btnA = new JButton("ATRÁS");

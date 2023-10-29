@@ -1,24 +1,21 @@
 package Screen;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 public class VentanaOppenheimer extends JFrame{
 	private JPanel pNorte, pSur, pCentro, pCentroIz, pCentroDe; 
-	private JLabel lblSetNom, lblSetCat, lblSetDur, lblSetRep, lblSetSip, lblNom, lblCat, lblDur, lblRep;
+	private JLabel lblImg, lblSetNom, lblSetCat, lblSetDur, lblSetRep, lblSetSip, lblNom, lblCat, lblDur, lblRep;
 	private JButton btnA;
 	private JTextArea txtSinp;
 	//private JScrollPane scrollTxtArea;
@@ -28,7 +25,6 @@ public class VentanaOppenheimer extends JFrame{
 		//CREACIÓN PANELES
 		pCentro = new JPanel (new GridLayout (1, 2));
 		pCentroIz = new JPanel (new GridLayout (5, 2));
-		pCentroDe = new JPanel();
 		pSur = new JPanel();
 		pNorte = new JPanel();
 		
@@ -38,7 +34,6 @@ public class VentanaOppenheimer extends JFrame{
 		
 		
 		pCentro.add(pCentroIz);
-		pCentro.add(pCentroDe);
 		
 		//LABELS
 		lblSetNom = new JLabel(" NOMBRE: ");
@@ -80,6 +75,17 @@ public class VentanaOppenheimer extends JFrame{
 		pCentroIz.add(lblSetSip);
 		pCentroIz.add(txtSinp);
 		
+		//IMAGEN
+		pCentroDe = new JPanel();
+		pCentroDe.setLayout(new FlowLayout(FlowLayout.LEFT));
+		ImageIcon imOppenheimer = new ImageIcon("src\\Imagenes\\Oppenheimer.jpg");
+		Image imagen = imOppenheimer.getImage();
+		Image imagenRedimensionada = imagen.getScaledInstance(700, 700, Image.SCALE_SMOOTH);
+		ImageIcon imagenRedimensionadaIcon = new ImageIcon(imagenRedimensionada);
+		lblImg = new JLabel(imagenRedimensionadaIcon);
+		pCentroDe.add(lblImg);
+		
+		pCentro.add(pCentroDe);
 		
 		//BOTONES
 		btnA = new JButton("ATRÁS");
@@ -103,7 +109,7 @@ public class VentanaOppenheimer extends JFrame{
 
 	//PRUEBA DE LA VENTANA CON MAIN
 	public static void main(String[] args) {
-		VentanaOppenheimer VO = new VentanaOppenheimer();	
+		VentanaOppenheimer VOp = new VentanaOppenheimer();	
 					
 	}
 
