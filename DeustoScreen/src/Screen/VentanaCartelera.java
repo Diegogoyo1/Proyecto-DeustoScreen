@@ -8,13 +8,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 public class VentanaCartelera extends JFrame {
 	protected JPanel pNorte, pSur, pEste, pOeste, pCentro;
 	protected JButton btnAtras,btnOppenheimer, btnBarbie, btnSawX, btnCampeonex, btnTrolls3;
 	protected JLabel lblPeliculas;
-	
+	protected JScrollPane scrollVentana;
 	
 	public VentanaCartelera() {
 		
@@ -31,6 +32,10 @@ public class VentanaCartelera extends JFrame {
 		getContentPane().add(pCentro, BorderLayout.CENTER);
 		int espacioEntrePeneles = 200;
 		pCentro.setBorder(new EmptyBorder(espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles));
+		
+		scrollVentana = new JScrollPane();
+		getContentPane().add(scrollVentana, BorderLayout.EAST);
+		
 		
 		btnAtras = new JButton("Atras");
 		btnAtras.addActionListener((e)->{
