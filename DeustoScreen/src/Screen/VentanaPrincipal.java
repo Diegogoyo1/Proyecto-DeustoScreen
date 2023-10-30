@@ -51,23 +51,27 @@ public class VentanaPrincipal extends JFrame{
 		//Eventos Botones
 		
 		btnPrecios.addActionListener((e)->{
-			VentanaPrecios ventanaPrecios = new VentanaPrecios();
-			ventanaPrecios.setVisible(true);
+			new VentanaPrecios(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 		
 		btnIniciarSesion.addActionListener((e)->{
-			VentanaInicioSesion ventanaInicioSesion = new VentanaInicioSesion();
-			ventanaInicioSesion.setVisible(true);
+			new VentanaInicioSesion(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 		
 		btnHorario.addActionListener((e)->{
-			VentanaHorario ventanaHorario = new VentanaHorario();
-			ventanaHorario.setVisible(true);
+			new VentanaHorario(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 		
 		btnCartelera.addActionListener((e)-> {
-			VentanaCartelera ventanaCartelera = new VentanaCartelera();
-			ventanaCartelera.setVisible(true);
+			new VentanaCartelera(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 			
 		});
 		

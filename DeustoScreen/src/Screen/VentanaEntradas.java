@@ -13,8 +13,11 @@ public class VentanaEntradas extends JFrame{
 	protected JPanel panelNorth, panelEast, panelWest, panelCenter, panelSouth;
 	protected JButton BtnAtras, BtnSiguiente;
 	private JLabel lblEntradas, lblPelicula, lblHorarios;
+	private JFrame vActual, vAnterior;
 	
-	public VentanaEntradas() {
+	public VentanaEntradas(JFrame va) {
+		vActual=this;
+		vAnterior=va;
 		
 		//Creacion de Paneles
 		 panelNorth = new JPanel();
@@ -41,23 +44,26 @@ public class VentanaEntradas extends JFrame{
 		BtnSiguiente = new JButton("Siguiente");
 		
 		
+		
 		//Añadimos todo lo anterior a paneles
 		panelNorth.add(lblEntradas);
 		panelCenter.add(lblPelicula);
 		panelCenter.add(comBoxPelicula);
 		panelCenter.add(lblHorarios);
 		panelCenter.add(comBoxHorarios);
-		panelSouth.add(BtnSiguiente);
 		panelSouth.add(BtnAtras);
+		panelSouth.add(BtnSiguiente);
 		
 		//ActionListener de los botones
 		BtnAtras.addActionListener((e)->{
-			dispose();
+			vActual.dispose();
+			vAnterior.setVisible(true);
 		});
 		
 		BtnSiguiente.addActionListener((e)->{
-			VentanaSeleccionEntradas ventanaSeleccionEntradas = new VentanaSeleccionEntradas();
-			ventanaSeleccionEntradas.setVisible(true);
+			new VentanaSeleccionEntradas(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -65,10 +71,6 @@ public class VentanaEntradas extends JFrame{
 		setTitle("ENTRADAS");
 		setVisible(true);
 	}
-	
-	
-	public static void main (String[] args) {
-		VentanaEntradas VPt = new VentanaEntradas();
-	}
+
 
 }

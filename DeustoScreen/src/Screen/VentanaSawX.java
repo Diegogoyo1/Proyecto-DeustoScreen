@@ -20,8 +20,12 @@ public class VentanaSawX extends JFrame {
 	private JButton btnA;
 	private JTextArea txtSinp;
 	//private JScrollPane scrollTxtArea;
+	private JFrame vActual, vAnterior;
 	
-	public VentanaSawX() {
+	public VentanaSawX(JFrame va) {
+		super();
+		vActual=this;
+		vAnterior=va;
 		
 		//CREACIÓN PANELES
 		pCentro = new JPanel (new GridLayout (1, 2));
@@ -101,7 +105,8 @@ public class VentanaSawX extends JFrame {
 		
 		//EVENTOS BOTONES
 		btnA.addActionListener((e) -> {
-			dispose();
+			vActual.dispose();
+			vAnterior.setVisible(true);
 		});
 		
 		
@@ -113,12 +118,6 @@ public class VentanaSawX extends JFrame {
 		setVisible(true);
 		
 	}
-	//PRUEBA DE LA VENTANA CON MAIN
-	public static void main(String[] args) {
-		VentanaSawX VSaw = new VentanaSawX();	
-						
-		}
-	
 	
 	
 }

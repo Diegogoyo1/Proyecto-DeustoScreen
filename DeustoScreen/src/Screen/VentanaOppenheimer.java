@@ -20,10 +20,13 @@ public class VentanaOppenheimer extends JFrame{
 	private JLabel lblImg, lblSetNom, lblSetCat, lblSetDur, lblSetRep, lblSetSip, lblNom, lblDur, lblRep, lblCat;
 	private JButton btnA;
 	private JTextArea txtSinp;
-	private Categoria categoria;
 	//private JScrollPane scrollTxtArea;
+	private JFrame vActual, vAnterior;
 	
-	public VentanaOppenheimer() {
+	public VentanaOppenheimer(JFrame va) {
+		vActual = this;
+		vAnterior=va;
+		
 		
 		//CREACIÓN PANELES
 		pCentro = new JPanel (new GridLayout (1, 2));
@@ -115,7 +118,8 @@ public class VentanaOppenheimer extends JFrame{
 		
 		//EVENTOS BOTONES
 		btnA.addActionListener((e) -> {
-			dispose();
+			vActual.dispose();
+			vAnterior.setVisible(true);
 		});
 		
 		
@@ -127,12 +131,5 @@ public class VentanaOppenheimer extends JFrame{
 		setVisible(true);
 		
 	}
-
-	//PRUEBA DE LA VENTANA CON MAIN
-	public static void main(String[] args) {
-		VentanaOppenheimer VOp = new VentanaOppenheimer();	
-					
-	}
-
 
 }

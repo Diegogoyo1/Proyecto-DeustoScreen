@@ -20,8 +20,12 @@ public class VentanaTrolls3 extends JFrame {
 	private JButton btnA;
 	private JTextArea txtSinp;
 	//private JScrollPane scrollTxtArea;
+	private JFrame vActual, vAnterior;
 	
-	public VentanaTrolls3() {
+	public VentanaTrolls3(JFrame va) {
+		super();
+		vActual=this;
+		vAnterior=va;
 		
 		//CREACIÓN PANELES
 		pCentro = new JPanel (new GridLayout (1, 2));
@@ -103,7 +107,8 @@ public class VentanaTrolls3 extends JFrame {
 		
 		//EVENTOS BOTONES
 		btnA.addActionListener((e) -> {
-			dispose();
+			vActual.dispose();
+			vAnterior.setVisible(true);
 		});
 		
 		
@@ -115,10 +120,6 @@ public class VentanaTrolls3 extends JFrame {
 		setVisible(true);
 		
 	}
-	//PRUEBA DE LA VENTANA CON MAIN
-	public static void main(String[] args) {
-		VentanaTrolls3 VTr = new VentanaTrolls3();	
-						
-		}
+	
 	
 }

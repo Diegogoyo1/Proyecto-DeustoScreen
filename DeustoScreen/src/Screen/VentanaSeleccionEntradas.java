@@ -16,9 +16,13 @@ public class VentanaSeleccionEntradas extends JFrame{
 	private JPanel pCentro, pNorte, pSur, pEste, pOeste;;
 	private JLabel lblVIP, lblmenores, lblEntreAños, lblMayores, lblSelecEntradas;
 	private JSpinner spinVIP, spinMenores, spinEntreAños, spinMayores;
+	private JFrame vActual, vAnterior;
 	
 	
-	public VentanaSeleccionEntradas() {
+	public VentanaSeleccionEntradas(JFrame va) {
+		super();
+		vActual=this;
+		vAnterior=va;
 		
 		//Crecion de los Paneles
 		pNorte = new JPanel();
@@ -68,12 +72,14 @@ public class VentanaSeleccionEntradas extends JFrame{
 		
 		//ActionListener de los botones
 		btnSiguiente.addActionListener((e)->{
-			VentanaButacas ventanaButacas = new VentanaButacas();
-			ventanaButacas.setVisible(true);
+			new VentanaButacas(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 		
 		btnAtras.addActionListener((e)-> {
-			dispose();
+			vActual.dispose();
+			vAnterior.setVisible(true);
 		});
 		
 		
@@ -82,11 +88,6 @@ public class VentanaSeleccionEntradas extends JFrame{
 		setVisible(true);
 		setTitle("SELECCION ENTRADAS");
 	
-	}
-	
-	public static void main(String[] args) {
-		VentanaSeleccionEntradas VSE = new  VentanaSeleccionEntradas();
-		
 	}
 
 }

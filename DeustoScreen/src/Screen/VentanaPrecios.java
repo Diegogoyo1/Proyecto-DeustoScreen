@@ -10,7 +10,12 @@ import java.awt.Font;
 import javax.swing.JButton;
 
 public class VentanaPrecios  extends JFrame{
-	public VentanaPrecios() {
+	protected JFrame vAnterior, vActual;
+	
+	public VentanaPrecios(JFrame va) {
+		super();
+		vActual=this;
+		vAnterior=va;
 		
 		//Creacion de Paneles
 		JPanel PanelNorth = new JPanel();
@@ -72,7 +77,8 @@ public class VentanaPrecios  extends JFrame{
 		
 		//Añadir actionListener para Boton atras
 		btnAtras.addActionListener((e)->{
-			dispose();
+			vActual.dispose();
+			vAnterior.setVisible(true);
 		});
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -80,10 +86,6 @@ public class VentanaPrecios  extends JFrame{
 		setTitle("PRECIOS");
 		setVisible(true);
 		
-	}
-	public static void main(String[] args) {
-		VentanaPrecios VPr = new VentanaPrecios();
-	
 	}
 	
 }

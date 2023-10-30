@@ -7,10 +7,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class VentanaPago extends JFrame {
-	protected JButton btnFinalizarCompra, btnAtras;
-	protected JPanel pNorte, pSur, pEste, pOeste;
+	private JButton btnFinalizarCompra, btnAtras;
+	private JPanel pNorte, pSur, pEste, pOeste;
+	private JFrame vActual, vAnterior;
 	
-	public VentanaPago() {
+	
+	public VentanaPago(JFrame va) {
+		vActual=this;
+		vAnterior=va;
+		
 		
 		pNorte = new JPanel();
 		pSur = new JPanel();
@@ -31,7 +36,9 @@ public class VentanaPago extends JFrame {
 		});
 		
 		btnAtras.addActionListener((e)->{
-			dispose();
+			vActual.dispose();
+			vAnterior.setVisible(true);
+			
 		});
 		
 		pSur.add(btnAtras);
@@ -42,11 +49,6 @@ public class VentanaPago extends JFrame {
 		setTitle("FINALIZAR COMPRA");
 		setVisible(true);
 		
-	}
-	
-	
-	public static void main(String[] args) {
-		VentanaPago VP = new VentanaPago();
 	}
 	
 

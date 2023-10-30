@@ -22,14 +22,14 @@ public class VentanaRegistros extends JFrame {
 	private JLabel lblNombre,lblApellido ,lblFechaNacimiento, lbltlf, lblCorreoElectronico,lblContraseniaIs,lblCotraseniaR,lblTituloIS;
 	private JTextField txtNombre,txtApellido,txtFechaNacimiento,txtCorreoElectronico;
 	private JTextField textFieldTlf;
-	private JFrame vActual;
 	private JButton btnSalir, btnIniciarSesion;
-	
 	private JPasswordField contraseniaR;
+	private JFrame vActual, vAnterior;
 
-	public VentanaRegistros() {
+	public VentanaRegistros(JFrame va) {
 		super();
 		vActual = this;
+		vAnterior=va;
 		
 		
 	//CREACIÓN DE PANELES Y COMPONENTES
@@ -95,12 +95,14 @@ public class VentanaRegistros extends JFrame {
 		//eventos botones 
 		btnIniciarSesion.addActionListener((e)->{
 			JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
-			VentanaEntradas ventanaEntradas = new VentanaEntradas();
-			ventanaEntradas.setVisible(true);
+			new VentanaEntradas(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		
 		});
 		btnSalir.addActionListener((e)->{
-			dispose();
+			vActual.dispose();
+			vAnterior.setVisible(true);
 			
 		});
 		
@@ -110,10 +112,5 @@ public class VentanaRegistros extends JFrame {
 		setVisible(true);
 	}
 	
-
-	public static void main(String[] args) {
-		VentanaRegistros VR = new VentanaRegistros();
-		
-	}
 
 }

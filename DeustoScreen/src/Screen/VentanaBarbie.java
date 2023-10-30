@@ -19,9 +19,13 @@ public class VentanaBarbie extends JFrame {
 	private JLabel lblImg, lblSetNom, lblSetCat, lblSetDur, lblSetRep, lblSetSip, lblNom, lblCat, lblDur, lblRep;
 	private JButton btnA;
 	private JTextArea txtSinp;
+	private JFrame vActual, vAnterior;
 	//private JScrollPane scrollTxtArea;
 	
-	public VentanaBarbie() {
+	public VentanaBarbie(JFrame va) {
+		super();
+		vActual=this;
+		vAnterior=va;
 		
 		//CREACIÓN PANELES
 		pCentro = new JPanel (new GridLayout (1, 2));
@@ -101,7 +105,8 @@ public class VentanaBarbie extends JFrame {
 		
 		//EVENTOS BOTONES
 		btnA.addActionListener((e) -> {
-			dispose();
+			vActual.dispose();
+			vAnterior.setVisible(true);
 		});
 		
 		
@@ -112,11 +117,7 @@ public class VentanaBarbie extends JFrame {
 		setTitle("BARBIE");
 		setVisible(true);
 		
-	}
-	//PRUEBA DE LA VENTANA CON MAIN
-	public static void main(String[] args) {
-		VentanaBarbie VBar = new VentanaBarbie();	
+	}	
 						
-	}
 	
 }

@@ -26,6 +26,7 @@ public class VentanaInicioSesion extends JFrame {
 	private JTextField txtCorreoElectronico;
 	private JButton btnSalir, btnIniciarSesion, btnRegistrarse;
 	private JPasswordField contraseniaIs;
+	private JFrame vAnterior, vActual;
 	
 	private static Usuario usuario;
 	private static List<Entrada> carrito;
@@ -40,7 +41,10 @@ public class VentanaInicioSesion extends JFrame {
 	}
 	
 	
-	public VentanaInicioSesion() {
+	public VentanaInicioSesion(JFrame va) {
+		super();
+		vActual=this;
+		vAnterior=va;
 	
 		
 		pNorte = new JPanel(new GridLayout(1, 2));
@@ -86,27 +90,27 @@ public class VentanaInicioSesion extends JFrame {
 			String CorreoElectronico = txtCorreoElectronico.getText();
 			String con = contraseniaIs.getText();
 			JOptionPane.showMessageDialog(null, "Inicio de sesion correcto","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
-			VentanaEntradas ventanaEntradas = new VentanaEntradas();
-			ventanaEntradas.setVisible(true);
+			new VentanaEntradas(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 			
 		});
 		
 
 
-		btnSalir.addActionListener(new ActionListener() {
+		btnSalir.addActionListener((e)->{
+			vActual.dispose();
+			vAnterior.setVisible(true);
+		}) ;
 			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
 				
-				
-			}
-		});
+			
 			
 		
 		btnRegistrarse.addActionListener((e)->{
-			VentanaRegistros ventanaRegistros = new VentanaRegistros();
-			ventanaRegistros.setVisible(true);
+			new VentanaRegistros(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -116,13 +120,6 @@ public class VentanaInicioSesion extends JFrame {
 
 		}
 	
-	
-	
-	public static void main(String[] args) {
-			VentanaInicioSesion VIS = new VentanaInicioSesion();
-			
-		
-	}
 	
 	
 		

@@ -22,10 +22,15 @@ public class VentanaHorario extends JFrame{
 	private JScrollPane scroll;
 	private FlowLayout layoutTabla;
 	private JLabel lblTituloH;
+	private JFrame vActual, vAnterior;
 	
 	 
 	
-	public VentanaHorario() {
+	public VentanaHorario(JFrame va) {
+		super();
+		vActual=this;
+		vAnterior = va;
+		
 		
 		//LABEL
 		lblTituloH = new JLabel("HORARIOS");
@@ -44,11 +49,12 @@ public class VentanaHorario extends JFrame{
 		
 		
 		//BOTONES
-		btnAtras = new JButton("ATRÁS");
+		btnAtras = new JButton("Atrás");
 		
 		//ACCIONES DE BOTONES
-				btnAtras.addActionListener((e)-> {
-					dispose();
+		btnAtras.addActionListener((e)-> {
+			vActual.dispose();
+			vAnterior.setVisible(true);
 						
 					});
 				
@@ -100,12 +106,6 @@ public class VentanaHorario extends JFrame{
 		setTitle("CARTELERA");
 		setVisible(true);
 		
-}
+	}
 	
-	//PRUEBA DE LA VENTANA CON MAIN
-		public static void main(String[] args) {
-			VentanaHorario VC = new VentanaHorario();	
-				
-		
-		}
 }

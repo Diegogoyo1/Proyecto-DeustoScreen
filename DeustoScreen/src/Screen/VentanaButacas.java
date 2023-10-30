@@ -23,10 +23,13 @@ public class VentanaButacas extends JFrame{
 	private JTable tblButacas1, tblButacas2;
 	private DefaultTableModel modTblButacas1, modTblButacas2;
 	private FlowLayout layoutTabButacas1, layoutTabButacas2;
+	private JFrame vActual, vAnterior;
 	
 	
-	
-	public VentanaButacas() {
+	public VentanaButacas(JFrame va) {
+		super();
+		vActual=this;
+		vAnterior=va;
 		
 		
 		
@@ -57,14 +60,15 @@ public class VentanaButacas extends JFrame{
 		
 		//ACCIONES DE BOTONES
 		btnAtras.addActionListener((e)-> {
-			dispose();
-			
+			vActual.dispose();
+			vAnterior.setVisible(true);
 				
 			});
 		
 		btnSiguiente.addActionListener((e)-> {
-			VentanaPuntos ventanaPuntos = new VentanaPuntos();
-			ventanaPuntos.setVisible(true);
+			new VentanaPuntos(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 		});
 					
 		
@@ -174,21 +178,6 @@ public class VentanaButacas extends JFrame{
 
 		
 		
-}
-	//PRUEBA DE LA VENTANA CON MAIN
-	public static void main(String[] args) {
-		VentanaButacas VB = new VentanaButacas();	
-			
-	
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

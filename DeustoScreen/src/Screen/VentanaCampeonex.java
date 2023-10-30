@@ -20,8 +20,12 @@ public class VentanaCampeonex extends JFrame {
 	private JButton btnA;
 	private JTextArea txtSinp;
 	//private JScrollPane scrollTxtArea;
+	private JFrame vActual,vAnterior;
 	
-	public VentanaCampeonex() {
+	public VentanaCampeonex(JFrame va) {
+		super();
+		vActual=this;
+		vAnterior=va;
 		
 		//CREACIÓN PANELES
 		pCentro = new JPanel (new GridLayout (1, 2));
@@ -96,7 +100,8 @@ public class VentanaCampeonex extends JFrame {
 		
 		//EVENTOS BOTONES
 		btnA.addActionListener((e) -> {
-			dispose();
+			vActual.dispose();
+			vAnterior.setVisible(true);
 		});
 		
 		
@@ -108,9 +113,5 @@ public class VentanaCampeonex extends JFrame {
 		setVisible(true);
 		
 	}
-	//PRUEBA DE LA VENTANA CON MAIN
-	public static void main(String[] args) {
-		VentanaCampeonex VCam = new VentanaCampeonex();	
-						
-	}
+	
 }

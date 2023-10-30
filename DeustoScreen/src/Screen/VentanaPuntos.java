@@ -21,8 +21,12 @@ public class VentanaPuntos extends JFrame{
 	private JLabel lblUsuario, lblNumPuntos;
 	private JButton btnAniadir, btnOmitir;
 	private JTextField txtUsuario, txtNumPuntos;
+	private JFrame vActual, vAnterior;
 	
-	public VentanaPuntos() {
+	public VentanaPuntos(JFrame va) {
+		super();
+		vActual=this;
+		vAnterior=va;
 		
 		
 		//CREACIÓN PANELES
@@ -66,16 +70,16 @@ public class VentanaPuntos extends JFrame{
 		
 		//EVENTOS BOTONES
 		btnOmitir.addActionListener((e)->{
-			dispose(); //Este DISPOSE cerrara la ventana y nos llevara a la de PAGO directamente sin AÑADIR los puntos
-			VentanaPago ventanaPago = new VentanaPago();
-			ventanaPago.setVisible(true);
+			new VentanaPago(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();//Este DISPOSE cerrara la ventana y nos llevara a la de PAGO directamente sin AÑADIR los puntos
 			 
 		});
 		
 		btnAniadir.addActionListener((e)-> {
-			dispose();//Este DISPOSE cerrara la ventana y nos llevara a la de PAGO AÑADIENDO los puntos
-			VentanaPago ventanaPago = new VentanaPago();
-			ventanaPago.setVisible(true);
+			new VentanaPago(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();//Este DISPOSE cerrara la ventana y nos llevara a la de PAGO AÑADIENDO los puntos
 			 
 		});
 		
@@ -86,8 +90,4 @@ public class VentanaPuntos extends JFrame{
 	
 	}
 	
-	public static void main (String[] args) {
-		VentanaPuntos VPt = new VentanaPuntos();
-	}
-
 }

@@ -12,12 +12,16 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 public class VentanaCartelera extends JFrame {
-	protected JPanel pNorte, pSur, pEste, pOeste, pCentro;
-	protected JButton btnAtras,btnOppenheimer, btnBarbie, btnSawX, btnCampeonex, btnTrolls3;
-	protected JLabel lblPeliculas;
-	protected JScrollPane scrollVentana;
+	private JPanel pNorte, pSur, pEste, pOeste, pCentro;
+	private JButton btnAtras,btnOppenheimer, btnBarbie, btnSawX, btnCampeonex, btnTrolls3;
+	private JLabel lblPeliculas;
+	private JScrollPane scrollVentana;
+	private JFrame vAnterior, vActual;
 	
-	public VentanaCartelera() {
+	public VentanaCartelera(JFrame va) {
+		super();
+		vActual=this;
+		vAnterior = va;
 		
 		pNorte = new JPanel();
 		pSur = new JPanel();
@@ -39,7 +43,8 @@ public class VentanaCartelera extends JFrame {
 		
 		btnAtras = new JButton("Atras");
 		btnAtras.addActionListener((e)->{
-			dispose();
+			vActual.dispose();
+			vAnterior.setVisible(true);
 			
 		});
 		
@@ -51,8 +56,10 @@ public class VentanaCartelera extends JFrame {
 		btnOppenheimer.setPreferredSize(new Dimension(imOppenheimer.getIconWidth(), imOppenheimer.getIconHeight()));
 		btnOppenheimer.setPreferredSize(new Dimension(250, 445));
 		btnOppenheimer.addActionListener((e)->{
-			VentanaOppenheimer ventanaOppenheimer = new VentanaOppenheimer();
-			ventanaOppenheimer.setVisible(true);
+			new VentanaOppenheimer(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
+			
 			
 		});
 		
@@ -63,8 +70,9 @@ public class VentanaCartelera extends JFrame {
 		btnBarbie.setPreferredSize(new Dimension(imBarbie.getIconWidth(), imBarbie.getIconHeight()));
 		btnBarbie.setPreferredSize(new Dimension(250, 445));
 		btnBarbie.addActionListener((e)->{
-			VentanaBarbie ventanaBarbie = new VentanaBarbie();
-			ventanaBarbie.setVisible(true);
+			new VentanaBarbie(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 			
 			
 		});
@@ -76,8 +84,9 @@ public class VentanaCartelera extends JFrame {
 		btnSawX.setPreferredSize(new Dimension(imSawX.getIconWidth(), imSawX.getIconHeight()));
 		btnSawX.setPreferredSize(new Dimension(250, 445));
 		btnSawX.addActionListener((e)->{
-			VentanaSawX ventanaSawX = new VentanaSawX();
-			ventanaSawX.setVisible(true);
+			new VentanaSawX(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 			
 		});
 		
@@ -88,8 +97,9 @@ public class VentanaCartelera extends JFrame {
 		btnCampeonex.setPreferredSize(new Dimension(imCampeonex.getIconWidth(), imCampeonex.getIconHeight()));
 		btnCampeonex.setPreferredSize(new Dimension(250, 445));
 		btnCampeonex.addActionListener((e)->{
-			VentanaCampeonex ventanaCampeonex = new VentanaCampeonex();
-			ventanaCampeonex.setVisible(true);
+			new VentanaCampeonex(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 			
 		});
 		
@@ -100,8 +110,9 @@ public class VentanaCartelera extends JFrame {
 		btnTrolls3.setPreferredSize(new Dimension(imTrolls3.getIconWidth(), imTrolls3.getIconHeight()));
 		btnTrolls3.setPreferredSize(new Dimension(250, 445));
 		btnTrolls3.addActionListener((e)->{
-			VentanaTrolls3 ventanaTrolls3 = new VentanaTrolls3();
-			ventanaTrolls3.setVisible(true);
+			new VentanaTrolls3(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
 			
 		});
 		
@@ -131,9 +142,6 @@ public class VentanaCartelera extends JFrame {
 		
 		
 	}
-	
-	public static void main(String[] args) {
-		VentanaCartelera VPs = new VentanaCartelera();
-	}
+
 
 }
