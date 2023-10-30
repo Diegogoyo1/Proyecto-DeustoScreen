@@ -72,7 +72,7 @@ public class VentanaTrolls3 extends JFrame {
 		pCentroDe.setLayout(new FlowLayout(FlowLayout.LEFT));
 		ImageIcon imTrolls = new ImageIcon("src\\Imagenes\\PortadaTrolls.jpg");
 		Image imagen = imTrolls.getImage();
-		Image imagenRedimensionada = imagen.getScaledInstance(300, 400, Image.SCALE_SMOOTH);
+		Image imagenRedimensionada = imagen.getScaledInstance(500, 700, Image.SCALE_SMOOTH);
 		ImageIcon imagenRedimensionadaIcon = new ImageIcon(imagenRedimensionada);
 		lblImg = new JLabel(imagenRedimensionadaIcon);
 		pCentroDe.add(lblImg);

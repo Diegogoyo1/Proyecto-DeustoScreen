@@ -24,7 +24,8 @@ public class VentanaOppenheimer extends JFrame{
 		//CREACIÓN PANELES
 		pCentro = new JPanel (new GridLayout (1, 2));
 		pCentroIz = new JPanel (new GridLayout (5, 2));
-		pSur = new JPanel();
+		pCentroDe = new JPanel()
+;		pSur = new JPanel();
 		pNorte = new JPanel();
 		
 		getContentPane().add(pCentro, BorderLayout.CENTER);
@@ -33,6 +34,7 @@ public class VentanaOppenheimer extends JFrame{
 		
 		
 		pCentro.add(pCentroIz);
+		pCentro.add(pCentroDe);
 		
 		//LABELS
 		lblSetNom = new JLabel(" NOMBRE: ");
@@ -60,6 +62,21 @@ public class VentanaOppenheimer extends JFrame{
 		//scrollTxtArea = new JScrollPane(txtSinp);
 		//getContentPane().add(scrollTxtArea, BorderLayout.CENTER);
 		
+		
+		
+		//IMAGEN
+		pCentroDe = new JPanel();
+		pCentroDe.setLayout(new FlowLayout(FlowLayout.LEFT));
+		ImageIcon imOppenheimer = new ImageIcon("src\\Imagenes\\PortadaOppenheimer.jpg");
+		Image imagen = imOppenheimer.getImage();
+		Image imagenRedimensionada = imagen.getScaledInstance(500, 700, Image.SCALE_SMOOTH);
+		ImageIcon imagenRedimensionadaIcon = new ImageIcon(imagenRedimensionada);
+		lblImg = new JLabel(imagenRedimensionadaIcon);
+		pCentroDe.add(lblImg);
+		
+		pCentro.add(pCentroDe);
+		
+		
 		//ENLAZER PANELES CON LABELS Y TEXTFIELDS
 		pCentroIz.add(lblSetNom);
 		pCentroIz.add(lblNom);
@@ -73,18 +90,6 @@ public class VentanaOppenheimer extends JFrame{
 		pCentroIz.add(lblRep);
 		pCentroIz.add(lblSetSip);
 		pCentroIz.add(txtSinp);
-		
-		//IMAGEN
-		pCentroDe = new JPanel();
-		pCentroDe.setLayout(new FlowLayout(FlowLayout.LEFT));
-		ImageIcon imOppenheimer = new ImageIcon("src\\Imagenes\\PortadaOppenheimer.jpg");
-		Image imagen = imOppenheimer.getImage();
-		Image imagenRedimensionada = imagen.getScaledInstance(500, 700, Image.SCALE_SMOOTH);
-		ImageIcon imagenRedimensionadaIcon = new ImageIcon(imagenRedimensionada);
-		lblImg = new JLabel(imagenRedimensionadaIcon);
-		pCentroDe.add(lblImg);
-		
-		pCentro.add(pCentroDe);
 		
 		//BOTONES
 		btnA = new JButton("ATRÁS");

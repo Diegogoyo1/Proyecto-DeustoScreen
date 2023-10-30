@@ -70,7 +70,7 @@ public class VentanaBarbie extends JFrame {
 		pCentroDe.setLayout(new FlowLayout(FlowLayout.LEFT));
 		ImageIcon imBarbie = new ImageIcon("src\\Imagenes\\PortadaBarbie.jpg");
 		Image imagen = imBarbie.getImage();
-		Image imagenRedimensionada = imagen.getScaledInstance(400, 600, Image.SCALE_SMOOTH);
+		Image imagenRedimensionada = imagen.getScaledInstance(500, 700, Image.SCALE_SMOOTH);
 		ImageIcon imagenRedimensionadaIcon = new ImageIcon(imagenRedimensionada);
 		lblImg = new JLabel(imagenRedimensionadaIcon);
 		pCentroDe.add(lblImg);
