@@ -1,6 +1,7 @@
 package Screen;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -20,9 +21,12 @@ import javax.swing.border.EmptyBorder;
 public class VentanaPrincipal extends JFrame{
 	private JPanel PanelNorte, PanelCentro;
 	private JButton btnPrecios, btnIniciarSesion,btnHorario, btnCartelera;
+	private JFrame vAnterior,vActual;
 	
-	public VentanaPrincipal() {
-	
+	public VentanaPrincipal(JFrame va) {
+		super();
+		vAnterior= va;
+		vActual=this;
 		
 		PanelNorte = new JPanel();
 		PanelCentro = new JPanel();
@@ -35,16 +39,7 @@ public class VentanaPrincipal extends JFrame{
 		btnCartelera = new JButton("Cartelera");
 		btnHorario = new JButton("Horario");
 		
-		//Imagen
-		 File logo = new File("src\\Logo.mp4");
 		 
-		 /*Media media = new Media(logo.toURI().toString());
-	        MediaPlayer mediaPlayer = new MediaPlayer(media);
-	        MediaView mediaView = new MediaView(mediaPlayer);
-	     
-		 
-		 /*JLabel gifLabelLogo = new JLabel(logo);*/
-	     
 
 		PanelNorte.add(btnIniciarSesion);
 		PanelNorte.add(btnPrecios);
@@ -77,19 +72,16 @@ public class VentanaPrincipal extends JFrame{
 		});
 		
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(600, 300, 450, 300);
 		setTitle("INICIO");
 		setVisible(true);
 		
 	}
 	
-	// Prueba con main
-	public static void main(String[] args) {
-		VentanaPrincipal VP = new VentanaPrincipal();	
-			
+
+
 	
-	}
 
 }
 
