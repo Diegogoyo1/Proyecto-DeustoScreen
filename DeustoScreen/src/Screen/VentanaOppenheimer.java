@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
 
 import Domain.Categoria;
 
@@ -19,6 +20,7 @@ public class VentanaOppenheimer extends JFrame{
 	private JLabel lblImg, lblSetNom, lblSetCat, lblSetDur, lblSetRep, lblSetSip, lblNom, lblDur, lblRep, lblCat;
 	private JButton btnA;
 	private JTextArea txtSinp;
+	private Categoria categoria;
 	//private JScrollPane scrollTxtArea;
 	
 	public VentanaOppenheimer() {
@@ -35,23 +37,32 @@ public class VentanaOppenheimer extends JFrame{
 		getContentPane().add(pNorte, BorderLayout.NORTH);
 		
 		
-		pCentro.add(pCentroIz);
-		pCentro.add(pCentroDe);
+		
+		
 		
 		//LABELS
 		lblSetNom = new JLabel(" NOMBRE: ");
+		//lblSetNom.setBorder(new EmptyBorder(110,110,110,110));
 		lblSetCat = new JLabel (" CATEGORÍA: ");
+		//lblSetCat.setBorder(new EmptyBorder(50, 50, 50, 50));
 		lblSetDur = new JLabel(" DURACIÓN: ");
+		//lblSetDur.setBorder(new EmptyBorder(50, 50, 50, 50));
 		lblSetRep = new JLabel (" REPARTO: ");
+		//lblSetRep.setBorder(new EmptyBorder(50, 50, 50, 50));
 		lblSetSip = new JLabel (" SINOPSIS: ");
+		//lblSetSip.setBorder(new EmptyBorder(50, 50, 50, 50));
 		lblNom = new JLabel(" Oppenheimer ");
-		lblCat = new JLabel(" Acción"); // poner desde la ventana
+		//lblNom.setBorder(new EmptyBorder(200, -10, 200, 0));
+		lblCat = new JLabel(Categoria.ACCIÓN.toString()); 
+		//lblCat.setBorder(new EmptyBorder(50, 50, 50, 50));
 		lblDur = new JLabel(" 3h ");
+		//lblDur.setBorder(new EmptyBorder(50, 50, 50, 50));
 		lblRep = new JLabel (" Cillian Murphy ");
+		//lblRep.setBorder(new EmptyBorder(50, 50, 50, 50));
 		
 		
 		//TEXTAREA
-		txtSinp = new JTextArea(16, 58);
+		txtSinp = new JTextArea(500, 300);
 		txtSinp = new JTextArea("En tiempos de guerra, el brillante físico estadounidense"
 				+ " Julius Robert Oppenheimer (Cillian Murphy), al frente del \"Proyecto Manhattan\", "
 				+ "lidera los ensayos nucleares para construir la bomba atómica para su país. "
@@ -75,8 +86,8 @@ public class VentanaOppenheimer extends JFrame{
 		ImageIcon imagenRedimensionadaIcon = new ImageIcon(imagenRedimensionada);
 		lblImg = new JLabel(imagenRedimensionadaIcon);
 		pCentroDe.add(lblImg);
+		pCentroDe.setBorder(new EmptyBorder(50, 50, 50, 50));
 		
-		pCentro.add(pCentroDe);
 		
 		
 		//ENLAZER PANELES CON LABELS Y TEXTFIELDS
@@ -92,6 +103,10 @@ public class VentanaOppenheimer extends JFrame{
 		pCentroIz.add(lblRep);
 		pCentroIz.add(lblSetSip);
 		pCentroIz.add(txtSinp);
+		pCentroIz.setBorder(new EmptyBorder(50, 50, 50, 50));
+		
+		pCentro.add(pCentroIz);
+		pCentro.add(pCentroDe);
 		
 		//BOTONES
 		btnA = new JButton("ATRÁS");

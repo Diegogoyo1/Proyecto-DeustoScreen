@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import Domain.Categoria;
+
 public class VentanaTrolls3 extends JFrame {
 	private JPanel pNorte, pSur, pCentro, pCentroIz, pCentroDe; 
 	private JLabel lblImg, lblSetNom, lblSetCat, lblSetDur, lblSetRep, lblSetSip, lblNom, lblCat, lblDur, lblRep;
@@ -43,7 +45,7 @@ public class VentanaTrolls3 extends JFrame {
 		lblSetRep = new JLabel (" REPARTO: ");
 		lblSetSip = new JLabel (" SINOPSIS: ");
 		lblNom = new JLabel(" Trolls 3: Todos Juntos ");
-		lblCat = new JLabel (" Animación "); // poner desde la ventana
+		lblCat = new JLabel (Categoria.ANIMACIÓN.toString());
 		lblDur = new JLabel(" 1h 31m ");
 		lblRep = new JLabel (" Justin Timberlake ");
 		

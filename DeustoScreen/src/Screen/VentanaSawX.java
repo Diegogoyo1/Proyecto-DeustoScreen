@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import Domain.Categoria;
+
 public class VentanaSawX extends JFrame {
 	private JPanel pNorte, pSur, pCentro, pCentroIz, pCentroDe; 
 	private JLabel lblImg, lblSetNom, lblSetCat, lblSetDur, lblSetRep, lblSetSip, lblNom, lblCat, lblDur, lblRep;
@@ -43,7 +45,7 @@ public class VentanaSawX extends JFrame {
 		lblSetRep = new JLabel (" REPARTO: ");
 		lblSetSip = new JLabel (" SINOPSIS: ");
 		lblNom = new JLabel(" Saw X ");
-		lblCat = new JLabel (" Thriller. Terror "); // poner desde la ventana
+		lblCat = new JLabel (Categoria.TERROR.toString()); 
 		lblDur = new JLabel(" 1h 58m ");
 		lblRep = new JLabel (" Tobin Bell ");
 		
