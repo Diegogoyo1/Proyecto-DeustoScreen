@@ -12,9 +12,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import Domain.Categoria;
+
 public class VentanaOppenheimer extends JFrame{
 	private JPanel pNorte, pSur, pCentro, pCentroIz, pCentroDe; 
-	private JLabel lblImg, lblSetNom, lblSetCat, lblSetDur, lblSetRep, lblSetSip, lblNom, lblCat, lblDur, lblRep;
+	private JLabel lblImg, lblSetNom, lblSetCat, lblSetDur, lblSetRep, lblSetSip, lblNom, lblDur, lblRep, lblCat;
 	private JButton btnA;
 	private JTextArea txtSinp;
 	//private JScrollPane scrollTxtArea;
@@ -43,7 +45,7 @@ public class VentanaOppenheimer extends JFrame{
 		lblSetRep = new JLabel (" REPARTO: ");
 		lblSetSip = new JLabel (" SINOPSIS: ");
 		lblNom = new JLabel(" Oppenheimer ");
-		lblCat = new JLabel (" Acción "); // poner desde la ventana
+		lblCat = new JLabel(" Acción"); // poner desde la ventana
 		lblDur = new JLabel(" 3h ");
 		lblRep = new JLabel (" Cillian Murphy ");
 		

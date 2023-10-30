@@ -1,6 +1,6 @@
 package Domain;
 
 public enum Categoria {
-	ACCION, COMEDIA, DRAMA
+	ACCION, COMEDIA, DRAMA, TERROR
 
 }
