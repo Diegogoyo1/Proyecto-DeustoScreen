@@ -60,12 +60,12 @@ public class VentanaSeleccionEntradas extends JFrame{
 		//Añadimos  Labels, Spinners y Botones a paneles
 		pNorte.add(lblSelecEntradas);
 		pCentro.add(lblVIP);
-		pCentro.add(lblmenores);
-		pCentro.add(lblEntreAños);
-		pCentro.add(lblMayores);
 		pCentro.add(spinVIP);
+		pCentro.add(lblmenores);
 		pCentro.add(spinMenores);
+		pCentro.add(lblEntreAños);
 		pCentro.add(spinEntreAños);
+		pCentro.add(lblMayores);
 		pCentro.add(spinMayores);
 		pSur.add(btnAtras);
 		pSur.add(btnSiguiente);
