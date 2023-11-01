@@ -1,16 +1,18 @@
 package Domain;
 
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class Usuario {
 	private String nombre;
 	private String apellido;
-	private Date fechanacimiento;
-	private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-	private int tlf;
+	private Date FechaNacimiento;
+	private String tlf;
 	private String CorreoElectronico;
 	private String Contrasenia;
+	
+	private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	
 	
 	//Contructor
@@ -19,19 +21,32 @@ public class Usuario {
 		super();
 	}
 	
-	public Usuario(String nombre, String apellido, Date fehanacimiento, SimpleDateFormat sdf, int tlf,
+	public Usuario(String nombre, String apellido, Date FechaNacimiento, String tlf,
 			String correoElectronico, String contrasenia) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.fechanacimiento = fechanacimiento;
-		this.sdf = sdf;
+		this.FechaNacimiento = FechaNacimiento;
 		this.tlf = tlf;
 		this.CorreoElectronico = correoElectronico;
 		this.Contrasenia= contrasenia;
 	}
 
-	
+	public Usuario(String nombre, String apellido, String FechaNacimiento, String tlf,
+			String correoElectronico, String contrasenia) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		
+		try {
+			this.FechaNacimiento = (Date) sdf.parse(FechaNacimiento);
+		} catch (ParseException e) {
+			this.FechaNacimiento = new Date(0);
+		}
+		this.tlf = tlf;
+		this.CorreoElectronico = correoElectronico;
+		this.Contrasenia= contrasenia;
+	}
 	
 	//getters y setters
 	public String getNombre() {
@@ -55,31 +70,21 @@ public class Usuario {
 
 
 	public Date getFehanacimiento() {
-		return fechanacimiento;
+		return FechaNacimiento;
 	}
 
 
-	public void setFehanacimiento(Date fehanacimiento) {
-		this.fechanacimiento = fehanacimiento;
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.FechaNacimiento = fechaNacimiento;
 	}
 
 
-	public SimpleDateFormat getSdf() {
-		return sdf;
-	}
-
-
-	public void setSdf(SimpleDateFormat sdf) {
-		this.sdf = sdf;
-	}
-
-
-	public int getTlf() {
+	public  String getTlf() {
 		return tlf;
 	}
 
 
-	public void setTlf(int tlf) {
+	public void setTlf(String tlf) {
 		this.tlf = tlf;
 	}
 
@@ -105,7 +110,7 @@ public class Usuario {
 	// toString
 	@Override
 	public String toString() {
-		return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", fechanacimiento=" + fechanacimiento + ", sdf="
+		return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", fechanacimiento=" + FechaNacimiento + ", sdf="
 				+ sdf + ", tlf=" + tlf + ", CorreoElectronico=" + CorreoElectronico + "contrasenia: " + Contrasenia+"]";
 	}
 	
