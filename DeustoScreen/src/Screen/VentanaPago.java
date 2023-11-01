@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class VentanaPago extends JFrame {
@@ -32,6 +33,7 @@ public class VentanaPago extends JFrame {
 		
 		
 		btnFinalizarCompra.addActionListener((e)->{
+			JOptionPane.showMessageDialog(null, "Gracias por tu compra","PAGO FINALIZADO",JOptionPane.INFORMATION_MESSAGE);
 			
 		});
 		
