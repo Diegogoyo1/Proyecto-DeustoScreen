@@ -2,10 +2,19 @@ package Screen;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import Domain.Peliculas;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import java.awt.GridLayout;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 import javax.swing.JButton;
 
 
@@ -14,8 +23,12 @@ public class VentanaEntradas extends JFrame{
 	protected JButton BtnAtras, BtnSiguiente;
 	private JLabel lblEntradas, lblPelicula, lblHorarios;
 	private JFrame vActual, vAnterior;
+	//private List<Peliculas> listaPeliculas; 
+
 	
 	public VentanaEntradas(JFrame va) {
+		
+		//cargarFichero("datos/Peliculas.csv");
 		vActual=this;
 		vAnterior=va;
 		
@@ -38,7 +51,7 @@ public class VentanaEntradas extends JFrame{
 		lblEntradas = new JLabel("Entradas");
 		lblPelicula = new JLabel("Pelicula");
 		lblHorarios = new JLabel("Horarios");
-		JComboBox comBoxPelicula = new JComboBox();
+		JComboBox<Peliculas> comBoxPelicula = new JComboBox<Peliculas>();
 		JComboBox comBoxHorarios = new JComboBox();
 		BtnAtras = new JButton("Atrás");
 		BtnSiguiente = new JButton("Siguiente");
@@ -53,6 +66,15 @@ public class VentanaEntradas extends JFrame{
 		panelCenter.add(comBoxHorarios);
 		panelSouth.add(BtnAtras);
 		panelSouth.add(BtnSiguiente);
+		
+		
+		//if (!listaPeliculas.isEmpty()) {
+            //comBoxPelicula.addItem(listaPeliculas.get(0)); // Agrega el primer elemento
+        //}
+  
+			
+			
+		
 		
 		//ActionListener de los botones
 		BtnAtras.addActionListener((e)->{
@@ -71,6 +93,27 @@ public class VentanaEntradas extends JFrame{
 		setTitle("ENTRADAS");
 		setVisible(true);
 	}
-
+	
+	/*public void cargarFichero(String nomfich) {
+		try {
+			Scanner sc = new Scanner (new FileReader(nomfich));
+			String linea;
+			while(sc.hasNext()) {
+				linea = sc.nextLine();
+				String [] partes = linea.split(";");
+				String nombrePeli = partes[0];
+				Peliculas p = new Peliculas(nombrePeli, null, getOpacity(), null, null, null);
+				listaPeliculas.add(p);
+				
+				
+			}
+			sc.close();
+			
+			
+		} catch(FileNotFoundException e) {
+			e.printStackTrace();
+			
+		}
+	}*/
 
 }

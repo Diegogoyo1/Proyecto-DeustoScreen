@@ -3,12 +3,18 @@ package Screen;
 import java.awt.BorderLayout;
 
 
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
+
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 
 public class VentanaSeleccionEntradas extends JFrame{
@@ -42,15 +48,19 @@ public class VentanaSeleccionEntradas extends JFrame{
 		
 		
 		//Creacion de Labels, Spinners y Botones
+		SpinnerModel spinnerModel = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
+		SpinnerModel spinnerModel2 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
+		SpinnerModel spinnerModel3 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
+		SpinnerModel spinnerModel4 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 		lblSelecEntradas = new JLabel("Seleccione sus entradas");
 		lblVIP = new JLabel("VIP");
 		lblmenores = new JLabel("Menores de 18 años");
 		lblEntreAños = new JLabel("Entre 18 y 65 años");
 		lblMayores = new JLabel("Mayores de 65 años");
-		spinVIP = new JSpinner();
-		spinMenores = new JSpinner();
-		spinEntreAños = new JSpinner();
-		spinMayores = new JSpinner();
+		spinVIP = new JSpinner(spinnerModel);
+		spinMenores = new JSpinner(spinnerModel2);
+		spinEntreAños = new JSpinner(spinnerModel3);
+		spinMayores = new JSpinner(spinnerModel4);
 		btnSiguiente = new JButton("Siguiente");
 		btnAtras = new JButton("Atras");
 
@@ -72,9 +82,18 @@ public class VentanaSeleccionEntradas extends JFrame{
 		
 		//ActionListener de los botones
 		btnSiguiente.addActionListener((e)->{
-			new VentanaButacas(vActual);
-			vActual.setVisible(false);
-			vActual.dispose();
+			int vip = (int) spinVIP.getValue();
+			int menores = (int) spinMenores.getValue();
+			int entreaños= (int) spinEntreAños.getValue();
+			int mayores = (int) spinMayores.getValue();
+			if (vip > 0 || menores > 0 || entreaños > 0 || mayores > 0) {
+				new VentanaButacas(vActual);
+				vActual.setVisible(false);
+				vActual.dispose();
+			} else {
+				JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una entrada","ERROR",JOptionPane.WARNING_MESSAGE);
+			}
+
 		});
 		
 		btnAtras.addActionListener((e)-> {
@@ -87,7 +106,17 @@ public class VentanaSeleccionEntradas extends JFrame{
 		setBounds(600, 300, 600, 400);
 		setVisible(true);
 		setTitle("SELECCION ENTRADAS");
+		
+		
 	
 	}
+
+
+	
+
+
+
+
+	
 
 }
