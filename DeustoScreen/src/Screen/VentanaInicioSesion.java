@@ -31,7 +31,7 @@ public class VentanaInicioSesion extends JFrame {
 	private static Usuario usuario;
 	private static List<Entrada> carrito;
 	
-	public static Usuario getCliente() {
+	public static Usuario getUsuario() {
 		return usuario;
 	}
 
