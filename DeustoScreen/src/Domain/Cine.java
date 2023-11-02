@@ -12,6 +12,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.logging.Logger;
 
 
 //Ventnana contenedora
@@ -143,5 +144,9 @@ public class Cine{
 			}
 		}
 	
-
+		//Logger logger = java.util.logging.Logger.getLogger("logger");
+		//try {
+		//}catch{
+		//}
+		//}
 }
