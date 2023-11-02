@@ -12,6 +12,8 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+
+
 //Ventnana contenedora
 
 public class Cine{
@@ -103,7 +105,7 @@ public class Cine{
 				return null;
 			}
 		}
-		public static void cargarClientesEnLista(String nomfich) {
+		public static void cargarUsuarioEnLista(String nomfich) {
 			//linea = dni;nom;fNac;con
 			try {
 				Scanner sc = new Scanner(new FileReader(nomfich));
