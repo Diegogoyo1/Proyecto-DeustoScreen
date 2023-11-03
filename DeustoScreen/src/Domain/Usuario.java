@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.swing.JPasswordField;
+
 public class Usuario {
 	private String nombre;
 	private String apellido;

@@ -14,6 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import Domain.Cine;
+import Domain.Usuario;
+
 import java.awt.Font;
 import java.awt.Color;
 
@@ -25,6 +29,8 @@ public class VentanaRegistros extends JFrame {
 	private JButton btnSalir, btnIniciarSesion;
 	private JPasswordField contraseniaR;
 	private JFrame vActual, vAnterior;
+	private static final String nomfichUsuarios = "Usuarios.csv";
+
 
 	public VentanaRegistros(JFrame va) {
 		super();
@@ -94,12 +100,22 @@ public class VentanaRegistros extends JFrame {
 		
 		//eventos botones 
 		btnIniciarSesion.addActionListener((e)->{
-			JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
-			new VentanaEntradas(vActual);
-			vActual.setVisible(false);
-			vActual.dispose();
+			String nombre = txtNombre.getText();
+			String	apellido = txtApellido.getText();
+			String fNac = txtFechaNacimiento.getText();
+			String CorreoElectronico = txtCorreoElectronico.getText();
+			JPasswordField contrasenia = contraseniaR;
 		
+			//Usuario u = new Usuario(nombre, apellido, fNac, CorreoElectronico, contrasenia);
+			if(Cine.buscarUsuario(CorreoElectronico)!=null) {
+				JOptionPane.showMessageDialog(null, "Ya existe un cliente con ese dni","ERROR",JOptionPane.ERROR_MESSAGE);
+			}else {
+				//Cine.aniadirUsuario(u);
+				JOptionPane.showMessageDialog(null, "Cliente registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
+				new VentanaEntradas(vActual);
+			}
 		});
+			
 		btnSalir.addActionListener((e)->{
 			vActual.dispose();
 			vAnterior.setVisible(true);

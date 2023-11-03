@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -17,6 +18,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import Domain.Cine;
 import Domain.Entrada;
 import Domain.Usuario;
 
@@ -27,6 +29,8 @@ public class VentanaInicioSesion extends JFrame {
 	private JButton btnSalir, btnIniciarSesion, btnRegistrarse;
 	private JPasswordField contraseniaIs;
 	private JFrame vAnterior, vActual;
+	private static final String nomfichUsuarios = "Usuarios.csv";
+
 	
 	private static Usuario usuario;
 	private static List<Entrada> carrito;
@@ -89,12 +93,27 @@ public class VentanaInicioSesion extends JFrame {
 		btnIniciarSesion.addActionListener((e)->{
 			String CorreoElectronico = txtCorreoElectronico.getText();
 			String con = contraseniaIs.getText();
-			JOptionPane.showMessageDialog(null, "Inicio de sesion correcto","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
-			new VentanaEntradas(vActual);
-			vActual.setVisible(false);
-			vActual.dispose();
+			Usuario u = Cine.buscarUsuario(CorreoElectronico);
+			if(u == null) {
+				JOptionPane.showMessageDialog(null, "Para poder iniciar sesión tienes que estar registrado","ERROR",JOptionPane.ERROR_MESSAGE);
+			}else {
+				if(u.getContrasenia().equals(con)) {
+					JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
+					usuario = u; //Guardamos la información del cliente que ha iniciado sesión
+					carrito = new ArrayList<>(); //Inicializamos su carrito a una lista vacía (Instanciamos la lista que hace referencia al carrito)
+					new VentanaEntradas(vActual);
+					vActual.setVisible(false);
+					txtCorreoElectronico.setText("");
+					contraseniaIs.setText("");
+				}else {
+					JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR",JOptionPane.WARNING_MESSAGE);
+					new VentanaEntradas(vActual);
+				}
+			}
 			
 		});
+			
+		
 		
 
 
