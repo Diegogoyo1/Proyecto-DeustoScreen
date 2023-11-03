@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import Domain.Peliculas;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import java.awt.GridLayout;
@@ -56,7 +58,9 @@ public class VentanaEntradas extends JFrame{
 		BtnAtras = new JButton("Atrás");
 		BtnSiguiente = new JButton("Siguiente");
 		
-		
+		// Tamaño del ComboBox
+		//comBoxHorarios.setPreferredSize(new Dimension(10,5));
+		//comBoxPelicula.setPreferredSize(new Dimension(10,5));
 		
 		//Añadimos todo lo anterior a paneles
 		panelNorth.add(lblEntradas);
@@ -66,6 +70,8 @@ public class VentanaEntradas extends JFrame{
 		panelCenter.add(comBoxHorarios);
 		panelSouth.add(BtnAtras);
 		panelSouth.add(BtnSiguiente);
+		
+		
 		
 		
 		//if (!listaPeliculas.isEmpty()) {

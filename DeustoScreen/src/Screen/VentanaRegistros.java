@@ -54,7 +54,7 @@ public class VentanaRegistros extends JFrame {
 		getContentPane().add(pSur, BorderLayout.SOUTH);
 		
 		//Labels
-		lblNombre= new JLabel("  Nombre: ");
+		lblNombre= new JLabel("  Nombre ");
 		lblApellido= new JLabel("  Apellido");
 		lblFechaNacimiento = new JLabel("  Fecha de nacimiento");
 		lbltlf = new JLabel(" Tlf");

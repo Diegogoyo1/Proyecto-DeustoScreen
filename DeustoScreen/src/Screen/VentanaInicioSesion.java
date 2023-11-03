@@ -2,6 +2,7 @@ package Screen;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -71,6 +72,10 @@ public class VentanaInicioSesion extends JFrame {
 		txtCorreoElectronico= new JTextField();
 		contraseniaIs= new JPasswordField();
 		
+		// Tamaño del ComboBox(Ancho x Alto)
+				txtCorreoElectronico.setPreferredSize(new Dimension(10,5));
+				contraseniaIs.setPreferredSize(new Dimension(10,5));
+		
 		// Enlazar los paneles con los label y txtField
 		
 			pCentroIzquierda.add(lblCorreoElectronico);
@@ -99,7 +104,7 @@ public class VentanaInicioSesion extends JFrame {
 			}else {
 				if(u.getContrasenia().equals(con)) {
 					JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
-					usuario = u; //Guardamos la información del cliente que ha iniciado sesión
+					usuario = u; //Guardamos la información del usuario que ha iniciado sesión
 					carrito = new ArrayList<>(); //Inicializamos su carrito a una lista vacía (Instanciamos la lista que hace referencia al carrito)
 					new VentanaEntradas(vActual);
 					vActual.setVisible(false);
