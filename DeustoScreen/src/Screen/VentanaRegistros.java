@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.GridLayout;
 import java.awt.image.PackedColorModel;
+import java.sql.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -103,15 +104,16 @@ public class VentanaRegistros extends JFrame {
 			String nombre = txtNombre.getText();
 			String	apellido = txtApellido.getText();
 			String fNac = txtFechaNacimiento.getText();
+			String tlf = textFieldTlf.getText();
 			String CorreoElectronico = txtCorreoElectronico.getText();
-			JPasswordField contrasenia = contraseniaR;
+			String contrasenia = contraseniaR.getText();
 		
-			//Usuario u = new Usuario(nombre, apellido, fNac, CorreoElectronico, contrasenia);
+			Usuario u = new Usuario(nombre, apellido, tlf,fNac, CorreoElectronico, contrasenia);
 			if(Cine.buscarUsuario(CorreoElectronico)!=null) {
-				JOptionPane.showMessageDialog(null, "Ya existe un cliente con ese dni","ERROR",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese correo electronico","ERROR",JOptionPane.ERROR_MESSAGE);
 			}else {
-				//Cine.aniadirUsuario(u);
-				JOptionPane.showMessageDialog(null, "Cliente registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
+				Cine.aniadirUsuario(u);
+				JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
 				new VentanaEntradas(vActual);
 			}
 		});

@@ -23,17 +23,7 @@ public class Usuario {
 		super();
 	}
 	
-	public Usuario(String nombre, String apellido, Date FechaNacimiento, String tlf,
-			String correoElectronico, String contrasenia) {
-		super();
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.FechaNacimiento = FechaNacimiento;
-		this.tlf = tlf;
-		this.CorreoElectronico = correoElectronico;
-		this.Contrasenia= contrasenia;
-	}
-
+	
 	public Usuario(String nombre, String apellido, String FechaNacimiento, String tlf,
 			String correoElectronico, String contrasenia) {
 		super();
@@ -50,6 +40,17 @@ public class Usuario {
 		this.Contrasenia= contrasenia;
 	}
 	
+	public Usuario(String nombre, String apellido, Date FechaNacimiento, String tlf,
+			String correoElectronico, String contrasenia) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.FechaNacimiento = FechaNacimiento;
+		this.tlf = tlf;
+		this.CorreoElectronico = correoElectronico;
+		this.Contrasenia= contrasenia;
+	}
+
 	//getters y setters
 	public String getNombre() {
 		return nombre;
