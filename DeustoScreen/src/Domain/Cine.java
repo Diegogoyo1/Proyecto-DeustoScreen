@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -13,6 +14,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.logging.Logger;
+import java.text.SimpleDateFormat;
 
 
 //Ventnana contenedora
@@ -20,6 +22,7 @@ import java.util.logging.Logger;
 public class Cine{
 	private static Set<Entrada> Entradas = new TreeSet<>();
 	private static List<Usuario> Usuarios = new ArrayList<>();
+	private static List<Peliculas> Pelicula = new ArrayList<>();
 	private static Map<Usuario, List<Entrada>> compras = new TreeMap<>();
 	
 	public static Map<Usuario, List<Entrada>> getCompras() {
@@ -143,6 +146,37 @@ public class Cine{
 				e.printStackTrace();
 			}
 		}
+		
+		public static void cargarPeliculasEnLista(String nomfich) {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+			try {
+				Scanner sc = new Scanner(new FileReader(nomfich));
+				String linea;
+				while(sc.hasNext()) {
+					linea = sc.nextLine();
+					String [] partes = linea.split(";");
+					String NombrePeli = partes[0];
+					ArrayList<Actores> reparto = new ArrayList<>();
+					String[] actoresInfo = partes[1].split(",");
+					 for (String actorInfo : actoresInfo) {
+		                    String[] actorData = actorInfo.split(";");
+		                    String nombreActor = actorData[0];
+		                    //Date fechaNacimientoAct = sdf.parse(actorData[1]);
+		                    //reparto.add(new Actores(nombreActor, fechaNacimientoAct, sdf));
+		                }
+					float duracion = Float.parseFloat(partes[2]);
+		            //Date fechaEstreno =  sdf.parse(partes[3]);
+		            Categoria categoria = Categoria.valueOf(partes[4]);
+					//Peliculas p = new Peliculas(NombrePeli, reparto, duracion, fechaEstreno, categoria);
+					}
+					sc.close();
+				}catch (FileNotFoundException e) {
+				 
+			 }
+	
+		}
+		
+		
 	
 		//Logger logger = java.util.logging.Logger.getLogger("logger");
 		//try {
