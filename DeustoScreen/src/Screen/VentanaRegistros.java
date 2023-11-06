@@ -107,12 +107,12 @@ public class VentanaRegistros extends JFrame {
 			String tlf = textFieldTlf.getText();
 			String CorreoElectronico = txtCorreoElectronico.getText();
 			String contrasenia = contraseniaR.getText();
-		
 			Usuario u = new Usuario(nombre, apellido, tlf,fNac, CorreoElectronico, contrasenia);
 			if(Cine.buscarUsuario(CorreoElectronico)!=null) {
 				JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese correo electronico","ERROR",JOptionPane.ERROR_MESSAGE);
 			}else {
 				Cine.aniadirUsuario(u);
+				Cine.guardarUsuariosEnFichero("Usuarios.csv");
 				JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
 				new VentanaEntradas(vActual);
 			}

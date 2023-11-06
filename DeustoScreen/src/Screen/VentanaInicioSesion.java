@@ -119,8 +119,6 @@ public class VentanaInicioSesion extends JFrame {
 		});
 			
 		
-		
-
 
 		btnSalir.addActionListener((e)->{
 			vActual.dispose();
