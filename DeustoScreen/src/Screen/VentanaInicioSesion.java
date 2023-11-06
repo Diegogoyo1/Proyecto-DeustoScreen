@@ -93,6 +93,9 @@ public class VentanaInicioSesion extends JFrame {
 		pSur.add(btnRegistrarse);
 		pSur.add(btnSalir);
 		
+		//cargar las colecciones
+		Cine.cargarUsuarioEnLista(nomfichUsuarios);
+
 		
 		//Eventos
 		btnIniciarSesion.addActionListener((e)->{
