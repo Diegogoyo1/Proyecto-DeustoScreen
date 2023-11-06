@@ -100,26 +100,5 @@ public class VentanaEntradas extends JFrame{
 		setVisible(true);
 	}
 	
-	/*public void cargarFichero(String nomfich) {
-		try {
-			Scanner sc = new Scanner (new FileReader(nomfich));
-			String linea;
-			while(sc.hasNext()) {
-				linea = sc.nextLine();
-				String [] partes = linea.split(";");
-				String nombrePeli = partes[0];
-				Peliculas p = new Peliculas(nombrePeli, null, getOpacity(), null, null, null);
-				listaPeliculas.add(p);
-				
-				
-			}
-			sc.close();
-			
-			
-		} catch(FileNotFoundException e) {
-			e.printStackTrace();
-			
-		}
-	}*/
 
 }
