@@ -161,13 +161,13 @@ public class Cine{
 					 for (String actorInfo : actoresInfo) {
 		                    String[] actorData = actorInfo.split(";");
 		                    String nombreActor = actorData[0];
-		                    //Date fechaNacimientoAct = sdf.parse(actorData[1]);
-		                    //reparto.add(new Actores(nombreActor, fechaNacimientoAct, sdf));
-		                }
-					float duracion = Float.parseFloat(partes[2]);
-		            //Date fechaEstreno =  sdf.parse(partes[3]);
+		                    String fechaNacimientoAct = actorData[1];
+		                    reparto.add(new Actores(nombreActor, fechaNacimientoAct));
+		                    }
+					String duracion = partes[2];
+		            String fechaEstreno =  partes[3];
 		            Categoria categoria = Categoria.valueOf(partes[4]);
-					//Peliculas p = new Peliculas(NombrePeli, reparto, duracion, fechaEstreno, categoria);
+					Peliculas p = new Peliculas(NombrePeli, reparto, duracion, fechaEstreno, categoria);
 					}
 					sc.close();
 				}catch (FileNotFoundException e) {

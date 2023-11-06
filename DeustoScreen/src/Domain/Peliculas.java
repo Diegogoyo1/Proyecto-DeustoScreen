@@ -1,13 +1,14 @@
 package Domain;
 
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Peliculas extends Actores{
 	private String nombrePeli;
 	private ArrayList<Actores> reparto;
-	private float Duracion;
+	private String Duracion;
 	private Date fechaEstreno;
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	private Categoria categoria;
@@ -17,15 +18,25 @@ public class Peliculas extends Actores{
 		super();
 	}
 
+	public Peliculas(String nombrePeli, ArrayList<Actores> reparto, String duracion, String fechaEstreno, Categoria categoria) {
+		super();
+		this.nombrePeli = nombrePeli;
+		this.reparto = reparto;
+		this.Duracion = duracion;
+		try {
+			this.fechaEstreno = (Date) sdf.parse(fechaEstreno);
+		} catch (ParseException e) {
+			this. fechaEstreno= new Date(0);
+		}
+		this.categoria = categoria;
+	}
 
-	public Peliculas(String nombrePeli, ArrayList<Actores> reparto, float duracion, Date fechaEstreno,
-			SimpleDateFormat sdf, Categoria categoria) {
+	public Peliculas(String nombrePeli, ArrayList<Actores> reparto, String duracion, Date fechaEstreno, Categoria categoria) {
 		super();
 		this.nombrePeli = nombrePeli;
 		this.reparto = reparto;
 		Duracion = duracion;
-		this.fechaEstreno = fechaEstreno;
-		this.sdf = sdf;
+		this.fechaEstreno = (Date) fechaEstreno;
 		this.categoria = categoria;
 	}
 
@@ -50,12 +61,12 @@ public class Peliculas extends Actores{
 	}
 
 
-	public float getDuracion() {
+	public  String getDuracion() {
 		return Duracion;
 	}
 
 
-	public void setDuracion(float duracion) {
+	public void setDuracion(String duracion) {
 		Duracion = duracion;
 	}
 
