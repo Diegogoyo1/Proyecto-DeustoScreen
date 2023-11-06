@@ -30,7 +30,7 @@ public class VentanaRegistros extends JFrame {
 	private JButton btnSalir, btnIniciarSesion;
 	private JPasswordField contraseniaR;
 	private JFrame vActual, vAnterior;
-	private static final String nomfichUsuarios = "Usuarios.csv";
+	private static final String nomfichUsuarios = "Ficheros/Usuarios.csv";
 
 
 	public VentanaRegistros(JFrame va) {
@@ -112,7 +112,7 @@ public class VentanaRegistros extends JFrame {
 				JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese correo electronico","ERROR",JOptionPane.ERROR_MESSAGE);
 			}else {
 				Cine.aniadirUsuario(u);
-				Cine.guardarUsuariosEnFichero("Usuarios.csv");
+				Cine.guardarUsuariosEnFichero(nomfichUsuarios);
 				JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
 				new VentanaEntradas(vActual);
 			}

@@ -32,6 +32,7 @@ public class VentanaPago extends JFrame {
 		btnAtras = new JButton("Atras");
 		
 		
+		
 		btnFinalizarCompra.addActionListener((e)->{
 			JOptionPane.showMessageDialog(null, "Gracias por tu compra","PAGO FINALIZADO",JOptionPane.INFORMATION_MESSAGE);
 			setVisible(false);
