@@ -173,9 +173,9 @@ public class Cine{
 				}catch (FileNotFoundException e) {
 				 
 			 }
+			
 	
 		}
-		
 		
 	
 		//Logger logger = java.util.logging.Logger.getLogger("logger");
