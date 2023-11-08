@@ -1,9 +1,9 @@
-package Screen;
+package screen;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Domain.Peliculas;
+import domain.Peliculas;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;

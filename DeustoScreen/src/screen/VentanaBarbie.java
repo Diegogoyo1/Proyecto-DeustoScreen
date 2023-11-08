@@ -1,4 +1,4 @@
-package Screen;
+package screen;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -11,28 +11,27 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.border.EmptyBorder;
 
-import Domain.Categoria;
+import domain.Categoria;
 
-public class VentanaOppenheimer extends JFrame{
+public class VentanaBarbie extends JFrame {
 	private JPanel pNorte, pSur, pCentro, pCentroIz, pCentroDe; 
-	private JLabel lblImg, lblSetNom, lblSetCat, lblSetDur, lblSetRep, lblSetSip, lblNom, lblDur, lblRep, lblCat;
+	private JLabel lblImg, lblSetNom, lblSetCat, lblSetDur, lblSetRep, lblSetSip, lblNom, lblCat, lblDur, lblRep;
 	private JButton btnA;
 	private JTextArea txtSinp;
-	//private JScrollPane scrollTxtArea;
 	private JFrame vActual, vAnterior;
+	//private JScrollPane scrollTxtArea;
 	
-	public VentanaOppenheimer(JFrame va) {
-		vActual = this;
+	public VentanaBarbie(JFrame va) {
+		super();
+		vActual=this;
 		vAnterior=va;
-		
 		
 		//CREACIÓN PANELES
 		pCentro = new JPanel (new GridLayout (1, 2));
 		pCentroIz = new JPanel (new GridLayout (5, 2));
-		pCentroDe = new JPanel()
-;		pSur = new JPanel();
+		pCentroDe = new JPanel();
+		pSur = new JPanel();
 		pNorte = new JPanel();
 		
 		getContentPane().add(pCentro, BorderLayout.CENTER);
@@ -40,58 +39,49 @@ public class VentanaOppenheimer extends JFrame{
 		getContentPane().add(pNorte, BorderLayout.NORTH);
 		
 		
-		
-		
+		pCentro.add(pCentroIz);
+		pCentro.add(pCentroDe);
 		
 		//LABELS
 		lblSetNom = new JLabel(" NOMBRE: ");
-		//lblSetNom.setBorder(new EmptyBorder(110,110,110,110));
 		lblSetCat = new JLabel (" CATEGORÍA: ");
-		//lblSetCat.setBorder(new EmptyBorder(50, 50, 50, 50));
 		lblSetDur = new JLabel(" DURACIÓN: ");
-		//lblSetDur.setBorder(new EmptyBorder(50, 50, 50, 50));
 		lblSetRep = new JLabel (" REPARTO: ");
-		//lblSetRep.setBorder(new EmptyBorder(50, 50, 50, 50));
 		lblSetSip = new JLabel (" SINOPSIS: ");
-		//lblSetSip.setBorder(new EmptyBorder(50, 50, 50, 50));
-		lblNom = new JLabel(" Oppenheimer ");
-		//lblNom.setBorder(new EmptyBorder(200, -10, 200, 0));
-		lblCat = new JLabel(Categoria.ACCIÓN.toString()); 
-		//lblCat.setBorder(new EmptyBorder(50, 50, 50, 50));
-		lblDur = new JLabel(" 3h ");
-		//lblDur.setBorder(new EmptyBorder(50, 50, 50, 50));
-		lblRep = new JLabel (" Cillian Murphy ");
-		//lblRep.setBorder(new EmptyBorder(50, 50, 50, 50));
+		lblNom = new JLabel(" Barbie ");
+		lblCat = new JLabel (Categoria.COMEDIA.toString()); 
+		lblDur = new JLabel(" 1h 54m ");
+		lblRep = new JLabel (" Margot Robbie ");
 		
 		
 		//TEXTAREA
-		txtSinp = new JTextArea(500, 300);
-		txtSinp = new JTextArea("En tiempos de guerra, el brillante físico estadounidense"
-				+ " Julius Robert Oppenheimer (Cillian Murphy), al frente del \"Proyecto Manhattan\", "
-				+ "lidera los ensayos nucleares para construir la bomba atómica para su país. "
-				+ "Impactado por su poder destructivo, Oppenheimer se cuestiona las consecuencias "
-				+ "morales de su creación. Desde entonces y el resto de su vida, se opondría "
-				+ "firmemente al uso de armas nucleares.");
+		txtSinp = new JTextArea(16, 58);
+		txtSinp = new JTextArea("Barbie (Margot Robbie) lleva una vida ideal en "
+				+ "Barbieland, allí todo es perfecto, con chupi fiestas llenas "
+				+ "de música y color, y todos los días son el mejor día. Claro "
+				+ "que Barbie se hace algunas preguntas, cuestiones bastante "
+				+ "incómodas que no encajan con el mundo idílico en el que ella "
+				+ "y las demás Barbies viven. Cuando Barbie se dé cuenta de que "
+				+ "es capaz de apoyar los talones en el suelo, y tener los pies "
+				+ "planos, decidirá calzarse unos zapatos sin tacones y viajar "
+				+ "hasta el mundo real.");
 		txtSinp.setLineWrap(true);
 		txtSinp.setWrapStyleWord(true);
 		txtSinp.setEditable(false);
 		//scrollTxtArea = new JScrollPane(txtSinp);
 		//getContentPane().add(scrollTxtArea, BorderLayout.CENTER);
 		
-		
-		
 		//IMAGEN
 		pCentroDe = new JPanel();
 		pCentroDe.setLayout(new FlowLayout(FlowLayout.LEFT));
-		ImageIcon imOppenheimer = new ImageIcon("src\\Imagenes\\PortadaOppenheimer.jpg");
-		Image imagen = imOppenheimer.getImage();
+		ImageIcon imBarbie = new ImageIcon("src\\Imagenes\\PortadaBarbie.jpg");
+		Image imagen = imBarbie.getImage();
 		Image imagenRedimensionada = imagen.getScaledInstance(500, 700, Image.SCALE_SMOOTH);
 		ImageIcon imagenRedimensionadaIcon = new ImageIcon(imagenRedimensionada);
 		lblImg = new JLabel(imagenRedimensionadaIcon);
 		pCentroDe.add(lblImg);
-		pCentroDe.setBorder(new EmptyBorder(50, 50, 50, 50));
 		
-		
+		pCentro.add(pCentroDe);
 		
 		//ENLAZER PANELES CON LABELS Y TEXTFIELDS
 		pCentroIz.add(lblSetNom);
@@ -106,10 +96,7 @@ public class VentanaOppenheimer extends JFrame{
 		pCentroIz.add(lblRep);
 		pCentroIz.add(lblSetSip);
 		pCentroIz.add(txtSinp);
-		pCentroIz.setBorder(new EmptyBorder(50, 50, 50, 50));
 		
-		pCentro.add(pCentroIz);
-		pCentro.add(pCentroDe);
 		
 		//BOTONES
 		btnA = new JButton("ATRÁS");
@@ -127,9 +114,10 @@ public class VentanaOppenheimer extends JFrame{
 		//DEFINIR VENTANA
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds (600,300,380,400);
-		setTitle("OPPENHEIMER");
+		setTitle("BARBIE");
 		setVisible(true);
 		
-	}
-
+	}	
+						
+	
 }

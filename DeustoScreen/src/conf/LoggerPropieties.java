@@ -1,4 +1,4 @@
-package Conf;
+package conf;
 
 import java.util.Properties;
 

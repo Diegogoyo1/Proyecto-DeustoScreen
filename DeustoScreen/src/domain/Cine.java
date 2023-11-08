@@ -1,4 +1,4 @@
-package Domain;
+package domain;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

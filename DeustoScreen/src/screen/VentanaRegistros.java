@@ -1,4 +1,4 @@
-package Screen;
+package screen;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -16,8 +16,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import Domain.Cine;
-import Domain.Usuario;
+import domain.Cine;
+import domain.Usuario;
 
 import java.awt.Font;
 import java.awt.Color;
@@ -116,6 +116,7 @@ public class VentanaRegistros extends JFrame {
 				Cine.aniadirUsuario(u);
 				Cine.guardarUsuariosEnFichero(nomfichUsuarios);
 				JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
+				vActual.dispose();
 				new VentanaEntradas(vActual);
 			}
 		});
@@ -126,7 +127,7 @@ public class VentanaRegistros extends JFrame {
 			
 		});
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(600,300, 600, 400);
 		setTitle("REGISTRO");
 		setVisible(true);

@@ -1,9 +1,12 @@
-package Screen;
+package screen;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Scanner;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -24,6 +27,8 @@ public class VentanaButacas extends JFrame{
 	private DefaultTableModel modTblButacas1, modTblButacas2;
 	private FlowLayout layoutTabButacas1, layoutTabButacas2;
 	private JFrame vActual, vAnterior;
+	private static final String nomfich1 = "src/Ficheros/Butacas1.csv";
+	private static final String nomfich2 = "src/Ficheros/Butacas2.csv";
 	
 	
 	public VentanaButacas(JFrame va) {
@@ -70,88 +75,80 @@ public class VentanaButacas extends JFrame{
 			vActual.setVisible(false);
 			vActual.dispose();
 		});
+	
 					
 		
-		
 		//CREACION PRIMERA TABLA BUTACAS
-		Object [] titulos1 = {"", "", "", "", "",""};
+		Object[] titulos1 = {"","","","","",""};
 		modTblButacas1 = new DefaultTableModel() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
+		
 		modTblButacas1.setColumnIdentifiers(titulos1);
+		
 		tblButacas1 = new JTable(modTblButacas1);
+		
 		layoutTabButacas1  = new FlowLayout();
 		layoutTabButacas1.setVgap(250);
 		layoutTabButacas1.setHgap(100);
 		pOeste.setLayout(layoutTabButacas1);
 		
+		tblButacas1.setRowHeight(100);
 		tblButacas1.getColumnModel().getColumn(0).setPreferredWidth(100);
 		tblButacas1.getColumnModel().getColumn(1).setPreferredWidth(100);
 		tblButacas1.getColumnModel().getColumn(2).setPreferredWidth(100);
 		tblButacas1.getColumnModel().getColumn(3).setPreferredWidth(100);
 		tblButacas1.getColumnModel().getColumn(4).setPreferredWidth(100);
 		tblButacas1.getColumnModel().getColumn(5).setPreferredWidth(100);
-		tblButacas1.setRowHeight(100);
-		/*tblButacas1.setIntercellSpacing(new Dimension(10,10));*/  //Para dejar espacio entre celdas
-		tblButacas1.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-
 		
-		String fila1[] =  {"A","01","02","03","04", "05"};
-		String fila2[] =  {"B","01","02","03","04", "05"};
-		String fila3[] =  {"C","01","02","03","04", "05"};
-		String fila4[] =  {"D","01","02","03","04", "05"};
-		String fila5[] =  {"E","01","02","03","04", "05"};
-		
-		modTblButacas1.addRow(fila1);
-		modTblButacas1.addRow(fila2);
-		modTblButacas1.addRow(fila3);
-		modTblButacas1.addRow(fila4);
-		modTblButacas1.addRow(fila5);
+		tblButacas1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		cargarFichero1(nomfich1);
 		
 		
 		
 		
-		
-		//CREACION SEGUNDA TABLA BUTACAS
-		Object [] titulos2 = {"", "", "", "", ""};
-		modTblButacas2 = new DefaultTableModel() {
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		};
-		modTblButacas2.setColumnIdentifiers(titulos2);
-		tblButacas2 = new JTable(modTblButacas2);
-		layoutTabButacas2  = new FlowLayout();
-		layoutTabButacas2.setVgap(250);
-		layoutTabButacas2.setHgap(200);
-		pEste.setLayout(layoutTabButacas2);
-		
-		tblButacas2.getColumnModel().getColumn(0).setPreferredWidth(100);
-		tblButacas2.getColumnModel().getColumn(1).setPreferredWidth(100);
-		tblButacas2.getColumnModel().getColumn(2).setPreferredWidth(100);
-		tblButacas2.getColumnModel().getColumn(3).setPreferredWidth(100);
-		tblButacas2.getColumnModel().getColumn(4).setPreferredWidth(100);
-		tblButacas2.setRowHeight(100);
-		/*tblButacas2.setIntercellSpacing(new Dimension(10,10));*/
-		tblButacas2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	
 		
 		
-		String fila6[] =  {"06","07","08","09", "10"};
-		String fila7[] =  {"06","07","08","09", "10"};
-		String fila8[] =  {"06","07","08","09", "10"};
-		String fila9[] =  {"06","07","08","09", "10"};
-		String fila10[] = {"06","07","08","09", "10"};
+			
 		
-		modTblButacas2.addRow(fila6);
-		modTblButacas2.addRow(fila7);
-		modTblButacas2.addRow(fila8);
-		modTblButacas2.addRow(fila9);
-		modTblButacas2.addRow(fila10);
+			
+			//CREACION SEGUNDA TABLA BUTACAS
+			Object[] titulos2 = {"","","","",""};
+			modTblButacas2 = new DefaultTableModel() {
+				@Override
+				public boolean isCellEditable(int row, int column) {
+					return false;
+				}
+			};
+			modTblButacas2.setColumnIdentifiers(titulos2);
+			
+			tblButacas2 = new JTable(modTblButacas2);
+			
+			layoutTabButacas2  = new FlowLayout();
+			layoutTabButacas2.setVgap(250);
+			layoutTabButacas2.setHgap(200);
+			pEste.setLayout(layoutTabButacas2);
+			
+			tblButacas2.setRowHeight(100);
+			tblButacas2.getColumnModel().getColumn(0).setPreferredWidth(100);
+			tblButacas2.getColumnModel().getColumn(1).setPreferredWidth(100);
+			tblButacas2.getColumnModel().getColumn(2).setPreferredWidth(100);
+			tblButacas2.getColumnModel().getColumn(3).setPreferredWidth(100);
+			tblButacas2.getColumnModel().getColumn(4).setPreferredWidth(100);
+			
+			tblButacas2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			cargarFichero2(nomfich2);
+			
+			
 		
+			
+			
+		
+				
 		//RENDERER DE LAS TABLAS
 		
 		
@@ -164,6 +161,47 @@ public class VentanaButacas extends JFrame{
 		
 		pSur.add(btnAtras);
 		pSur.add(btnSiguiente);
+}
+		
+		
+		
+		
+		
+		
+		//CARGAR LOS FICHEROS DE LAS TABLAS
+				public void cargarFichero1(String nomfich1) {
+					
+					try {
+						Scanner sc = new Scanner(new FileReader(nomfich1));
+						String linea;
+						while(sc.hasNext()) { 
+							linea = sc.nextLine(); 
+							String [] partes = linea.split(";");
+							Object [] fila = {partes[0],partes[1],partes[2],partes[3],partes[4], partes[5]};
+							modTblButacas1.addRow(fila);
+						}
+						sc.close();
+					} catch (FileNotFoundException e) {
+						e.printStackTrace(); 
+					}
+				} 
+				
+					public void cargarFichero2(String nomfich2) {
+						
+						try {
+							Scanner sc = new Scanner(new FileReader(nomfich2)); 
+							String linea;
+							while(sc.hasNext()) { 
+								linea = sc.nextLine(); 
+								String [] partes = linea.split(";");
+								Object [] fila = {partes[0],partes[1],partes[2],partes[3],partes[4]};
+								modTblButacas2.addRow(fila);
+							}
+							sc.close();
+						} catch (FileNotFoundException e) {
+							e.printStackTrace(); 
+						}
+			
 		
 		
 		

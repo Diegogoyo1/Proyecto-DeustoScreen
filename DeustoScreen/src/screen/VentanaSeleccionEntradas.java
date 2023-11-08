@@ -1,4 +1,4 @@
-package Screen;
+package screen;
 
 import java.awt.BorderLayout;
 
@@ -87,9 +87,9 @@ public class VentanaSeleccionEntradas extends JFrame{
 			int entreaños= (int) spinEntreAños.getValue();
 			int mayores = (int) spinMayores.getValue();
 			if (vip > 0 || menores > 0 || entreaños > 0 || mayores > 0) {
-				new VentanaButacas(vActual);
 				vActual.setVisible(false);
 				vActual.dispose();
+				new VentanaButacas (vActual);
 			} else {
 				JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una entrada","ERROR",JOptionPane.WARNING_MESSAGE);
 			}

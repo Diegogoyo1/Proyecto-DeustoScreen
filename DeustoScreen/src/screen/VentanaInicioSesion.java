@@ -1,4 +1,4 @@
-package Screen;
+package screen;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,9 +19,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import Domain.Cine;
-import Domain.Entrada;
-import Domain.Usuario;
+import domain.Cine;
+import domain.Entrada;
+import domain.Usuario;
 
 public class VentanaInicioSesion extends JFrame {
 	private JPanel pNorte,pCentro,pSur,pCentroIzquierda;

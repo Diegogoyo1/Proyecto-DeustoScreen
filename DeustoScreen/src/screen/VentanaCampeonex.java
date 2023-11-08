@@ -1,4 +1,4 @@
-package Screen;
+package screen;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import Domain.Categoria;
+import domain.Categoria;
 
 public class VentanaCampeonex extends JFrame {
 	private JPanel pNorte, pSur, pCentro, pCentroIz, pCentroDe; 

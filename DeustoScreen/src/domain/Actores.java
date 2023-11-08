@@ -1,4 +1,4 @@
-package Domain;
+package domain;
 
 import java.sql.Date;
 import java.text.ParseException;
