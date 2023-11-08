@@ -27,8 +27,8 @@ public class VentanaButacas extends JFrame{
 	private DefaultTableModel modTblButacas1, modTblButacas2;
 	private FlowLayout layoutTabButacas1, layoutTabButacas2;
 	private JFrame vActual, vAnterior;
-	private static final String nomfich1 = "src/Ficheros/Butacas1.csv";
-	private static final String nomfich2 = "src/Ficheros/Butacas2.csv";
+	private static final String nomfich1 = "src/ficheros/Butacas1.csv";
+	private static final String nomfich2 = "src/ficheros/Butacas2.csv";
 	
 	
 	public VentanaButacas(JFrame va) {

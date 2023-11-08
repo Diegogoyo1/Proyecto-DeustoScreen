@@ -30,7 +30,7 @@ public class VentanaInicioSesion extends JFrame {
 	private JButton btnSalir, btnIniciarSesion, btnRegistrarse;
 	private JPasswordField contraseniaIs;
 	private JFrame vAnterior, vActual;
-	private static final String nomfichUsuarios = "Ficheros/Usuarios.csv";
+	private static final String nomfichUsuarios = "ficheros/Usuarios.csv";
 
 	
 	private static Usuario usuario;
