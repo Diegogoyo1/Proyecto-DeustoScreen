@@ -2,6 +2,7 @@ package screen;
 
 import java.awt.BorderLayout; 
 import java.awt.Color;
+import java.awt.GraphicsEnvironment;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -76,7 +77,13 @@ public class VentanaCarga extends JFrame{
         setVisible(true);
         
         
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+        int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
+        int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
+        setSize(anchoP, altoP);
+        setExtendedState(MAXIMIZED_BOTH);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(50, 50, 1600, 800);
 		setTitle("CARGANDO");
 		setVisible(true);

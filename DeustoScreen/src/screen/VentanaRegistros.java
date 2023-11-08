@@ -20,6 +20,7 @@ import domain.Cine;
 import domain.Usuario;
 
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.awt.Color;
 
 public class VentanaRegistros extends JFrame {
@@ -30,7 +31,7 @@ public class VentanaRegistros extends JFrame {
 	private JButton btnSalir, btnIniciarSesion;
 	private JPasswordField contraseniaR;
 	private JFrame vActual, vAnterior;
-	private static final String nomfichUsuarios = "Ficheros/Usuarios.csv";
+	private static final String nomfichUsuarios = "ficheros/Usuarios.csv";
 
 
 	public VentanaRegistros(JFrame va) {
@@ -127,6 +128,11 @@ public class VentanaRegistros extends JFrame {
 			
 		});
 		
+		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
+		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
+		setSize(anchoP, altoP);
+		setExtendedState(MAXIMIZED_BOTH);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(600,300, 600, 400);
 		setTitle("REGISTRO");

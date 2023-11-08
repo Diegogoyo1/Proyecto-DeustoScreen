@@ -5,6 +5,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.GraphicsEnvironment;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -101,6 +102,12 @@ public class VentanaHorario extends JFrame{
 		
 		
 		//DEFINIR VENTANA
+		
+		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
+		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
+		setSize(anchoP, altoP);
+		setExtendedState(MAXIMIZED_BOTH);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds (600,300,1000,750);
 		setTitle("CARTELERA");

@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 
 public class VentanaSeleccionEntradas extends JFrame{
 	private JButton btnSiguiente, btnAtras;
@@ -102,6 +103,12 @@ public class VentanaSeleccionEntradas extends JFrame{
 		});
 		
 		
+		
+		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
+		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
+		setSize(anchoP, altoP);
+		setExtendedState(MAXIMIZED_BOTH);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(600, 300, 600, 400);
 		setVisible(true);

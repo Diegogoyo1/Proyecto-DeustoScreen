@@ -7,6 +7,7 @@ import domain.Peliculas;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -94,6 +95,12 @@ public class VentanaEntradas extends JFrame{
 			vActual.dispose();
 		});
 		
+		
+		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
+		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
+		setSize(anchoP, altoP);
+		setExtendedState(MAXIMIZED_BOTH);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(600, 300,500, 500);
 		setTitle("ENTRADAS");

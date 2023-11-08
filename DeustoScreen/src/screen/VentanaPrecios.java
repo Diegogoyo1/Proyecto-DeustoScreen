@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import java.awt.GridLayout;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
+
 import javax.swing.JButton;
 
 public class VentanaPrecios  extends JFrame{
@@ -81,7 +83,12 @@ public class VentanaPrecios  extends JFrame{
 			vAnterior.setVisible(true);
 		});
 		
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
+		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
+		setSize(anchoP, altoP);
+		setExtendedState(MAXIMIZED_BOTH);
+		setResizable(false);setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds (600,300,380,400);
 		setTitle("PRECIOS");
 		setVisible(true);

@@ -1,6 +1,7 @@
 package screen;
 
 import java.awt.BorderLayout;
+import java.awt.GraphicsEnvironment;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -47,6 +48,13 @@ public class VentanaPago extends JFrame {
 		pSur.add(btnAtras);
 		pSur.add(btnFinalizarCompra);
 		
+		
+		
+		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
+		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
+		setSize(anchoP, altoP);
+		setExtendedState(MAXIMIZED_BOTH);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds (600,300,380,400);
 		setTitle("FINALIZAR COMPRA");

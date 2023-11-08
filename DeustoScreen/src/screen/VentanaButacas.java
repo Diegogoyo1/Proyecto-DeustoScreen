@@ -3,6 +3,7 @@ package screen;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -147,7 +148,15 @@ public class VentanaButacas extends JFrame{
 		
 			
 			
-		
+			
+			
+			
+			
+			
+			
+			
+			
+			
 				
 		//RENDERER DE LAS TABLAS
 		
@@ -206,6 +215,12 @@ public class VentanaButacas extends JFrame{
 		
 		
 		//DEFINIR LA VENTANA
+		
+		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
+		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
+		setSize(anchoP, altoP);
+		setExtendedState(MAXIMIZED_BOTH);
+		setResizable(false);				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600,300, 600, 400);
 		setTitle("BUTACAS");

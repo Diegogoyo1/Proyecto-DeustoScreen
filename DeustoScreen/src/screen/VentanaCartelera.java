@@ -2,6 +2,7 @@ package screen;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -134,6 +135,12 @@ public class VentanaCartelera extends JFrame {
 		pCentro.add(btnTrolls3);
 		
 		
+		
+		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
+		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
+		setSize(anchoP, altoP);
+		setExtendedState(MAXIMIZED_BOTH);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds (600,300,380,400);
 		setTitle("PELICULAS");
