@@ -103,6 +103,9 @@ public class VentanaInicioSesion extends JFrame {
 			String CorreoElectronico = txtCorreoElectronico.getText();
 			String con = contraseniaIs.getText();
 			Usuario u = Cine.buscarUsuario(CorreoElectronico);
+			/*if (!isValidEmail(CorreoElectronico)) {
+				JOptionPane.showMessageDialog(null, "Direccion de correo electronico no valido","ERROR",JOptionPane.ERROR_MESSAGE);
+            }*/	
 			if(u == null) {
 				JOptionPane.showMessageDialog(null, "Para poder iniciar sesión tienes que estar registrado","ERROR",JOptionPane.ERROR_MESSAGE);
 			}else {
@@ -151,14 +154,5 @@ public class VentanaInicioSesion extends JFrame {
 		setTitle("INICIO SESION");
 		setVisible(true);
 
-		}
-	
-	
-	
-		
+		}		
 }	
-		
-		
-	
-
-	
