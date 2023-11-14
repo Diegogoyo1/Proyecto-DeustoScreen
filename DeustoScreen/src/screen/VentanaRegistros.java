@@ -121,8 +121,9 @@ public class VentanaRegistros extends JFrame {
 				Cine.aniadirUsuario(u);
 				Cine.guardarUsuariosEnFichero(nomfichUsuarios);
 				JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
-				vActual.dispose();
 				new VentanaEntradas(vActual);
+				vActual.dispose();
+				
 			}
 	});
 		btnSalir.addActionListener((e)->{

@@ -11,7 +11,7 @@ public class Usuario {
 	private String apellido;
 	private Date FechaNacimiento;
 	private String tlf;
-	private String CorreoElectronico;
+	private static String CorreoElectronico;
 	private String Contrasenia;
 	
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -92,7 +92,7 @@ public class Usuario {
 	}
 
 
-	public String getCorreoElectronico() {
+	public static String getCorreoElectronico() {
 		return CorreoElectronico;
 	}
 

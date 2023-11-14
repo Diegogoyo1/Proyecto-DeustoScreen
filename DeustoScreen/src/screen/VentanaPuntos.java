@@ -17,11 +17,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import domain.Usuario;
+
 public class VentanaPuntos extends JFrame{
 	private JPanel pSur, pCentro, pNorte; 
-	private JLabel lblUsuario, lblNumPuntos;
+	private JLabel lblUsuario, lblNumPuntos, txtUsuario;
 	private JButton btnAniadir, btnOmitir;
-	private JTextField txtUsuario, txtNumPuntos;
+	private JTextField  txtNumPuntos;
 	private JFrame vActual, vAnterior;
 	
 	public VentanaPuntos(JFrame va) {
@@ -45,10 +47,11 @@ public class VentanaPuntos extends JFrame{
 		lblNumPuntos = new JLabel (" NÚMERO DE PUNTOS: ");
 		
 		//TEXTFIELD
-		txtUsuario = new JTextField();
+		txtUsuario = new JLabel(Usuario.getCorreoElectronico());
 		txtUsuario.setBackground(new Color(255, 255, 255));
 		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		txtUsuario.setHorizontalAlignment(SwingConstants.LEFT);
+		
 		//txtUsuario.setSize(2, 4);
 		//txtUsuario.setPreferredSize(new Dimension(2, 4));
 		txtNumPuntos = new JTextField();
