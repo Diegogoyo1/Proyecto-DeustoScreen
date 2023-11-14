@@ -101,7 +101,9 @@ public class VentanaRegistros extends JFrame {
 		btnSalir = new JButton("Salir");
 		pSur.add(btnIniciarSesion);
 		pSur.add(btnSalir);
+	
 
+		
 		//eventos botones 
 		btnIniciarSesion.addActionListener((e)->{
 			String nombre = txtNombre.getText();
