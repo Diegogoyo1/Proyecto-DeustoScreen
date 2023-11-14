@@ -28,7 +28,7 @@ import java.awt.Color;
 
 public class VentanaRegistros extends JFrame {
 	private JPanel pNorte,pCentro,pSur,pCentroIzquierda;
-	private JLabel lblNombre,lblApellido ,lblFechaNacimiento, lbltlf, lblCorreoElectronico,lblContraseniaIs,lblCotraseniaR,lblTituloIS;
+	private JLabel lblNombre,lblApellido ,lblFechaNacimiento, lbltlf, lblCorreoElectronico,lblContraseniaIs,lblCotraseniaR,lblTituloIS,lblContadorPuntos, puntos; 
 	private JTextField txtNombre,txtApellido,txtFechaNacimiento,txtCorreoElectronico;
 	private JTextField textFieldTlf;
 	private JButton btnSalir, btnIniciarSesion;
@@ -48,7 +48,7 @@ public class VentanaRegistros extends JFrame {
 		pCentro = new JPanel(new GridLayout(1, 2));
 		pSur = new JPanel();
 
-		pCentroIzquierda = new JPanel(new GridLayout(6, 1));
+		pCentroIzquierda = new JPanel(new GridLayout(7, 1));
 		pCentro.add(pCentroIzquierda);
 		
 		
@@ -65,6 +65,7 @@ public class VentanaRegistros extends JFrame {
 		lblCorreoElectronico = new JLabel("  Correo electronico");
 		lblTituloIS = new JLabel("     REGISTRARSE");
 		lblCotraseniaR = new JLabel("  Contrasenia");
+		puntos = new JLabel("  Puntos ");
 		
 		
 		//TextField nuevos
@@ -77,6 +78,7 @@ public class VentanaRegistros extends JFrame {
 		textFieldTlf = new JTextField();
 		txtCorreoElectronico= new JTextField();
 		contraseniaR= new JPasswordField();
+		lblContadorPuntos = new JLabel();
 		
 		// Enlazar los paneles con los label y txtField
 		
@@ -93,6 +95,8 @@ public class VentanaRegistros extends JFrame {
 		pCentroIzquierda.add(lblCotraseniaR);
 		pCentroIzquierda.add(lblCotraseniaR);
 		pCentroIzquierda.add(contraseniaR);
+		pCentroIzquierda.add(puntos);
+		pCentroIzquierda.add(lblContadorPuntos);
 		
 		pNorte.add(lblTituloIS);
 		
@@ -112,7 +116,8 @@ public class VentanaRegistros extends JFrame {
 			String tlf = textFieldTlf.getText();
 			String CorreoElectronico = txtCorreoElectronico.getText();
 			String contrasenia = contraseniaR.getText();
-			Usuario u = new Usuario(nombre, apellido, tlf,fNac, CorreoElectronico, contrasenia);
+			String ContadorPuntos = "0";
+			Usuario u = new Usuario(nombre, apellido, tlf,fNac, CorreoElectronico, contrasenia, ContadorPuntos);
 			String email = txtCorreoElectronico.getText();
 			
 			if(Cine.buscarUsuario(CorreoElectronico)!=null) {

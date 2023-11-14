@@ -3,6 +3,7 @@ package domain;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -123,7 +124,8 @@ public class Cine{
 					String tlf = partes[3];
 					String CorreoElectronico = partes[4];
 					String Contrasenia = partes[5];
-					Usuario u = new Usuario(Nombre,Apellido,FechaNacimiento,tlf,CorreoElectronico,Contrasenia);
+					String ContadorPuntos = partes[6];
+					Usuario u = new Usuario(Nombre,Apellido,FechaNacimiento,tlf,CorreoElectronico,Contrasenia,ContadorPuntos);
 					if(buscarUsuario(CorreoElectronico)==null) {
 						Usuarios.add(u);
 						}
@@ -174,10 +176,16 @@ public class Cine{
 				 
 			 }
 			
-	
+		
+			
 		}
 		
-	
+		public static void sumadorPuntos() {
+			Usuario.getContadorPuntos();
+		
+			
+			
+		}
 		//Logger logger = java.util.logging.Logger.getLogger("logger");
 		//try {
 		//}catch{

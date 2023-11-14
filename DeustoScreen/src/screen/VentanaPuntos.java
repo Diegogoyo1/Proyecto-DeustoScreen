@@ -54,7 +54,7 @@ public class VentanaPuntos extends JFrame{
 		
 		//txtUsuario.setSize(2, 4);
 		//txtUsuario.setPreferredSize(new Dimension(2, 4));
-		txtNumPuntos = new JTextField();
+		txtNumPuntos = new JTextField(Usuario.getContadorPuntos());
 		txtNumPuntos.setEditable(false);
 		
 		

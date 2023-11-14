@@ -13,6 +13,7 @@ public class Usuario {
 	private String tlf;
 	private static String CorreoElectronico;
 	private String Contrasenia;
+	private static int ContadorPuntos;
 	
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	
@@ -25,7 +26,7 @@ public class Usuario {
 	
 	
 	public Usuario(String nombre, String apellido, String FechaNacimiento, String tlf,
-			String correoElectronico, String contrasenia) {
+			String correoElectronico, String contrasenia, String ContadorPuntos) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -38,10 +39,11 @@ public class Usuario {
 		this.tlf = tlf;
 		this.CorreoElectronico = correoElectronico;
 		this.Contrasenia= contrasenia;
+		this.ContadorPuntos = Integer.parseInt(ContadorPuntos);
 	}
 	
 	public Usuario(String nombre, String apellido, Date FechaNacimiento, String tlf,
-			String correoElectronico, String contrasenia) {
+			String correoElectronico, String contrasenia, int ContadorPuntos) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -49,6 +51,7 @@ public class Usuario {
 		this.tlf = tlf;
 		this.CorreoElectronico = correoElectronico;
 		this.Contrasenia= contrasenia;
+		this.ContadorPuntos = ContadorPuntos;
 	}
 
 	//getters y setters
@@ -108,13 +111,23 @@ public class Usuario {
 	public void setContrasenia(String contrasenia) {
 		Contrasenia = contrasenia;
 	}
+	
+
+	public static int getContadorPuntos() {
+		return ContadorPuntos;
+	}
+
+
+	public void setContadorPuntos(int contadorPuntos) {
+		ContadorPuntos = contadorPuntos;
+	}
 
 
 	// toString
 	@Override
 	public String toString() {
 		return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", fechanacimiento=" + FechaNacimiento + ", sdf="
-				+ sdf + ", tlf=" + tlf + ", CorreoElectronico=" + CorreoElectronico + "contrasenia: " + Contrasenia+"]";
+				+ sdf + ", tlf=" + tlf + ", CorreoElectronico=" + CorreoElectronico + "contrasenia: " + Contrasenia+ "Puntos:"+ ContadorPuntos+ "]";
 	}
 	
 	
