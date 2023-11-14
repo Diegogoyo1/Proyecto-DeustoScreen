@@ -138,7 +138,7 @@ public class Cine{
 			try {
 				PrintWriter pw = new PrintWriter(nomfich);
 				for(Usuario u : Usuarios) {
-					pw.println(u.getNombre()+";"+u.getApellido()+";"+u.getFehanacimiento()+";"+u.getTlf() +";"+u.getCorreoElectronico()+";"+u.getContrasenia());
+					pw.println(u.getNombre()+";"+u.getApellido()+";"+u.getFechanacimiento()+";"+u.getTlf() +";"+u.getCorreoElectronico()+";"+u.getContrasenia() + "\n");
 				}
 				pw.flush();
 				pw.close();

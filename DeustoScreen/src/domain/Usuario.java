@@ -72,7 +72,7 @@ public class Usuario {
 	}
 
 
-	public Date getFehanacimiento() {
+	public Date getFechanacimiento() {
 		return FechaNacimiento;
 	}
 
