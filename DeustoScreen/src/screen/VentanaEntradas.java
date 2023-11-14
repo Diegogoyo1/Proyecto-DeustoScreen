@@ -2,11 +2,14 @@ package screen;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
+import domain.Cine;
 import domain.Peliculas;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
 import javax.swing.JLabel;
@@ -18,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 
@@ -43,6 +47,7 @@ public class VentanaEntradas extends JFrame{
 		 panelSouth = new JPanel();
 		 
 		//Añadimos localizacion a paneles y columnas
+		panelCenter.setBorder(BorderFactory.createEmptyBorder(40, 100, 10, 100));
 		getContentPane().add(panelNorth, BorderLayout.NORTH);
 		getContentPane().add(panelEast, BorderLayout.EAST);
 		getContentPane().add(panelEast, BorderLayout.EAST);
@@ -51,17 +56,22 @@ public class VentanaEntradas extends JFrame{
 		panelCenter.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		//Creacion de Labels, ComboBox y Botones
-		lblEntradas = new JLabel("Entradas");
-		lblPelicula = new JLabel("Pelicula");
-		lblHorarios = new JLabel("Horarios");
-		JComboBox<Peliculas> comBoxPelicula = new JComboBox<Peliculas>();
+		lblEntradas = new JLabel("Entradas", SwingConstants.CENTER);
+		lblPelicula = new JLabel("Pelicula", SwingConstants.CENTER);
+		lblHorarios = new JLabel("Horarios", SwingConstants.CENTER);
+		JComboBox<String> comBoxPelicula = new JComboBox<String>();
 		JComboBox comBoxHorarios = new JComboBox();
 		BtnAtras = new JButton("Atrás");
 		BtnSiguiente = new JButton("Siguiente");
+		lblEntradas.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblPelicula.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblHorarios.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-		// Tamaño del ComboBox
-		//comBoxHorarios.setPreferredSize(new Dimension(10,5));
-		//comBoxPelicula.setPreferredSize(new Dimension(10,5));
+		
+		Dimension comboBoxSize = new Dimension(200, 30);
+        comBoxPelicula.setPreferredSize(comboBoxSize);
+
+        comBoxHorarios.setPreferredSize(comboBoxSize);
 		
 		//Añadimos todo lo anterior a paneles
 		panelNorth.add(lblEntradas);
@@ -73,15 +83,11 @@ public class VentanaEntradas extends JFrame{
 		panelSouth.add(BtnSiguiente);
 		
 		
-		
-		
-		//if (!listaPeliculas.isEmpty()) {
-            //comBoxPelicula.addItem(listaPeliculas.get(0)); // Agrega el primer elemento
-        //}
-  
-			
-			
-		
+		List<Peliculas> listaPeliculas = Cine.obtenerListaPeliculas();
+
+		for (Peliculas pelicula : listaPeliculas) {
+			    comBoxPelicula.addItem(pelicula.getNombrePeli());
+			}
 		
 		//ActionListener de los botones
 		BtnAtras.addActionListener((e)->{
@@ -107,5 +113,7 @@ public class VentanaEntradas extends JFrame{
 		setVisible(true);
 	}
 	
-
+	public static void main(String[] args) {
+		VentanaEntradas va = new VentanaEntradas(null);
+	}
 }
