@@ -34,7 +34,7 @@ public class VentanaRegistros extends JFrame {
 	private JButton btnSalir, btnIniciarSesion;
 	private JPasswordField contraseniaR;
 	private JFrame vActual, vAnterior;
-	private static final String nomfichUsuarios = "src/ficheros/Usuarios.csv";
+	private static final String nomfichUsuarios = "ficheros/Usuarios.csv";
 
 
 	public VentanaRegistros(JFrame va) {
@@ -75,19 +75,6 @@ public class VentanaRegistros extends JFrame {
 		txtApellido= new JTextField();
 		txtFechaNacimiento= new JTextField();
 		textFieldTlf = new JTextField();
-		textFieldTlf.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				int key = e.getKeyChar();
-				boolean numero = key >=48 && key <= 57;
-				if (!numero ) {
-					e.consume();
-				}
-				if (textFieldTlf.getText().trim().length() == 9) {
-					e.consume();
-				}
-			}
-		});
 		txtCorreoElectronico= new JTextField();
 		contraseniaR= new JPasswordField();
 		
@@ -114,10 +101,7 @@ public class VentanaRegistros extends JFrame {
 		btnSalir = new JButton("Salir");
 		pSur.add(btnIniciarSesion);
 		pSur.add(btnSalir);
-	
-		//cargar las Colecciones
-		//Cine.cargarUsuarioEnLista(nomfichUsuarios);
-		
+
 		//eventos botones 
 		btnIniciarSesion.addActionListener((e)->{
 			String nombre = txtNombre.getText();
@@ -128,22 +112,17 @@ public class VentanaRegistros extends JFrame {
 			String contrasenia = contraseniaR.getText();
 			Usuario u = new Usuario(nombre, apellido, tlf,fNac, CorreoElectronico, contrasenia);
 			String email = txtCorreoElectronico.getText();
-			if (isValidEmail(email)) {
-				if(Cine.buscarUsuario(CorreoElectronico)!=null) {
-					JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese correo electronico","ERROR",JOptionPane.ERROR_MESSAGE);
-				}else {
-					Cine.aniadirUsuario(u);
-					Cine.guardarUsuariosEnFichero(nomfichUsuarios);
-					JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
-					vActual.dispose();
-					new VentanaEntradas(vActual);
-				}
-            } else if(!isValidEmail(email)) {
-            	JOptionPane.showMessageDialog(null, "Direccion de correo electronico no valido","ERROR",JOptionPane.ERROR_MESSAGE);
-            }
 			
-		});
-			
+			if(Cine.buscarUsuario(CorreoElectronico)!=null) {
+				JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese correo electronico","ERROR",JOptionPane.ERROR_MESSAGE);
+			}else {
+				Cine.aniadirUsuario(u);
+				Cine.guardarUsuariosEnFichero(nomfichUsuarios);
+				JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
+				vActual.dispose();
+				new VentanaEntradas(vActual);
+			}
+	});
 		btnSalir.addActionListener((e)->{
 			vActual.dispose();
 			vAnterior.setVisible(true);
@@ -162,8 +141,5 @@ public class VentanaRegistros extends JFrame {
 		setVisible(true);
 	}
 	
-	 protected boolean isValidEmail(String email) {
-	        String emailvalido = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-	        return Pattern.matches(emailvalido, email);
-	    }
+	
 }

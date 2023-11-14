@@ -132,9 +132,6 @@ public class VentanaInicioSesion extends JFrame {
 			vAnterior.setVisible(true);
 		}) ;
 			
-				
-			
-			
 		
 		btnRegistrarse.addActionListener((e)->{
 			new VentanaRegistros(vActual);
