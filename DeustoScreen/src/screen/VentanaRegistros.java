@@ -102,7 +102,7 @@ public class VentanaRegistros extends JFrame {
 		pSur.add(btnIniciarSesion);
 		pSur.add(btnSalir);
 	
-		//cargar las Colecciones
+		//cargar Usuarios
 		Cine.cargarUsuarioEnLista(nomfichUsuarios);
 		
 		//eventos botones 
