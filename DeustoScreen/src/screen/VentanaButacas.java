@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 
 public class VentanaButacas extends JFrame{
 	private JPanel pNorte, pSur, pEste, pOeste;
@@ -28,6 +29,7 @@ public class VentanaButacas extends JFrame{
 	private DefaultTableModel modTblButacas1, modTblButacas2;
 	private FlowLayout layoutTabButacas1, layoutTabButacas2;
 	private JFrame vActual, vAnterior;
+	private TableCellRenderer renderTabla1, renderTabla2;
 	private static final String nomfich1 = "src/ficheros/Butacas1.csv";
 	private static final String nomfich2 = "src/ficheros/Butacas2.csv";
 	
@@ -143,21 +145,6 @@ public class VentanaButacas extends JFrame{
 			
 			tblButacas2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			cargarFichero2(nomfich2);
-			
-			
-		
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-				
 		//RENDERER DE LAS TABLAS
 		
 		
