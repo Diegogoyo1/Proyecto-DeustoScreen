@@ -23,7 +23,7 @@ public class VentanaBarbie extends JFrame {
 	private JFrame vActual, vAnterior;
 	//private JScrollPane scrollTxtArea;
 	
-	public VentanaBarbie(JFrame va) {
+	public VentanaBarbie(JFrame va,String ta,String im, String ti, String ln, String lc, String ld, String lr) {
 		super();
 		vActual=this;
 		vAnterior=va;
@@ -49,15 +49,15 @@ public class VentanaBarbie extends JFrame {
 		lblSetDur = new JLabel(" DURACIÓN: ");
 		lblSetRep = new JLabel (" REPARTO: ");
 		lblSetSip = new JLabel (" SINOPSIS: ");
-		lblNom = new JLabel(" Barbie ");
-		lblCat = new JLabel (Categoria.COMEDIA.toString()); 
-		lblDur = new JLabel(" 1h 54m ");
-		lblRep = new JLabel (" Margot Robbie ");
+		lblNom = new JLabel(ln);
+		lblCat = new JLabel (lc); 
+		lblDur = new JLabel(ld);
+		lblRep = new JLabel (lr);
 		
 		
 		//TEXTAREA
 		txtSinp = new JTextArea(16, 58);
-		txtSinp = new JTextArea("Barbie (Margot Robbie) lleva una vida ideal en "
+		/*txtSinp = new JTextArea("Barbie (Margot Robbie) lleva una vida ideal en "
 				+ "Barbieland, allí todo es perfecto, con chupi fiestas llenas "
 				+ "de música y color, y todos los días son el mejor día. Claro "
 				+ "que Barbie se hace algunas preguntas, cuestiones bastante "
@@ -65,7 +65,8 @@ public class VentanaBarbie extends JFrame {
 				+ "y las demás Barbies viven. Cuando Barbie se dé cuenta de que "
 				+ "es capaz de apoyar los talones en el suelo, y tener los pies "
 				+ "planos, decidirá calzarse unos zapatos sin tacones y viajar "
-				+ "hasta el mundo real.");
+				+ "hasta el mundo real.");*/
+		txtSinp = new JTextArea(ta);
 		txtSinp.setLineWrap(true);
 		txtSinp.setWrapStyleWord(true);
 		txtSinp.setEditable(false);
@@ -75,7 +76,8 @@ public class VentanaBarbie extends JFrame {
 		//IMAGEN
 		pCentroDe = new JPanel();
 		pCentroDe.setLayout(new FlowLayout(FlowLayout.LEFT));
-		ImageIcon imBarbie = new ImageIcon("src\\Imagenes\\PortadaBarbie.jpg");
+		//ImageIcon imBarbie = new ImageIcon("src\\Imagenes\\PortadaBarbie.jpg");
+		ImageIcon imBarbie = new ImageIcon(im);
 		Image imagen = imBarbie.getImage();
 		Image imagenRedimensionada = imagen.getScaledInstance(500, 700, Image.SCALE_SMOOTH);
 		ImageIcon imagenRedimensionadaIcon = new ImageIcon(imagenRedimensionada);
@@ -121,7 +123,8 @@ public class VentanaBarbie extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds (600,300,380,400);
-		setTitle("BARBIE");
+		//setTitle("BARBIE");
+		setTitle(ti);
 		setVisible(true);
 		
 	}	

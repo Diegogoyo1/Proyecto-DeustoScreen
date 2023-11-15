@@ -1,8 +1,10 @@
 package screen;
 
-import java.awt.BorderLayout;
+import java.awt.BorderLayout; 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -23,7 +25,18 @@ public class VentanaPrincipal extends JFrame{
 	private JPanel PanelNorte, PanelCentro;
 	private JButton btnPrecios, btnIniciarSesion,btnHorario, btnCartelera;
 	private JFrame vAnterior,vActual;
+	private VentanaPrincipal vp;
 	
+	/*@Override
+    public void paint(Graphics g){
+        Dimension dimension = this.getSize();
+        ImageIcon icon = new ImageIcon("src/imagenes/FondoCartelera.jpg");
+        g.drawImage(icon.getImage(), 0, 0, dimension.width, dimension.height, null);
+        vp.setOpaque(false);
+        super.paintComponents(g);
+    }*/
+
+
 	public VentanaPrincipal(JFrame va) {
 		super();
 		vAnterior= va;

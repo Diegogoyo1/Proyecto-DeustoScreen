@@ -25,9 +25,15 @@ public class VentanaSeleccionEntradas extends JFrame{
 	private JSpinner spinVIP, spinMenores, spinEntreAños, spinMayores;
 	private JFrame vActual, vAnterior;
 	
+	private static int totalEntradas;
 	
+	public static int getTotalEntradas() {
+		return totalEntradas;
+	}
+
 	public VentanaSeleccionEntradas(JFrame va) {
 		super();
+		totalEntradas = 0;
 		vActual=this;
 		vAnterior=va;
 		
@@ -88,6 +94,7 @@ public class VentanaSeleccionEntradas extends JFrame{
 			int entreaños= (int) spinEntreAños.getValue();
 			int mayores = (int) spinMayores.getValue();
 			if (vip > 0 || menores > 0 || entreaños > 0 || mayores > 0) {
+				totalEntradas = vip + menores + mayores + entreaños;
 				vActual.setVisible(false);
 				vActual.dispose();
 				new VentanaButacas (vActual);

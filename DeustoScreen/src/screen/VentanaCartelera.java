@@ -1,8 +1,13 @@
 package screen;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import domain.Categoria;
+
 public class VentanaCartelera extends JFrame {
 	private JPanel pNorte, pSur, pEste, pOeste, pCentro;
 	private JButton btnAtras,btnOppenheimer, btnBarbie, btnSawX, btnCampeonex, btnTrolls3;
@@ -19,10 +26,16 @@ public class VentanaCartelera extends JFrame {
 	private JScrollPane scrollVentana;
 	private JFrame vAnterior, vActual;
 	
+	
+	
+	
+
+
 	public VentanaCartelera(JFrame va) {
 		super();
 		vActual=this;
 		vAnterior = va;
+		
 		
 		pNorte = new JPanel();
 		pSur = new JPanel();
@@ -52,7 +65,7 @@ public class VentanaCartelera extends JFrame {
 		
 		
 		btnOppenheimer = new JButton("Oppenhaimer");
-		ImageIcon imOppenheimer = new ImageIcon("src\\Imagenes\\Oppenheimer.jpg");
+		ImageIcon imOppenheimer = new ImageIcon("src/imagenes/Oppenheimer.jpg");
 		btnOppenheimer.setIcon(imOppenheimer);
 		btnOppenheimer.setPreferredSize(new Dimension(imOppenheimer.getIconWidth(), imOppenheimer.getIconHeight()));
 		btnOppenheimer.setPreferredSize(new Dimension(250, 445));
@@ -66,12 +79,22 @@ public class VentanaCartelera extends JFrame {
 		
 		
 		btnBarbie = new JButton("Barbie");
-		ImageIcon imBarbie = new ImageIcon("src\\Imagenes\\Barbie.jpg");
+		ImageIcon imBarbie = new ImageIcon("src/imagenes/Barbie.jpg");
 		btnBarbie.setIcon(imBarbie);
 		btnBarbie.setPreferredSize(new Dimension(imBarbie.getIconWidth(), imBarbie.getIconHeight()));
 		btnBarbie.setPreferredSize(new Dimension(250, 445));
 		btnBarbie.addActionListener((e)->{
-			new VentanaBarbie(vActual);
+			//new VentanaBarbie(vActual);
+			String texto = "Barbie (Margot Robbie) lleva una vida ideal en \r\n"
+					+ "Barbieland, allí todo es perfecto, con chupi fiestas llenas \r\n"
+					+ "de música y color, y todos los días son el mejor día. Claro \r\n"
+					+ "que Barbie se hace algunas preguntas, cuestiones bastante \r\n"
+					+ "incómodas que no encajan con el mundo idílico en el que ella \r\n"
+					+ "y las demás Barbies viven. Cuando Barbie se dé cuenta de que \r\n"
+					+ "es capaz de apoyar los talones en el suelo, y tener los pies \r\n"
+					+ "planos, decidirá calzarse unos zapatos sin tacones y viajar \r\n"
+					+ "hasta el mundo real.";
+			new VentanaBarbie(vActual, texto, "src\\Imagenes\\PortadaBarbie.jpg", "BARBIE","Barbie", Categoria.COMEDIA.toString(), "1h 54m", "Margot Robie");
 			vActual.setVisible(false);
 			vActual.dispose();
 			
@@ -80,7 +103,7 @@ public class VentanaCartelera extends JFrame {
 		
 		
 		btnSawX = new JButton("Saw X");
-		ImageIcon imSawX = new ImageIcon("src\\Imagenes\\SawX.jpg");
+		ImageIcon imSawX = new ImageIcon("src/imagenes/SawX.jpg");
 		btnSawX.setIcon(imSawX);
 		btnSawX.setPreferredSize(new Dimension(imSawX.getIconWidth(), imSawX.getIconHeight()));
 		btnSawX.setPreferredSize(new Dimension(250, 445));
@@ -93,7 +116,7 @@ public class VentanaCartelera extends JFrame {
 		
 		
 		btnCampeonex = new JButton("Campeonex");
-		ImageIcon imCampeonex = new ImageIcon("src\\Imagenes\\Campeonex.jpg");
+		ImageIcon imCampeonex = new ImageIcon("src/imagenes/Campeonex.jpg");
 		btnCampeonex.setIcon(imCampeonex);
 		btnCampeonex.setPreferredSize(new Dimension(imCampeonex.getIconWidth(), imCampeonex.getIconHeight()));
 		btnCampeonex.setPreferredSize(new Dimension(250, 445));
@@ -106,7 +129,7 @@ public class VentanaCartelera extends JFrame {
 		
 		
 		btnTrolls3 = new JButton("Trolls 3");
-		ImageIcon imTrolls3 = new ImageIcon("src\\Imagenes\\Trolls3.jpg");
+		ImageIcon imTrolls3 = new ImageIcon("src/imagenes/Trolls3.jpg");
 		btnTrolls3.setIcon(imTrolls3);
 		btnTrolls3.setPreferredSize(new Dimension(imTrolls3.getIconWidth(), imTrolls3.getIconHeight()));
 		btnTrolls3.setPreferredSize(new Dimension(250, 445));
@@ -118,9 +141,11 @@ public class VentanaCartelera extends JFrame {
 		});
 		
 		
+		
 		lblPeliculas = new JLabel("PELICULAS");
 		
 		
+
 		
 		
 		
@@ -136,6 +161,10 @@ public class VentanaCartelera extends JFrame {
 		
 		
 		
+		
+		
+		
+		
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
 		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
 		setSize(anchoP, altoP);
@@ -144,11 +173,14 @@ public class VentanaCartelera extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds (600,300,380,400);
 		setTitle("PELICULAS");
+		//setContentPane(va);
 		setVisible(true);
 		
 		
 		
 	}
+	
+	
 
 
 }

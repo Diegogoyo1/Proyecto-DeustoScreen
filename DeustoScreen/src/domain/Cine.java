@@ -25,7 +25,13 @@ public class Cine{
 	private static List<Usuario> Usuarios = new ArrayList<>();
 	private static List<Peliculas> Pelicula = new ArrayList<>();
 	private static Map<Usuario, List<Entrada>> compras = new TreeMap<>();
+	private static List<String> titulosPeliculas =new ArrayList<>();
 	
+	
+	public static List<String> getTitulosPeliculas() {
+		return titulosPeliculas;
+	}
+
 	public static Map<Usuario, List<Entrada>> getCompras() {
 		return compras;
 	}
@@ -148,8 +154,33 @@ public class Cine{
 				e.printStackTrace();
 			}
 		}
-		
 		public static void cargarPeliculasEnLista(String nomfich) {
+			try {
+				Scanner sc =  new Scanner(new FileReader(nomfich));
+				String linea;
+				while(sc.hasNext()) {
+					linea = sc.nextLine();
+					titulosPeliculas.add(linea);
+				}
+				sc.close();
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		public static String [] obtenerTitulos() {
+			String [] titulos = new String[titulosPeliculas.size()];
+			
+			for(int i=0;i<titulosPeliculas.size();i++) {
+				titulos[i] = titulosPeliculas.get(i);
+			}
+			return titulos;
+		}
+		
+		
+		/*public static void cargarPeliculasEnLista(String nomfich) {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 			try {
 				Scanner sc = new Scanner(new FileReader(nomfich));
@@ -178,7 +209,7 @@ public class Cine{
 			
 		
 			
-		}
+		}*/
 		
 		public static void sumadorPuntos() {
 			Usuario.getContadorPuntos();
