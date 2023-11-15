@@ -45,7 +45,7 @@ public class VentanaEntradas extends JFrame{
 		 panelNorth = new JPanel();
 		 panelEast = new JPanel();
 		 panelWest = new JPanel();
-		 panelCenter.setBorder(BorderFactory.createEmptyBorder(40, 100, 10, 100));
+		 panelCenter = new JPanel();
 		 panelSouth = new JPanel();
 		 
 		//Añadimos localizacion a paneles y columnas
@@ -55,7 +55,8 @@ public class VentanaEntradas extends JFrame{
 		getContentPane().add(panelCenter, BorderLayout.CENTER);
 		getContentPane().add(panelSouth, BorderLayout.SOUTH);
 		panelCenter.setLayout(new GridLayout(0, 2, 0, 0));
-		
+		 panelCenter.setBorder(BorderFactory.createEmptyBorder(40, 100, 10, 100));
+
 		//Creacion de Labels, ComboBox y Botones
 		lblEntradas = new JLabel("Entradas", SwingConstants.CENTER);
 		lblPelicula = new JLabel("Pelicula", SwingConstants.CENTER);

@@ -38,7 +38,6 @@ public class VentanaButacas extends JFrame {
 	private JFrame vActual, vAnterior;
 	private static final String nomfich1 = "src/ficheros/Butacas1.csv";
 	private static final String nomfich2 = "src/ficheros/Butacas2.csv";
-
 	private static int cont;
 	private int fila1, columna1, fila2, columna2;
 	private boolean [][]m1;
@@ -48,7 +47,6 @@ public class VentanaButacas extends JFrame {
 		super();
 		m1 = new boolean[5][6];
 		m2 = new boolean[5][5];
-		System.out.println(m1[0][0]);
 		fila1 = -1;
 		fila2 = -1;
 		columna1 = -1;
@@ -155,7 +153,6 @@ public class VentanaButacas extends JFrame {
 				Point p = e.getPoint();
 				fila1 = tblButacas1.rowAtPoint(p);
 				columna1 = tblButacas1.columnAtPoint(p);
-				System.out.println(fila1 + " "+columna1);
 				if(columna1!=0) {
 					if(!m1[fila1][columna1]) {
 						cont++;
@@ -173,6 +170,12 @@ public class VentanaButacas extends JFrame {
 				Point p = e.getPoint();
 				fila2 = tblButacas2.rowAtPoint(p);
 				columna2 = tblButacas2.columnAtPoint(p);
+				if(!m2[fila2][columna2]) {
+					cont++;
+				}else {
+					cont--;
+				}
+				m2[fila2][columna2] = !m2[fila2][columna2];
 				tblButacas2.repaint();
 
 			}
@@ -184,8 +187,6 @@ public class VentanaButacas extends JFrame {
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
 					boolean hasFocus, int row, int column) {
-				// Component c = super.getTableCellRendererComponent(table, value, isSelected,
-				// hasFocus, row, column);
 				JLabel l = new JLabel(value.toString());
 				l.setHorizontalAlignment(JLabel.CENTER);
 				l.setOpaque(true);
@@ -224,18 +225,33 @@ public class VentanaButacas extends JFrame {
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
 					boolean hasFocus, int row, int column) {
-				// Component c = super.getTableCellRendererComponent(table, value, isSelected,
-				// hasFocus, row, column);
 				JLabel l = new JLabel(value.toString());
 				l.setHorizontalAlignment(JLabel.CENTER);
-				if (row == fila2 && column == columna2) {
-					l.setBackground(table.getSelectionBackground());
-				} else {
-					l.setBackground(table.getBackground());
+				l.setOpaque(true);
+				if(fila2!=-1 && columna2!=-1) {
+					if (row == fila2 && column == columna2) {
+						if(m2[fila2][columna2]) {
+							l.setBackground(table.getSelectionBackground());
+						}
+						else {
+							l.setBackground(table.getBackground());
+						}
+					} else {
+						if(m2[row][column]) {
+							l.setBackground(table.getSelectionBackground());
+						}
+						else {
+							l.setBackground(table.getBackground());
+						}
+					}
 				}
-				return l;
+			else {
+				l.setBackground(table.getBackground());
+				
 			}
-		});
+			return l;
+		}
+	});
 
 		// ANYADIR LOS COMPONENTES A LOS PANELES
 		pOeste.add(tblButacas1);

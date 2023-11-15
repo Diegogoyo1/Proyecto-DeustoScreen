@@ -32,7 +32,7 @@ public class VentanaCarga extends JFrame{
 		
 		
 		
-		lblImg = new JLabel(new ImageIcon ("src\\Imagenes\\Logo.jpg"));
+		lblImg = new JLabel(new ImageIcon ("imagenes/Logo.jpg"));
 		lblImg.setLayout(new BorderLayout());
 		
 		barCargando = new JProgressBar(0,100);

@@ -65,12 +65,18 @@ public class VentanaCartelera extends JFrame {
 		
 		
 		btnOppenheimer = new JButton("Oppenhaimer");
-		ImageIcon imOppenheimer = new ImageIcon("src/imagenes/Oppenheimer.jpg");
+		ImageIcon imOppenheimer = new ImageIcon("imagenes/Oppenheimer.jpg");
 		btnOppenheimer.setIcon(imOppenheimer);
 		btnOppenheimer.setPreferredSize(new Dimension(imOppenheimer.getIconWidth(), imOppenheimer.getIconHeight()));
 		btnOppenheimer.setPreferredSize(new Dimension(250, 445));
+		String textoOp ="En tiempos de guerra, el brillante físico estadounidense"
+				+ " Julius Robert Oppenheimer (Cillian Murphy), al frente del \"Proyecto Manhattan\", "
+				+ "lidera los ensayos nucleares para construir la bomba atómica para su país. "
+				+ "Impactado por su poder destructivo, Oppenheimer se cuestiona las consecuencias "
+				+ "morales de su creación. Desde entonces y el resto de su vida, se opondría "
+				+ "firmemente al uso de armas nucleares.";
 		btnOppenheimer.addActionListener((e)->{
-			new VentanaOppenheimer(vActual);
+			new VentanaPelicula(vActual, textoOp, "imagenes/PortadaOppenheimer.jpg", "OPPENHEIMER", "Oppenheimer", Categoria.ACCIÓN.toString(), "3h", "Cillian Murphy");
 			vActual.setVisible(false);
 			vActual.dispose();
 			
@@ -79,13 +85,13 @@ public class VentanaCartelera extends JFrame {
 		
 		
 		btnBarbie = new JButton("Barbie");
-		ImageIcon imBarbie = new ImageIcon("src/imagenes/Barbie.jpg");
+		ImageIcon imBarbie = new ImageIcon("imagenes/Barbie.jpg");
 		btnBarbie.setIcon(imBarbie);
 		btnBarbie.setPreferredSize(new Dimension(imBarbie.getIconWidth(), imBarbie.getIconHeight()));
 		btnBarbie.setPreferredSize(new Dimension(250, 445));
 		btnBarbie.addActionListener((e)->{
 			//new VentanaBarbie(vActual);
-			String texto = "Barbie (Margot Robbie) lleva una vida ideal en \r\n"
+			String textoBa = "Barbie (Margot Robbie) lleva una vida ideal en \r\n"
 					+ "Barbieland, allí todo es perfecto, con chupi fiestas llenas \r\n"
 					+ "de música y color, y todos los días son el mejor día. Claro \r\n"
 					+ "que Barbie se hace algunas preguntas, cuestiones bastante \r\n"
@@ -94,7 +100,7 @@ public class VentanaCartelera extends JFrame {
 					+ "es capaz de apoyar los talones en el suelo, y tener los pies \r\n"
 					+ "planos, decidirá calzarse unos zapatos sin tacones y viajar \r\n"
 					+ "hasta el mundo real.";
-			new VentanaBarbie(vActual, texto, "src\\Imagenes\\PortadaBarbie.jpg", "BARBIE","Barbie", Categoria.COMEDIA.toString(), "1h 54m", "Margot Robie");
+			new VentanaPelicula(vActual, textoBa, "imagenes/PortadaBarbie.jpg", "BARBIE","Barbie", Categoria.COMEDIA.toString(), "1h 54m", "Margot Robie");
 			vActual.setVisible(false);
 			vActual.dispose();
 			
@@ -103,12 +109,22 @@ public class VentanaCartelera extends JFrame {
 		
 		
 		btnSawX = new JButton("Saw X");
-		ImageIcon imSawX = new ImageIcon("src/imagenes/SawX.jpg");
+		ImageIcon imSawX = new ImageIcon("imagenes/SawX.jpg");
 		btnSawX.setIcon(imSawX);
 		btnSawX.setPreferredSize(new Dimension(imSawX.getIconWidth(), imSawX.getIconHeight()));
 		btnSawX.setPreferredSize(new Dimension(250, 445));
 		btnSawX.addActionListener((e)->{
-			new VentanaSawX(vActual);
+			String textoSX = "Situada entre los acontecimientos sucedidos en "
+					+ "SAW y SAW II, John, desesperado y enfermo, viaja a México "
+					+ "para someterse a un tratamiento experimental y muy arriesgado "
+					+ "con la esperanza de curar su cáncer mortal. Sin embargo, toda la "
+					+ "operación resulta ser un fraude para engañar a aquellos más "
+					+ "vulnerables. Lleno de rabia y con un nuevo y escabroso propósito, "
+					+ "John retomará su trabajo como asesino en serie y dará a probar su "
+					+ "propia medicina a los embaucadores. Bajo la atenta mirada de Jigsaw, "
+					+ "los jóvenes se enfrentaran a las trampas más ingeniosas, mortales y "
+					+ "tortuosas en un visceral y despiadado juego";
+			new VentanaPelicula(vActual, textoSX, "imagenes/SawX.jpg", " SAW X", "Saw X", Categoria.TERROR.toString(), "1h 58m", "Tobin Bell");
 			vActual.setVisible(false);
 			vActual.dispose();
 			
@@ -116,12 +132,17 @@ public class VentanaCartelera extends JFrame {
 		
 		
 		btnCampeonex = new JButton("Campeonex");
-		ImageIcon imCampeonex = new ImageIcon("src/imagenes/Campeonex.jpg");
+		ImageIcon imCampeonex = new ImageIcon("imagenes/Campeonex.jpg");
 		btnCampeonex.setIcon(imCampeonex);
 		btnCampeonex.setPreferredSize(new Dimension(imCampeonex.getIconWidth(), imCampeonex.getIconHeight()));
 		btnCampeonex.setPreferredSize(new Dimension(250, 445));
 		btnCampeonex.addActionListener((e)->{
-			new VentanaCampeonex(vActual);
+			String textoCa = "Nuestro equipo de \"campeones\" abandona el baloncesto "
+					+ "para adentrarse por error en el fascinante mundo del atletismo de la "
+					+ "mano de una entrenadora novata. Entre las duras exigencias de la nueva "
+					+ "disciplina y la sorprendente capacidad de la entrenadora para atraer "
+					+ "todo tipo de desgracias y calamidades, todo acabará saliendo del revés.";
+			new VentanaPelicula(vActual, textoCa, "imagenes/Campeonex.jpg", "CAMPEONEX", "Campeonex", Categoria.COMEDIA.toString(), "2h 4m", "Elisa Hipólito");
 			vActual.setVisible(false);
 			vActual.dispose();
 			
@@ -129,12 +150,23 @@ public class VentanaCartelera extends JFrame {
 		
 		
 		btnTrolls3 = new JButton("Trolls 3");
-		ImageIcon imTrolls3 = new ImageIcon("src/imagenes/Trolls3.jpg");
+		ImageIcon imTrolls3 = new ImageIcon("imagenes/Trolls3.jpg");
 		btnTrolls3.setIcon(imTrolls3);
 		btnTrolls3.setPreferredSize(new Dimension(imTrolls3.getIconWidth(), imTrolls3.getIconHeight()));
 		btnTrolls3.setPreferredSize(new Dimension(250, 445));
 		btnTrolls3.addActionListener((e)->{
-			new VentanaTrolls3(vActual);
+			String textoTr = "Poppy y Branch son oficialmente, por fin, pareja. "
+					+ " A medida que se relacionan, Poppy descubre que Branch "
+					+ "tiene un pasado secreto. Una vez formó parte de su fenómeno boyband "
+					+ "favorito, BroZone, con sus cuatro hermanos: Floyd, John Dory, "
+					+ "Spruce y Clay. BroZone se disolvió cuando Branch era todavía un bebé, "
+					+ "al igual que la familia, y Branch no ha vuelto a ver a sus hermanos "
+					+ "desde entonces. Pero cuando Floyd, el hermano de Branch, es secuestrado "
+					+ "por sus talentos musicales por un par de nefastos villanos estrellas del "
+					+ "pop, Velvet y Veneer, Branch y Poppy se embarcan en un angustioso y "
+					+ "emotivo viaje para reunir a los otros hermanos y rescatar a Floyd de un "
+					+ "destino aún peor que la oscuridad de la cultura pop.";
+			new VentanaPelicula(vActual, textoTr, "imagenes/PortadaTrolls3.jpg", "TROLLS3", "Trolls 3", Categoria.ANIMACIÓN.toString(), "1h 31m", "Justin Timberlake");
 			vActual.setVisible(false);
 			vActual.dispose();
 			
