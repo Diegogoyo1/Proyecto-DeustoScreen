@@ -21,9 +21,8 @@ import domain.Usuario;
 
 public class VentanaPuntos extends JFrame{
 	private JPanel pSur, pCentro, pNorte; 
-	private JLabel lblUsuario, lblNumPuntos, txtUsuario;
+	private JLabel lblUsuario, lblNumPuntos, txtUsuario, txtNumPuntos;
 	private JButton btnAniadir, btnOmitir;
-	private JTextField  txtNumPuntos;
 	private JFrame vActual, vAnterior;
 	
 	public VentanaPuntos(JFrame va) {
@@ -54,8 +53,7 @@ public class VentanaPuntos extends JFrame{
 		
 		//txtUsuario.setSize(2, 4);
 		//txtUsuario.setPreferredSize(new Dimension(2, 4));
-		txtNumPuntos = new JTextField(Usuario.getContadorPuntos());
-		txtNumPuntos.setEditable(false);
+		txtNumPuntos = new JLabel();
 		
 		
 		//ENLAZAR PANELES CON LABELS Y TEXTFIELDS
