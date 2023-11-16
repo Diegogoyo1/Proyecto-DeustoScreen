@@ -62,7 +62,7 @@ public class VentanaEntradas extends JFrame{
 		lblEntradas = new JLabel("Entradas", SwingConstants.CENTER);
 		lblPelicula = new JLabel("Pelicula", SwingConstants.CENTER);
 		lblHorarios = new JLabel("Horarios", SwingConstants.CENTER);
-		Cine.cargarPeliculasEnLista("recursos/peliculas.csv");
+		Cine.cargarPeliculasEnLista("ficheros/TitulosPeliculas.csv");
 		String []  titulos = Cine.obtenerTitulos();
 		cbTitulos = new JComboBox<>(titulos);
 		Dimension comboBoxSizeT = new Dimension(200, 30);
@@ -125,7 +125,7 @@ public class VentanaEntradas extends JFrame{
 		setVisible(true);
 	}
 	
-	public static void main(String[] args) {
-		VentanaEntradas va = new VentanaEntradas(null);
-	}
+//	public static void main(String[] args) {
+//		VentanaEntradas va = new VentanaEntradas(null);
+//	}
 }
