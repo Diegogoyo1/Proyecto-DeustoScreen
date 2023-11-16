@@ -158,7 +158,7 @@ public class Cine{
 				e.printStackTrace();
 			}
 		}
-<<<<<<< HEAD
+
 		public static void cargarPeliculasEnLista(String nomfich) {
 			try {
 				Scanner sc =  new Scanner(new FileReader(nomfich));
@@ -216,18 +216,12 @@ public class Cine{
 				}catch (FileNotFoundException e) {
 				 
 			 }
-			
-		
-			
-<<<<<<< HEAD
 		}*/
-=======
-		}
+
+		
 		 public static List<Peliculas> obtenerListaPeliculas() {
 		        return Pelicula;
 		    }
-
->>>>>>> branch 'master' of https://github.com/Diegogoyo1/Proyecto-DeustoScreen.git
 		
 		public static void sumadorPuntos() {
 			Usuario.getContadorPuntos();

@@ -65,8 +65,8 @@ public class VentanaEntradas extends JFrame{
 		Cine.cargarPeliculasEnLista("recursos/peliculas.csv");
 		String []  titulos = Cine.obtenerTitulos();
 		cbTitulos = new JComboBox<>(titulos);
-		Dimension comboBoxSize = new Dimension(200, 30);
-        cbTitulos.setPreferredSize(comboBoxSize);
+		Dimension comboBoxSizeT = new Dimension(200, 30);
+        cbTitulos.setPreferredSize(comboBoxSizeT);
         //cbHorarios.setPreferredSize(comboBoxSize);
         lblEntradas.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblPelicula.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -82,10 +82,8 @@ public class VentanaEntradas extends JFrame{
 		lblHorarios.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		
-		Dimension comboBoxSize = new Dimension(200, 30);
-        comBoxPelicula.setPreferredSize(comboBoxSize);
-
-        comBoxHorarios.setPreferredSize(comboBoxSize);
+		Dimension comboBoxSizeH = new Dimension(200, 30);
+        comBoxPelicula.setPreferredSize(comboBoxSizeH);
 		
 		//Añadimos todo lo anterior a paneles
 		panelNorth.add(lblEntradas);
