@@ -28,13 +28,13 @@ import java.awt.Color;
 
 public class VentanaRegistros extends JFrame {
 	private JPanel pNorte,pCentro,pSur,pCentroIzquierda;
-	private JLabel lblNombre,lblApellido ,lblFechaNacimiento, lbltlf, lblCorreoElectronico,lblContraseniaIs,lblCotraseniaR,lblTituloIS,lblContadorPuntos, puntos; 
+	private JLabel lblNombre,lblApellido ,lblFechaNacimiento, lbltlf, lblCorreoElectronico,lblCotraseniaR,lblTituloIS; 
 	private JTextField txtNombre,txtApellido,txtFechaNacimiento,txtCorreoElectronico;
 	private JTextField textFieldTlf;
 	private JButton btnSalir, btnIniciarSesion;
 	private JPasswordField contraseniaR;
 	private JFrame vActual, vAnterior;
-	private static final String nomfichUsuarios = "ficheros/Usuarios.csv";
+	private static final String nomfichUsuarios = "src/ficheros/Usuarios.csv";
 
 
 	public VentanaRegistros(JFrame va) {
@@ -48,7 +48,7 @@ public class VentanaRegistros extends JFrame {
 		pCentro = new JPanel(new GridLayout(1, 2));
 		pSur = new JPanel();
 
-		pCentroIzquierda = new JPanel(new GridLayout(7, 1));
+		pCentroIzquierda = new JPanel(new GridLayout(6, 1));
 		pCentro.add(pCentroIzquierda);
 		
 		
@@ -65,7 +65,7 @@ public class VentanaRegistros extends JFrame {
 		lblCorreoElectronico = new JLabel("  Correo electronico");
 		lblTituloIS = new JLabel("     REGISTRARSE");
 		lblCotraseniaR = new JLabel("  Contrasenia");
-		puntos = new JLabel("  Puntos ");
+		
 		
 		
 		//TextField nuevos
@@ -78,7 +78,7 @@ public class VentanaRegistros extends JFrame {
 		textFieldTlf = new JTextField();
 		txtCorreoElectronico= new JTextField();
 		contraseniaR= new JPasswordField();
-		lblContadorPuntos = new JLabel();
+		
 		
 		// Enlazar los paneles con los label y txtField
 		
@@ -95,8 +95,7 @@ public class VentanaRegistros extends JFrame {
 		pCentroIzquierda.add(lblCotraseniaR);
 		pCentroIzquierda.add(lblCotraseniaR);
 		pCentroIzquierda.add(contraseniaR);
-		pCentroIzquierda.add(puntos);
-		pCentroIzquierda.add(lblContadorPuntos);
+		
 		
 		pNorte.add(lblTituloIS);
 		
@@ -117,14 +116,12 @@ public class VentanaRegistros extends JFrame {
 			String CorreoElectronico = txtCorreoElectronico.getText();
 			String contrasenia = contraseniaR.getText();
 			String ContadorPuntos = "0";
-			Usuario u = new Usuario(nombre, apellido, tlf,fNac, CorreoElectronico, contrasenia, ContadorPuntos);
-			String email = txtCorreoElectronico.getText();
-			
+			Usuario u = new Usuario(nombre, apellido,fNac,tlf, CorreoElectronico, contrasenia, ContadorPuntos);
 			if(Cine.buscarUsuario(CorreoElectronico)!=null) {
 				JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese correo electronico","ERROR",JOptionPane.ERROR_MESSAGE);
 			}else {
 				Cine.aniadirUsuario(u);
-				Cine.guardarUsuariosEnFichero(nomfichUsuarios);
+				Cine.guardarUsuariosEnFichero( nomfichUsuarios);
 				JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
 				new VentanaEntradas(vActual);
 				vActual.dispose();

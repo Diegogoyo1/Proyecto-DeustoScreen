@@ -1,6 +1,6 @@
 package domain;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -24,24 +24,6 @@ public class Usuario {
 		super();
 	}
 	
-	
-	public Usuario(String nombre, String apellido, String FechaNacimiento, String tlf,
-			String correoElectronico, String contrasenia, String ContadorPuntos) {
-		super();
-		this.nombre = nombre;
-		this.apellido = apellido;
-		
-		try {
-			this.FechaNacimiento = (Date) sdf.parse(FechaNacimiento);
-		} catch (ParseException e) {
-			this.FechaNacimiento = new Date(0);
-		}
-		this.tlf = tlf;
-		this.CorreoElectronico = correoElectronico;
-		this.Contrasenia= contrasenia;
-		this.ContadorPuntos = Integer.parseInt(ContadorPuntos);
-	}
-	
 	public Usuario(String nombre, String apellido, Date FechaNacimiento, String tlf,
 			String correoElectronico, String contrasenia, int ContadorPuntos) {
 		super();
@@ -53,6 +35,26 @@ public class Usuario {
 		this.Contrasenia= contrasenia;
 		this.ContadorPuntos = ContadorPuntos;
 	}
+	
+	public Usuario(String nombre, String apellido, String FechaNacimiento, String tlf,
+			String correoElectronico, String contrasenia, String ContadorPuntos) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		try {
+			this.FechaNacimiento = sdf.parse(FechaNacimiento);
+		} catch (ParseException e) {
+			this.FechaNacimiento = new Date(0);
+		}
+		
+		
+		this.tlf = tlf;
+		this.CorreoElectronico = correoElectronico;
+		this.Contrasenia= contrasenia;
+		this.ContadorPuntos = Integer.parseInt(ContadorPuntos);
+	}
+	
+	
 
 	//getters y setters
 	public String getNombre() {
@@ -78,27 +80,26 @@ public class Usuario {
 	public Date getFechanacimiento() {
 		return FechaNacimiento;
 	}
-
+	public String getFechaNacimientoStr() {
+		return sdf.format(FechaNacimiento);
+	}
 
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.FechaNacimiento = fechaNacimiento;
 	}
-
-
+	
+	
 	public  String getTlf() {
 		return tlf;
 	}
-
 
 	public void setTlf(String tlf) {
 		this.tlf = tlf;
 	}
 
-
 	public static String getCorreoElectronico() {
 		return CorreoElectronico;
 	}
-
 
 	public void setCorreoElectronico(String correoElectronico) {
 		CorreoElectronico = correoElectronico;
@@ -112,11 +113,9 @@ public class Usuario {
 		Contrasenia = contrasenia;
 	}
 	
-
 	public static int getContadorPuntos() {
 		return ContadorPuntos;
 	}
-
 
 	public void setContadorPuntos(int contadorPuntos) {
 		ContadorPuntos = contadorPuntos;
