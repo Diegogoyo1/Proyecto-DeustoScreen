@@ -53,11 +53,9 @@ public class VentanaPuntos extends JFrame{
 		
 		//txtUsuario.setSize(2, 4);
 		//txtUsuario.setPreferredSize(new Dimension(2, 4));
-<<<<<<< HEAD
 		txtNumPuntos = new JLabel ();
-=======
 		txtNumPuntos = new JLabel();
->>>>>>> branch 'master' of https://github.com/Diegogoyo1/Proyecto-DeustoScreen.git
+
 		
 		
 		//ENLAZAR PANELES CON LABELS Y TEXTFIELDS
