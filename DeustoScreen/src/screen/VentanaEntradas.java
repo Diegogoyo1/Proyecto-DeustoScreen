@@ -49,6 +49,7 @@ public class VentanaEntradas extends JFrame{
 		 panelSouth = new JPanel();
 		 
 		//Añadimos localizacion a paneles y columnas
+		panelCenter.setBorder(BorderFactory.createEmptyBorder(40, 100, 10, 100));
 		getContentPane().add(panelNorth, BorderLayout.NORTH);
 		getContentPane().add(panelEast, BorderLayout.EAST);
 		getContentPane().add(panelEast, BorderLayout.EAST);
@@ -71,12 +72,20 @@ public class VentanaEntradas extends JFrame{
 		lblPelicula.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblHorarios.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
+		JComboBox<String> comBoxPelicula = new JComboBox<String>();
+		JComboBox comBoxHorarios = new JComboBox();
+
 		BtnAtras = new JButton("Atrás");
 		BtnSiguiente = new JButton("Siguiente");
+		lblEntradas.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblPelicula.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblHorarios.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-		// Tamaño del ComboBox
-		//comBoxHorarios.setPreferredSize(new Dimension(10,5));
-		//comBoxPelicula.setPreferredSize(new Dimension(10,5));
+		
+		Dimension comboBoxSize = new Dimension(200, 30);
+        comBoxPelicula.setPreferredSize(comboBoxSize);
+
+        comBoxHorarios.setPreferredSize(comboBoxSize);
 		
 		//Añadimos todo lo anterior a paneles
 		panelNorth.add(lblEntradas);
@@ -88,15 +97,11 @@ public class VentanaEntradas extends JFrame{
 		panelSouth.add(BtnSiguiente);
 		
 		
-		
-		
-		//if (!listaPeliculas.isEmpty()) {
-            //comBoxPelicula.addItem(listaPeliculas.get(0)); // Agrega el primer elemento
-        //}
-  
-			
-			
-		
+		List<Peliculas> listaPeliculas = Cine.obtenerListaPeliculas();
+
+		for (Peliculas pelicula : listaPeliculas) {
+			    comBoxPelicula.addItem(pelicula.getNombrePeli());
+			}
 		
 		//ActionListener de los botones
 		BtnAtras.addActionListener((e)->{
@@ -122,5 +127,7 @@ public class VentanaEntradas extends JFrame{
 		setVisible(true);
 	}
 	
-
+	public static void main(String[] args) {
+		VentanaEntradas va = new VentanaEntradas(null);
+	}
 }

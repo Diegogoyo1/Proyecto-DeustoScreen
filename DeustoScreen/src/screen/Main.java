@@ -10,7 +10,7 @@ public class Main {
 		try {
 			logger.log(Level.INFO, "SE INICIA EL PROGRAMA DEUSTOSCREEN");
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
 	}

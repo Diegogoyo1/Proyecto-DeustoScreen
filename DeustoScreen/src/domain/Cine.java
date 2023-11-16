@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.logging.Logger;
+
 import java.text.SimpleDateFormat;
 
 
@@ -57,6 +58,9 @@ public class Cine{
 		for(Usuario u: Usuarios) {
 			System.out.println(u);
 		}
+	}
+	public static void aniadirPelicula(Peliculas e) {
+		Pelicula.add(e);
 	}
 	
 	public static void ordenarListaUsuarios() {
@@ -154,6 +158,7 @@ public class Cine{
 				e.printStackTrace();
 			}
 		}
+<<<<<<< HEAD
 		public static void cargarPeliculasEnLista(String nomfich) {
 			try {
 				Scanner sc =  new Scanner(new FileReader(nomfich));
@@ -182,8 +187,12 @@ public class Cine{
 		
 		/*public static void cargarPeliculasEnLista(String nomfich) {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+=======
+		
+		public static void cargarPeliculasEnLista(String nomfich2) {
+>>>>>>> branch 'master' of https://github.com/Diegogoyo1/Proyecto-DeustoScreen.git
 			try {
-				Scanner sc = new Scanner(new FileReader(nomfich));
+				Scanner sc = new Scanner(new FileReader(nomfich2));
 				String linea;
 				while(sc.hasNext()) {
 					linea = sc.nextLine();
@@ -201,6 +210,7 @@ public class Cine{
 		            String fechaEstreno =  partes[3];
 		            Categoria categoria = Categoria.valueOf(partes[4]);
 					Peliculas p = new Peliculas(NombrePeli, reparto, duracion, fechaEstreno, categoria);
+					Pelicula.add(p);
 					}
 					sc.close();
 				}catch (FileNotFoundException e) {
@@ -209,7 +219,15 @@ public class Cine{
 			
 		
 			
+<<<<<<< HEAD
 		}*/
+=======
+		}
+		 public static List<Peliculas> obtenerListaPeliculas() {
+		        return Pelicula;
+		    }
+
+>>>>>>> branch 'master' of https://github.com/Diegogoyo1/Proyecto-DeustoScreen.git
 		
 		public static void sumadorPuntos() {
 			Usuario.getContadorPuntos();
@@ -217,6 +235,8 @@ public class Cine{
 			
 			
 		}
+		
+		
 		//Logger logger = java.util.logging.Logger.getLogger("logger");
 		//try {
 		//}catch{
