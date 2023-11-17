@@ -1,6 +1,9 @@
 package domain;
 
 import java.util.Date;
+import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -13,7 +16,8 @@ public class Usuario {
 	private String tlf;
 	private static String CorreoElectronico;
 	private String Contrasenia;
-	private static int ContadorPuntos;
+	private static String ContadorPuntos;
+	private static final String nomfichUsuarios = "src/ficheros/Usuarios.csv";
 	
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	
@@ -25,7 +29,7 @@ public class Usuario {
 	}
 	
 	public Usuario(String nombre, String apellido, Date FechaNacimiento, String tlf,
-			String correoElectronico, String contrasenia, int ContadorPuntos) {
+			String correoElectronico, String contrasenia, String ContadorPuntos) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -51,7 +55,7 @@ public class Usuario {
 		this.tlf = tlf;
 		this.CorreoElectronico = correoElectronico;
 		this.Contrasenia= contrasenia;
-		this.ContadorPuntos = Integer.parseInt(ContadorPuntos);
+		this.ContadorPuntos = ContadorPuntos;
 	}
 	
 	
@@ -99,8 +103,9 @@ public class Usuario {
 
 	public static String getCorreoElectronico() {
 		return CorreoElectronico;
-	}
 
+	}
+	
 	public void setCorreoElectronico(String correoElectronico) {
 		CorreoElectronico = correoElectronico;
 	}
@@ -113,15 +118,36 @@ public class Usuario {
 		Contrasenia = contrasenia;
 	}
 	
-	public static int getContadorPuntos() {
+	public static void cargarPuntosDeFichero(String nomfich) {
+		try {
+			Scanner sc = new Scanner(new FileReader(nomfich));
+			String linea;
+			while(sc.hasNext()) {
+				linea = sc.nextLine();
+				String [] partes = linea.split(";");
+				ContadorPuntos = partes[6];
+				}
+				sc.close();
+			}catch (FileNotFoundException e) {
+			 
+		 }
+
+	}
+	
+	public static  String getContadorPuntos() {
 		return ContadorPuntos;
 	}
 
-	public void setContadorPuntos(int contadorPuntos) {
+	public void setContadorPuntos(String contadorPuntos) {
 		ContadorPuntos = contadorPuntos;
 	}
 
-
+	
+	
+	
+	
+	
+	
 	// toString
 	@Override
 	public String toString() {

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -15,6 +16,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.logging.Logger;
+
+import screen.VentanaSeleccionEntradas;
 
 import java.text.SimpleDateFormat;
 
@@ -121,7 +124,7 @@ public class Cine{
 			}
 		}
 		public static void cargarUsuarioEnLista(String nomfich) {
-			//linea = dni;nom;fNac;con
+			//linea = dni;nom;fNac;tlf;correo;contraseña;puntos
 			try {
 				Scanner sc = new Scanner(new FileReader(nomfich));
 				String linea;
@@ -136,7 +139,7 @@ public class Cine{
 					String Contrasenia = partes[5];
 					String ContadorPuntos = partes[6];
 					Usuario u = new Usuario(Nombre,Apellido,FechaNacimiento,tlf,CorreoElectronico,Contrasenia,ContadorPuntos);
-					if(buscarUsuario(CorreoElectronico)==null) {
+					if(buscarUsuario(CorreoElectronico)== null) {
 						Usuarios.add(u);
 						}
 					}
@@ -186,50 +189,20 @@ public class Cine{
 		}
 		
 		
-		/*public static void cargarPeliculasEnLista(String nomfich) {
-			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-=======
-		
-		public static void cargarPeliculasEnLista(String nomfich2) {
->>>>>>> branch 'master' of https://github.com/Diegogoyo1/Proyecto-DeustoScreen.git
-			try {
-				Scanner sc = new Scanner(new FileReader(nomfich2));
-				String linea;
-				while(sc.hasNext()) {
-					linea = sc.nextLine();
-					String [] partes = linea.split(";");
-					String NombrePeli = partes[0];
-					ArrayList<Actores> reparto = new ArrayList<>();
-					String[] actoresInfo = partes[1].split(",");
-					 for (String actorInfo : actoresInfo) {
-		                    String[] actorData = actorInfo.split(";");
-		                    String nombreActor = actorData[0];
-		                    String fechaNacimientoAct = actorData[1];
-		                    reparto.add(new Actores(nombreActor, fechaNacimientoAct));
-		                    }
-					String duracion = partes[2];
-		            String fechaEstreno =  partes[3];
-		            Categoria categoria = Categoria.valueOf(partes[4]);
-					Peliculas p = new Peliculas(NombrePeli, reparto, duracion, fechaEstreno, categoria);
-					Pelicula.add(p);
-					}
-					sc.close();
-				}catch (FileNotFoundException e) {
-				 
-			 }
-		}*/
-
 		
 		 public static List<Peliculas> obtenerListaPeliculas() {
 		        return Pelicula;
 		    }
-		
-		public static void sumadorPuntos() {
-			Usuario.getContadorPuntos();
-		
+
+		public static int getSumaPuntos() {
 			
-			
+			return 0;
 		}
+		
+		
+			
+			
+		
 		
 		
 		//Logger logger = java.util.logging.Logger.getLogger("logger");

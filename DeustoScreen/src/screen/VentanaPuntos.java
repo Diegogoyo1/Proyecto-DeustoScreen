@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import domain.Cine;
 import domain.Usuario;
 
 public class VentanaPuntos extends JFrame{
@@ -53,8 +54,8 @@ public class VentanaPuntos extends JFrame{
 		
 		//txtUsuario.setSize(2, 4);
 		//txtUsuario.setPreferredSize(new Dimension(2, 4));
-		txtNumPuntos = new JLabel ();
-		txtNumPuntos = new JLabel();
+		
+		txtNumPuntos = new JLabel(Usuario.getContadorPuntos());
 
 		
 		

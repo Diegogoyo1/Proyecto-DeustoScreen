@@ -108,7 +108,8 @@ public class VentanaInicioSesion extends JFrame {
             }
 			else if(u == null) {
 				JOptionPane.showMessageDialog(null, "Para poder iniciar sesión tienes que estar registrado","ERROR",JOptionPane.ERROR_MESSAGE);
-			}else {
+			}
+			else if (CorreoElectronico == u.getCorreoElectronico()) {
 				if(u.getContrasenia().equals(con)) {
 					JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
 					usuario = u; //Guardamos la información del usuario que ha iniciado sesión
@@ -122,6 +123,21 @@ public class VentanaInicioSesion extends JFrame {
 					new VentanaEntradas(vActual);
 				}
 			}
+				
+			/*}else {
+				if(u.getContrasenia().equals(con)) {
+					JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
+					usuario = u; //Guardamos la información del usuario que ha iniciado sesión
+					carrito = new ArrayList<>(); //Inicializamos su carrito a una lista vacía (Instanciamos la lista que hace referencia al carrito)
+					new VentanaEntradas(vActual);
+					vActual.setVisible(false);
+					txtCorreoElectronico.setText("");
+					contraseniaIs.setText("");
+				}else {
+					JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR",JOptionPane.WARNING_MESSAGE);
+					new VentanaEntradas(vActual);
+				}
+			}*/
 			
 		});
 			
