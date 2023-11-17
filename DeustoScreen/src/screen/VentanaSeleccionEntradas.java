@@ -21,8 +21,8 @@ import java.awt.GraphicsEnvironment;
 public class VentanaSeleccionEntradas extends JFrame{
 	private JButton btnSiguiente, btnAtras;
 	private JPanel pCentro, pNorte, pSur, pEste, pOeste;;
-	private JLabel lblVIP, lblmenores, lblEntreAños, lblMayores, lblSelecEntradas;
-	private JSpinner spinVIP, spinMenores, spinEntreAños, spinMayores;
+	private JLabel lblmenores, lblEntreAños, lblMayores, lblSelecEntradas;
+	private JSpinner spinMenores, spinEntreAños, spinMayores;
 	private JFrame vActual, vAnterior;
 	
 	private static int totalEntradas;
@@ -60,11 +60,9 @@ public class VentanaSeleccionEntradas extends JFrame{
 		SpinnerModel spinnerModel3 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 		SpinnerModel spinnerModel4 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 		lblSelecEntradas = new JLabel("Seleccione sus entradas");
-		lblVIP = new JLabel("VIP");
 		lblmenores = new JLabel("Menores de 18 años");
 		lblEntreAños = new JLabel("Entre 18 y 65 años");
 		lblMayores = new JLabel("Mayores de 65 años");
-		spinVIP = new JSpinner(spinnerModel);
 		spinMenores = new JSpinner(spinnerModel2);
 		spinEntreAños = new JSpinner(spinnerModel3);
 		spinMayores = new JSpinner(spinnerModel4);
@@ -76,8 +74,6 @@ public class VentanaSeleccionEntradas extends JFrame{
 		
 		//Añadimos  Labels, Spinners y Botones a paneles
 		pNorte.add(lblSelecEntradas);
-		pCentro.add(lblVIP);
-		pCentro.add(spinVIP);
 		pCentro.add(lblmenores);
 		pCentro.add(spinMenores);
 		pCentro.add(lblEntreAños);
@@ -89,12 +85,11 @@ public class VentanaSeleccionEntradas extends JFrame{
 		
 		//ActionListener de los botones
 		btnSiguiente.addActionListener((e)->{
-			int vip = (int) spinVIP.getValue();
 			int menores = (int) spinMenores.getValue();
 			int entreaños= (int) spinEntreAños.getValue();
 			int mayores = (int) spinMayores.getValue();
-			if (vip > 0 || menores > 0 || entreaños > 0 || mayores > 0) {
-				totalEntradas = vip + menores + mayores + entreaños;
+			if (menores > 0 || entreaños > 0 || mayores > 0) {
+				totalEntradas = menores + mayores + entreaños;
 				vActual.setVisible(false);
 				vActual.dispose();
 				new VentanaButacas (vActual);
