@@ -34,7 +34,7 @@ public class VentanaRegistros extends JFrame {
 	private JButton btnSalir, btnIniciarSesion;
 	private JPasswordField contraseniaR;
 	private JFrame vActual, vAnterior;
-	private static final String nomfichUsuarios = "src/ficheros/Usuarios.csv";
+	private static final String nomfichUsuarios = "ficheros/Usuarios.csv";
 
 
 	public VentanaRegistros(JFrame va) {
