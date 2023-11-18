@@ -31,7 +31,7 @@ public class VentanaInicioSesion extends JFrame {
 	private JButton btnSalir, btnIniciarSesion, btnRegistrarse;
 	private JPasswordField contraseniaIs;
 	private JFrame vAnterior, vActual;
-	private static final String nomfichUsuarios = "src/ficheros/Usuarios.csv";
+	private static final String nomfichUsuarios = "ficheros/Usuarios.csv";
 
 	
 	private static Usuario usuario;
@@ -102,15 +102,25 @@ public class VentanaInicioSesion extends JFrame {
 		btnIniciarSesion.addActionListener((e)->{
 			String CorreoElectronico = txtCorreoElectronico.getText();
 			String con = contraseniaIs.getText();
+			 if(CorreoElectronico.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Inserte un Usuario","ERROR",JOptionPane.ERROR_MESSAGE);
+				}
+				 else if (con.isEmpty()) {
+					 JOptionPane.showMessageDialog(null, "Inserte Contraseña","ERROR",JOptionPane.ERROR_MESSAGE);
+				 }
 			Usuario u = Cine.buscarUsuario(CorreoElectronico);
-			if (CorreoElectronico == null) {
+			
+			 if (!CorreoElectronico.equals(u.getCorreoElectronico())) {
 				JOptionPane.showMessageDialog(null, "Direccion de correo electronico no valido","ERROR",JOptionPane.ERROR_MESSAGE);
             }
-			else if(u == null) {
-				JOptionPane.showMessageDialog(null, "Para poder iniciar sesión tienes que estar registrado","ERROR",JOptionPane.ERROR_MESSAGE);
-			}
-			else if (CorreoElectronico == u.getCorreoElectronico()) {
-				if(u.getContrasenia().equals(con)) {
+			
+			
+			else if (CorreoElectronico.equals(u.getCorreoElectronico())) {
+				if(!con.equals(u.getContrasenia())) {
+					JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR",JOptionPane.WARNING_MESSAGE);
+				}
+					
+				else {
 					JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
 					usuario = u; //Guardamos la información del usuario que ha iniciado sesión
 					carrito = new ArrayList<>(); //Inicializamos su carrito a una lista vacía (Instanciamos la lista que hace referencia al carrito)
@@ -118,10 +128,8 @@ public class VentanaInicioSesion extends JFrame {
 					vActual.setVisible(false);
 					txtCorreoElectronico.setText("");
 					contraseniaIs.setText("");
-				}else {
-					JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR",JOptionPane.WARNING_MESSAGE);
-					new VentanaEntradas(vActual);
 				}
+					
 			}
 				
 			/*}else {

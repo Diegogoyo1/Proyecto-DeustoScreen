@@ -17,6 +17,8 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.logging.Logger;
 
+import javax.swing.undo.UndoableEditSupport;
+
 import screen.VentanaSeleccionEntradas;
 
 import java.text.SimpleDateFormat;
@@ -25,12 +27,15 @@ import java.text.SimpleDateFormat;
 //Ventnana contenedora
 
 public class Cine{
-	private static Set<Entrada> Entradas = new TreeSet<>();
+	private static List<Entrada> Entradas = new ArrayList<>();
 	private static List<Usuario> Usuarios = new ArrayList<>();
 	private static List<Peliculas> Pelicula = new ArrayList<>();
 	private static Map<Usuario, List<Entrada>> compras = new TreeMap<>();
 	private static List<String> titulosPeliculas =new ArrayList<>();
 	
+	public static List<Usuario> getListaUsuarios(){
+		return Usuarios;
+	}
 	
 	public static List<String> getTitulosPeliculas() {
 		return titulosPeliculas;
@@ -40,11 +45,11 @@ public class Cine{
 		return compras;
 	}
 
-	public static Set<Entrada> getEntradas() {
-		return Entradas;
+	public static ArrayList<Entrada> getEntradas() {
+		return (ArrayList<Entrada>) Entradas;
 	}
-	public static void aniadirEntrada(Entrada e) {
-		Entradas.add(e);
+	public static void aniadirEntrada(Entrada Entrada) {
+		Entradas.add(Entrada);
 	}
 	
 	public static void imprimirEntrada() {
@@ -124,7 +129,7 @@ public class Cine{
 			}
 		}
 		public static void cargarUsuarioEnLista(String nomfich) {
-			//linea = dni;nom;fNac;tlf;correo;contraseña;puntos
+			//linea = nom;apellido;fNac;tlf;correo;contraseña;puntos
 			try {
 				Scanner sc = new Scanner(new FileReader(nomfich));
 				String linea;
@@ -174,7 +179,6 @@ public class Cine{
 				sc.close();
 				
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -195,8 +199,11 @@ public class Cine{
 		    }
 
 		public static int getSumaPuntos() {
-			
-			return 0;
+			int puntos = Integer.parseInt(Usuario.getContadorPuntos());
+			int puntosFinal = puntos +10;
+	        String numeroEnString = String.valueOf(puntosFinal);
+			Usuario.setContadorPuntos(numeroEnString);
+			return puntosFinal;
 		}
 		
 		

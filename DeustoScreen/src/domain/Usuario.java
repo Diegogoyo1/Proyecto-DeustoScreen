@@ -15,7 +15,7 @@ public class Usuario {
 	private Date FechaNacimiento;
 	private String tlf;
 	private static String CorreoElectronico;
-	private String Contrasenia;
+	private static String Contrasenia;
 	private static String ContadorPuntos;
 	private static final String nomfichUsuarios = "src/ficheros/Usuarios.csv";
 	
@@ -138,7 +138,7 @@ public class Usuario {
 		return ContadorPuntos;
 	}
 
-	public void setContadorPuntos(String contadorPuntos) {
+	public static void setContadorPuntos(String contadorPuntos) {
 		ContadorPuntos = contadorPuntos;
 	}
 

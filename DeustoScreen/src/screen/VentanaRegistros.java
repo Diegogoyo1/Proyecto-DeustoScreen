@@ -110,23 +110,33 @@ public class VentanaRegistros extends JFrame {
 		//eventos botones 
 		btnIniciarSesion.addActionListener((e)->{
 			String nombre = txtNombre.getText();
-			String	apellido = txtApellido.getText();
+			String apellido = txtApellido.getText();
 			String fNac = txtFechaNacimiento.getText();
 			String tlf = textFieldTlf.getText();
 			String CorreoElectronico = txtCorreoElectronico.getText();
 			String contrasenia = contraseniaR.getText();
 			String ContadorPuntos = "0";
-			Usuario u = new Usuario(nombre, apellido,fNac,tlf, CorreoElectronico, contrasenia, ContadorPuntos);
-			if(Cine.buscarUsuario(CorreoElectronico)!=null) {
-				JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese correo electronico","ERROR",JOptionPane.ERROR_MESSAGE);
-			}else {
-				Cine.aniadirUsuario(u);
+			
+			// Verificar si existe el usuario
+			//Usuario usuarioExstente = Cine.buscarUsuario(CorreoElectronico);
+			if (Cine.buscarUsuario(CorreoElectronico)!= null) {
+			JOptionPane.showMessageDialog(null, "Usuario ya existe","ERROR",JOptionPane.ERROR_MESSAGE);
+			}
+			else {
+				//crear usuario nuevo
+				Usuario usuarioNuevo = new Usuario(nombre, apellido,fNac,tlf, CorreoElectronico, contrasenia, ContadorPuntos);
+				Cine.aniadirUsuario(usuarioNuevo);
 				Cine.guardarUsuariosEnFichero( nomfichUsuarios);
 				JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
 				new VentanaEntradas(vActual);
 				vActual.dispose();
-				
 			}
+			
+			
+				
+				
+				
+			
 	});
 		btnSalir.addActionListener((e)->{
 			vActual.dispose();
