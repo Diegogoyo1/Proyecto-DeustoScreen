@@ -7,6 +7,7 @@ import javax.swing.SwingConstants;
 import domain.Cine;
 import domain.Peliculas;
 import domain.Usuario;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -37,7 +38,11 @@ public class VentanaEntradas extends JFrame{
 
 	private JComboBox<String> cbTitulos;
 	//private JComboBox<String> cbHorarios;
+
 	private static Logger logger = Logger.getLogger(Main.class.getName());
+
+	
+
 	public VentanaEntradas(JFrame va, Usuario u) {
 		
 		
@@ -108,8 +113,12 @@ public class VentanaEntradas extends JFrame{
 		});
 		
 		BtnSiguiente.addActionListener((e)->{
+
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON SIGUIENTE");
 			new VentanaSeleccionEntradas(vActual, u);
+
+			new VentanaSeleccionEntradas(vActual,u);
+
 			vActual.setVisible(false);
 			vActual.dispose();
 		});

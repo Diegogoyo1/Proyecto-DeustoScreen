@@ -23,6 +23,8 @@ import javax.swing.JScrollPane;
 import domain.Usuario;
 import javax.swing.border.EmptyBorder;
 
+import domain.Usuario;
+
 
 
 public class VentanaPrincipal extends JFrame{

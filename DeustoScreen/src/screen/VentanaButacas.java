@@ -32,6 +32,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import domain.Usuario;
 
+import domain.Usuario;
+
 public class VentanaButacas extends JFrame {
 	private JPanel pNorte, pSur, pEste, pOeste;
 	private JButton btnSiguiente, btnAtras;
