@@ -6,7 +6,7 @@ import javax.swing.SwingConstants;
 
 import domain.Cine;
 import domain.Peliculas;
-
+import domain.Usuario;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -20,8 +20,11 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.JButton;
 
 
@@ -34,10 +37,10 @@ public class VentanaEntradas extends JFrame{
 
 	private JComboBox<String> cbTitulos;
 	//private JComboBox<String> cbHorarios;
-	
-	public VentanaEntradas(JFrame va) {
+	private static Logger logger = Logger.getLogger(Main.class.getName());
+	public VentanaEntradas(JFrame va, Usuario u) {
 		
-		//cargarFichero("datos/Peliculas.csv");
+		
 		vActual=this;
 		vAnterior=va;
 		
@@ -49,66 +52,64 @@ public class VentanaEntradas extends JFrame{
 		 panelSouth = new JPanel();
 		 
 		//Añadimos localizacion a paneles y columnas
-		panelCenter.setBorder(BorderFactory.createEmptyBorder(40, 100, 10, 100));
+
 		getContentPane().add(panelNorth, BorderLayout.NORTH);
 		getContentPane().add(panelEast, BorderLayout.EAST);
 		getContentPane().add(panelEast, BorderLayout.EAST);
 		getContentPane().add(panelCenter, BorderLayout.CENTER);
 		getContentPane().add(panelSouth, BorderLayout.SOUTH);
-		panelCenter.setLayout(new GridLayout(0, 2, 0, 0));
-		 panelCenter.setBorder(BorderFactory.createEmptyBorder(40, 100, 10, 100));
+		 panelCenter.setBorder(BorderFactory.createEmptyBorder(40, 1000, 10, 1000));
 
 		//Creacion de Labels, ComboBox y Botones
 		lblEntradas = new JLabel("Entradas", SwingConstants.CENTER);
+		lblEntradas.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		panelNorth.add(lblEntradas);
+		
 		lblPelicula = new JLabel("Pelicula", SwingConstants.CENTER);
-		lblHorarios = new JLabel("Horarios", SwingConstants.CENTER);
+		lblPelicula.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		panelCenter.add(lblPelicula);
+		panelCenter.add(Box.createVerticalStrut(50));
+		
 		Cine.cargarPeliculasEnLista("ficheros/TitulosPeliculas.csv");
 		String []  titulos = Cine.obtenerTitulos();
 		cbTitulos = new JComboBox<>(titulos);
-		Dimension comboBoxSizeT = new Dimension(200, 30);
+		Dimension comboBoxSizeT = new Dimension(400, 40);
         cbTitulos.setPreferredSize(comboBoxSizeT);
+        panelCenter.add(cbTitulos);
+        panelCenter.add(Box.createVerticalStrut(100));
+        
+		lblHorarios = new JLabel("Horarios", SwingConstants.CENTER);
+		lblHorarios.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		panelCenter.add(lblHorarios);
+		panelCenter.add(Box.createVerticalStrut(50));
+		
+		//cbHorarios = new JComboBox<>();
         //cbHorarios.setPreferredSize(comboBoxSize);
         lblEntradas.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblPelicula.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblHorarios.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-		JComboBox<String> comBoxPelicula = new JComboBox<String>();
-		JComboBox comBoxHorarios = new JComboBox();
+		
+	
 
 		BtnAtras = new JButton("Atrás");
 		BtnSiguiente = new JButton("Siguiente");
-		lblEntradas.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblPelicula.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblHorarios.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		
-		
-		Dimension comboBoxSizeH = new Dimension(200, 30);
-        comBoxPelicula.setPreferredSize(comboBoxSizeH);
-		
-		//Añadimos todo lo anterior a paneles
-		panelNorth.add(lblEntradas);
-		panelCenter.add(lblPelicula);
-		panelCenter.add(cbTitulos);
-		panelCenter.add(lblHorarios);
-		//panelCenter.add(comBoxHorarios);
 		panelSouth.add(BtnAtras);
 		panelSouth.add(BtnSiguiente);
 		
 		
-		List<Peliculas> listaPeliculas = Cine.obtenerListaPeliculas();
-
-		for (Peliculas pelicula : listaPeliculas) {
-			    comBoxPelicula.addItem(pelicula.getNombrePeli());
-			}
+		
 		
 		//ActionListener de los botones
 		BtnAtras.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON ATRAS");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 		});
 		
 		BtnSiguiente.addActionListener((e)->{
-			new VentanaSeleccionEntradas(vActual);
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON SIGUIENTE");
+			new VentanaSeleccionEntradas(vActual, u);
 			vActual.setVisible(false);
 			vActual.dispose();
 		});
@@ -125,7 +126,7 @@ public class VentanaEntradas extends JFrame{
 		setVisible(true);
 	}
 	
-//	public static void main(String[] args) {
-//		VentanaEntradas va = new VentanaEntradas(null);
-//	}
+	//public static void main(String[] args) {
+	//	VentanaEntradas va = new VentanaEntradas(null);
+	//}
 }

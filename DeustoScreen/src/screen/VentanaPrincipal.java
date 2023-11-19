@@ -1,6 +1,7 @@
 package screen;
 
 import java.awt.BorderLayout; 
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -10,6 +11,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import domain.Usuario;
 import javax.swing.border.EmptyBorder;
 
 
@@ -26,6 +30,7 @@ public class VentanaPrincipal extends JFrame{
 	private JButton btnPrecios, btnIniciarSesion,btnHorario, btnCartelera;
 	private JFrame vAnterior,vActual;
 	private VentanaPrincipal vp;
+	private static Logger logger = Logger.getLogger(Main.class.getName());
 	
 	/*@Override
     public void paint(Graphics g){
@@ -65,24 +70,28 @@ public class VentanaPrincipal extends JFrame{
 		//Eventos Botones
 		
 		btnPrecios.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON PRECIOS");
 			new VentanaPrecios(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
 		});
 		
 		btnIniciarSesion.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON INICIAR SESION");
 			new VentanaInicioSesion(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
 		});
 		
 		btnHorario.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON HORARIO");
 			new VentanaHorario(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
 		});
 		
 		btnCartelera.addActionListener((e)-> {
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON CARTELERA");
 			new VentanaCartelera(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();

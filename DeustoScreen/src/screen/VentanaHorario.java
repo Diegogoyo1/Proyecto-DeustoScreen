@@ -9,6 +9,8 @@ import java.awt.GraphicsEnvironment;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -24,7 +26,7 @@ public class VentanaHorario extends JFrame{
 	private FlowLayout layoutTabla;
 	private JLabel lblTituloH;
 	private JFrame vActual, vAnterior;
-	
+	private static Logger logger = Logger.getLogger(Main.class.getName());
 	 
 	
 	public VentanaHorario(JFrame va) {
@@ -54,6 +56,7 @@ public class VentanaHorario extends JFrame{
 		
 		//ACCIONES DE BOTONES
 		btnAtras.addActionListener((e)-> {
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON ATRAS");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 						

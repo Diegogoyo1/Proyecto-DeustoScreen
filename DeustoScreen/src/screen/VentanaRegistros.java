@@ -8,8 +8,12 @@ import java.awt.event.KeyEvent;
 import java.awt.GridLayout;
 import java.awt.image.PackedColorModel;
 import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,6 +29,7 @@ import domain.Usuario;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.Color;
+import java.awt.Dimension;
 
 public class VentanaRegistros extends JFrame {
 	private JPanel pNorte,pCentro,pSur,pCentroIzquierda;
@@ -35,7 +40,7 @@ public class VentanaRegistros extends JFrame {
 	private JPasswordField contraseniaR;
 	private JFrame vActual, vAnterior;
 	private static final String nomfichUsuarios = "ficheros/Usuarios.csv";
-
+	private static Logger logger = Logger.getLogger(Main.class.getName());
 
 	public VentanaRegistros(JFrame va) {
 		super();
@@ -45,11 +50,11 @@ public class VentanaRegistros extends JFrame {
 		
 	//CREACIÓN DE PANELES Y COMPONENTES
 		pNorte = new JPanel(new GridLayout(1, 2));
-		pCentro = new JPanel(new GridLayout(1, 2));
+		pCentro = new JPanel();
 		pSur = new JPanel();
+		pCentro.setBorder(BorderFactory.createEmptyBorder(40, 1000, 10, 1000));
 
-		pCentroIzquierda = new JPanel(new GridLayout(6, 1));
-		pCentro.add(pCentroIzquierda);
+		
 		
 		
 		
@@ -65,7 +70,12 @@ public class VentanaRegistros extends JFrame {
 		lblCorreoElectronico = new JLabel("  Correo electronico");
 		lblTituloIS = new JLabel("     REGISTRARSE");
 		lblCotraseniaR = new JLabel("  Contrasenia");
-		
+		lblCorreoElectronico.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblApellido.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblCotraseniaR.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lbltlf.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblFechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
 		
 		//TextField nuevos
@@ -78,32 +88,54 @@ public class VentanaRegistros extends JFrame {
 		textFieldTlf = new JTextField();
 		txtCorreoElectronico= new JTextField();
 		contraseniaR= new JPasswordField();
+		txtCorreoElectronico.setPreferredSize(new Dimension(400,30));
+		txtNombre.setPreferredSize(new Dimension(400,30));
+		txtApellido.setPreferredSize(new Dimension(400,30));
+		txtFechaNacimiento.setPreferredSize(new Dimension(400,30));
+		textFieldTlf.setPreferredSize(new Dimension(400,30));
+		contraseniaR.setPreferredSize(new Dimension(400,30));
+		
+		
 		
 		
 		// Enlazar los paneles con los label y txtField
 		
-		pCentroIzquierda.add(lblNombre);
-		pCentroIzquierda.add(txtNombre);
-		pCentroIzquierda.add(lblApellido);
-		pCentroIzquierda.add(txtApellido);
-		pCentroIzquierda.add(lblFechaNacimiento);
-		pCentroIzquierda.add(txtFechaNacimiento);
-		pCentroIzquierda.add(lbltlf);
-		pCentroIzquierda.add(textFieldTlf);
-		pCentroIzquierda.add(lblCorreoElectronico);
-		pCentroIzquierda.add(txtCorreoElectronico);
-		pCentroIzquierda.add(lblCotraseniaR);
-		pCentroIzquierda.add(lblCotraseniaR);
-		pCentroIzquierda.add(contraseniaR);
+		pCentro.add(lblNombre);
+		pCentro.add(Box.createVerticalStrut(30));
+		pCentro.add(txtNombre);
+		pCentro.add(Box.createVerticalStrut(30));
+		pCentro.add(lblApellido);
+		pCentro.add(Box.createVerticalStrut(30));
+		pCentro.add(txtApellido);
+		pCentro.add(Box.createVerticalStrut(30));
+		pCentro.add(lblFechaNacimiento);
+		pCentro.add(Box.createVerticalStrut(30));
+		pCentro.add(txtFechaNacimiento);
+		pCentro.add(Box.createVerticalStrut(30));
+		pCentro.add(lbltlf);
+		pCentro.add(Box.createVerticalStrut(30));
+		pCentro.add(textFieldTlf);
+		pCentro.add(Box.createVerticalStrut(30));
+		pCentro.add(lblCorreoElectronico);
+		pCentro.add(Box.createVerticalStrut(30));
+		pCentro.add(txtCorreoElectronico);
+		pCentro.add(Box.createVerticalStrut(30));
+		pCentro.add(lblCotraseniaR);
+		pCentro.add(Box.createVerticalStrut(30));
+		pCentro.add(lblCotraseniaR);
+		pCentro.add(Box.createVerticalStrut(30));
+		pCentro.add(contraseniaR);
+		pCentro.add(Box.createVerticalStrut(30));
 		
 		
 		pNorte.add(lblTituloIS);
 		
 		//botones
 		btnIniciarSesion = new JButton("Iniciar Sesion");
-		btnSalir = new JButton("Salir");
-		pSur.add(btnIniciarSesion);
+		btnSalir = new JButton("Atras");
 		pSur.add(btnSalir);
+		pSur.add(btnIniciarSesion);
+		
 	
 
 		
@@ -123,12 +155,13 @@ public class VentanaRegistros extends JFrame {
 			JOptionPane.showMessageDialog(null, "Usuario ya existe","ERROR",JOptionPane.ERROR_MESSAGE);
 			}
 			else {
+				logger.log(Level.INFO, "SE HA CREADO UN NUEVO USUARIO");
 				//crear usuario nuevo
 				Usuario usuarioNuevo = new Usuario(nombre, apellido,fNac,tlf, CorreoElectronico, contrasenia, ContadorPuntos);
-				Cine.aniadirUsuario(usuarioNuevo);
+				System.out.println(usuarioNuevo);
 				Cine.guardarUsuariosEnFichero( nomfichUsuarios);
 				JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
-				new VentanaEntradas(vActual);
+				new VentanaEntradas(vActual, usuarioNuevo);
 				vActual.dispose();
 			}
 			
@@ -139,6 +172,7 @@ public class VentanaRegistros extends JFrame {
 			
 	});
 		btnSalir.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA CLICKADO BOTON SALIR");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 			

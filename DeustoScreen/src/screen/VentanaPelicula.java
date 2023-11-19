@@ -5,6 +5,8 @@ import java.awt.FlowLayout;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,6 +25,7 @@ public class VentanaPelicula extends JFrame {
 	private JTextArea txtSinp;
 	private JFrame vActual, vAnterior;
 	private JScrollPane scrollTxtArea;
+	private static Logger logger = Logger.getLogger(Main.class.getName());
 	
 	public VentanaPelicula(JFrame va,String ta,String im, String ti, String ln, String lc, String ld, String lr) {
 		super();
@@ -99,6 +102,7 @@ public class VentanaPelicula extends JFrame {
 		
 		//EVENTOS BOTONES
 		btnA.addActionListener((e) -> {
+			logger.log(Level.INFO, "SE HA CLICKADO BOTON ATRAS");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 		});

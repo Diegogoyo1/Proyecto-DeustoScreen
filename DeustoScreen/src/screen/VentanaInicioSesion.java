@@ -10,7 +10,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,7 +36,7 @@ public class VentanaInicioSesion extends JFrame {
 	private JPasswordField contraseniaIs;
 	private JFrame vAnterior, vActual;
 	private static final String nomfichUsuarios = "ficheros/Usuarios.csv";
-
+	private static Logger logger = Logger.getLogger(Main.class.getName());
 	
 	private static Usuario usuario;
 	private static List<Entrada> carrito;
@@ -54,11 +58,12 @@ public class VentanaInicioSesion extends JFrame {
 	
 		
 		pNorte = new JPanel(new GridLayout(1, 2));
-		pCentro = new JPanel(new GridLayout(1, 2));
+		pCentro = new JPanel();
 		pSur = new JPanel();
-
-		pCentroIzquierda = new JPanel(new GridLayout(2, 1));
-		pCentro.add(pCentroIzquierda);
+		pCentro.setBorder(BorderFactory.createEmptyBorder(40, 1000, 10, 1000));
+		
+		
+		
 		
 		getContentPane().add(pNorte, BorderLayout.NORTH);
 		getContentPane().add(pCentro, BorderLayout.CENTER);
@@ -68,31 +73,37 @@ public class VentanaInicioSesion extends JFrame {
 		lblCorreoElectronico = new JLabel("  Correo electronico: ");
 		lblTituloIS = new JLabel("     INICIAR SESION");
 		lblContraseniaIs = new JLabel("  Contrasenia: ");
+		lblCorreoElectronico.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblContraseniaIs.setFont(new Font("Tahoma", Font.PLAIN, 17));
 			
 		//TextField nuevos
 		txtCorreoElectronico= new JTextField();
 		contraseniaIs= new JPasswordField();
 		
-		// Tamaño del ComboBox(Ancho x Alto)
-				txtCorreoElectronico.setPreferredSize(new Dimension(10,5));
-				contraseniaIs.setPreferredSize(new Dimension(10,5));
+		// Tamaño del Textfield(Ancho x Alto)
+				txtCorreoElectronico.setPreferredSize(new Dimension(400,30));
+				contraseniaIs.setPreferredSize(new Dimension(400,30));
 		
 		// Enlazar los paneles con los label y txtField
 		
-			pCentroIzquierda.add(lblCorreoElectronico);
-			pCentroIzquierda.add(txtCorreoElectronico);
-			pCentroIzquierda.add(lblContraseniaIs);
-			pCentroIzquierda.add(contraseniaIs);
+			pCentro.add(lblCorreoElectronico);
+			pCentro.add(Box.createVerticalStrut(50));
+			pCentro.add(txtCorreoElectronico);
+			pCentro.add(lblContraseniaIs);
+			pCentro.add(Box.createVerticalStrut(50));
+			pCentro.add(contraseniaIs);
+			
 				
 			pNorte.add(lblTituloIS);
 				
 		//botones
 		btnIniciarSesion = new JButton("Iniciar Sesion");
-		btnSalir = new JButton("Salir");
+		btnSalir = new JButton("Atras");
 		btnRegistrarse = new JButton("Registrarse");
+		pSur.add(btnSalir);
 		pSur.add(btnIniciarSesion);
 		pSur.add(btnRegistrarse);
-		pSur.add(btnSalir);
+		
 		
 		//cargar las colecciones
 		Cine.cargarUsuarioEnLista(nomfichUsuarios);
@@ -124,10 +135,11 @@ public class VentanaInicioSesion extends JFrame {
 					JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
 					usuario = u; //Guardamos la información del usuario que ha iniciado sesión
 					carrito = new ArrayList<>(); //Inicializamos su carrito a una lista vacía (Instanciamos la lista que hace referencia al carrito)
-					new VentanaEntradas(vActual);
+					new VentanaEntradas(vActual,u);
 					vActual.setVisible(false);
 					txtCorreoElectronico.setText("");
 					contraseniaIs.setText("");
+					logger.log(Level.INFO, "SE HA INICIADO SESION");
 				}
 					
 			}
@@ -152,12 +164,14 @@ public class VentanaInicioSesion extends JFrame {
 		
 
 		btnSalir.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA CLICKADO BOTON ATRAS");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 		}) ;
 			
 		
 		btnRegistrarse.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA CLICKADO BOTON REGISTRARSE");
 			new VentanaRegistros(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -175,5 +189,6 @@ public class VentanaInicioSesion extends JFrame {
 		setTitle("INICIO SESION");
 		setVisible(true);
 
-		}		
+		}	
+	
 }	

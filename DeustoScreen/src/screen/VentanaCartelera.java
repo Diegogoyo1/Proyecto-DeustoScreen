@@ -8,6 +8,8 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.image.BufferedImage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,7 +27,7 @@ public class VentanaCartelera extends JFrame {
 	private JLabel lblPeliculas;
 	private JScrollPane scrollVentana;
 	private JFrame vAnterior, vActual;
-	PanelConFondo panel;
+	private static Logger logger = Logger.getLogger(Main.class.getName());
 	
 	
 	
@@ -58,6 +60,7 @@ public class VentanaCartelera extends JFrame {
 		
 		btnAtras = new JButton("Atras");
 		btnAtras.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON ATRAS");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 			
@@ -77,6 +80,7 @@ public class VentanaCartelera extends JFrame {
 				+ "morales de su creación. Desde entonces y el resto de su vida, se opondría "
 				+ "firmemente al uso de armas nucleares.";
 		btnOppenheimer.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON OPPENHAIMER");
 			new VentanaPelicula(vActual, textoOp, "imagenes/PortadaOppenheimer.jpg", "OPPENHEIMER", "Oppenheimer", Categoria.ACCIÓN.toString(), "3h", "Cillian Murphy");
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -91,6 +95,7 @@ public class VentanaCartelera extends JFrame {
 		btnBarbie.setPreferredSize(new Dimension(imBarbie.getIconWidth(), imBarbie.getIconHeight()));
 		btnBarbie.setPreferredSize(new Dimension(250, 445));
 		btnBarbie.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON BARBIE");
 			//new VentanaBarbie(vActual);
 			String textoBa = "Barbie (Margot Robbie) lleva una vida ideal en \r\n"
 					+ "Barbieland, allí todo es perfecto, con chupi fiestas llenas \r\n"
@@ -115,6 +120,7 @@ public class VentanaCartelera extends JFrame {
 		btnSawX.setPreferredSize(new Dimension(imSawX.getIconWidth(), imSawX.getIconHeight()));
 		btnSawX.setPreferredSize(new Dimension(250, 445));
 		btnSawX.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON SAW X");
 			String textoSX = "Situada entre los acontecimientos sucedidos en "
 					+ "SAW y SAW II, John, desesperado y enfermo, viaja a México "
 					+ "para someterse a un tratamiento experimental y muy arriesgado "
@@ -138,6 +144,7 @@ public class VentanaCartelera extends JFrame {
 		btnCampeonex.setPreferredSize(new Dimension(imCampeonex.getIconWidth(), imCampeonex.getIconHeight()));
 		btnCampeonex.setPreferredSize(new Dimension(250, 445));
 		btnCampeonex.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON CAMPEONEX");
 			String textoCa = "Nuestro equipo de \"campeones\" abandona el baloncesto "
 					+ "para adentrarse por error en el fascinante mundo del atletismo de la "
 					+ "mano de una entrenadora novata. Entre las duras exigencias de la nueva "
@@ -156,6 +163,7 @@ public class VentanaCartelera extends JFrame {
 		btnTrolls3.setPreferredSize(new Dimension(imTrolls3.getIconWidth(), imTrolls3.getIconHeight()));
 		btnTrolls3.setPreferredSize(new Dimension(250, 445));
 		btnTrolls3.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON TROLLS 3");
 			String textoTr = "Poppy y Branch son oficialmente, por fin, pareja. "
 					+ " A medida que se relacionan, Poppy descubre que Branch "
 					+ "tiene un pasado secreto. Una vez formó parte de su fenómeno boyband "
@@ -183,7 +191,7 @@ public class VentanaCartelera extends JFrame {
 		
 		
 		
-		panel = new PanelConFondo(new ImageIcon("imagenes/FondoCartelera.jpg").getImage());
+		
 		pSur.add(btnAtras);
 		pNorte.add(lblPeliculas);
 		pCentro.add(btnOppenheimer);
@@ -191,12 +199,7 @@ public class VentanaCartelera extends JFrame {
 		pCentro.add(btnSawX);
 		pCentro.add(btnCampeonex);
 		pCentro.add(btnTrolls3);
-		panel.add(pSur);
-		panel.add(pNorte);
-		panel.add(pCentro);
-		pSur.setOpaque(false);
-		pNorte.setOpaque(false);
-		pCentro.setOpaque(false);
+	
 		
 		
 		
@@ -210,7 +213,7 @@ public class VentanaCartelera extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("PELICULAS");
-		setContentPane(panel);
+		
 		setVisible(true);
 		
 		

@@ -1,6 +1,7 @@
 package screen;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -14,6 +15,8 @@ import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -27,7 +30,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableCellRenderer;
+import domain.Usuario;
 
 public class VentanaButacas extends JFrame {
 	private JPanel pNorte, pSur, pEste, pOeste;
@@ -42,8 +45,9 @@ public class VentanaButacas extends JFrame {
 	private int fila1, columna1, fila2, columna2;
 	private boolean [][]m1;
 	private boolean [][]m2;
+	private static Logger logger = Logger.getLogger(Main.class.getName());
 
-	public VentanaButacas(JFrame va) {
+	public VentanaButacas(JFrame va,Usuario u) {
 		super();
 		m1 = new boolean[5][6];
 		m2 = new boolean[5][5];
@@ -75,14 +79,16 @@ public class VentanaButacas extends JFrame {
 
 		// ACCIONES DE BOTONES
 		btnAtras.addActionListener((e) -> {
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON ATRAS");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 
 		});
 
 		btnSiguiente.addActionListener((e) -> {
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON SIGUIENTE");
 			if (cont == VentanaSeleccionEntradas.getTotalEntradas()) {
-				new VentanaPuntos(vActual);
+				new VentanaPuntos(vActual,u);
 				vActual.setVisible(false);
 				vActual.dispose();
 			} else {
@@ -159,6 +165,7 @@ public class VentanaButacas extends JFrame {
 					}
 					m1[fila1][columna1] = !m1[fila1][columna1];
 					tblButacas1.repaint();
+					logger.log(Level.INFO, "SE HA ESCOGIDO UNA BUTACA");
 				}
 			}
 		});
@@ -169,12 +176,14 @@ public class VentanaButacas extends JFrame {
 				fila2 = tblButacas2.rowAtPoint(p);
 				columna2 = tblButacas2.columnAtPoint(p);
 				if(!m2[fila2][columna2]) {
+					
 					cont++;
 				}else {
 					cont--;
 				}
 				m2[fila2][columna2] = !m2[fila2][columna2];
 				tblButacas2.repaint();
+				logger.log(Level.INFO, "SE HA ESCOGIDO UNA BUTACA");
 
 			}
 		});

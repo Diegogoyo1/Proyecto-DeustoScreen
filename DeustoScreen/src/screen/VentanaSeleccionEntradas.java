@@ -1,16 +1,17 @@
 package screen;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 
-
-
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
-
+import domain.Usuario;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -43,7 +44,7 @@ public class VentanaSeleccionEntradas extends JFrame{
 		return mayores;
 	}
 
-	public VentanaSeleccionEntradas(JFrame va) {
+	public VentanaSeleccionEntradas(JFrame va, Usuario u) {
 		super();
 		totalEntradas = 0;
 		vActual=this;
@@ -62,36 +63,53 @@ public class VentanaSeleccionEntradas extends JFrame{
 		getContentPane().add(pEste, BorderLayout.EAST);
 		getContentPane().add(pOeste, BorderLayout.WEST);
 		getContentPane().add(pCentro, BorderLayout.CENTER);
-		pCentro.setLayout(new GridLayout(0, 2, 0, 0));
+		pCentro.setBorder(BorderFactory.createEmptyBorder(40, 1000, 10, 1000));
 	
 		
 		
 		//Creacion de Labels, Spinners y Botones
-		SpinnerModel spinnerModel = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 		SpinnerModel spinnerModel2 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 		SpinnerModel spinnerModel3 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 		SpinnerModel spinnerModel4 = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
 		lblSelecEntradas = new JLabel("Seleccione sus entradas");
+		pNorte.add(lblSelecEntradas);
+		
 		lblmenores = new JLabel("Menores de 18 años");
-		lblEntreAños = new JLabel("Entre 18 y 65 años");
-		lblMayores = new JLabel("Mayores de 65 años");
+		lblmenores.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		spinMenores = new JSpinner(spinnerModel2);
+		Dimension spinner = new Dimension(400, 40);
+		spinMenores.setPreferredSize(spinner);
+		
+		lblEntreAños = new JLabel("Entre 18 y 65 años");
+		lblEntreAños.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		spinEntreAños = new JSpinner(spinnerModel3);
+		spinEntreAños.setPreferredSize(spinner);
+		
+		lblMayores = new JLabel("Mayores de 65 años");
+		lblMayores.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		spinMayores = new JSpinner(spinnerModel4);
+		spinMayores.setPreferredSize(spinner);
+		
 		btnSiguiente = new JButton("Siguiente");
 		btnAtras = new JButton("Atras");
 
 		//Cambiamos tamaño del texto del panel sur
-		lblSelecEntradas.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblSelecEntradas.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		
 		//Añadimos  Labels, Spinners y Botones a paneles
 		pNorte.add(lblSelecEntradas);
+		pCentro.add(Box.createVerticalStrut(50));
 		pCentro.add(lblmenores);
+		
 		pCentro.add(spinMenores);
+		pCentro.add(Box.createVerticalStrut(50));
 		pCentro.add(lblEntreAños);
+
 		pCentro.add(spinEntreAños);
+		pCentro.add(Box.createVerticalStrut(50));
 		pCentro.add(lblMayores);
 		pCentro.add(spinMayores);
+		pCentro.add(Box.createVerticalStrut(50));
 		pSur.add(btnAtras);
 		pSur.add(btnSiguiente);
 		
@@ -104,7 +122,7 @@ public class VentanaSeleccionEntradas extends JFrame{
 				totalEntradas = menores + mayores + entreanios;
 				vActual.setVisible(false);
 				vActual.dispose();
-				new VentanaButacas (vActual);
+				new VentanaButacas (vActual, u);
 			} else {
 				JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una entrada","ERROR",JOptionPane.WARNING_MESSAGE);
 			}
@@ -132,8 +150,6 @@ public class VentanaSeleccionEntradas extends JFrame{
 	
 	}
 
-
-	
 
 
 

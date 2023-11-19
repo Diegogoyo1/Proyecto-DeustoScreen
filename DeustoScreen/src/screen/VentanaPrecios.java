@@ -5,6 +5,9 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
@@ -17,6 +20,7 @@ public class VentanaPrecios  extends JFrame{
 	protected JPanel PanelNorth, PanelCentral, PanelCentIzq, panel;
 	protected JButton btnAtras;
 	protected JLabel lblPrecios, lblMenores, lblPreciosMenores_1, lblEntreAnios, lblPreciosEntre_1, lblMayores, lblPrecioMayores_1;
+	private static Logger logger = Logger.getLogger(Main.class.getName());
 	
 	public VentanaPrecios(JFrame va) {
 		super();
@@ -77,6 +81,7 @@ public class VentanaPrecios  extends JFrame{
 		
 		//Añadir actionListener para Boton atras
 		btnAtras.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON ATRAS");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 		});
