@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
 
@@ -117,8 +118,6 @@ public class VentanaEntradas extends JFrame{
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON SIGUIENTE");
 			new VentanaSeleccionEntradas(vActual, u);
 
-			new VentanaSeleccionEntradas(vActual,u);
-
 			vActual.setVisible(false);
 			vActual.dispose();
 		});
@@ -135,7 +134,7 @@ public class VentanaEntradas extends JFrame{
 		setVisible(true);
 	}
 	
-	//public static void main(String[] args) {
-	//	VentanaEntradas va = new VentanaEntradas(null);
-	//}
+	/*public static void main(String[] args) {
+		new VentanaEntradas(null, null);
+	}*/
 }

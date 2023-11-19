@@ -312,7 +312,7 @@ public class VentanaButacas extends JFrame {
 				.getHeight();
 		setSize(anchoP, altoP);
 		setExtendedState(MAXIMIZED_BOTH);
-		//setResizable(false);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 300, 600, 400);
 		setTitle("BUTACAS");

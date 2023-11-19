@@ -167,8 +167,6 @@ public class VentanaRegistros extends JFrame {
 
 				new VentanaEntradas(vActual, usuarioNuevo);
 
-				new VentanaEntradas(vActual,usuarioNuevo);
-
 				vActual.dispose();
 			}
 			

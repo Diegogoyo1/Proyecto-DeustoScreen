@@ -184,7 +184,7 @@ public class VentanaInicioSesion extends JFrame {
 		setSize(anchoP, altoP);
 		setExtendedState(MAXIMIZED_BOTH);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(600, 300, 450, 300);
 		setTitle("INICIO SESION");
 		setVisible(true);
