@@ -202,7 +202,7 @@ public class Cine{
 		        return Pelicula;
 		    }
 
-		public static int getSumaPuntos() {
+		/*public static int getSumaPuntos() {
 			String puntosStr = Usuario.getContadorPuntos();
 			int puntos = Integer.parseInt(puntosStr);
 			int numeroEntradas = Entradas.size();
@@ -210,7 +210,7 @@ public class Cine{
 	        String numeroEnString = String.valueOf(puntosFinal);
 			Usuario.setContadorPuntos(numeroEnString);
 			return puntosFinal;
-		}
+		}*/
 		
 		
 			

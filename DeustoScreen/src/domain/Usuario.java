@@ -14,9 +14,9 @@ public class Usuario {
 	private String apellido;
 	private Date FechaNacimiento;
 	private String tlf;
-	private static String CorreoElectronico;
-	private static String Contrasenia;
-	private static String ContadorPuntos;
+	private String CorreoElectronico;
+	private String Contrasenia;
+	private String ContadorPuntos;
 	private static final String nomfichUsuarios = "src/ficheros/Usuarios.csv";
 	
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -101,7 +101,7 @@ public class Usuario {
 		this.tlf = tlf;
 	}
 
-	public static String getCorreoElectronico() {
+	public String getCorreoElectronico() {
 		return CorreoElectronico;
 
 	}
@@ -118,27 +118,12 @@ public class Usuario {
 		Contrasenia = contrasenia;
 	}
 	
-	public static void cargarPuntosDeFichero(String nomfich) {
-		try {
-			Scanner sc = new Scanner(new FileReader(nomfich));
-			String linea;
-			while(sc.hasNext()) {
-				linea = sc.nextLine();
-				String [] partes = linea.split(";");
-				ContadorPuntos = partes[6];
-				}
-				sc.close();
-			}catch (FileNotFoundException e) {
-			 
-		 }
-
-	}
 	
-	public static  String getContadorPuntos() {
+	public  String getContadorPuntos() {
 		return ContadorPuntos;
 	}
 
-	public static void setContadorPuntos(String contadorPuntos) {
+	public void setContadorPuntos(String contadorPuntos) {
 		ContadorPuntos = contadorPuntos;
 	}
 
