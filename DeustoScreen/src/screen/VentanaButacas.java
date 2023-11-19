@@ -116,7 +116,6 @@ public class VentanaButacas extends JFrame {
 		tblButacas1.getColumnModel().getColumn(4).setPreferredWidth(100);
 		tblButacas1.getColumnModel().getColumn(5).setPreferredWidth(100);
 
-		tblButacas1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		cargarFichero1(nomfich1);
 
 		// CREACION SEGUNDA TABLA BUTACAS
@@ -143,7 +142,6 @@ public class VentanaButacas extends JFrame {
 		tblButacas2.getColumnModel().getColumn(3).setPreferredWidth(100);
 		tblButacas2.getColumnModel().getColumn(4).setPreferredWidth(100);
 
-		tblButacas2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		cargarFichero2(nomfich2);
 
 		// MOUSE LISTENER DE LAS TABLAS

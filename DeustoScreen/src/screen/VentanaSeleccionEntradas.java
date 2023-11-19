@@ -25,10 +25,22 @@ public class VentanaSeleccionEntradas extends JFrame{
 	private JSpinner spinMenores, spinEntreAños, spinMayores;
 	private JFrame vActual, vAnterior;
 	
-	private static int totalEntradas;
+	private static int totalEntradas, menores, entreanios, mayores;
 	
 	public static int getTotalEntradas() {
 		return totalEntradas;
+	}
+	
+	public static int getMenores() {
+		return menores;
+	}
+	
+	public static int getEntreanios() {
+		return entreanios;
+	}
+	
+	public static int getMayores() {
+		return mayores;
 	}
 
 	public VentanaSeleccionEntradas(JFrame va) {
@@ -85,11 +97,11 @@ public class VentanaSeleccionEntradas extends JFrame{
 		
 		//ActionListener de los botones
 		btnSiguiente.addActionListener((e)->{
-			int menores = (int) spinMenores.getValue();
-			int entreaños= (int) spinEntreAños.getValue();
-			int mayores = (int) spinMayores.getValue();
-			if (menores > 0 || entreaños > 0 || mayores > 0) {
-				totalEntradas = menores + mayores + entreaños;
+			menores = (int) spinMenores.getValue();
+			entreanios= (int) spinEntreAños.getValue();
+			mayores = (int) spinMayores.getValue();
+			if (menores > 0 || entreanios > 0 || mayores > 0) {
+				totalEntradas = menores + mayores + entreanios;
 				vActual.setVisible(false);
 				vActual.dispose();
 				new VentanaButacas (vActual);

@@ -25,6 +25,7 @@ public class VentanaCartelera extends JFrame {
 	private JLabel lblPeliculas;
 	private JScrollPane scrollVentana;
 	private JFrame vAnterior, vActual;
+	PanelConFondo panel;
 	
 	
 	
@@ -182,7 +183,7 @@ public class VentanaCartelera extends JFrame {
 		
 		
 		
-		
+		panel = new PanelConFondo(new ImageIcon("imagenes/FondoCartelera.jpg").getImage());
 		pSur.add(btnAtras);
 		pNorte.add(lblPeliculas);
 		pCentro.add(btnOppenheimer);
@@ -190,7 +191,12 @@ public class VentanaCartelera extends JFrame {
 		pCentro.add(btnSawX);
 		pCentro.add(btnCampeonex);
 		pCentro.add(btnTrolls3);
-		
+		panel.add(pSur);
+		panel.add(pNorte);
+		panel.add(pCentro);
+		pSur.setOpaque(false);
+		pNorte.setOpaque(false);
+		pCentro.setOpaque(false);
 		
 		
 		
@@ -203,9 +209,8 @@ public class VentanaCartelera extends JFrame {
 		setExtendedState(MAXIMIZED_BOTH);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds (600,300,380,400);
 		setTitle("PELICULAS");
-		//setContentPane(va);
+		setContentPane(panel);
 		setVisible(true);
 		
 		
