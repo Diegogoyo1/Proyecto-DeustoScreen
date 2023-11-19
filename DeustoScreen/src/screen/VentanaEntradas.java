@@ -6,6 +6,7 @@ import javax.swing.SwingConstants;
 
 import domain.Cine;
 import domain.Peliculas;
+import domain.Usuario;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -35,7 +36,7 @@ public class VentanaEntradas extends JFrame{
 	private JComboBox<String> cbTitulos;
 	//private JComboBox<String> cbHorarios;
 	
-	public VentanaEntradas(JFrame va) {
+	public VentanaEntradas(JFrame va, Usuario u) {
 		
 		//cargarFichero("datos/Peliculas.csv");
 		vActual=this;
@@ -108,7 +109,7 @@ public class VentanaEntradas extends JFrame{
 		});
 		
 		BtnSiguiente.addActionListener((e)->{
-			new VentanaSeleccionEntradas(vActual);
+			new VentanaSeleccionEntradas(vActual,u);
 			vActual.setVisible(false);
 			vActual.dispose();
 		});

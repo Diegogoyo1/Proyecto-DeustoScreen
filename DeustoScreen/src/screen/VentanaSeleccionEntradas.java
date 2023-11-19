@@ -11,6 +11,8 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
+import domain.Usuario;
+
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -43,7 +45,7 @@ public class VentanaSeleccionEntradas extends JFrame{
 		return mayores;
 	}
 
-	public VentanaSeleccionEntradas(JFrame va) {
+	public VentanaSeleccionEntradas(JFrame va,Usuario u) {
 		super();
 		totalEntradas = 0;
 		vActual=this;
@@ -104,7 +106,7 @@ public class VentanaSeleccionEntradas extends JFrame{
 				totalEntradas = menores + mayores + entreanios;
 				vActual.setVisible(false);
 				vActual.dispose();
-				new VentanaButacas (vActual);
+				new VentanaButacas (vActual,u);
 			} else {
 				JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una entrada","ERROR",JOptionPane.WARNING_MESSAGE);
 			}

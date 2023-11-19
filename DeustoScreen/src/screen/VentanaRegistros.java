@@ -1,6 +1,7 @@
 package screen;
 
 import java.awt.BorderLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -116,19 +117,20 @@ public class VentanaRegistros extends JFrame {
 			String CorreoElectronico = txtCorreoElectronico.getText();
 			String contrasenia = contraseniaR.getText();
 			String ContadorPuntos = "0";
-			
+		
 			// Verificar si existe el usuario
 			//Usuario usuarioExstente = Cine.buscarUsuario(CorreoElectronico);
 			if (Cine.buscarUsuario(CorreoElectronico)!= null) {
 			JOptionPane.showMessageDialog(null, "Usuario ya existe","ERROR",JOptionPane.ERROR_MESSAGE);
 			}
 			else {
+				
 				//crear usuario nuevo
 				Usuario usuarioNuevo = new Usuario(nombre, apellido,fNac,tlf, CorreoElectronico, contrasenia, ContadorPuntos);
-				Cine.aniadirUsuario(usuarioNuevo);
+				System.out.println(usuarioNuevo);
 				Cine.guardarUsuariosEnFichero( nomfichUsuarios);
 				JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
-				new VentanaEntradas(vActual);
+				new VentanaEntradas(vActual,usuarioNuevo);
 				vActual.dispose();
 			}
 			

@@ -29,6 +29,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 
+import domain.Usuario;
+
 public class VentanaButacas extends JFrame {
 	private JPanel pNorte, pSur, pEste, pOeste;
 	private JButton btnSiguiente, btnAtras;
@@ -43,7 +45,7 @@ public class VentanaButacas extends JFrame {
 	private boolean [][]m1;
 	private boolean [][]m2;
 
-	public VentanaButacas(JFrame va) {
+	public VentanaButacas(JFrame va,Usuario u) {
 		super();
 		m1 = new boolean[5][6];
 		m2 = new boolean[5][5];
@@ -82,7 +84,7 @@ public class VentanaButacas extends JFrame {
 
 		btnSiguiente.addActionListener((e) -> {
 			if (cont == VentanaSeleccionEntradas.getTotalEntradas()) {
-				new VentanaPuntos(vActual);
+				new VentanaPuntos(vActual,u);
 				vActual.setVisible(false);
 				vActual.dispose();
 			} else {

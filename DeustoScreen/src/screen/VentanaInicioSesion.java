@@ -124,7 +124,7 @@ public class VentanaInicioSesion extends JFrame {
 					JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
 					usuario = u; //Guardamos la información del usuario que ha iniciado sesión
 					carrito = new ArrayList<>(); //Inicializamos su carrito a una lista vacía (Instanciamos la lista que hace referencia al carrito)
-					new VentanaEntradas(vActual);
+					new VentanaEntradas(vActual,u);
 					vActual.setVisible(false);
 					txtCorreoElectronico.setText("");
 					contraseniaIs.setText("");
