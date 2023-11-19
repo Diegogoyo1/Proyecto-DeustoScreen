@@ -1,6 +1,8 @@
 package domain;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.security.PublicKey;
@@ -17,6 +19,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.logging.Logger;
 
+import javax.net.ssl.SSLEngine;
 import javax.swing.undo.UndoableEditSupport;
 
 import screen.VentanaSeleccionEntradas;
@@ -156,7 +159,8 @@ public class Cine{
 		}
 		public static void guardarUsuariosEnFichero(String nomfich) {
 			try {
-				PrintWriter pw = new PrintWriter(nomfich);
+				//PrintWriter pw =new PrintWriter (nomfich);
+				PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfich),true));
 				for(Usuario u : Usuarios) {
 					pw.println(u.getNombre()+";"+u.getApellido()+";"+u.getFechaNacimientoStr()+";"+u.getTlf() +";"
 							+u.getCorreoElectronico()+";"+u.getContrasenia()+ ";" + u.getContadorPuntos());
@@ -199,8 +203,10 @@ public class Cine{
 		    }
 
 		public static int getSumaPuntos() {
-			int puntos = Integer.parseInt(Usuario.getContadorPuntos());
-			int puntosFinal = puntos +10;
+			String puntosStr = Usuario.getContadorPuntos();
+			int puntos = Integer.parseInt(puntosStr);
+			int numeroEntradas = Entradas.size();
+			int puntosFinal = puntos +10*numeroEntradas;
 	        String numeroEnString = String.valueOf(puntosFinal);
 			Usuario.setContadorPuntos(numeroEnString);
 			return puntosFinal;
