@@ -87,6 +87,19 @@ public class VentanaRegistros extends JFrame {
 		txtApellido= new JTextField();
 		txtFechaNacimiento= new JTextField();
 		textFieldTlf = new JTextField();
+		textFieldTlf.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				int key = e.getKeyChar();
+				boolean numero = key >=48 && key <= 57;
+				if (!numero ) {
+					e.consume();
+				}
+				if (textFieldTlf.getText().trim().length() == 9) {
+					e.consume();
+				}
+			}
+		});
 		txtCorreoElectronico= new JTextField();
 		contraseniaR= new JPasswordField();
 		txtCorreoElectronico.setPreferredSize(new Dimension(400,30));
@@ -154,7 +167,9 @@ public class VentanaRegistros extends JFrame {
 			//Usuario usuarioExstente = Cine.buscarUsuario(CorreoElectronico);
 			if (Cine.buscarUsuario(CorreoElectronico)!= null) {
 			JOptionPane.showMessageDialog(null, "Usuario ya existe","ERROR",JOptionPane.ERROR_MESSAGE);
-			}
+			} else if (!isValidEmail(CorreoElectronico)) {
+				JOptionPane.showMessageDialog(null, "Direccion de correo electronico valido","ERROR",JOptionPane.ERROR_MESSAGE);
+            }
 			else {
 
 				logger.log(Level.INFO, "SE HA CREADO UN NUEVO USUARIO");
@@ -194,6 +209,9 @@ public class VentanaRegistros extends JFrame {
 		setTitle("REGISTRO");
 		setVisible(true);
 	}
-	
+	 private boolean isValidEmail(String email) {
+	        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+	        return Pattern.matches(emailRegex, email);
+	    }
 	
 }
