@@ -116,7 +116,7 @@ public class VentanaInicioSesion extends JFrame {
 			 if(CorreoElectronico.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Inserte un Usuario","ERROR",JOptionPane.ERROR_MESSAGE);
 				}
-				 else if (con.isEmpty()) {
+			 else if (con.isEmpty()) {
 					 JOptionPane.showMessageDialog(null, "Inserte Contraseña","ERROR",JOptionPane.ERROR_MESSAGE);
 				 }
 			Usuario u = Cine.buscarUsuario(CorreoElectronico);
@@ -124,7 +124,6 @@ public class VentanaInicioSesion extends JFrame {
 			 if (!CorreoElectronico.equals(u.getCorreoElectronico())) {
 				JOptionPane.showMessageDialog(null, "Direccion de correo electronico no valido","ERROR",JOptionPane.ERROR_MESSAGE);
             }
-			
 			
 			else if (CorreoElectronico.equals(u.getCorreoElectronico())) {
 				if(!con.equals(u.getContrasenia())) {
@@ -143,21 +142,7 @@ public class VentanaInicioSesion extends JFrame {
 				}
 					
 			}
-				
-			/*}else {
-				if(u.getContrasenia().equals(con)) {
-					JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
-					usuario = u; //Guardamos la información del usuario que ha iniciado sesión
-					carrito = new ArrayList<>(); //Inicializamos su carrito a una lista vacía (Instanciamos la lista que hace referencia al carrito)
-					new VentanaEntradas(vActual);
-					vActual.setVisible(false);
-					txtCorreoElectronico.setText("");
-					contraseniaIs.setText("");
-				}else {
-					JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR",JOptionPane.WARNING_MESSAGE);
-					new VentanaEntradas(vActual);
-				}
-			}*/
+
 			
 		});
 			
