@@ -46,19 +46,22 @@ public class VentanaPuntos extends JFrame{
 		
 		
 		//LABELS
-		lblUsuario = new JLabel(" USUARIO ");
+		lblUsuario = new JLabel(" USUARIO: ");
 		lblNumPuntos = new JLabel (" NÚMERO DE PUNTOS: ");
 		
 		//TEXTFIELD
 		txtUsuario = new JLabel(u.getCorreoElectronico());
 		txtUsuario.setBackground(new Color(255, 255, 255));
-		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		txtUsuario.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		//txtUsuario.setSize(2, 4);
 		//txtUsuario.setPreferredSize(new Dimension(2, 4));
 		
 		txtNumPuntos = new JLabel(u.getContadorPuntos());
+		txtNumPuntos.setBackground(new Color(255, 255, 255));
+		txtNumPuntos.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		txtNumPuntos.setHorizontalAlignment(SwingConstants.LEFT);
 
 		
 		
