@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Panel;
 import java.awt.image.BufferedImage;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +29,7 @@ public class VentanaCartelera extends JFrame {
 	private JScrollPane scrollVentana;
 	private JFrame vAnterior, vActual;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
-	
+	PanelConFondo panel;
 	
 	
 	
@@ -46,16 +47,21 @@ public class VentanaCartelera extends JFrame {
 		pOeste = new JPanel();
 		pCentro = new JPanel();
 		
-		getContentPane().add(pNorte, BorderLayout.NORTH);
-		getContentPane().add(pSur, BorderLayout.SOUTH);
-		getContentPane().add(pEste, BorderLayout.EAST);
-		getContentPane().add(pOeste, BorderLayout.WEST);
-		getContentPane().add(pCentro, BorderLayout.CENTER);
+		
+		
+		
+		panel = new PanelConFondo(new ImageIcon("imagenes/FondoCartelera.jpg").getImage());
+		
+		panel.add(pNorte, BorderLayout.NORTH);
+		panel.add(pSur, BorderLayout.SOUTH);
+		panel.add(pEste, BorderLayout.EAST);
+		panel.add(pOeste, BorderLayout.WEST);
+		panel.add(pCentro, BorderLayout.CENTER);
 		int espacioEntrePeneles = 200;
 		pCentro.setBorder(new EmptyBorder(espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles));
 		
-		scrollVentana = new JScrollPane();
-		getContentPane().add(scrollVentana, BorderLayout.EAST);
+//		scrollVentana = new JScrollPane();
+//		getContentPane().add(scrollVentana, BorderLayout.EAST);
 		
 		
 		btnAtras = new JButton("Atras");
@@ -182,14 +188,7 @@ public class VentanaCartelera extends JFrame {
 		});
 		
 		
-		
 		lblPeliculas = new JLabel("PELICULAS");
-		
-		
-
-		
-		
-		
 		
 		
 		pSur.add(btnAtras);
@@ -199,7 +198,9 @@ public class VentanaCartelera extends JFrame {
 		pCentro.add(btnSawX);
 		pCentro.add(btnCampeonex);
 		pCentro.add(btnTrolls3);
-	
+		pCentro.setOpaque(false);
+		pSur.setOpaque(false);
+		pNorte.setOpaque(false);
 		
 		
 		
@@ -213,14 +214,16 @@ public class VentanaCartelera extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("PELICULAS");
-		
+		setContentPane(panel);
 		setVisible(true);
 		
 		
 		
 	}
 	
-	
+	public static void main(String[] args) {
+		new VentanaCartelera(null);
+	}
 
 
 }

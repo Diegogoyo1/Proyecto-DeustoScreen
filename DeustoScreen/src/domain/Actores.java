@@ -1,6 +1,6 @@
 package domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,7 +18,7 @@ public class Actores {
 		super();
 		this.nombreActor = nombreActor;
 		try {
-			this.fechaNacimientoAct = (Date) sdf.parse(fechaNacimientoAct);
+			this.fechaNacimientoAct = sdf.parse(fechaNacimientoAct);
 		} catch (ParseException e) {
 			this. fechaNacimientoAct= new Date(0);
 		}

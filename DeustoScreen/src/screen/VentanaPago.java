@@ -21,8 +21,8 @@ public class VentanaPago extends JFrame {
 	private JButton btnFinalizarCompra, btnAtras;
 	private JPanel pSur, pCentro;
 	private JFrame vActual, vAnterior;
-	private JLabel lblImagen, lblEntradasMenores, lblEntradasEntreanios, lblEntradasMayores;
-
+	private JLabel  lblEntradasMenores, lblEntradasEntreanios, lblEntradasMayores;
+	PanelConFondo panel;
 	
 	public VentanaPago(JFrame va) {
 		vActual=this;
@@ -31,25 +31,22 @@ public class VentanaPago extends JFrame {
 		
 		
 		pSur = new JPanel();
-		pCentro = new JPanel();
+		pCentro = new JPanel(null);
 		
-	
-		getContentPane().add(pSur, BorderLayout.SOUTH);
-		getContentPane().add(pCentro, BorderLayout.CENTER);
+		panel = new PanelConFondo(new ImageIcon("imagenes/ReciboPago.jpg").getImage());
+		
+		panel.add(pSur, BorderLayout.SOUTH);
+		panel.add(pCentro, BorderLayout.CENTER);
+		
 		
 		int espacioEntrePeneles = 150;
 		pCentro.setBorder(new EmptyBorder(espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles));
 		
 		btnFinalizarCompra = new JButton("Finalizar Compra");
 		btnAtras = new JButton("Atras");
-		ImageIcon imRecibo = new ImageIcon("imagenes/ReciboPago.jpg");
-		lblImagen = new JLabel(imRecibo);
-		lblImagen.setOpaque(false);
-		lblImagen.setPreferredSize(new Dimension(imRecibo.getIconWidth(), imRecibo.getIconHeight()));
-		lblImagen.setPreferredSize(new Dimension(356, 550));
-		lblEntradasEntreanios = new JLabel(String.valueOf(VentanaSeleccionEntradas.getEntreanios()));
-		lblEntradasMayores = new JLabel(String.valueOf(VentanaSeleccionEntradas.getMenores()));
-		lblEntradasMenores = new JLabel(String.valueOf(VentanaSeleccionEntradas.getMayores()));
+		//lblImagen.setBounds(200, 300, lblImagen.getWidth(), lblImagen.getHeight());
+		
+		
 		
 		btnFinalizarCompra.addActionListener((e)->{
 			JOptionPane.showMessageDialog(null, "Gracias por tu compra","PAGO FINALIZADO",JOptionPane.INFORMATION_MESSAGE);
@@ -63,28 +60,32 @@ public class VentanaPago extends JFrame {
 		});
 		
 		
-		
-		lblEntradasEntreanios.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblEntradasEntreanios.setVerticalAlignment(SwingConstants.CENTER);
+		lblEntradasEntreanios = new JLabel(String.valueOf(VentanaSeleccionEntradas.getEntreanios()));
 		lblEntradasEntreanios.setForeground(Color.BLACK); 
+		lblEntradasEntreanios.setBounds(855,400,40,40);
+		//lblImagen.add(lblEntradasEntreanios, BorderLayout.CENTER);
 		
-		lblImagen.add(lblEntradasEntreanios, BorderLayout.CENTER);
-		
-		lblEntradasMenores.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblEntradasMenores.setVerticalAlignment(SwingConstants.TOP);
-		lblEntradasMenores.setForeground(Color.BLACK); 
-		
-		lblImagen.add(lblEntradasMenores, BorderLayout.CENTER);
-		
-		lblEntradasMayores.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblEntradasMayores.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblEntradasMayores = new JLabel(String.valueOf(VentanaSeleccionEntradas.getMayores()));
 		lblEntradasMayores.setForeground(Color.BLACK); 
+		lblEntradasMayores.setBounds(855,330,40,40);
+		//lblImagen.add(lblEntradasMenores, BorderLayout.CENTER);
 		
-		lblImagen.add(lblEntradasMayores, BorderLayout.CENTER);
+		lblEntradasMenores = new JLabel(String.valueOf(VentanaSeleccionEntradas.getMenores()));
+		lblEntradasMenores.setForeground(Color.BLACK); 
+		lblEntradasMenores.setBounds(855,340,40,40);
+		//lblImagen.add(lblEntradasMayores, BorderLayout.CENTER);
 		
-		pCentro.add(lblImagen);
+		
+		pCentro.add(lblEntradasEntreanios);
+		pCentro.add(lblEntradasMenores);
+		pCentro.add(lblEntradasMayores);
+		
 		pSur.add(btnAtras);
 		pSur.add(btnFinalizarCompra);
+		pSur.setOpaque(false);
+		pCentro.setOpaque(false);
+		
+		
 		
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
 		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
@@ -94,11 +95,12 @@ public class VentanaPago extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds (600,300,380,400);
 		setTitle("FINALIZAR COMPRA");
+		setContentPane(panel);
 		setVisible(true);
 		
 	}
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		new VentanaPago(null);
-	}*/
+	}
 
 }

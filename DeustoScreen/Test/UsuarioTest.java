@@ -2,6 +2,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDate;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,6 +16,10 @@ public class UsuarioTest {
 		u = new Usuario("a", "a", "01-01-1970", "123", "a", "a", "0");
 	}
 	 
+	@After
+	public void tearDown() {
+		u = null;
+	}
 	@Test
 	public void TestGetNombre() {
 		assertEquals("a", u.getNombre());
