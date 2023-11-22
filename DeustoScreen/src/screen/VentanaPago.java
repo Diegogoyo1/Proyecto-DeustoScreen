@@ -19,33 +19,33 @@ import javax.swing.border.EmptyBorder;
 
 public class VentanaPago extends JFrame {
 	private JButton btnFinalizarCompra, btnAtras;
-	private JPanel pSur, pCentro;
+	private JPanel pSur, pCentro, pNorte;
 	private JFrame vActual, vAnterior;
-	private JLabel  lblEntradasMenores, lblEntradasEntreanios, lblEntradasMayores;
-	PanelConFondo panel;
+	private JLabel  lblTitulo,lblNumPrec, lblEntradasMenores, lblEntradasEntreanios, lblEntradasMayores, lblTotal, lblAsteriscos;
 	
 	public VentanaPago(JFrame va) {
 		vActual=this;
 		vAnterior=va;
 		
 		
+		 
 		
+		//PANELES
 		pSur = new JPanel();
 		pCentro = new JPanel(null);
-		
-		panel = new PanelConFondo(new ImageIcon("imagenes/ReciboPago.jpg").getImage());
-		
-		panel.add(pSur, BorderLayout.SOUTH);
-		panel.add(pCentro, BorderLayout.CENTER);
-		
-		
+		pNorte = new JPanel();
+
+		getContentPane().add(pSur, BorderLayout.SOUTH);
+		getContentPane().add(pCentro, BorderLayout.CENTER);
+		getContentPane().add(pNorte, BorderLayout.NORTH);
+
 		int espacioEntrePeneles = 150;
 		pCentro.setBorder(new EmptyBorder(espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles));
 		
-		btnFinalizarCompra = new JButton("Finalizar Compra");
-		btnAtras = new JButton("Atras");
-		//lblImagen.setBounds(200, 300, lblImagen.getWidth(), lblImagen.getHeight());
 		
+		//BOTONES
+		btnFinalizarCompra = new JButton("Finalizar Compra");
+		btnAtras = new JButton("Atras");		
 		
 		
 		btnFinalizarCompra.addActionListener((e)->{
@@ -60,31 +60,57 @@ public class VentanaPago extends JFrame {
 		});
 		
 		
-		lblEntradasEntreanios = new JLabel(String.valueOf(VentanaSeleccionEntradas.getEntreanios()));
-		lblEntradasEntreanios.setForeground(Color.BLACK); 
-		lblEntradasEntreanios.setBounds(855,400,40,40);
-		//lblImagen.add(lblEntradasEntreanios, BorderLayout.CENTER);
 		
-		lblEntradasMayores = new JLabel(String.valueOf(VentanaSeleccionEntradas.getMayores()));
+		//LABELS
+		lblTitulo = new JLabel("RESUMEN PAGO");
+		
+		lblNumPrec = new JLabel("TIPO                    nº               Pr.");
+		lblNumPrec.setFont(new Font( "Arial", Font.PLAIN, 25));
+		lblNumPrec.setBounds(700, 0, 500, 500);
+		
+		lblAsteriscos = new JLabel("*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *");
+		lblAsteriscos.setFont(new Font( "Arial", Font.PLAIN, 20));
+		lblAsteriscos.setBounds(700, -25, 500, 500);
+		
+		lblEntradasMenores = new JLabel("Junior                   " + String.valueOf(VentanaSeleccionEntradas.getMenores()) + "                " + String.valueOf(VentanaSeleccionEntradas.getMenores()*4));
+		lblEntradasMenores.setForeground(Color.BLACK);
+		lblEntradasMenores.setFont(new Font( "Arial", Font.PLAIN, 25));
+		lblEntradasMenores.setBounds(700,50,500,500);
+		
+		lblEntradasEntreanios = new JLabel("Adulto                   " + String.valueOf(VentanaSeleccionEntradas.getEntreanios()) + "                " + String.valueOf(VentanaSeleccionEntradas.getEntreanios()*7));
+		lblEntradasEntreanios.setForeground(Color.BLACK);
+		lblEntradasEntreanios.setFont(new Font( "Arial", Font.PLAIN, 25));
+		lblEntradasEntreanios.setBounds(700,100,500,500);
+		
+		lblEntradasMayores = new JLabel("Senior                   " + String.valueOf(VentanaSeleccionEntradas.getMayores()) + "                " + String.valueOf(VentanaSeleccionEntradas.getMayores()*5));
 		lblEntradasMayores.setForeground(Color.BLACK); 
-		lblEntradasMayores.setBounds(855,330,40,40);
-		//lblImagen.add(lblEntradasMenores, BorderLayout.CENTER);
+		lblEntradasMayores.setFont(new Font( "Arial", Font.PLAIN, 25));
+		lblEntradasMayores.setBounds(700,150,500,500);
 		
-		lblEntradasMenores = new JLabel(String.valueOf(VentanaSeleccionEntradas.getMenores()));
-		lblEntradasMenores.setForeground(Color.BLACK); 
-		lblEntradasMenores.setBounds(855,340,40,40);
-		//lblImagen.add(lblEntradasMayores, BorderLayout.CENTER);
+		
+		
+		lblTotal = new JLabel("TOTAL                                    " 
+					+  String.valueOf((VentanaSeleccionEntradas.getEntreanios()*7) 
+					+ (VentanaSeleccionEntradas.getMayores()*5) 
+					+ (VentanaSeleccionEntradas.getMenores()*4) ) );
+		lblTotal.setFont(new Font( "Arial", Font.PLAIN, 25));
+		lblTotal.setBounds(700,300,500,500);
+		
+		
+
 		
 		
 		pCentro.add(lblEntradasEntreanios);
 		pCentro.add(lblEntradasMenores);
 		pCentro.add(lblEntradasMayores);
+		pCentro.add(lblAsteriscos);
+		pCentro.add(lblTotal);
+		pCentro.add(lblNumPrec);
+		
 		
 		pSur.add(btnAtras);
 		pSur.add(btnFinalizarCompra);
-		pSur.setOpaque(false);
-		pCentro.setOpaque(false);
-		
+		pNorte.add(lblTitulo);
 		
 		
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
@@ -95,7 +121,6 @@ public class VentanaPago extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds (600,300,380,400);
 		setTitle("FINALIZAR COMPRA");
-		setContentPane(panel);
 		setVisible(true);
 		
 	}

@@ -1,6 +1,9 @@
 import static org.junit.Assert.assertEquals;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 
 import org.junit.After;
 import org.junit.Before;
@@ -31,9 +34,17 @@ public class UsuarioTest {
 	}
 	
 	@Test 
-	public void TestGetFechaNacimientoAct() {
-		assertEquals(LocalDate.of(1970, 01, 01), u.getFechaNacimientoStr());
+	public void TestGetFechaNacimiento() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		try {
+			Date d = sdf.parse("01-001-1970");
+			assertEquals(d.getTime(), u.getFechaNacimiento().getTime());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+		
 	
 	@Test
 	public void TestGetTlf() {

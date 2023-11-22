@@ -81,7 +81,7 @@ public class Usuario {
 	}
 
 
-	public Date getFechanacimiento() {
+	public Date getFechaNacimiento() {
 		return FechaNacimiento;
 	}
 	public String getFechaNacimientoStr() {
