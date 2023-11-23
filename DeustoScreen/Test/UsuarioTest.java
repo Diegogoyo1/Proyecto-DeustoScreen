@@ -23,6 +23,63 @@ public class UsuarioTest {
 	public void tearDown() {
 		u = null;
 	}
+	
+	@Test
+	public void testSetNombre() {
+		String nombre = "a";
+		u.setNombre(nombre);
+		assertEquals(nombre, u.getNombre());
+	}
+	
+	@Test
+	public void testSetApellido() {
+		String apellido = "a";
+		u.setApellido(apellido);
+		assertEquals(apellido, u.getApellido());
+	}
+	
+	@Test
+	public void testSetFechaNacimiento() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		try {
+			Date fechaNac = sdf.parse("01-01-1970");
+			u.setFechaNacimiento(fechaNac);
+			assertEquals(fechaNac, u.getFechaNacimiento());
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		
+		
+	}
+	@Test
+	public void testSetTlf() {
+		String tlf = "123";
+		u.setTlf(tlf);
+		assertEquals(tlf, u.getTlf());
+	}
+	
+	@Test
+	public void testSetCorreoElectronico() {
+		String ce = "a";
+		u.setCorreoElectronico(ce);
+		assertEquals(ce, u.getCorreoElectronico());
+	}
+	
+	@Test
+	public void testSetContrasenia() {
+		String contrasenia = "a";
+		u.setContrasenia(contrasenia);
+		assertEquals(contrasenia, u.getContrasenia());
+	}
+	
+	@Test
+	public void testSetContadorPuntos() {
+		String cp = "0";
+		u.setContadorPuntos(cp);
+		assertEquals(cp, u.getContadorPuntos());
+	}
+	
 	@Test
 	public void TestGetNombre() {
 		assertEquals("a", u.getNombre());
@@ -43,6 +100,11 @@ public class UsuarioTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void testGetFechaNacimientoStr() {
+		assertEquals("01-01-1970", u.getFechaNacimientoStr());
 	}
 		
 	
@@ -65,5 +127,25 @@ public class UsuarioTest {
 	public void TestGetContadorPuntos() {
 		assertEquals("0", u.getContadorPuntos());
 	}
-
+	
+	@Test
+	public void testToString() {
+		u.setNombre("a");
+		u.setApellido("a");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		try {
+			Date fechaNac = sdf.parse("01-01-1970");
+			u.setFechaNacimiento(fechaNac);
+			assertEquals(fechaNac, u.getFechaNacimiento());
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		u.setTlf("123");
+		u.setCorreoElectronico("a");
+		u.setContrasenia("a");
+		u.setContadorPuntos("0");
+		String expectedToString = "Usuario [nombre=a, apellido=a, fechanacimiento=01-01-1970, tlf=123, correoElectronico=a, contraseña: a, Puntos:0]";
+		assertEquals(expectedToString, u.toString());
+	}
 }

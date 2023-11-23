@@ -87,7 +87,8 @@ public class Usuario {
 	public String getFechaNacimientoStr() {
 		return sdf.format(FechaNacimiento);
 	}
-
+	
+	
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.FechaNacimiento = fechaNacimiento;
 	}
@@ -136,8 +137,8 @@ public class Usuario {
 	// toString
 	@Override
 	public String toString() {
-		return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", fechanacimiento=" + FechaNacimiento + ", sdf="
-				+ sdf + ", tlf=" + tlf + ", CorreoElectronico=" + CorreoElectronico + "contrasenia: " + Contrasenia+ "Puntos:"+ ContadorPuntos+ "]";
+		return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", fechanacimiento=" + getFechaNacimientoStr() + ", sdf="
+				+ sdf + ", tlf=" + tlf + ", correoElectronico=" + CorreoElectronico + ", contraseña: " + Contrasenia+ ", Puntos:"+ ContadorPuntos+ "]";
 	}
 	
 	

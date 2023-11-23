@@ -19,6 +19,19 @@ public class ActoresTest {
 	}
 	
 	@Test
+	public void testSetNombreActor() {
+		String actor = "Cillian Murphy";
+		a.setNombreActor(actor);
+		assertEquals(actor, a.getNombreActor());
+	}
+	
+	@Test
+	public void testSetFechaNacimiento() {
+		
+	}
+	
+	
+	@Test
 	public void TestGetNombreActor() {
 		assertEquals("Cillian Murphy", a.getNombreActor());
 	} 
