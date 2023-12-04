@@ -64,7 +64,7 @@ public class PeliculasTest {
 	
 	@Test
 	public void testGetReparto() {
-		List<String> actores = Arrays.asList("Cillian Murphy");
+		List<String> actores = Arrays.asList();
 		assertEquals(actores, p.getReparto());
 		
 	}

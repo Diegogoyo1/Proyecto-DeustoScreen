@@ -24,6 +24,18 @@ public class UsuarioTest {
 		u = null;
 	}
 	
+//	@Test
+//	public void testUsuario() {
+//		u = new Usuario();
+//		assertEquals(null, u.getNombre());
+//		assertEquals(null, u.getApellido());
+//		assertEquals(null, u.getFechaNacimiento());
+//		assertEquals(null, u.getTlf());
+//		assertEquals(null, u.getCorreoElectronico());
+//		assertEquals(null, u.getContrasenia());
+//		assertEquals(null, u.getContadorPuntos());
+//	}
+	
 	@Test
 	public void testSetNombre() {
 		String nombre = "a";
@@ -94,10 +106,9 @@ public class UsuarioTest {
 	public void TestGetFechaNacimiento() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		try {
-			Date d = sdf.parse("01-001-1970");
+			Date d = sdf.parse("01-01-1970");
 			assertEquals(d.getTime(), u.getFechaNacimiento().getTime());
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -136,7 +147,7 @@ public class UsuarioTest {
 		try {
 			Date fechaNac = sdf.parse("01-01-1970");
 			u.setFechaNacimiento(fechaNac);
-			assertEquals(fechaNac, u.getFechaNacimiento());
+			assertEquals(fechaNac.getTime(), u.getFechaNacimiento().getTime());
 		} catch (ParseException e) {
 			
 			e.printStackTrace();

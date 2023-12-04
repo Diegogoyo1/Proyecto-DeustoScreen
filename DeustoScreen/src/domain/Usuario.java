@@ -24,22 +24,6 @@ public class Usuario {
 	
 	//Contructor
 	
-	public Usuario() {
-		super();
-	}
-	
-	public Usuario(String nombre, String apellido, Date FechaNacimiento, String tlf,
-			String correoElectronico, String contrasenia, String ContadorPuntos) {
-		super();
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.FechaNacimiento = FechaNacimiento;
-		this.tlf = tlf;
-		this.CorreoElectronico = correoElectronico;
-		this.Contrasenia= contrasenia;
-		this.ContadorPuntos = ContadorPuntos;
-	}
-	
 	public Usuario(String nombre, String apellido, String FechaNacimiento, String tlf,
 			String correoElectronico, String contrasenia, String ContadorPuntos) {
 		super();
@@ -56,6 +40,19 @@ public class Usuario {
 		this.CorreoElectronico = correoElectronico;
 		this.Contrasenia= contrasenia;
 		this.ContadorPuntos = ContadorPuntos;
+	}
+	
+	public Usuario() {
+		super();
+		this.nombre = null;
+		this.apellido = null;
+		this.FechaNacimiento=new Date(0);
+		
+		
+		this.tlf = null;
+		this.CorreoElectronico = null;
+		this.Contrasenia= null;
+		this.ContadorPuntos = null;
 	}
 	
 	
@@ -137,8 +134,7 @@ public class Usuario {
 	// toString
 	@Override
 	public String toString() {
-		return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", fechanacimiento=" + getFechaNacimientoStr() + ", sdf="
-				+ sdf + ", tlf=" + tlf + ", correoElectronico=" + CorreoElectronico + ", contraseña: " + Contrasenia+ ", Puntos:"+ ContadorPuntos+ "]";
+		return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", fechanacimiento=" + getFechaNacimientoStr() + ", tlf=" + tlf + ", correoElectronico=" + CorreoElectronico + ", contraseña: " + Contrasenia+ ", Puntos:"+ ContadorPuntos+ "]";
 	}
 	
 	

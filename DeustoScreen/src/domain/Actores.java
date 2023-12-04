@@ -24,14 +24,6 @@ public class Actores {
 		}
 	}
 
-	
-	public Actores(String nombreActor, Date fechaNacimientoAct) {
-		super();
-		this.nombreActor = nombreActor;
-		this.fechaNacimientoAct = fechaNacimientoAct;
-	}
-
-	
 
 	public String getNombreActor() {
 		return nombreActor;

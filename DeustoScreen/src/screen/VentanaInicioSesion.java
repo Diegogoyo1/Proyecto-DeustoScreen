@@ -55,7 +55,7 @@ public class VentanaInicioSesion extends JFrame {
 		super();
 		vActual=this;
 		vAnterior=va;
-	
+		
 		
 		pNorte = new JPanel(new GridLayout(1, 2));
 		pCentro = new JPanel();
@@ -121,7 +121,7 @@ public class VentanaInicioSesion extends JFrame {
 				 }
 			Usuario u = Cine.buscarUsuario(CorreoElectronico);
 			
-			 if (!CorreoElectronico.equals(u.getCorreoElectronico())) {
+			 if (u == null || !CorreoElectronico.equals(u.getCorreoElectronico())) {
 				JOptionPane.showMessageDialog(null, "Direccion de correo electronico no valido","ERROR",JOptionPane.ERROR_MESSAGE);
             }
 			

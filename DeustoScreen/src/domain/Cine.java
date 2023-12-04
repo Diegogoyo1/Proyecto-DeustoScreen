@@ -30,14 +30,25 @@ import java.text.SimpleDateFormat;
 //Ventnana contenedora
 
 public class Cine{
-	private static List<Entrada> Entradas = new ArrayList<>();
-	private static List<Usuario> Usuarios = new ArrayList<>();
-	private static List<Peliculas> Pelicula = new ArrayList<>();
-	private static Map<Usuario, List<Entrada>> compras = new TreeMap<>();
-	private static List<String> titulosPeliculas =new ArrayList<>();
+	private static List<Entrada> entradas;
+	private static List<Usuario> usuarios; 
+	private static List<Peliculas> Pelicula;
+	private static Map<Usuario, List<Entrada>> compras;
+	private static List<String> titulosPeliculas;
+	private static Usuario u;
+	
+	static {
+		entradas = new ArrayList<>();
+		usuarios = new ArrayList<>();
+		compras = new TreeMap<>();
+		titulosPeliculas =new ArrayList<>();
+		u = new Usuario();
+	}
+	
+	
 	
 	public static List<Usuario> getListaUsuarios(){
-		return Usuarios;
+		return usuarios;
 	}
 	
 	public static List<String> getTitulosPeliculas() {
@@ -49,24 +60,24 @@ public class Cine{
 	}
 
 	public static ArrayList<Entrada> getEntradas() {
-		return (ArrayList<Entrada>) Entradas;
+		return (ArrayList<Entrada>) entradas;
 	}
 	public static void aniadirEntrada(Entrada Entrada) {
-		Entradas.add(Entrada);
+		entradas.add(Entrada);
 	}
 	
 	public static void imprimirEntrada() {
-		for(Entrada e: Entradas) {
+		for(Entrada e: entradas) {
 			System.out.println(e);
 		}
 	}
 	
 	public static void aniadirUsuario(Usuario u) {
-		Usuarios.add(u);
+		usuarios.add(u);
 	}
 	
 	public static void imprimirUsuario() {
-		for(Usuario u: Usuarios) {
+		for(Usuario u: usuarios) {
 			System.out.println(u);
 		}
 	}
@@ -82,7 +93,7 @@ public class Cine{
 			}
 		}; 
 		
-		Collections.sort(Usuarios, U);
+		Collections.sort(usuarios, U);
 		}
 		
 		public static void aniadirCompra(Usuario u, Entrada e) {
@@ -117,8 +128,8 @@ public class Cine{
 			boolean enc = false;
 			int pos = 0;
 			Usuario u = null;
-			while(!enc && pos<Usuarios.size()) {
-				u =Usuarios.get(pos);
+			while(!enc && pos<usuarios.size()) {
+				u =usuarios.get(pos);
 				if(u.getCorreoElectronico().equals(CorreoElectronico)) {
 					enc = true;
 				}else {
@@ -148,7 +159,7 @@ public class Cine{
 					String ContadorPuntos = partes[6];
 					Usuario u = new Usuario(Nombre,Apellido,FechaNacimiento,tlf,CorreoElectronico,Contrasenia,ContadorPuntos);
 					if(buscarUsuario(CorreoElectronico)== null) {
-						Usuarios.add(u);
+						usuarios.add(u);
 						}
 					}
 					sc.close();
@@ -159,9 +170,9 @@ public class Cine{
 		}
 		public static void guardarUsuariosEnFichero(String nomfich) {
 			try {
-				//PrintWriter pw =new PrintWriter (nomfich);
-				PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfich),true));
-				for(Usuario u : Usuarios) {
+				PrintWriter pw =new PrintWriter (nomfich);
+				//PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfich),true));
+				for(Usuario u : usuarios) {
 					pw.println(u.getNombre()+";"+u.getApellido()+";"+u.getFechaNacimientoStr()+";"+u.getTlf() +";"
 							+u.getCorreoElectronico()+";"+u.getContrasenia()+ ";" + u.getContadorPuntos());
 				}
@@ -170,6 +181,15 @@ public class Cine{
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
+		}
+		
+		public static boolean registroUsuario(String nomfich, String nombre, String apellido, String fechaNac,
+				String tlf, String correoElectronico, String cont, String contador) {
+			
+			Usuario u = new Usuario(nombre, apellido, fechaNac, tlf, correoElectronico, cont, contador);
+			usuarios.add(u);
+			guardarUsuariosEnFichero(nomfich);
+			return true;
 		}
 
 		public static void cargarPeliculasEnLista(String nomfich) {

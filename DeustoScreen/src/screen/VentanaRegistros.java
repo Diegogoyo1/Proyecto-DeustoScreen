@@ -164,7 +164,7 @@ public class VentanaRegistros extends JFrame {
 			String ContadorPuntos = "0";
 		
 			// Verificar si existe el usuario
-			//Usuario usuarioExstente = Cine.buscarUsuario(CorreoElectronico);
+			Usuario usuarioExstente = Cine.buscarUsuario(CorreoElectronico);
 			if (Cine.buscarUsuario(CorreoElectronico)!= null) {
 			JOptionPane.showMessageDialog(null, "Usuario ya existe","ERROR",JOptionPane.ERROR_MESSAGE);
 			} else if (!isValidEmail(CorreoElectronico)) {
@@ -184,6 +184,8 @@ public class VentanaRegistros extends JFrame {
 
 				vActual.dispose();
 			}
+			
+			Cine.registroUsuario(nomfichUsuarios, nombre, apellido, fNac, tlf, CorreoElectronico, contrasenia, ContadorPuntos);
 			
 			
 				
