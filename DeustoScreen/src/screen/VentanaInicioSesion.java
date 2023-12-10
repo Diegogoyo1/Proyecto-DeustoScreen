@@ -113,18 +113,20 @@ public class VentanaInicioSesion extends JFrame {
 		btnIniciarSesion.addActionListener((e)->{
 			String CorreoElectronico = txtCorreoElectronico.getText();
 			String con = contraseniaIs.getText();
+			//Mira si el correo electronico esta vacio
 			 if(CorreoElectronico.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Inserte un Usuario","ERROR",JOptionPane.ERROR_MESSAGE);
 				}
+			 //Mira si la contraseña esta vacia
 			 else if (con.isEmpty()) {
 					 JOptionPane.showMessageDialog(null, "Inserte Contraseña","ERROR",JOptionPane.ERROR_MESSAGE);
 				 }
 			Usuario u = Cine.buscarUsuario(CorreoElectronico);
-			
+			//Compara si el correo electronico metido es igual al correo electronico que ya existe.
 			 if (u == null || !CorreoElectronico.equals(u.getCorreoElectronico())) {
 				JOptionPane.showMessageDialog(null, "Direccion de correo electronico no valido","ERROR",JOptionPane.ERROR_MESSAGE);
             }
-			
+			// Compara la contrasenia es igual a la contrasenia que va enlazada con el correo elctronico
 			else if (CorreoElectronico.equals(u.getCorreoElectronico())) {
 				if(!con.equals(u.getContrasenia())) {
 					JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR",JOptionPane.WARNING_MESSAGE);

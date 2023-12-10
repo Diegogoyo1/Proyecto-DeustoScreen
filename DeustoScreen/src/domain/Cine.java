@@ -95,7 +95,11 @@ public class Cine{
 		
 		Collections.sort(usuarios, U);
 		}
-		
+		/**
+		 * Añade las compra de un usuario al mapa Compreas
+		 * @param u Usiario de hace la compra
+		 * @param e Entrada que compra en usuario
+		 */
 		public static void aniadirCompra(Usuario u, Entrada e) {
 			if(!compras.containsKey(u)) { 
 				compras.put(u, new ArrayList<>());
@@ -103,7 +107,9 @@ public class Cine{
 			compras.get(u).add(e); 
 		}
 			
-		//Método que imprime por consola las compras de todos los Usuarios
+		/**
+		 * Método que imprime por consola las compras de todos los Usuarios
+		 */
 		public static void imprimirCompras() {
 			//Recorremos las claves del mapa
 			for(Usuario u: compras.keySet()) {
@@ -117,13 +123,21 @@ public class Cine{
 				System.out.println("************************************************************************");
 			}
 		}
+		/**
+		 * metodo que imprime las compas de los usuarios por pantalla
+		 * @param u
+		 */
 		public static void imprimirComprasUsuario(Usuario u) {
 			List<Entrada> l = compras.get(u);
 			for(Entrada a: l) {
 				System.out.println(a);
 			}
 		}
-		
+		/**
+		 * Busca los usuarios pr el correo electronico
+		 * @param CorreoElectronico
+		 * @return Devuelve el usuario si se ha encontrado
+		 */
 		public static Usuario buscarUsuario(String CorreoElectronico) {
 			boolean enc = false;
 			int pos = 0;
@@ -142,6 +156,11 @@ public class Cine{
 				return null;
 			}
 		}
+		/**
+		 * Metodo que carga los usuarios en la lista 
+		 * @param nomfich 
+		 */
+		 
 		public static void cargarUsuarioEnLista(String nomfich) {
 			//linea = nom;apellido;fNac;tlf;correo;contraseña;puntos
 			try {
@@ -168,6 +187,10 @@ public class Cine{
 			 }
 	
 		}
+		/**
+		 * Metodo que guarda los usuarios registrados en ficheros
+		 * @param nomfich
+		 */
 		public static void guardarUsuariosEnFichero(String nomfich) {
 			try {
 				PrintWriter pw =new PrintWriter (nomfich);
@@ -191,7 +214,11 @@ public class Cine{
 			guardarUsuariosEnFichero(nomfich);
 			return true;
 		}
-
+		
+		/**
+		 * Metodo que carga las peliculas en una lista.
+		 * @param nomfich
+		 */
 		public static void cargarPeliculasEnLista(String nomfich) {
 			try {
 				Scanner sc =  new Scanner(new FileReader(nomfich));
@@ -206,7 +233,10 @@ public class Cine{
 				e.printStackTrace();
 			}
 		}
-		
+		/**
+		 * Metodo que obtiene los titulos de las peliculas
+		 * @return Devuelve el titulo de la pelicula
+		 */
 		public static String [] obtenerTitulos() {
 			String [] titulos = new String[titulosPeliculas.size()];
 			
@@ -217,7 +247,10 @@ public class Cine{
 		}
 		
 		
-		
+		/**
+		 * Metodo que Obtiene la lista de peliculas
+		 * @return Devuelve la lista de peliculas
+		 */
 		 public static List<Peliculas> obtenerListaPeliculas() {
 		        return Pelicula;
 		    }

@@ -10,11 +10,11 @@ import java.util.Map;
 
 
 public class BD {
-
-
-
-
-
+/**
+ * 
+ * @param nombreBD
+ * @return
+ */
 	public static Connection initBD(String nombreBD) {
 		Connection con = null;
 		try {
@@ -30,7 +30,6 @@ public class BD {
 		return con;
 	}
 
-
 	public static void closeBD(Connection con) {
 		if(con!=null) {
 			try {
@@ -41,7 +40,10 @@ public class BD {
 		}
 	}
 
-
+/**
+ * 
+ * @param con
+ */
 	public static void crearTablas(Connection con) {
 		String sql = "CREATE TABLE IF NOT EXISTS Usuario (nom String, apellido String, fechaNacimiento String, tlf String, Correo String, int contador)";
 		try {

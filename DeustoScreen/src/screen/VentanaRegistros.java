@@ -163,7 +163,7 @@ public class VentanaRegistros extends JFrame {
 			String contrasenia = contraseniaR.getText();
 			String ContadorPuntos = "0";
 		
-			// Verificar si existe el usuario
+		//  Verificar si existe el usuarios
 			Usuario usuarioExstente = Cine.buscarUsuario(CorreoElectronico);
 			if (Cine.buscarUsuario(CorreoElectronico)!= null) {
 			JOptionPane.showMessageDialog(null, "Usuario ya existe","ERROR",JOptionPane.ERROR_MESSAGE);
