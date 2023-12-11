@@ -193,7 +193,7 @@ public class VentanaRegistros extends JFrame {
 			
 				
 				
-				
+		
 			
 	});
 		btnSalir.addActionListener((e)->{
