@@ -255,6 +255,13 @@ public class Cine{
 		        return Pelicula;
 		    }
 
+	/* public void actualizarPuntos(String ContadorPuntos) {
+				int puntosInt = Integer.parseInt(ContadorPuntos);
+				
+				if (getCompras()!= null) {
+					puntosInt = puntosInt + value.size()*2;				}
+				
+			}*/
 		/*public static int getSumaPuntos() {
 			String puntosStr = Usuario.getContadorPuntos();
 			int puntos = Integer.parseInt(puntosStr);

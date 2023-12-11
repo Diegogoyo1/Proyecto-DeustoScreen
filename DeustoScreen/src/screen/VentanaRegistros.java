@@ -164,28 +164,31 @@ public class VentanaRegistros extends JFrame {
 			String ContadorPuntos = "0";
 		
 		//  Verificar si existe el usuarios
-			Usuario usuarioExstente = Cine.buscarUsuario(CorreoElectronico);
-			if (Cine.buscarUsuario(CorreoElectronico)!= null) {
-			JOptionPane.showMessageDialog(null, "Usuario ya existe","ERROR",JOptionPane.ERROR_MESSAGE);
-			} else if (!isValidEmail(CorreoElectronico)) {
-				JOptionPane.showMessageDialog(null, "Direccion de correo electronico valido","ERROR",JOptionPane.ERROR_MESSAGE);
-            }
-			else {
+			Usuario usuarioExistente = Cine.buscarUsuario(CorreoElectronico);
+			 if (Cine.buscarUsuario(CorreoElectronico)!= null) {
+					JOptionPane.showMessageDialog(null, "Usuario ya existe","ERROR",JOptionPane.ERROR_MESSAGE);
+					new VentanaEntradas(vActual, usuarioExistente);
 
-				logger.log(Level.INFO, "SE HA CREADO UN NUEVO USUARIO");
+					vActual.dispose();
+					} 
+			 else if (!isValidEmail(CorreoElectronico)) {
+				JOptionPane.showMessageDialog(null, "Direccion de correo electronico valido","ERROR",JOptionPane.ERROR_MESSAGE);
+						}
+			
+			else {
 
 				//crear usuario nuevo
 				Usuario usuarioNuevo = new Usuario(nombre, apellido,fNac,tlf, CorreoElectronico, contrasenia, ContadorPuntos);
 				System.out.println(usuarioNuevo);
 				Cine.guardarUsuariosEnFichero( nomfichUsuarios);
 				JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
-
+				logger.log(Level.INFO, "SE HA CREADO UN NUEVO USUARIO");
 				new VentanaEntradas(vActual, usuarioNuevo);
 
 				vActual.dispose();
 			}
 			
-			Cine.registroUsuario(nomfichUsuarios, nombre, apellido, fNac, tlf, CorreoElectronico, contrasenia, ContadorPuntos);
+			//Cine.registroUsuario(nomfichUsuarios, nombre, apellido, fNac, tlf, CorreoElectronico, contrasenia, ContadorPuntos);
 			
 			
 				

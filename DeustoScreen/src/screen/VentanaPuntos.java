@@ -89,7 +89,8 @@ public class VentanaPuntos extends JFrame{
 		});
 		
 		btnAniadir.addActionListener((e)-> {
-			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON ATRAS");
+
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON AÑADIR");
 			new VentanaPago(vActual);
 			vActual.setVisible(false);
 			vActual.dispose();//Este DISPOSE cerrara la ventana y nos llevara a la de PAGO AÑADIENDO los puntos
@@ -107,5 +108,6 @@ public class VentanaPuntos extends JFrame{
 		setVisible(true);
 	
 	}
+	
 	
 }
