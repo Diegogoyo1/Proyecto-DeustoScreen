@@ -34,7 +34,7 @@ public class BD {
 
 
 	public static void crearTabla (Connection conn) throws SQLException{
-		String sqlUsuario = "CREATE TABLE IF NOT EXISTS Usuario (Nombre String, Apellido String,FechaNacimiento String, Teléfono String,CorreoElectronico String,Contrasenia String,C )";
+		String sqlUsuario = "CREATE TABLE IF NOT EXISTS Usuario (Nombre String, Apellido String,FechaNacimiento String, Teléfono String,CorreoElectronico String,Contrasenia String,ContadorPuntos String )";
 		
 		try {
 			Statement st = conn.createStatement();
@@ -75,7 +75,7 @@ public class BD {
 				String tlf = rs.getString("Teléfono");
 				String CorreoElectronico = rs.getString("CorreoElectronico");
 				String contrasenia = rs.getString("Contraseña");
-				int ContadorPuntos = Integer.parseInt(rs.getString("PuntosAcumulados"));
+				int ContadorPuntos = Integer.parseInt(rs.getString("ContadorPuntos"));
 
 				Usuario = new Usuario(nombre, apellido, fNac, tlf, CorreoElectronico, contrasenia, ContadorPuntos)
 			}
