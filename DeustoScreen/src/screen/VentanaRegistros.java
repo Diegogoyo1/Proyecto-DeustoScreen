@@ -70,7 +70,7 @@ public class VentanaRegistros extends JFrame {
 		lbltlf = new JLabel(" Tlf");
 		lblCorreoElectronico = new JLabel("  Correo electronico");
 		lblTituloIS = new JLabel("     REGISTRARSE");
-		lblCotraseniaR = new JLabel("  Contrasenia");
+		lblCotraseniaR = new JLabel("  Contraseña");
 		lblCorreoElectronico.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblApellido.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -166,7 +166,7 @@ public class VentanaRegistros extends JFrame {
 		//  Verificar si existe el usuarios
 			Usuario usuarioExistente = Cine.buscarUsuario(CorreoElectronico);
 			 if (Cine.buscarUsuario(CorreoElectronico)!= null) {
-					JOptionPane.showMessageDialog(null, "Usuario ya existe","ERROR",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Usuario ya existe, se iniciará con ese usuario","ERROR",JOptionPane.WARNING_MESSAGE);
 					new VentanaEntradas(vActual, usuarioExistente);
 
 					vActual.dispose();
