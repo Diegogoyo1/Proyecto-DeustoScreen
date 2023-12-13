@@ -1,6 +1,7 @@
 package domain;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+
 
 
 public class BD {
@@ -35,7 +38,7 @@ public class BD {
 
 	public static void crearTabla (Connection conn) throws SQLException{
 		String sqlUsuario = "CREATE TABLE IF NOT EXISTS Usuario (Nombre String, Apellido String,FechaNacimiento String, Teléfono String,CorreoElectronico String,Contrasenia String,ContadorPuntos String )";
-		
+		String sqlPeliculas = "CREATE TABLE IF NOT EXISTS Peliculas (titulo String, Reparto String,Duracion String, FechaDeEstreno String,Categoria String )";
 		try {
 			Statement st = conn.createStatement();
 			st.executeUpdate(sqlUsuario);
@@ -90,7 +93,7 @@ public class BD {
 	
 
 	public static List<Usuario> obtenerListaUsario(Connection con){
-		String sql = "SELECT * FROM Cliente";
+		String sql = "SELECT * FROM Usuario";
 		List<Usuario> l = new ArrayList<>();
 		try {
 			Statement st = con.createStatement();
