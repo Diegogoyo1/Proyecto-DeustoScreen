@@ -35,7 +35,11 @@ public class BD {
 		return con;
 	}
 
-
+	/**
+	 * 
+	 * @param conn
+	 * @throws SQLException
+	 */
 	public static void crearTabla (Connection conn) throws SQLException{
 		String sqlUsuario = "CREATE TABLE IF NOT EXISTS Usuario (Nombre String, Apellido String,FechaNacimiento String, Teléfono String,CorreoElectronico String,Contrasenia String,ContadorPuntos String )";
 		String sqlPeliculas = "CREATE TABLE IF NOT EXISTS Peliculas (titulo String, Reparto String,Duracion String, FechaDeEstreno String,Categoria String )";
@@ -48,12 +52,16 @@ public class BD {
 			throw e;
 		}
 	}
-
+	/**
+	 * 
+	 * @param con
+	 * @param usuario
+	 */
 		public static void insertarUsuario(Connection con, Usuario usuario){
 
 			if(buscarUsario(con,usuario.getCorreoElectronico())==null){
-				String sql = String.format("INSERT INTO USUARIO VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s')", usuario.getNombre(), usuario.getApellido(), usuario.getTlf(),
-						usuario.getCorreoElectronico(),usuario.getContrasenia(),usuario.getContadorPuntos());
+				String sql = String.format("INSERT INTO USUARIO VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s')", 
+						usuario.getNombre(), usuario.getApellido(), usuario.getTlf(),usuario.getCorreoElectronico(),usuario.getContrasenia(),usuario.getContadorPuntos());
 				try {
 					Statement st = con.createStatement();
 					st.executeUpdate(sql);
@@ -64,7 +72,12 @@ public class BD {
 			}
 		}
 
-
+		/**
+		 * 
+		 * @param con
+		 * @param CorreoElectronico
+		 * @return
+		 */
 	public static Usuario buscarUsario(Connection con, String CorreoElectronico) {
 		String sql = String.format("SELECT * FROM USUARIO WHERE CorreoElectronico = '%s'", CorreoElectronico);
 		Usuario usuario= null;
@@ -91,7 +104,11 @@ public class BD {
 	}
 
 	
-
+	/**
+	 * 
+	 * @param con
+	 * @return
+	 */
 	public static List<Usuario> obtenerListaUsario(Connection con){
 		String sql = "SELECT * FROM Usuario";
 		List<Usuario> l = new ArrayList<>();
@@ -118,7 +135,10 @@ public class BD {
 		return l;
 	}
 
-	
+	/**
+	 * 
+	 * @param con
+	 */
 	public static void cerrarBD(Connection con) {
 		if(con != null) {
 			try {
