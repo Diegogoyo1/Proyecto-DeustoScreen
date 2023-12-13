@@ -46,10 +46,10 @@ public class BD {
 		}
 	}
 
-		/*public static void insertarUsuario(Connection con, Usuario usuario){
+		public static void insertarUsuario(Connection con, Usuario usuario){
 
 			if(buscarUsario(con,usuario.getCorreoElectronico())==null){
-				String sql = String.format("INSERT INTO Cliente VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s')", usuario.getNombre(), usuario.getApellido(), usuario.getTlf(),
+				String sql = String.format("INSERT INTO USUARIO VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s')", usuario.getNombre(), usuario.getApellido(), usuario.getTlf(),
 						usuario.getCorreoElectronico(),usuario.getContrasenia(),usuario.getContadorPuntos());
 				try {
 					Statement st = con.createStatement();
@@ -59,11 +59,11 @@ public class BD {
 					e.printStackTrace();
 				}
 			}
-		}*/
+		}
 
 
-	/*public static Usuario buscarUsario(Connection con, String CorreoElectronico) {
-		String sql = String.format("SELECT * FROM Cliente WHERE Teléfono = '%s'", CorreoElectronico);
+	public static Usuario buscarUsario(Connection con, String CorreoElectronico) {
+		String sql = String.format("SELECT * FROM USUARIO WHERE CorreoElectronico = '%s'", CorreoElectronico);
 		Usuario usuario= null;
 		try {
 			Statement st = con.createStatement();
@@ -73,11 +73,11 @@ public class BD {
 				String apellido = rs.getString("Apellidos");
 				String fNac = rs.getString("fechaNacimiento");
 				String tlf = rs.getString("Teléfono");
-				String CorreoElectronico = rs.getString("CorreoElectronico");
+				String CorreoEle = rs.getString("CorreoElectronico");
 				String contrasenia = rs.getString("Contraseña");
-				int ContadorPuntos = Integer.parseInt(rs.getString("ContadorPuntos"));
+				String ContadorPuntos = rs.getString("ContadorPuntos");
 
-				Usuario = new Usuario(nombre, apellido, fNac, tlf, CorreoElectronico, contrasenia, ContadorPuntos)
+				usuario = new Usuario(nombre, apellido, fNac, tlf, CorreoEle, contrasenia, ContadorPuntos);
 			}
 			rs.close();
 			st.close();
@@ -102,7 +102,7 @@ public class BD {
 				String fNac = rs.getString("fechaNacimineto");
 				String correoElectronico = rs.getString("CorreoElectronico");
 				String contrasenia = rs.getString("Contraseña");
-				int p = Integer.parseInt(rs.getString("PuntosAcumulados"));
+				String puntosAcumulados = rs.getString("PuntosAcumulados");
 				Usuario usuario = new Usuario(nombre, apellidos,fNac,tlf,correoElectronico,contrasenia,puntosAcumulados);
 				l.add(usuario);
 			}
@@ -115,7 +115,7 @@ public class BD {
 		return l;
 	}
 
-	*/
+	
 	public static void cerrarBD(Connection con) {
 		if(con != null) {
 			try {
