@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class BD {
 /**
- * 
+ * Metodo que inicializa la base dde datos
  * @param nombreBD
  * @return
  */
@@ -36,7 +36,7 @@ public class BD {
 	}
 
 	/**
-	 * 
+	 * Metodo que crea las tablas de la Base de Datos
 	 * @param conn
 	 * @throws SQLException
 	 */
@@ -53,7 +53,7 @@ public class BD {
 		}
 	}
 	/**
-	 * 
+	 * Inserta usuario en la base de datos
 	 * @param con
 	 * @param usuario
 	 */
@@ -73,10 +73,10 @@ public class BD {
 		}
 
 		/**
-		 * 
+		 * Busca usuario mediante el valor de correo electronico
 		 * @param con
 		 * @param CorreoElectronico
-		 * @return
+		 * @return devuelve el usuario que ha buscado en la base de datos
 		 */
 	public static Usuario buscarUsario(Connection con, String CorreoElectronico) {
 		String sql = String.format("SELECT * FROM USUARIO WHERE CorreoElectronico = '%s'", CorreoElectronico);
@@ -105,9 +105,8 @@ public class BD {
 
 	
 	/**
-	 * 
+	 * Metodo que obtiene la lista de usuarios 
 	 * @param con
-	 * @return
 	 */
 	public static List<Usuario> obtenerListaUsario(Connection con){
 		String sql = "SELECT * FROM Usuario";
@@ -136,7 +135,7 @@ public class BD {
 	}
 
 	/**
-	 * 
+	 * Metodo que cierra la base de datos
 	 * @param con
 	 */
 	public static void cerrarBD(Connection con) {
@@ -144,7 +143,6 @@ public class BD {
 			try {
 				con.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
 			}
 		}
 
