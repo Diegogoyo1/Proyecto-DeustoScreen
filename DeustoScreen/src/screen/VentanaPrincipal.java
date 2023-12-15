@@ -29,7 +29,7 @@ import domain.Usuario;
 
 public class VentanaPrincipal extends JFrame{
 	private JPanel PanelNorte, PanelCentro;
-	private JButton btnPrecios, btnIniciarSesion,btnHorario, btnCartelera;
+	private JButton btnPrecios, btnIniciarSesion, btnCartelera;
 	private JFrame vAnterior,vActual;
 	private VentanaPrincipal vp;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
@@ -58,14 +58,12 @@ public class VentanaPrincipal extends JFrame{
 		btnPrecios = new JButton("Precios");
 		btnIniciarSesion = new JButton("Iniciar Sesion");
 		btnCartelera = new JButton("Cartelera");
-		btnHorario = new JButton("Horario");
 		
 		 
 
 		PanelNorte.add(btnIniciarSesion);
 		PanelNorte.add(btnPrecios);
 		PanelNorte.add(btnCartelera);
-		PanelNorte.add(btnHorario);
 		
 
 		
