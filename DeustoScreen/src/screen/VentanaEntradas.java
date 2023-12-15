@@ -41,7 +41,7 @@ public class VentanaEntradas extends JFrame{
 	private JFrame vActual, vAnterior;
 	//private List<Peliculas> listaPeliculas; 
 
-	private JComboBox<String> cbTitulos;
+	private static JComboBox<String> cbTitulos;
 	private JComboBox<String> cbHorarios;
 
 	private static Logger logger = Logger.getLogger(Main.class.getName());
@@ -135,6 +135,8 @@ public class VentanaEntradas extends JFrame{
 		});
 		
 		
+		
+		
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
 		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
 		setSize(anchoP, altoP);
@@ -144,6 +146,10 @@ public class VentanaEntradas extends JFrame{
 		setBounds(600, 300,500, 500);
 		setTitle("ENTRADAS");
 		setVisible(true);
+	}
+	
+	public static String getComboTitulos() {
+		return (String) cbTitulos.getSelectedItem();
 	}
 	
 	private void cargarComboHorarios() {
