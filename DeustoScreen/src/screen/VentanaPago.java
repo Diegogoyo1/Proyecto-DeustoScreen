@@ -40,7 +40,9 @@ public class VentanaPago extends JFrame {
 		getContentPane().add(pSur, BorderLayout.SOUTH);
 		getContentPane().add(pCentro, BorderLayout.CENTER);
 		getContentPane().add(pNorte, BorderLayout.NORTH);
-
+		getContentPane().add(pEste,BorderLayout.EAST);
+		getContentPane().add(pOeste,BorderLayout.WEST);
+		
 		int espacioEntrePeneles = 150;
 		pCentro.setBorder(new EmptyBorder(espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles));
 		
