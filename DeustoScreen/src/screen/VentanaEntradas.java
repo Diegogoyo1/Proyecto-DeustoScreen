@@ -16,11 +16,15 @@ import java.awt.GraphicsEnvironment;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,7 +42,7 @@ public class VentanaEntradas extends JFrame{
 	//private List<Peliculas> listaPeliculas; 
 
 	private JComboBox<String> cbTitulos;
-	//private JComboBox<String> cbHorarios;
+	private JComboBox<String> cbHorarios;
 
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 
@@ -46,7 +50,7 @@ public class VentanaEntradas extends JFrame{
 
 	public VentanaEntradas(JFrame va, Usuario u) {
 		
-		
+		Cine.crearMapaHorarios();
 		vActual=this;
 		vAnterior=va;
 		
@@ -89,8 +93,10 @@ public class VentanaEntradas extends JFrame{
 		panelCenter.add(lblHorarios);
 		panelCenter.add(Box.createVerticalStrut(50));
 		
-		//cbHorarios = new JComboBox<>();
-        //cbHorarios.setPreferredSize(comboBoxSize);
+		cbHorarios = new JComboBox<>();
+        cbHorarios.setPreferredSize(comboBoxSizeT);
+        
+        panelCenter.add(cbHorarios);
         lblEntradas.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblPelicula.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblHorarios.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -103,7 +109,13 @@ public class VentanaEntradas extends JFrame{
 		panelSouth.add(BtnAtras);
 		panelSouth.add(BtnSiguiente);
 		
-		
+		cbTitulos.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cargarComboHorarios();
+			}
+		});
 		
 		
 		//ActionListener de los botones
@@ -134,7 +146,21 @@ public class VentanaEntradas extends JFrame{
 		setVisible(true);
 	}
 	
-	/*public static void main(String[] args) {
+	private void cargarComboHorarios() {
+		cbHorarios.removeAllItems();
+		String pelicula = cbTitulos.getSelectedItem().toString();
+		TreeMap<String, HashMap<Integer, ArrayList<String>>> mapa = new TreeMap<>(Cine.getMapaHorarios());
+		for(String hora: mapa.keySet()) {
+			for(int sala: mapa.get(hora).keySet()) {
+				if(mapa.get(hora).get(sala).get(VentanaHorario.dia).equals(pelicula)) {
+					cbHorarios.addItem(hora);
+				}
+				
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
 		new VentanaEntradas(null, null);
-	}*/
+	}
 }

@@ -49,10 +49,10 @@ public class VentanaButacas extends JFrame {
 	private boolean [][]m2;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 
-	public VentanaButacas(JFrame va,Usuario u) {
+	public VentanaButacas(JFrame va,Usuario u, int sala, int butacasA, int butacasB) {
 		super();
-		m1 = new boolean[5][6];
-		m2 = new boolean[5][5];
+		m1 = new boolean[5][butacasA];
+		m2 = new boolean[5][butacasB];
 		fila1 = -1;
 		fila2 = -1;
 		columna1 = -1;
@@ -90,7 +90,7 @@ public class VentanaButacas extends JFrame {
 		btnSiguiente.addActionListener((e) -> {
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON SIGUIENTE");
 			if (cont == VentanaSeleccionEntradas.getTotalEntradas()) {
-				new VentanaPuntos(vActual,u);
+				new VentanaPuntos(vActual, u);
 				vActual.setVisible(false);
 				vActual.dispose();
 			} else {
@@ -99,7 +99,12 @@ public class VentanaButacas extends JFrame {
 		});
 
 		// CREACION PRIMERA TABLA BUTACAS
-		Object[] titulos1 = { "", "", "", "", "", "" };
+		//Object[] titulos1 = { "", "", "", "", "", "" };
+		Object[] titulos1 = new Object[butacasA];
+		for(int i=0;i<butacasA;i++) {
+			titulos1[i] = "";
+		}
+			
 		modTblButacas1 = new DefaultTableModel() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -127,7 +132,11 @@ public class VentanaButacas extends JFrame {
 		cargarFichero1(nomfich1);
 
 		// CREACION SEGUNDA TABLA BUTACAS
-		Object[] titulos2 = { "", "", "", "", "" };
+		//Object[] titulos2 = { "", "", "", "", "" };
+		Object[] titulos2 = new Object[butacasB];
+		for(int i=0;i<butacasB;i++) {
+			titulos1[i] = "";
+		}
 		modTblButacas2 = new DefaultTableModel() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -278,8 +287,8 @@ public class VentanaButacas extends JFrame {
 			String linea;
 			while (sc.hasNext()) {
 				linea = sc.nextLine();
-				String[] partes = linea.split(";");
-				Object[] fila = { partes[0], partes[1], partes[2], partes[3], partes[4], partes[5] };
+				String[] fila = linea.split(";");
+				
 				modTblButacas1.addRow(fila);
 			}
 			sc.close();
@@ -295,8 +304,7 @@ public class VentanaButacas extends JFrame {
 			String linea;
 			while (sc.hasNext()) {
 				linea = sc.nextLine();
-				String[] partes = linea.split(";");
-				Object[] fila = { partes[0], partes[1], partes[2], partes[3], partes[4] };
+				String[] fila = linea.split(";");
 				modTblButacas2.addRow(fila);
 			}
 			sc.close();

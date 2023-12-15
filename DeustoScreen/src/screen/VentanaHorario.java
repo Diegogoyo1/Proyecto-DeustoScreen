@@ -9,6 +9,18 @@ import java.awt.GraphicsEnvironment;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.event.ActionEvent;
@@ -17,9 +29,14 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
+import com.toedter.calendar.JCalendar;
+
+import domain.Cine;
+import domain.Usuario;
+
 public class VentanaHorario extends JFrame{
-	private JPanel pCentro, pSur, pNorte;
-	private JButton btnAtras; 
+	private JPanel pCentro, pSur, pNorte,pOeste;
+	private JButton btnAtras, btnSiguiente; 
 	private DefaultTableModel modelo;
 	private JTable tabla;
 	private JScrollPane scroll;
@@ -27,13 +44,14 @@ public class VentanaHorario extends JFrame{
 	private JLabel lblTituloH;
 	private JFrame vActual, vAnterior;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
-	 
-	
-	public VentanaHorario(JFrame va) {
+	private JCalendar calendario; 
+	public static int dia;
+	public VentanaHorario(JFrame va, Usuario u) {
 		super();
 		vActual=this;
 		vAnterior = va;
 		
+		Cine.crearMapaHorarios();
 		
 		//LABEL
 		lblTituloH = new JLabel("HORARIOS");
@@ -43,16 +61,65 @@ public class VentanaHorario extends JFrame{
 		pCentro = new JPanel();
 		pSur = new JPanel();
 		pNorte = new JPanel();
+		pOeste = new JPanel();
 		
 		//POSICION DE PANELES
 		
 		getContentPane().add(pCentro, BorderLayout.CENTER);
 		getContentPane().add(pSur, BorderLayout.SOUTH);
 		getContentPane().add(pNorte, BorderLayout.NORTH);
+		getContentPane().add(pOeste, BorderLayout.WEST);
+		
+		//CALENDARIO
+		calendario = new JCalendar(new Date());
+		pOeste.add(calendario);
+		
+		DefaultTableModel modelo = new DefaultTableModel();
+		String [] titulos = {"HORA","SALA1","SALA2","SALA3"};
+		modelo.setColumnIdentifiers(titulos);
+		JTable tabla = new JTable(modelo);
+		JScrollPane scroll = new JScrollPane(tabla);
+		//ACCIONES DE CALENDARIO
+		calendario.addPropertyChangeListener(new PropertyChangeListener() {
+			
+			@Override
+			public void propertyChange(PropertyChangeEvent evt) {
+				Date d = calendario.getDate();
+				dia = d.getDay(); 
+				if(dia == 0) {
+					dia = 7;
+				}
+				dia--;
+				//Mapa de clave horario , valor mapa de clave sala y valor lista de películas película
+				/*TreeMap<String, HashMap<Integer, ArrayList<String>>> mapa = new TreeMap<>();
+				List<String> peliculas = Arrays.asList("P1","P3","P1","P4","P1","P3","P2");
+				HashMap<Integer, ArrayList<String>> m = new HashMap<>();
+				m.put(1, new ArrayList<>(peliculas));
+				m.put(2, new ArrayList<>(peliculas));
+				m.put(3, new ArrayList<>(peliculas));
+				mapa.put("07:00", new HashMap<>(m));
+				mapa.put("09:00", new HashMap<>(m));
+				mapa.put("11:00", new HashMap<>(m));
+				*/
+				modelo.setRowCount(0);
+				TreeMap<String, HashMap<Integer, ArrayList<String>>> mapa = new TreeMap<>(Cine.getMapaHorarios());
+				for(String hora: mapa.keySet()) {
+					Object [] fila = new Object[4];
+					fila[0] = hora;
+					int i=1;
+					for(int sala: mapa.get(hora).keySet()) {
+						String peli = mapa.get(hora).get(sala).get(dia);
+						fila[i++] = peli;
+					}
+					modelo.addRow(fila);
+				}
+			}
+		});
 		
 		
 		//BOTONES
 		btnAtras = new JButton("Atrás");
+		btnSiguiente = new JButton("Siguiente");
 		
 		//ACCIONES DE BOTONES
 		btnAtras.addActionListener((e)-> {
@@ -61,12 +128,18 @@ public class VentanaHorario extends JFrame{
 			vAnterior.setVisible(true);
 						
 					});
+		btnSiguiente.addActionListener((e)-> {
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON SIGUIENTE");
+			new VentanaEntradas(vActual, u);
+			vActual.setVisible(false);
+			vActual.dispose();
+		});
 				
 		//LABEL
 		pNorte.add(lblTituloH);
 		
 		//CREACIÓN TABLA
-		Object [] titulos = {"HORA","LUNES","MARTES", "MIÉRCOLES", "JUEVES", "VIERNES", "SABADO", "DOMINGO"};
+		/*Object [] titulos = {"HORA","LUNES","MARTES", "MIÉRCOLES", "JUEVES", "VIERNES", "SABADO", "DOMINGO"};
 		modelo = new DefaultTableModel();
 		modelo.setColumnIdentifiers(titulos);
 		tabla = new JTable(modelo);
@@ -97,11 +170,12 @@ public class VentanaHorario extends JFrame{
 		modelo.addRow(fila2);
 		modelo.addRow(fila3);
 		modelo.addRow(fila4);
-		
+		*/
 		
 		//AÑADIR LOS COMPONENTES A LOS PANELES
-		pCentro.add(tabla);
+		pCentro.add(scroll);
 		pSur.add(btnAtras);
+		pSur.add(btnSiguiente);
 		
 		
 		//DEFINIR VENTANA
@@ -116,6 +190,5 @@ public class VentanaHorario extends JFrame{
 		setTitle("CARTELERA");
 		setVisible(true);
 		
-	}
-	
+	}	
 }

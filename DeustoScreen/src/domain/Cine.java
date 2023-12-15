@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,7 @@ public class Cine{
 	private static Map<Usuario, List<Entrada>> compras;
 	private static List<String> titulosPeliculas;
 	private static Usuario u;
+	private static TreeMap<String, HashMap<Integer, ArrayList<String>>> mapaHorarios ;
 	
 	static {
 		entradas = new ArrayList<>();
@@ -43,6 +45,38 @@ public class Cine{
 		compras = new TreeMap<>();
 		titulosPeliculas =new ArrayList<>();
 		u = new Usuario();
+		mapaHorarios = new TreeMap<>();
+	}
+	
+	public static TreeMap<String, HashMap<Integer, ArrayList<String>>> getMapaHorarios() {
+		return mapaHorarios;
+	}
+
+
+
+	public static void crearMapaHorarios() {
+		try {
+			Scanner sc = new Scanner(new FileReader("ficheros/horarios.csv"));
+			while(sc.hasNext()) {
+				String linea = sc.nextLine();
+				String [] partes = linea.split(";");
+				if(!mapaHorarios.containsKey(partes[0])) {
+					mapaHorarios.put(partes[0], new HashMap<>());
+				}
+				int sala = Integer.parseInt(partes[1]);
+				if(!mapaHorarios.get(partes[0]).containsKey(sala)){
+					mapaHorarios.get(partes[0]).put(sala, new ArrayList<>());
+				}
+				String [] peliculas = partes[2].split(",");
+				for(String p: peliculas) {
+					mapaHorarios.get(partes[0]).get(sala).add(p);
+				}
+			}
+			sc.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	

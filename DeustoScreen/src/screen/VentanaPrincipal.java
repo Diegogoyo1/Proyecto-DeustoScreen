@@ -85,13 +85,6 @@ public class VentanaPrincipal extends JFrame{
 			vActual.dispose();
 		});
 		
-		btnHorario.addActionListener((e)->{
-			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON HORARIO");
-			new VentanaHorario(vActual);
-			vActual.setVisible(false);
-			vActual.dispose();
-		});
-		
 		btnCartelera.addActionListener((e)-> {
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON CARTELERA");
 			new VentanaCartelera(vActual);

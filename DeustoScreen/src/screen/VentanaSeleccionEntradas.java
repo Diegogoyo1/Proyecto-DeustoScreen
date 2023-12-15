@@ -131,7 +131,7 @@ public class VentanaSeleccionEntradas extends JFrame{
 				vActual.dispose();
 
 
-				new VentanaButacas (vActual,u);
+				new VentanaButacas (vActual,u,1,6,5);
 
 			} else {
 				JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una entrada","ERROR",JOptionPane.WARNING_MESSAGE);
