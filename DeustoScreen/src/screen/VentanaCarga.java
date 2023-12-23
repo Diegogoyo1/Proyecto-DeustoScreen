@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 
@@ -55,6 +56,7 @@ public class VentanaCarga extends JFrame{
 		
         Thread hilo = new Thread(new Runnable() {
 
+        	
 			@Override
 			public void run() {
 				try {
@@ -69,12 +71,20 @@ public class VentanaCarga extends JFrame{
 					
 				}
 				dispose();
-				new VentanaPrincipal(vActual);
+				SwingUtilities.invokeLater(new Runnable() {
+					
+					@Override
+					public void run() {
+						new VentanaPrincipal(vActual);
+								
+					}
+				});
 				vActual.setVisible(false);
 			}
         	
         });hilo.start();
-        setVisible(true);
+		
+		setVisible(true);
         
         
 		

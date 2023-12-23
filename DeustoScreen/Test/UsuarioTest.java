@@ -1,4 +1,7 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,6 +12,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import domain.Actores;
 import domain.Usuario;
 
 public class UsuarioTest {
@@ -52,17 +56,11 @@ public class UsuarioTest {
 	
 	@Test
 	public void testSetFechaNacimiento() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		try {
-			Date fechaNac = sdf.parse("01-01-1970");
-			u.setFechaNacimiento(fechaNac);
-			assertEquals(fechaNac, u.getFechaNacimiento());
-		} catch (ParseException e) {
-			
-			e.printStackTrace();
-		}
 		
-		
+		LocalDate ld = LocalDate.of(1970, 1, 1);
+		u.setFechaNacimiento(ld);
+		assertEquals(ld, u.getFechaNacimiento());
+	
 	}
 	@Test
 	public void testSetTlf() {
@@ -105,12 +103,9 @@ public class UsuarioTest {
 	@Test 
 	public void TestGetFechaNacimiento() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		try {
-			Date d = sdf.parse("01-01-1970");
-			assertEquals(d.getTime(), u.getFechaNacimiento().getTime());
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		Date d = new Date(0);
+		assertEquals(sdf.format(d), sdf.format(u.getFechaNacimiento()));
+		
 	}
 	
 	@Test
@@ -144,14 +139,10 @@ public class UsuarioTest {
 		u.setNombre("a");
 		u.setApellido("a");
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		try {
-			Date fechaNac = sdf.parse("01-01-1970");
-			u.setFechaNacimiento(fechaNac);
-			assertEquals(fechaNac.getTime(), u.getFechaNacimiento().getTime());
-		} catch (ParseException e) {
-			
-			e.printStackTrace();
-		}
+		LocalDate ld = LocalDate.of(1970, 1, 1);
+		u.setFechaNacimiento(ld);
+		assertEquals(0,ld.compareTo(u.getFechaNacimiento()));
+		
 		u.setTlf("123");
 		u.setCorreoElectronico("a");
 		u.setContrasenia("a");
@@ -159,4 +150,35 @@ public class UsuarioTest {
 		String expectedToString = "Usuario [nombre=a, apellido=a, fechanacimiento=01-01-1970, tlf=123, correoElectronico=a, contraseña: a, Puntos:0]";
 		assertEquals(expectedToString, u.toString());
 	}
+	
+	@Test
+	public void testEquals() throws ParseException {
+			Usuario u1 = new Usuario("a", "a", "01-01-1970", "123", "a", "a", "0");
+			Usuario u2 = new Usuario("a", "a", "01-01-1970", "123", "b", "a", "0");
+			assertFalse(u.equals(u2));
+			assertTrue(u.equals(u1));
+			assertFalse(u.equals(null));
+			assertFalse(u.equals(new Actores("b", "01-01-1970")));
+			assertTrue(u.equals(u));
+	}
+	
+	@Test
+	public void testHashCode() {
+		assertNotEquals(-1, u.hashCode());
+	}
+	
+	@Test
+	public void testCompareTo() {
+		
+		assertEquals(0, u.compareTo(u));
+		
+
+	}
+	@Test
+	public void testActualizarPuntos(){
+		int p = Integer.parseInt(u.getContadorPuntos());
+		u.actualizarPuntos("3");
+		assertEquals(p+3, Integer.parseInt(u.getContadorPuntos()));
+	}
+	
 }

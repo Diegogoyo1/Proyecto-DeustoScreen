@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -19,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,6 +37,10 @@ import domain.Usuario;
 import domain.Usuario;
 
 public class VentanaButacas extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2821724812420567703L;
 	private JPanel pNorte, pSur, pEste, pOeste;
 	private JButton btnSiguiente, btnAtras;
 	private JTable tblButacas1, tblButacas2;
@@ -128,6 +134,7 @@ public class VentanaButacas extends JFrame {
 		tblButacas1.getColumnModel().getColumn(3).setPreferredWidth(100);
 		tblButacas1.getColumnModel().getColumn(4).setPreferredWidth(100);
 		tblButacas1.getColumnModel().getColumn(5).setPreferredWidth(100);
+		
 
 		cargarFichero1(nomfich1);
 
@@ -213,6 +220,10 @@ public class VentanaButacas extends JFrame {
 						if (row == fila1 && column == columna1) {
 							if(m1[fila1][columna1]) {
 								l.setBackground(table.getSelectionBackground());
+								l.setSize(30, 30);
+								/*ImageIcon im = new ImageIcon("foto.jpg");
+								ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
+								l.setIcon(imtam);*/
 							}
 							else {
 								l.setBackground(table.getBackground());

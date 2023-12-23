@@ -167,8 +167,8 @@ public class VentanaRegistros extends JFrame {
 			Usuario usuarioExistente = Cine.buscarUsuario(CorreoElectronico);
 			 if (Cine.buscarUsuario(CorreoElectronico)!= null) {
 					JOptionPane.showMessageDialog(null, "Usuario ya existe, se iniciará con ese usuario","ERROR",JOptionPane.WARNING_MESSAGE);
-					new VentanaEntradas(vActual, usuarioExistente);
-
+					//new VentanaEntradas(vActual, usuarioExistente);
+					new VentanaHorario(va, usuarioExistente);
 					vActual.dispose();
 					} 
 			 else if (!isValidEmail(CorreoElectronico)) {
@@ -180,11 +180,12 @@ public class VentanaRegistros extends JFrame {
 				//crear usuario nuevo
 				Usuario usuarioNuevo = new Usuario(nombre, apellido,fNac,tlf, CorreoElectronico, contrasenia, ContadorPuntos);
 				System.out.println(usuarioNuevo);
+				Cine.aniadirUsuario(usuarioNuevo);
 				Cine.guardarUsuariosEnFichero( nomfichUsuarios);
 				JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
 				logger.log(Level.INFO, "SE HA CREADO UN NUEVO USUARIO");
-				new VentanaEntradas(vActual, usuarioNuevo);
-
+				//new VentanaEntradas(vActual, usuarioNuevo);
+				new VentanaHorario(va, usuarioExistente);
 				vActual.dispose();
 			}
 			

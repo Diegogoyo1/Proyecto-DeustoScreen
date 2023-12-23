@@ -1,31 +1,17 @@
 package domain;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.PrintWriter;
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
-import java.util.logging.Logger;
 
-import javax.net.ssl.SSLEngine;
-import javax.swing.undo.UndoableEditSupport;
-
-import screen.VentanaSeleccionEntradas;
-
-import java.text.SimpleDateFormat;
 
 
 //Ventnana contenedora
@@ -44,7 +30,7 @@ public class Cine{
 		usuarios = new ArrayList<>();
 		compras = new TreeMap<>();
 		titulosPeliculas =new ArrayList<>();
-		u = new Usuario();
+		//u = new Usuario();
 		mapaHorarios = new TreeMap<>();
 	}
 	
@@ -257,6 +243,7 @@ public class Cine{
 			try {
 				Scanner sc =  new Scanner(new FileReader(nomfich));
 				String linea;
+				titulosPeliculas.clear();
 				while(sc.hasNext()) {
 					linea = sc.nextLine();
 					titulosPeliculas.add(linea);
@@ -287,16 +274,26 @@ public class Cine{
 		 */
 		 public static List<Peliculas> obtenerListaPeliculas() {
 		        return Pelicula;
-		    }
+		 }
+		 
+		 /*Método que actualiza el contador de puntos de todos los usuarios
+		  * Llamada desde el botón FinalizarCompra*/
+		 public static void actualizarPuntosUsuarios() {
+			 for(Usuario u : compras.keySet()) {
+				 int p = compras.get(u).size();
+				 int pos = usuarios.indexOf(u);
+				 usuarios.get(pos).actualizarPuntos(String.valueOf(p));
+			 }
+		 }
 
-	/* public void actualizarPuntos(String ContadorPuntos) {
+	 /*public void actualizarPuntos(String ContadorPuntos) {
 				int puntosInt = Integer.parseInt(ContadorPuntos);
 				
 				if (getCompras()!= null) {
 					puntosInt = puntosInt + value.size()*2;				}
 				
-			}*/
-		/*public static int getSumaPuntos() {
+	 }
+	public static int getSumaPuntos() {
 			String puntosStr = Usuario.getContadorPuntos();
 			int puntos = Integer.parseInt(puntosStr);
 			int numeroEntradas = Entradas.size();
