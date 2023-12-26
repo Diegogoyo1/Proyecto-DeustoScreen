@@ -134,9 +134,10 @@ public class BD {
 		return l;
 	}
 
+	
 	/**
 	 * Metodo que cierra la base de datos
-	 * @param con
+	 * @param con 
 	 */
 	public static void cerrarBD(Connection con) {
 		if(con != null) {
@@ -147,5 +148,6 @@ public class BD {
 		}
 
 	}
+	
 
 }

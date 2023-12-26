@@ -185,11 +185,11 @@ public class VentanaRegistros extends JFrame {
 				JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
 				logger.log(Level.INFO, "SE HA CREADO UN NUEVO USUARIO");
 				//new VentanaEntradas(vActual, usuarioNuevo);
-				new VentanaHorario(va, usuarioExistente);
+				new VentanaHorario(va, usuarioNuevo);
 				vActual.dispose();
 			}
 			
-			//Cine.registroUsuario(nomfichUsuarios, nombre, apellido, fNac, tlf, CorreoElectronico, contrasenia, ContadorPuntos);
+			Cine.registroUsuario(nomfichUsuarios, nombre, apellido, fNac, tlf, CorreoElectronico, contrasenia, ContadorPuntos);
 			
 			
 				
