@@ -43,6 +43,8 @@ public class BD {
 	public static void crearTabla (Connection conn) throws SQLException{
 		String sqlUsuario = "CREATE TABLE IF NOT EXISTS Usuario (Nombre String, Apellido String,FechaNacimiento String, Teléfono String,CorreoElectronico String,Contrasenia String,ContadorPuntos String )";
 		String sqlPeliculas = "CREATE TABLE IF NOT EXISTS Peliculas (titulo String, Reparto String,Duracion String, FechaDeEstreno String,Categoria String )";
+		String sqlActorres = "CREATE TABLE IF NOT EXISTS Actores(nombre String , FechaNacimiento String )";
+		
 		try {
 			Statement st = conn.createStatement();
 			st.executeUpdate(sqlUsuario);
@@ -134,6 +136,7 @@ public class BD {
 		return l;
 	}
 
+	
 	
 	/**
 	 * Metodo que cierra la base de datos

@@ -39,7 +39,9 @@ public class Cine{
 	}
 
 
-
+/**
+ * Metodo que carga los horarios de las peliculas del mapa
+ */
 	public static void crearMapaHorarios() {
 		try {
 			Scanner sc = new Scanner(new FileReader("ficheros/horarios.csv"));

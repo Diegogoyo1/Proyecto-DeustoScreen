@@ -31,6 +31,7 @@ public class VentanaPrincipal extends JFrame{
 	private JPanel PanelNorte, PanelCentro;
 	private JButton btnPrecios, btnIniciarSesion, btnCartelera;
 	private JFrame vAnterior,vActual;
+	private JLabel lblImg;
 	private VentanaPrincipal vp;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 	
@@ -53,17 +54,24 @@ public class VentanaPrincipal extends JFrame{
 		PanelCentro = new JPanel();
 		getContentPane().add(PanelNorte, BorderLayout.NORTH);
 		getContentPane().add(PanelCentro,BorderLayout.CENTER);
+		int espacioEntrePeneles = 200;
+		PanelCentro.setBorder(new EmptyBorder(espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles));
+		
 		
 				
 		btnPrecios = new JButton("Precios");
 		btnIniciarSesion = new JButton("Iniciar Sesion");
 		btnCartelera = new JButton("Cartelera");
 		
+		lblImg = new JLabel(new ImageIcon ("imagenes/Imagen-animada-Claqueta-21.gif"));
+		lblImg.setLayout(new BorderLayout());
 		 
 
+		
 		PanelNorte.add(btnIniciarSesion);
 		PanelNorte.add(btnPrecios);
 		PanelNorte.add(btnCartelera);
+		PanelCentro.add(lblImg);
 		
 
 		
