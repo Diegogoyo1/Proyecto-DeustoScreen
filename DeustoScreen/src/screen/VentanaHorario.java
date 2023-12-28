@@ -8,6 +8,8 @@ import java.awt.FlowLayout;
 import java.awt.GraphicsEnvironment;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -79,6 +81,8 @@ public class VentanaHorario extends JFrame{
 		modelo.setColumnIdentifiers(titulos);
 		JTable tabla = new JTable(modelo);
 		JScrollPane scroll = new JScrollPane(tabla);
+		
+		
 		//ACCIONES DE CALENDARIO
 		calendario.addPropertyChangeListener(new PropertyChangeListener() {
 			
@@ -113,6 +117,44 @@ public class VentanaHorario extends JFrame{
 					}
 					modelo.addRow(fila);
 				}
+			}
+		});
+		tabla.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				/*if(e.getClickCount()==2) {
+					Object intemSeleccionado = ((JComboBox<String>) e.getSource()).getSelectedItem();
+					Cine..add(intemSeleccionado.toString());
+					
+				}
+				
+			}*/
+				
 			}
 		});
 		

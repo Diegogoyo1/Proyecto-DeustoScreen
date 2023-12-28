@@ -161,7 +161,7 @@ public class VentanaRegistros extends JFrame {
 			String tlf = textFieldTlf.getText();
 			String CorreoElectronico = txtCorreoElectronico.getText();
 			String contrasenia = contraseniaR.getText();
-			String ContadorPuntos = "0";
+			String ContadorPuntos = "20";
 		
 		//  Verificar si existe el usuarios
 			Usuario usuarioExistente = Cine.buscarUsuario(CorreoElectronico);

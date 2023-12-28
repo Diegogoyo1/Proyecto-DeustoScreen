@@ -18,6 +18,9 @@ import javax.swing.JComboBox;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -39,7 +42,7 @@ public class VentanaEntradas extends JFrame{
 	protected JButton BtnAtras, BtnSiguiente;
 	private JLabel lblEntradas, lblPelicula, lblHorarios;
 	private JFrame vActual, vAnterior;
-	//private List<Peliculas> listaPeliculas; 
+	private List<String> listaPeliHora; 
 
 	private static JComboBox<String> cbTitulos;
 	private JComboBox<String> cbHorarios;
@@ -101,8 +104,83 @@ public class VentanaEntradas extends JFrame{
 		lblPelicula.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblHorarios.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-		
+		cbTitulos.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount()==2) {
+					Object intemSeleccionado = ((JComboBox<String>) e.getSource()).getSelectedItem();
+					listaPeliHora.add(intemSeleccionado.toString());
+					
+				}
+				
+			}
+		});
 	
+		
+		cbHorarios.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getClickCount()==2) {
+					Object intemSeleccionado = ((JComboBox<String>) e.getSource()).getSelectedItem();
+					listaPeliHora.add(intemSeleccionado.toString());
+					
+				}
+				
+			
+				
+			}
+		});
 
 		BtnAtras = new JButton("Atrás");
 		BtnSiguiente = new JButton("Siguiente");
@@ -126,7 +204,7 @@ public class VentanaEntradas extends JFrame{
 		});
 		
 		BtnSiguiente.addActionListener((e)->{
-
+			//Cine.aniadirEntrada(listaPeliHora);
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON SIGUIENTE");
 			new VentanaSeleccionEntradas(vActual, u);
 

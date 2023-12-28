@@ -56,6 +56,12 @@ public class Usuario implements Comparable<Usuario> {
 
 
 
+	public Usuario(String nombreUsuario, String apellidoUsuario, String correoUsuario) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	// getters y setters
 	public String getNombre() {
 		return nombre;

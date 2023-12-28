@@ -11,6 +11,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -118,5 +119,3 @@ public class VentanaPrincipal extends JFrame{
 	
 
 }
-
-

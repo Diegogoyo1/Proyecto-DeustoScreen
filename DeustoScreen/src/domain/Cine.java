@@ -1,5 +1,6 @@
 package domain;
 
+import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
@@ -20,7 +21,7 @@ public class Cine{
 	private static List<Entrada> entradas;
 	private static List<Usuario> usuarios; 
 	private static List<Peliculas> Pelicula;
-	private static Map<Usuario, List<Entrada>> compras;
+	private static Map<Usuario, List<Entrada>> MapaCompras;
 	private static List<String> titulosPeliculas;
 	private static Usuario u;
 	private static TreeMap<String, HashMap<Integer, ArrayList<String>>> mapaHorarios ;
@@ -28,7 +29,7 @@ public class Cine{
 	static {
 		entradas = new ArrayList<>();
 		usuarios = new ArrayList<>();
-		compras = new TreeMap<>();
+		MapaCompras = new TreeMap<>();
 		titulosPeliculas =new ArrayList<>();
 		//u = new Usuario();
 		mapaHorarios = new TreeMap<>();
@@ -67,7 +68,10 @@ public class Cine{
 		
 	}
 	
-	
+	public static Map<Usuario, List<Entrada>> getMapaCompras(){
+		return MapaCompras;
+		
+	}
 	
 	public static List<Usuario> getListaUsuarios(){
 		return usuarios;
@@ -77,36 +81,50 @@ public class Cine{
 		return titulosPeliculas;
 	}
 
-	public static Map<Usuario, List<Entrada>> getCompras() {
-		return compras;
-	}
 
 	public static ArrayList<Entrada> getEntradas() {
 		return (ArrayList<Entrada>) entradas;
 	}
+	/**
+	 * 
+	 * @param Entrada
+	 */
 	public static void aniadirEntrada(Entrada Entrada) {
 		entradas.add(Entrada);
 	}
-	
+	/**
+	 * 
+	 */
 	public static void imprimirEntrada() {
 		for(Entrada e: entradas) {
 			System.out.println(e);
 		}
 	}
-	
+	/**
+	 * 
+	 * @param u
+	 */
 	public static void aniadirUsuario(Usuario u) {
 		usuarios.add(u);
 	}
-	
+	/**
+	 * 
+	 */
 	public static void imprimirUsuario() {
 		for(Usuario u: usuarios) {
 			System.out.println(u);
 		}
 	}
+	/**
+	 * 
+	 * @param e
+	 */
 	public static void aniadirPelicula(Peliculas e) {
 		Pelicula.add(e);
 	}
-	
+	/**
+	 * 
+	 */
 	public static void ordenarListaUsuarios() {
 		Comparator<Usuario> U = new Comparator<Usuario>() {
 			@Override
@@ -117,28 +135,30 @@ public class Cine{
 		
 		Collections.sort(usuarios, U);
 		}
+	
+	
+       
+	
 		/**
 		 * Añade las compra de un usuario al mapa Compreas
 		 * @param u Usiario de hace la compra
 		 * @param e Entrada que compra en usuario
 		 */
 		public static void aniadirCompra(Usuario u, Entrada e) {
-			if(!compras.containsKey(u)) { 
-				compras.put(u, new ArrayList<>());
+			if(!MapaCompras.containsKey(u)) { 
+				MapaCompras.put(u, new ArrayList<>());
 			}
-			compras.get(u).add(e); 
+			MapaCompras.get(u).add(e); 
 		}
 			
 		/**
 		 * Método que imprime por consola las compras de todos los Usuarios
 		 */
 		public static void imprimirCompras() {
-			//Recorremos las claves del mapa
-			for(Usuario u: compras.keySet()) {
+			
+			for(Usuario u: MapaCompras.keySet()) {
 				System.out.println(u);
-				//Por cada cliente, obtenemos su lista de Articulos comprados
-				List<Entrada> l = compras.get(u);
-				//Recorremos los artículos comprados
+				List<Entrada> l = MapaCompras.get(u);
 				for(Entrada a: l) {
 					System.out.println(a);
 				}
@@ -150,7 +170,7 @@ public class Cine{
 		 * @param u
 		 */
 		public static void imprimirComprasUsuario(Usuario u) {
-			List<Entrada> l = compras.get(u);
+			List<Entrada> l = MapaCompras.get(u);
 			for(Entrada a: l) {
 				System.out.println(a);
 			}
@@ -281,8 +301,8 @@ public class Cine{
 		 /*Método que actualiza el contador de puntos de todos los usuarios
 		  * Llamada desde el botón FinalizarCompra*/
 		 public static void actualizarPuntosUsuarios() {
-			 for(Usuario u : compras.keySet()) {
-				 int p = compras.get(u).size();
+			 for(Usuario u : MapaCompras.keySet()) {
+				 int p = MapaCompras.get(u).size();
 				 int pos = usuarios.indexOf(u);
 				 usuarios.get(pos).actualizarPuntos(String.valueOf(p));
 			 }
