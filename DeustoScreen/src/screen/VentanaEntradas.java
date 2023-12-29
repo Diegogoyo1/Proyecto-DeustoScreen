@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import domain.Cine;
+import domain.Entrada;
 import domain.Peliculas;
 import domain.Usuario;
 
@@ -132,9 +133,9 @@ public class VentanaEntradas extends JFrame{
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getClickCount()==2) {
-					Object intemSeleccionado = ((JComboBox<String>) e.getSource()).getSelectedItem();
-					listaPeliHora.add(intemSeleccionado.toString());
+				if(e.getClickCount()==1) {
+					Object PeliculaSeleccionada = ((JComboBox<String>) e.getSource()).getSelectedItem();
+					listaPeliHora.add(PeliculaSeleccionada.toString());
 					
 				}
 				
@@ -171,17 +172,15 @@ public class VentanaEntradas extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				if(e.getClickCount()==2) {
-					Object intemSeleccionado = ((JComboBox<String>) e.getSource()).getSelectedItem();
-					listaPeliHora.add(intemSeleccionado.toString());
+				if(e.getClickCount()==1) {
+					Object HoraSeleccionado = ((JComboBox<String>) e.getSource()).getSelectedItem();
+					listaPeliHora.add(HoraSeleccionado.toString());
 					
 				}
 				
-			
-				
 			}
 		});
-
+		System.out.println(listaPeliHora);
 		BtnAtras = new JButton("Atrás");
 		BtnSiguiente = new JButton("Siguiente");
 		panelSouth.add(BtnAtras);
@@ -204,7 +203,7 @@ public class VentanaEntradas extends JFrame{
 		});
 		
 		BtnSiguiente.addActionListener((e)->{
-			//Cine.aniadirEntrada(listaPeliHora);
+			Cine.aniadirEntrada((Entrada) listaPeliHora);
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON SIGUIENTE");
 			new VentanaSeleccionEntradas(vActual, u);
 

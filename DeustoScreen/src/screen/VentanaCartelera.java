@@ -31,9 +31,6 @@ public class VentanaCartelera extends JFrame {
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 	PanelConFondo panel;
 	
-	
-	
-
 
 	public VentanaCartelera(JFrame va) {
 		super();

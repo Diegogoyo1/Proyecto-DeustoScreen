@@ -29,13 +29,13 @@ import domain.Usuario;
 
 
 public class VentanaPrincipal extends JFrame{
-	private JPanel PanelNorte, PanelCentro;
+	private JPanel PanelNorte, PanelCentro,PanelEste,PanelOeste,PanelSur;
 	private JButton btnPrecios, btnIniciarSesion, btnCartelera;
 	private JFrame vAnterior,vActual;
 	private JLabel lblImg;
 	private VentanaPrincipal vp;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
-	
+	PanelConFondo panelFondo;
 	/*@Override
     public void paint(Graphics g){
         Dimension dimension = this.getSize();
@@ -50,34 +50,28 @@ public class VentanaPrincipal extends JFrame{
 		super();
 		vAnterior= va;
 		vActual=this;
-		
+
 		PanelNorte = new JPanel();
 		PanelCentro = new JPanel();
-		getContentPane().add(PanelNorte, BorderLayout.NORTH);
-		getContentPane().add(PanelCentro,BorderLayout.CENTER);
+		PanelOeste= new JPanel();
+		PanelEste = new JPanel();
+		PanelSur = new JPanel();
+		
+		panelFondo = new PanelConFondo(new ImageIcon("imagenes/ImagenFondoVPrincipal.jpg").getImage());
+		
+		panelFondo.add(PanelCentro, BorderLayout.CENTER);
+		panelFondo.add(PanelNorte, BorderLayout.NORTH);
+		panelFondo.add(PanelSur, BorderLayout.SOUTH);
+		panelFondo.add(PanelEste, BorderLayout.EAST);
+		panelFondo.add(PanelOeste, BorderLayout.WEST);
+		
 		int espacioEntrePeneles = 200;
-		PanelCentro.setBorder(new EmptyBorder(espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles));
-		
-		
-				
-		btnPrecios = new JButton("Precios");
-		btnIniciarSesion = new JButton("Iniciar Sesion");
-		btnCartelera = new JButton("Cartelera");
-		
-		lblImg = new JLabel(new ImageIcon ("imagenes/Imagen-animada-Claqueta-21.gif"));
-		lblImg.setLayout(new BorderLayout());
-		 
+		PanelNorte.setBorder(new EmptyBorder(espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles));
 
-		
-		PanelNorte.add(btnIniciarSesion);
-		PanelNorte.add(btnPrecios);
-		PanelNorte.add(btnCartelera);
-		PanelCentro.add(lblImg);
-		
-
-		
 		//Eventos Botones
-		
+		btnPrecios = new JButton("PRECIOS");
+		btnPrecios.setForeground(new Color(255, 255, 255));
+		btnPrecios.setBackground(new Color(0, 0, 0));
 		btnPrecios.addActionListener((e)->{
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON PRECIOS");
 			new VentanaPrecios(vActual);
@@ -85,6 +79,9 @@ public class VentanaPrincipal extends JFrame{
 			vActual.dispose();
 		});
 		
+		btnIniciarSesion = new JButton("INICIAR SESION");
+		btnIniciarSesion.setForeground(new Color(255, 255, 255));
+		btnIniciarSesion.setBackground(new Color(0, 0, 0));
 		btnIniciarSesion.addActionListener((e)->{
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON INICIAR SESION");
 			new VentanaInicioSesion(vActual);
@@ -92,6 +89,9 @@ public class VentanaPrincipal extends JFrame{
 			vActual.dispose();
 		});
 		
+		btnCartelera = new JButton("CARTELERA");
+		btnCartelera.setForeground(new Color(255, 255, 255));
+		btnCartelera.setBackground(new Color(0, 0, 0));
 		btnCartelera.addActionListener((e)-> {
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON CARTELERA");
 			new VentanaCartelera(vActual);
@@ -100,6 +100,14 @@ public class VentanaPrincipal extends JFrame{
 			
 		});
 		
+		PanelOeste.add(btnIniciarSesion);
+		PanelOeste.add(btnPrecios);
+		PanelOeste.add(btnCartelera);
+		PanelNorte.setOpaque(false);
+		PanelCentro.setOpaque(false);
+		PanelSur.setOpaque(false);
+		PanelEste.setOpaque(false);
+		PanelOeste.setOpaque(false);
 		
 		
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
@@ -110,12 +118,15 @@ public class VentanaPrincipal extends JFrame{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(600, 300, 450, 300);
 		setTitle("INICIO");
+		setContentPane(panelFondo);
 		setVisible(true);
 		
 	}
 	
 
-
+public static void main(String[] args) {
+	VentanaPrincipal vp = new VentanaPrincipal(null);
+}
 	
 
 }
