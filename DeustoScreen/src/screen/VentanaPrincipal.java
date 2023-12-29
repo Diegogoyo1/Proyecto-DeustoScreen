@@ -56,7 +56,6 @@ public class VentanaPrincipal extends JFrame{
 		PanelOeste= new JPanel();
 		PanelEste = new JPanel();
 		PanelSur = new JPanel();
-		
 		panelFondo = new PanelConFondo(new ImageIcon("imagenes/ImagenFondoVPrincipal.jpg").getImage());
 		
 		panelFondo.add(PanelCentro, BorderLayout.CENTER);

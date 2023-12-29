@@ -44,7 +44,7 @@ public class BD {
 		String sqlUsuario = "CREATE TABLE IF NOT EXISTS Usuario (Nombre String, Apellido String,FechaNacimiento String, Teléfono String,CorreoElectronico String,Contrasenia String,ContadorPuntos String )";
 		String sqlPeliculas = "CREATE TABLE IF NOT EXISTS Peliculas (titulo String, Reparto String,Duracion String, FechaDeEstreno String,Categoria String )";
 		String sqlActorres = "CREATE TABLE IF NOT EXISTS Actores(nombre String , FechaNacimiento String )";
-		
+		String sqlHorarios = "CREATE TABLE IF NOR EXISTS horarios()";
 		try {
 			Statement st = conn.createStatement();
 			st.executeUpdate(sqlUsuario);

@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,6 +14,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
+import java.util.logging.Level;
+
+import screen.Main;
 
 
 
@@ -25,6 +30,7 @@ public class Cine{
 	private static List<String> titulosPeliculas;
 	private static Usuario u;
 	private static TreeMap<String, HashMap<Integer, ArrayList<String>>> mapaHorarios ;
+	
 	
 	static {
 		entradas = new ArrayList<>();
@@ -231,7 +237,7 @@ public class Cine{
 		}
 		/**
 		 * Metodo que guarda los usuarios registrados en ficheros
-		 * @param nomfich
+		 * @param nomfich nombre del fichero Donde vamos a guardar los usuarios
 		 */
 		public static void guardarUsuariosEnFichero(String nomfich) {
 			try {
@@ -248,6 +254,51 @@ public class Cine{
 			}
 		}
 		
+		/**
+		 * Metodo que vuelca toso los Usuarios del fichero a la base de datos
+		 * 
+		 * @param con conexion con la base de datos
+		 * @param nomFich nombre del fichero en este caso Usuarios.csv
+		 */
+		public static void volcado_FichCSV_Usuarios_a_BD(Connection con,String nomFich) {
+			try {
+				Scanner sc = new Scanner(new FileReader(nomFich));
+				String linea;
+				while(sc.hasNext()) {
+					linea = sc.nextLine();
+					String []partes = linea.split(";");
+					String Nombre = partes[0];
+					String Apellido = partes[1];
+					String FechaNacimiento = partes[2];
+					String tlf = partes[3];
+					String CorreoElectronico = partes[4];
+					String Contrasenia = partes[5];
+					String ContadorPuntos = partes[6];	
+					
+					Usuario u = new Usuario(Nombre, Apellido, FechaNacimiento, tlf, CorreoElectronico, Contrasenia, ContadorPuntos);
+					BD.insertarUsuario(con, u);
+				}
+				sc.close();
+			}catch (FileNotFoundException e) {
+				//logger.log(Level.WARNING, "Ruta del fichero no encontrada");
+			}
+		}
+		
+		
+		
+		/**
+		 * Metodo que registra a los usuarios y los guarda en el fichero
+		 * 
+		 * @param nomfich nombre de l fichero
+		 * @param nombre nombre de usuario
+		 * @param apellido aoellido del usuario
+		 * @param fechaNac fecha de nacimiento del usuario
+		 * @param tlf telefono del usuario
+		 * @param correoElectronico
+		 * @param cont contraseña del usuario
+		 * @param contador puntos acomulados que tiene el usuario
+		 * @return devuelve true cuando estos se guardan
+		 */
 		public static boolean registroUsuario(String nomfich, String nombre, String apellido, String fechaNac,
 				String tlf, String correoElectronico, String cont, String contador) {
 			
