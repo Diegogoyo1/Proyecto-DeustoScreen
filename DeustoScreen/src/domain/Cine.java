@@ -32,6 +32,7 @@ public class Cine{
 	private static List<Trabajador> listaTrabajadores;
 	private static Usuario u;
 	private static TreeMap<String, HashMap<Integer, ArrayList<String>>> mapaHorarios ;
+	public int sala;
 	
 	
 	static {

@@ -50,7 +50,7 @@ public class VentanaEntradas extends JFrame{
 	private List<String> listaPeliHora; 
 
 	private static JComboBox<String> cbTitulos;
-	private JComboBox<String> cbHorarios;
+	private static JComboBox<String> cbHorarios;
 
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 
@@ -103,8 +103,8 @@ public class VentanaEntradas extends JFrame{
 		
 		cbHorarios = new JComboBox<>();
         cbHorarios.setPreferredSize(comboBoxSizeT);
-        
         panelCenter.add(cbHorarios);
+        
         lblEntradas.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblPelicula.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblHorarios.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -113,13 +113,11 @@ public class VentanaEntradas extends JFrame{
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
@@ -239,6 +237,7 @@ public class VentanaEntradas extends JFrame{
 		return (String) cbTitulos.getSelectedItem();
 	}
 	
+	
 	private void cargarComboHorarios() {
 		cbHorarios.removeAllItems();
 		String pelicula = cbTitulos.getSelectedItem().toString();
@@ -251,6 +250,10 @@ public class VentanaEntradas extends JFrame{
 				
 			}
 		}
+	}
+	
+	public static String getComboHorarios() {
+		return (String) cbHorarios.getSelectedItem();
 	}
 	
 	public static void main(String[] args) {

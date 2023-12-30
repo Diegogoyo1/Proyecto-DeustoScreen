@@ -37,7 +37,7 @@ public class VentanaRegistros extends JFrame {
 	private JLabel lblNombre,lblApellido ,lblFechaNacimiento, lbltlf, lblCorreoElectronico,lblCotraseniaR,lblTituloIS; 
 	private JTextField txtNombre,txtApellido,txtFechaNacimiento,txtCorreoElectronico;
 	private JTextField textFieldTlf;
-	private JButton btnSalir, btnIniciarSesion;
+	private JButton btnSalir, btnRegistro;
 	private JPasswordField contraseniaR;
 	private JFrame vActual, vAnterior;
 	private static final String nomfichUsuarios = "ficheros/Usuarios.csv";
@@ -145,16 +145,16 @@ public class VentanaRegistros extends JFrame {
 		pNorte.add(lblTituloIS);
 		
 		//botones
-		btnIniciarSesion = new JButton("Iniciar Sesion");
+		btnRegistro = new JButton("Registrarse");
 		btnSalir = new JButton("Atras");
 		pSur.add(btnSalir);
-		pSur.add(btnIniciarSesion);
+		pSur.add(btnRegistro);
 		
 	
 
 		
 		//eventos botones 
-		btnIniciarSesion.addActionListener((e)->{
+		btnRegistro.addActionListener((e)->{
 			String nombre = txtNombre.getText();
 			String apellido = txtApellido.getText();
 			String fNac = txtFechaNacimiento.getText();
