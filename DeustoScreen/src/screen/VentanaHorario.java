@@ -8,6 +8,8 @@ import java.awt.FlowLayout;
 import java.awt.GraphicsEnvironment;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -80,6 +82,8 @@ public class VentanaHorario extends JFrame{
 		modelo.setColumnIdentifiers(titulos);
 		JTable tabla = new JTable(modelo);
 		JScrollPane scroll = new JScrollPane(tabla);
+		
+		
 		//ACCIONES DE CALENDARIO
 		calendario.addPropertyChangeListener(new PropertyChangeListener() {
 			

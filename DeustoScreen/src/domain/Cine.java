@@ -1,6 +1,7 @@
 package domain;
 
-import java.io.File; 
+import java.io.File;  
+import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
@@ -15,7 +16,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.logging.Level;
-import java.awt.event.ActionEvent;
 
 import screen.Main;
 
@@ -48,6 +48,7 @@ public class Cine{
 	}
 
 
+
 	/**
 	 * Metodo que carga los horarios de las peliculas del mapa
 	 */
@@ -76,8 +77,6 @@ public class Cine{
 		
 	}
 	
-	
-	
 	public static List<Usuario> getListaUsuarios(){
 		return usuarios;
 	}
@@ -85,6 +84,7 @@ public class Cine{
 	public static List<String> getTitulosPeliculas() {
 		return titulosPeliculas;
 	}
+
 
 	public static Map<Usuario, List<Entrada>> getMapaCompras() {
 		return mapaCompras;
@@ -145,8 +145,7 @@ public class Cine{
 		}
 	
 	
-	
-	
+
 		/**
 		 * Añade las compra de un usuario al mapa Compreas
 		 * @param u Usiario de hace la compra
@@ -156,6 +155,7 @@ public class Cine{
 			if(!mapaCompras.containsKey(u)) { 
 				mapaCompras.put(u, new ArrayList<>());
 			}
+
 			mapaCompras.get(u).add(e); 
 		}
 			
@@ -241,7 +241,7 @@ public class Cine{
 		}
 		/**
 		 * Metodo que guarda los usuarios registrados en ficheros
-		 * @param nomfich
+		 * @param nomfich nombre del fichero Donde vamos a guardar los usuarios
 		 */
 		public static void guardarUsuariosEnFichero(String nomfich) {
 			try {
@@ -287,6 +287,7 @@ public class Cine{
 				//logger.log(Level.WARNING, "Ruta del fichero no encontrada");
 			}
 		}
+
 
 
 

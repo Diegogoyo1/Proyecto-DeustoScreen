@@ -13,6 +13,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.HashMap;
@@ -54,7 +55,6 @@ public class VentanaPrincipal extends JFrame{
 	private VentanaPrincipal vp;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 	PanelConFondo panelFondo;
-	
 	/*@Override
     public void paint(Graphics g){
         Dimension dimension = this.getSize();
@@ -71,13 +71,15 @@ public class VentanaPrincipal extends JFrame{
 		vActual=this;
 		
 		Cine.cargarTrabajadoresEnLista(nomfichTrabajadores);
-		
+
 		pNorte = new JPanel();
 		pCentro = new JPanel();
 		pEste = new JPanel();
 		pOeste = new JPanel();
 		pSur = new JPanel();
+
 		
+
 		panelFondo = new PanelConFondo(new ImageIcon("imagenes/ImagenFondoVPrincipal.jpg").getImage());
 		
 		puestoComboBox = new JComboBox<>(PuestoTrabajo.values());
@@ -93,7 +95,6 @@ public class VentanaPrincipal extends JFrame{
 			
 	    	 @Override
 			    public void actionPerformed(ActionEvent e) {
-
 			        String dni = "";
 			        Trabajador t = null;
 
@@ -164,10 +165,7 @@ public class VentanaPrincipal extends JFrame{
 		int espacioEntrePeneles = 200;
 		pNorte.setBorder(new EmptyBorder(espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles));
 		
-
-		
 		//Eventos Botones
-		
 		btnPrecios = new JButton("PRECIOS");
 		btnPrecios.setForeground(new Color(255, 255, 255));
 		btnPrecios.setBackground(new Color(0, 0, 0));
@@ -208,6 +206,7 @@ public class VentanaPrincipal extends JFrame{
 		pEste.setOpaque(false);
 		pOeste.setOpaque(false);
 		
+		
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
 		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
 		setSize(anchoP, altoP);
@@ -222,9 +221,9 @@ public class VentanaPrincipal extends JFrame{
 	}
 	
 
-
+public static void main(String[] args) {
+	VentanaPrincipal vp = new VentanaPrincipal(null);
+}
 	
 
 }
-
-
