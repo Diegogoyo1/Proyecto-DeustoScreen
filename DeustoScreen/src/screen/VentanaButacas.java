@@ -220,29 +220,44 @@ public class VentanaButacas extends JFrame {
 						if (row == fila1 && column == columna1) {
 							if(m1[fila1][columna1]) {
 								l.setBackground(table.getSelectionBackground());
-								l.setSize(30, 30);
-								/*ImageIcon im = new ImageIcon("foto.jpg");
+								l.setSize(100, 100);
+								ImageIcon im = new ImageIcon("imagenes/ButacaVerde.png");
 								ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
-								l.setIcon(imtam);*/
+								l.setIcon(imtam);
 							}
 							else {
 								l.setBackground(table.getBackground());
+								l.setSize(100, 100);
+								ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
+								ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
+								l.setIcon(imtam);
 							}
 						} else {
 							if(m1[row][column]) {
 								l.setBackground(table.getSelectionBackground());
+								l.setSize(100, 100);
+								ImageIcon im = new ImageIcon("imagenes/ButacaVerde.png");
+								ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
+								l.setIcon(imtam);
 							}
 							else {
 								l.setBackground(table.getBackground());
+								l.setSize(100, 100);
+								ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
+								ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
+								l.setIcon(imtam);
 							}
 						}
 					}else {
 						l.setBackground(table.getBackground());
-						
 					}
 				}
 				else {
 					l.setBackground(table.getBackground());
+					l.setSize(100, 100);
+					ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
+					ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
+					l.setIcon(imtam);
 					
 				}
 				return l;
@@ -261,21 +276,41 @@ public class VentanaButacas extends JFrame {
 					if (row == fila2 && column == columna2) {
 						if(m2[fila2][columna2]) {
 							l.setBackground(table.getSelectionBackground());
+							l.setSize(100, 100);
+							ImageIcon im = new ImageIcon("imagenes/ButacaVerde.png");
+							ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
+							l.setIcon(imtam);
 						}
 						else {
 							l.setBackground(table.getBackground());
+							l.setSize(100, 100);
+							ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
+							ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
+							l.setIcon(imtam);
 						}
 					} else {
 						if(m2[row][column]) {
 							l.setBackground(table.getSelectionBackground());
+							l.setSize(100, 100);
+							ImageIcon im = new ImageIcon("imagenes/ButacaVerde.png");
+							ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
+							l.setIcon(imtam);
 						}
 						else {
 							l.setBackground(table.getBackground());
+							l.setSize(100, 100);
+							ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
+							ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
+							l.setIcon(imtam);
 						}
 					}
 				}
 			else {
 				l.setBackground(table.getBackground());
+				l.setSize(100, 100);
+				ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
+				ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
+				l.setIcon(imtam);
 				
 			}
 			return l;
@@ -340,7 +375,7 @@ public class VentanaButacas extends JFrame {
 	}
 	
 	/*public static void main(String[] args) {
-		new VentanaButacas(null);
+		new VentanaButacas(null, null, 0, 0, 0);
 	}*/
 
 }

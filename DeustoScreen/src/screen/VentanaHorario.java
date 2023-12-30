@@ -1,6 +1,6 @@
 package screen;
 
-import javax.swing.JFrame;
+import javax.swing.JFrame; 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -28,6 +28,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JComboBox;
 
 import com.toedter.calendar.JCalendar;
 
@@ -115,6 +116,8 @@ public class VentanaHorario extends JFrame{
 				}
 			}
 		});
+		
+		
 		
 		
 		//BOTONES

@@ -1,8 +1,11 @@
 package domain;
 
+import java.io.File; 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -11,6 +14,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
+import java.util.logging.Level;
+import java.awt.event.ActionEvent;
+
+import screen.Main;
 
 
 
@@ -20,17 +27,19 @@ public class Cine{
 	private static List<Entrada> entradas;
 	private static List<Usuario> usuarios; 
 	private static List<Peliculas> Pelicula;
-	private static Map<Usuario, List<Entrada>> compras;
+	private static Map<Usuario, List<Entrada>> mapaCompras;
 	private static List<String> titulosPeliculas;
+	private static List<Trabajador> listaTrabajadores;
 	private static Usuario u;
 	private static TreeMap<String, HashMap<Integer, ArrayList<String>>> mapaHorarios ;
+	
 	
 	static {
 		entradas = new ArrayList<>();
 		usuarios = new ArrayList<>();
-		compras = new TreeMap<>();
+		mapaCompras = new TreeMap<>();
 		titulosPeliculas =new ArrayList<>();
-		//u = new Usuario();
+		listaTrabajadores = new ArrayList<>();
 		mapaHorarios = new TreeMap<>();
 	}
 	
@@ -39,7 +48,9 @@ public class Cine{
 	}
 
 
-
+	/**
+	 * Metodo que carga los horarios de las peliculas del mapa
+	 */
 	public static void crearMapaHorarios() {
 		try {
 			Scanner sc = new Scanner(new FileReader("ficheros/horarios.csv"));
@@ -75,36 +86,53 @@ public class Cine{
 		return titulosPeliculas;
 	}
 
-	public static Map<Usuario, List<Entrada>> getCompras() {
-		return compras;
+	public static Map<Usuario, List<Entrada>> getMapaCompras() {
+		return mapaCompras;
 	}
 
 	public static ArrayList<Entrada> getEntradas() {
 		return (ArrayList<Entrada>) entradas;
 	}
+	/**
+	 * 
+	 * @param Entrada
+	 */
 	public static void aniadirEntrada(Entrada Entrada) {
 		entradas.add(Entrada);
 	}
-	
+	/**
+	 * 
+	 */
 	public static void imprimirEntrada() {
 		for(Entrada e: entradas) {
 			System.out.println(e);
 		}
 	}
-	
+	/**
+	 * 
+	 * @param u
+	 */
 	public static void aniadirUsuario(Usuario u) {
 		usuarios.add(u);
 	}
-	
+	/**
+	 * 
+	 */
 	public static void imprimirUsuario() {
 		for(Usuario u: usuarios) {
 			System.out.println(u);
 		}
 	}
+	/**
+	 * 
+	 * @param e
+	 */
 	public static void aniadirPelicula(Peliculas e) {
 		Pelicula.add(e);
 	}
-	
+	/**
+	 * 
+	 */
 	public static void ordenarListaUsuarios() {
 		Comparator<Usuario> U = new Comparator<Usuario>() {
 			@Override
@@ -115,16 +143,20 @@ public class Cine{
 		
 		Collections.sort(usuarios, U);
 		}
+	
+	
+	
+	
 		/**
 		 * Añade las compra de un usuario al mapa Compreas
 		 * @param u Usiario de hace la compra
 		 * @param e Entrada que compra en usuario
 		 */
 		public static void aniadirCompra(Usuario u, Entrada e) {
-			if(!compras.containsKey(u)) { 
-				compras.put(u, new ArrayList<>());
+			if(!mapaCompras.containsKey(u)) { 
+				mapaCompras.put(u, new ArrayList<>());
 			}
-			compras.get(u).add(e); 
+			mapaCompras.get(u).add(e); 
 		}
 			
 		/**
@@ -132,10 +164,10 @@ public class Cine{
 		 */
 		public static void imprimirCompras() {
 			//Recorremos las claves del mapa
-			for(Usuario u: compras.keySet()) {
+			for(Usuario u: mapaCompras.keySet()) {
 				System.out.println(u);
 				//Por cada cliente, obtenemos su lista de Articulos comprados
-				List<Entrada> l = compras.get(u);
+				List<Entrada> l = mapaCompras.get(u);
 				//Recorremos los artículos comprados
 				for(Entrada a: l) {
 					System.out.println(a);
@@ -148,7 +180,7 @@ public class Cine{
 		 * @param u
 		 */
 		public static void imprimirComprasUsuario(Usuario u) {
-			List<Entrada> l = compras.get(u);
+			List<Entrada> l = mapaCompras.get(u);
 			for(Entrada a: l) {
 				System.out.println(a);
 			}
@@ -178,7 +210,7 @@ public class Cine{
 		}
 		/**
 		 * Metodo que carga los usuarios en la lista 
-		 * @param nomfich 
+		 * @param nomfich nombre del fichero Donde vamos a guardar los usuarios
 		 */
 		 
 		public static void cargarUsuarioEnLista(String nomfich) {
@@ -226,6 +258,51 @@ public class Cine{
 			}
 		}
 		
+		/**
+		 * Metodo que vuelca toso los Usuarios del fichero a la base de datos
+		 * 
+		 * @param con conexion con la base de datos
+		 * @param nomFich nombre del fichero en este caso Usuarios.csv
+		 */
+		public static void volcado_FichCSV_Usuarios_a_BD(Connection con,String nomFich) {
+			try {
+				Scanner sc = new Scanner(new FileReader(nomFich));
+				String linea;
+				while(sc.hasNext()) {
+					linea = sc.nextLine();
+					String []partes = linea.split(";");
+					String Nombre = partes[0];
+					String Apellido = partes[1];
+					String FechaNacimiento = partes[2];
+					String tlf = partes[3];
+					String CorreoElectronico = partes[4];
+					String Contrasenia = partes[5];
+					String ContadorPuntos = partes[6];	
+
+					Usuario u = new Usuario(Nombre, Apellido, FechaNacimiento, tlf, CorreoElectronico, Contrasenia, ContadorPuntos);
+					BD.insertarUsuario(con, u);
+				}
+				sc.close();
+			}catch (FileNotFoundException e) {
+				//logger.log(Level.WARNING, "Ruta del fichero no encontrada");
+			}
+		}
+
+
+
+		/**
+		 * Metodo que registra a los usuarios y los guarda en el fichero
+		 * 
+		 * @param nomfich nombre de l fichero
+		 * @param nombre nombre de usuario
+		 * @param apellido aoellido del usuario
+		 * @param fechaNac fecha de nacimiento del usuario
+		 * @param tlf telefono del usuario
+		 * @param correoElectronico
+		 * @param cont contraseña del usuario
+		 * @param contador puntos acomulados que tiene el usuario
+		 * @return devuelve true cuando estos se guardan
+		 */
 		public static boolean registroUsuario(String nomfich, String nombre, String apellido, String fechaNac,
 				String tlf, String correoElectronico, String cont, String contador) {
 			
@@ -279,11 +356,49 @@ public class Cine{
 		 /*Método que actualiza el contador de puntos de todos los usuarios
 		  * Llamada desde el botón FinalizarCompra*/
 		 public static void actualizarPuntosUsuarios() {
-			 for(Usuario u : compras.keySet()) {
-				 int p = compras.get(u).size();
+			 for(Usuario u : mapaCompras.keySet()) {
+				 int p = mapaCompras.get(u).size();
 				 int pos = usuarios.indexOf(u);
 				 usuarios.get(pos).actualizarPuntos(String.valueOf(p));
 			 }
+		 }
+		 
+		 public static Trabajador buscarTrabajador (String inicio) {
+			 boolean enc = false;
+				int pos = 0;
+				Trabajador t = null;
+				while(!enc && pos<listaTrabajadores.size()) {
+					t=listaTrabajadores.get(pos);
+					if((t.getDni().equals(inicio))) {
+						enc = true;
+					}else {
+						pos++;
+					}
+				}
+				
+				if(enc) {
+					return t;
+				}else {
+					return null;
+				}
+		 }
+		 
+		 public static void cargarTrabajadoresEnLista(String nomfich) {
+			 try {
+					Scanner sc = new Scanner(new File(nomfich));
+					while(sc.hasNextLine()) {
+						String linea = sc.nextLine();
+						String[]partes = linea.split(";");
+						String nombreApellidos = partes[0];
+						String telefono = partes[1];
+						PuestoTrabajo puesto = PuestoTrabajo.valueOf(partes[2]);
+						String dni = partes[3];
+						Trabajador t = new Trabajador(nombreApellidos, telefono, puesto, dni );
+						listaTrabajadores.add(t);
+					}
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
 		 }
 
 	 /*public void actualizarPuntos(String ContadorPuntos) {

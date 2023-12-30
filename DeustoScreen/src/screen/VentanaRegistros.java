@@ -161,7 +161,7 @@ public class VentanaRegistros extends JFrame {
 			String tlf = textFieldTlf.getText();
 			String CorreoElectronico = txtCorreoElectronico.getText();
 			String contrasenia = contraseniaR.getText();
-			String ContadorPuntos = "0";
+			String ContadorPuntos = "20";
 		
 		//  Verificar si existe el usuarios
 			Usuario usuarioExistente = Cine.buscarUsuario(CorreoElectronico);
@@ -185,11 +185,11 @@ public class VentanaRegistros extends JFrame {
 				JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
 				logger.log(Level.INFO, "SE HA CREADO UN NUEVO USUARIO");
 				//new VentanaEntradas(vActual, usuarioNuevo);
-				new VentanaHorario(va, usuarioExistente);
+				new VentanaHorario(va, usuarioNuevo);
 				vActual.dispose();
 			}
 			
-			//Cine.registroUsuario(nomfichUsuarios, nombre, apellido, fNac, tlf, CorreoElectronico, contrasenia, ContadorPuntos);
+			Cine.registroUsuario(nomfichUsuarios, nombre, apellido, fNac, tlf, CorreoElectronico, contrasenia, ContadorPuntos);
 			
 			
 				
