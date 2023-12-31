@@ -3,7 +3,6 @@ package screen;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
@@ -30,13 +29,16 @@ import javax.swing.border.EmptyBorder;
 import domain.Cine;
 import domain.Entrada;
 import domain.Usuario;
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.Frame;
 
 public class VentanaInicioSesion extends JFrame {
-	private JPanel pSur, pEste, pOeste, pPrincipal;
-	private JLabel lblTituloIS ,lblCorreoElectronico,lblContraseniaIs, lblRegistrarse;
+	private JPanel pNorte,pSur,pOesteCentro,pEsteCentro,pOeste;
+	private JLabel lblTituloIS ,lblCorreoElectronico,lblContraseniaIs,lblRegistro;
 	private JTextField txtCorreoElectronico;
-	private JButton btnAtras, btnIniciarSesion, btnRegistrarse;
-	private JPasswordField txtContraseniaIs;
+	private JButton btnSalir, btnIniciarSesion, btnRegistrarse;
+	private JPasswordField contraseniaIs;
 	private JFrame vAnterior, vActual;
 	private static final String nomfichUsuarios = "ficheros/Usuarios.csv";
 	private static Logger logger = Logger.getLogger(Main.class.getName());
@@ -56,76 +58,82 @@ public class VentanaInicioSesion extends JFrame {
 	
 	public VentanaInicioSesion(JFrame va) {
 		super();
+		setExtendedState(Frame.MAXIMIZED_BOTH);
 		vActual=this;
 		vAnterior=va;
 		
-		JPanel panelContenedor = new JPanel();
-		panelContenedor.setLayout(new BorderLayout());
 		
-		pPrincipal = new JPanel();
-		pPrincipal.setLayout(new BorderLayout());
-		
-		pOeste = new JPanel();
-		pOeste.setLayout(new BoxLayout(pOeste, BoxLayout.Y_AXIS));
-	
-		pEste = new JPanel();
-		pEste.setLayout(new BoxLayout(pEste, BoxLayout.Y_AXIS));
-		
+		pNorte = new JPanel(new GridLayout(1, 2));
 		pSur = new JPanel();
-		pSur.setLayout(new FlowLayout(FlowLayout.CENTER));
+		pOeste = new JPanel();
+		pOesteCentro =new JPanel();
+		FlowLayout flowLayout = (FlowLayout) pOesteCentro.getLayout();
+		pEsteCentro = new JPanel();
+		
+		
+		
+		
+		getContentPane().add(pNorte, BorderLayout.NORTH);
+		getContentPane().add(pOeste, BorderLayout.WEST);
+		getContentPane().add(pSur, BorderLayout.SOUTH);
+		
+
 		
 		//Labels
-		lblTituloIS = new JLabel("     INICIAR SESION");
-		
 		lblCorreoElectronico = new JLabel("  Correo electronico: ");
-		lblCorreoElectronico.setBorder(new EmptyBorder(0, 0, 10, 20));
+		lblTituloIS = new JLabel("     INICIAR SESION");
 		lblCorreoElectronico.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		
-		lblContraseniaIs = new JLabel("  Contrasenia: ");
-		lblContraseniaIs.setBorder(new EmptyBorder(0, 0, 10, 20));
-		lblContraseniaIs.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		
-		lblRegistrarse = new JLabel("¿No tienes un usuario? Registrarse");
-		lblRegistrarse.setBorder(new EmptyBorder(0, 0, 10, 20));
-		lblRegistrarse.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		
-		
-		
+			
 		//TextField nuevos
 		txtCorreoElectronico= new JTextField();
-		txtContraseniaIs= new JPasswordField(20);
+		contraseniaIs= new JPasswordField();
 		
 		// Tamaño del Textfield(Ancho x Alto)
-		txtCorreoElectronico.setMaximumSize(new Dimension (Integer.MAX_VALUE, 20));
-		txtContraseniaIs.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
+				txtCorreoElectronico.setPreferredSize(new Dimension(300, 30));
+				contraseniaIs.setPreferredSize(new Dimension(300, 30));
 		
+		// Enlazar los paneles con los label y txtField
+		
+			pOeste.setLayout(new BoxLayout(pOeste, BoxLayout.Y_AXIS));
+			
+
+			pOesteCentro.add(lblCorreoElectronico);
+			pOesteCentro.add(txtCorreoElectronico);
+			lblContraseniaIs = new JLabel("  Contrasenia: ");
+			lblContraseniaIs.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			pOesteCentro.add(lblContraseniaIs);
+			pOesteCentro.add(contraseniaIs);
+			pOeste.add(pOesteCentro);
+
+			
+		//Enlazar panel este con registro
+			pEsteCentro.setLayout(new BoxLayout(pEsteCentro,BoxLayout.Y_AXIS));
+			lblRegistro = new JLabel("¿No tienes cuenta? Regístrate aquí");
+			lblRegistro.setBorder(new EmptyBorder(0, 0, 0, 0));
+			lblRegistro.setFont(new Font("Tw", Font.BOLD, 14));
+			
+			pEsteCentro.add(lblRegistro);
+			btnRegistrarse = new JButton("                    REGÍSTRATE                   ");
+			pEsteCentro.add(btnRegistrarse);
+			pOeste.add(pEsteCentro);
+			
+		
+		btnRegistrarse.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA CLICKADO BOTON REGISTRARSE");
+			new VentanaRegistros(vActual);
+			vActual.setVisible(false);
+			vActual.dispose();
+		
+		});
+			
 		//botones
 		btnIniciarSesion = new JButton("Iniciar Sesion");
-		btnAtras = new JButton("Atras");
-		btnRegistrarse = new JButton("Registrarse");
-		
-		// Enlazar los paneles con los label, txtField y botones
-		pOeste.add(lblCorreoElectronico);
-		pOeste.add(txtCorreoElectronico);
-		pOeste.add(lblContraseniaIs);
-		pOeste.add(txtContraseniaIs);
-		pOeste.add(Box.createVerticalStrut(30));
-		pOeste.setBorder(new EmptyBorder(350, 350, 35, 350 ));
-		
-		pEste.add(lblRegistrarse);
-		pEste.add(btnRegistrarse);
-		pEste.add(Box.createVerticalStrut(30));
-		pEste.setBorder(new EmptyBorder(400, 400, 400, 400 ));
-				
-		pSur.add(btnAtras);
+		btnSalir = new JButton("Atras");
+		pSur.add(btnSalir);
 		pSur.add(btnIniciarSesion);
 		
-		panelContenedor.add(pEste, BorderLayout.EAST);
-		panelContenedor.add(pOeste, BorderLayout.WEST);
-		panelContenedor.add(pSur, BorderLayout.SOUTH);
 		
-		pPrincipal.add(panelContenedor, BorderLayout.CENTER);
-		getContentPane().add(pPrincipal);
+		
 		//cargar las colecciones
 		Cine.cargarUsuarioEnLista(nomfichUsuarios);
 
@@ -133,7 +141,7 @@ public class VentanaInicioSesion extends JFrame {
 		//Eventos
 		btnIniciarSesion.addActionListener((e)->{
 			String CorreoElectronico = txtCorreoElectronico.getText();
-			String con = txtContraseniaIs.getText();
+			String con = contraseniaIs.getText();
 			//Mira si el correo electronico esta vacio
 			 if(CorreoElectronico.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Inserte un Usuario","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -154,13 +162,13 @@ public class VentanaInicioSesion extends JFrame {
 				}
 					
 				else {
-					JOptionPane.showMessageDialog(null, "¡Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
 					usuario = u; //Guardamos la información del usuario que ha iniciado sesión
 					carrito = new ArrayList<>(); //Inicializamos su carrito a una lista vacía (Instanciamos la lista que hace referencia al carrito)
 					new VentanaHorario(vActual, u);
 					vActual.setVisible(false);
 					txtCorreoElectronico.setText("");
-					txtContraseniaIs.setText("");
+					contraseniaIs.setText("");
 					logger.log(Level.INFO, "SE HA INICIADO SESION");
 				}
 					
@@ -171,26 +179,16 @@ public class VentanaInicioSesion extends JFrame {
 			
 		
 
-		btnAtras.addActionListener((e)->{
+		btnSalir.addActionListener((e)->{
 			logger.log(Level.INFO, "SE HA CLICKADO BOTON ATRAS");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 		}) ;
-			
-		
-		btnRegistrarse.addActionListener((e)->{
-			logger.log(Level.INFO, "SE HA CLICKADO BOTON REGISTRARSE");
-			new VentanaRegistros(vActual);
-			vActual.setVisible(false);
-			vActual.dispose();
-		
-		});
 		
 		
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
 		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
 		setSize(anchoP, altoP);
-		setExtendedState(MAXIMIZED_BOTH);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(600, 300, 450, 300);
