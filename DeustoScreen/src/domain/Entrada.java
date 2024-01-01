@@ -2,7 +2,7 @@ package domain;
 
 public class Entrada {
 	private int numeroDeSala;
-	private int numoroDeAsiento;
+	private int numeroDeAsiento;
 	
 	
 	public Entrada() {
@@ -13,7 +13,7 @@ public class Entrada {
 	public Entrada(int numeroDeSala, int numoroDeAsiento) {
 		super();
 		this.numeroDeSala = numeroDeSala;
-		this.numoroDeAsiento = numoroDeAsiento;
+		this.numeroDeAsiento = numoroDeAsiento;
 	}
 
 
@@ -28,18 +28,18 @@ public class Entrada {
 
 
 	public int getNumoroDeAsiento() {
-		return numoroDeAsiento;
+		return numeroDeAsiento;
 	}
 
 
 	public void setNumoroDeAsiento(int numoroDeAsiento) {
-		this.numoroDeAsiento = numoroDeAsiento;
+		this.numeroDeAsiento = numoroDeAsiento;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Entradas [numeroDeSala=" + numeroDeSala + ", numoroDeAsiento=" + numoroDeAsiento + "]";
+		return "Entradas [numeroDeSala=" + numeroDeSala + ", numoroDeAsiento=" + numeroDeAsiento + "]";
 	}
 	
 	

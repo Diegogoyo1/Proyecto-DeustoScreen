@@ -32,7 +32,7 @@ public class Cine{
 	private static List<Trabajador> listaTrabajadores;
 	private static Usuario u;
 	private static TreeMap<String, HashMap<Integer, ArrayList<String>>> mapaHorarios ;
-	public int sala;
+	public static int sala;
 	
 	
 	static {
@@ -62,7 +62,7 @@ public class Cine{
 				if(!mapaHorarios.containsKey(partes[0])) {
 					mapaHorarios.put(partes[0], new HashMap<>());
 				}
-				int sala = Integer.parseInt(partes[1]);
+				sala = Integer.parseInt(partes[1]);
 				if(!mapaHorarios.get(partes[0]).containsKey(sala)){
 					mapaHorarios.get(partes[0]).put(sala, new ArrayList<>());
 				}
@@ -77,6 +77,7 @@ public class Cine{
 		}
 		
 	}
+	
 	
 	public static List<Usuario> getListaUsuarios(){
 		return usuarios;

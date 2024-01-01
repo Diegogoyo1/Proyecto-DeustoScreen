@@ -17,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import domain.Cine;
+
 public class VentanaPago extends JFrame {
 	private JButton btnFinalizarCompra, btnAtras;
 	private JPanel pSur, pCentro, pNorte,pEste,pOeste;
@@ -151,7 +153,7 @@ public class VentanaPago extends JFrame {
 		lblPelicula.setFont(new Font( "Arial", Font.PLAIN, 25));
 		lblPelicula.setBounds(300,100,500,500);
 		
-		lblSala = new JLabel("Sala                  " );
+		lblSala = new JLabel("Sala                                 ");
 		lblSala.setForeground(Color.BLACK);
 		lblSala.setFont(new Font( "Arial", Font.PLAIN, 25));
 		lblSala.setBounds(300,250,500,500);
