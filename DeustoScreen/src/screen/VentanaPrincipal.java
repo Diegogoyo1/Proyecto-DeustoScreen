@@ -43,7 +43,7 @@ import javax.swing.border.EmptyBorder;
 
 public class VentanaPrincipal extends JFrame{
 	private JPanel pNorte, pCentro,pEste, pOeste, pSur;
-	private JButton btnPrecios, btnIniciarSesion, btnCartelera;
+	private JButton btnPrecios, btnIniciarSesion, btnCartelera,btnPerfilUser;
 	private JComboBox<PuestoTrabajo> puestoComboBox;
 	private JFrame vAnterior,vActual;
 	private JLabel lblImg;
@@ -200,6 +200,7 @@ public class VentanaPrincipal extends JFrame{
 		pOeste.add(btnIniciarSesion);
 		pOeste.add(btnPrecios);
 		pOeste.add(btnCartelera);
+		//pNorte.add(btnPerfilUser);
 		pNorte.setOpaque(false);
 		pCentro.setOpaque(false);
 		pSur.setOpaque(false);
