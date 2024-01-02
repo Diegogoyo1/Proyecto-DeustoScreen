@@ -17,13 +17,16 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import domain.Cine;
+
 public class VentanaPago extends JFrame {
 	private JButton btnFinalizarCompra, btnAtras;
 	private JPanel pSur, pCentro, pNorte,pEste,pOeste;
 	private JFrame vActual, vAnterior;
-	private JLabel  lblTitulo,lblNumPrec, lblEntradasMenores, lblEntradasEntreanios, lblEntradasMayores, lblTotal, lblRecibo, lblGracias,
-					lblAsteriscos1, lblAsteriscos2, lblAsteriscos3, lblAsteriscos4, lblAsteriscos5, lblSala, lblHorario, lblAsiento, lblPelicula;
-	//private JLabel (inicializa los valores que estan en resumen inicio pago )
+	private JLabel  lblTituloRecibo,lblNumPrec, lblEntradasMenores, lblEntradasEntreanios, lblEntradasMayores, lblTotal, lblRecibo, lblGracias,
+					lblAsteriscos1, lblAsteriscos2, lblAsteriscos3, lblAsteriscos4, lblAsteriscos5;
+	private JLabel  lblSala, lblHora, lblAsientos, lblPelicula, lblNumEntradas, lblEntradas,
+					lblAsteriscos6, lblAsteriscos7, lblAsteriscos8;
 	
 	public VentanaPago(JFrame va) {
 		vActual=this;
@@ -36,14 +39,12 @@ public class VentanaPago extends JFrame {
 		pSur = new JPanel();
 		pCentro = new JPanel(null);
 		pNorte = new JPanel();
-//		pEste = new JPanel();
-//		pOeste = new JPanel();
+
 
 		getContentPane().add(pSur, BorderLayout.SOUTH);
 		getContentPane().add(pCentro, BorderLayout.CENTER);
 		getContentPane().add(pNorte, BorderLayout.NORTH);
-//		getContentPane().add(pEste,BorderLayout.EAST);
-//		getContentPane().add(pOeste,BorderLayout.WEST);
+
 		
 		int espacioEntrePeneles = 150;
 		pCentro.setBorder(new EmptyBorder(espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles));
@@ -68,7 +69,7 @@ public class VentanaPago extends JFrame {
 		
 		
 		//LABELS(resumen Pago)
-		lblTitulo = new JLabel("RESUMEN PAGO");
+		lblTituloRecibo = new JLabel("RESUMEN PAGO");
 		
 		lblNumPrec = new JLabel("TIPO                    nº               Pr.");
 		lblNumPrec.setFont(new Font( "Arial", Font.PLAIN, 25));
@@ -129,48 +130,50 @@ public class VentanaPago extends JFrame {
 		
 		
 		
-
-		lblAsteriscos1 = new JLabel("*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *");
-		lblAsteriscos1.setFont(new Font( "Arial", Font.PLAIN, 20));
-		lblAsteriscos1.setBounds(300, -50, 500, 500);
+		//LABEL (resumen entradas)
+		lblAsteriscos6 = new JLabel("*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *");
+		lblAsteriscos6.setFont(new Font( "Arial", Font.PLAIN, 20));
+		lblAsteriscos6.setBounds(300, -50, 500, 500);
 		
-		lblAsteriscos2 = new JLabel("*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *");
-		lblAsteriscos2.setFont(new Font( "Arial", Font.PLAIN, 20));
-		lblAsteriscos2.setBounds(300, 25, 500, 500);
+		lblAsteriscos7 = new JLabel("*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *");
+		lblAsteriscos7.setFont(new Font( "Arial", Font.PLAIN, 20));
+		lblAsteriscos7.setBounds(300, 25, 500, 500);
 		
-		lblAsteriscos3 = new JLabel("*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *");
-		lblAsteriscos3.setFont(new Font( "Arial", Font.PLAIN, 20));
-		lblAsteriscos3.setBounds(300, 230, 500, 500);
+		lblAsteriscos8 = new JLabel("*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *");
+		lblAsteriscos8.setFont(new Font( "Arial", Font.PLAIN, 20));
+		lblAsteriscos8.setBounds(300, 425, 500, 500);
 		
-		lblAsteriscos4 = new JLabel("*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *");
-		lblAsteriscos4.setFont(new Font( "Arial", Font.PLAIN, 20));
-		lblAsteriscos4.setBounds(300, 330, 500, 500);
+		lblEntradas = new JLabel("ENTRADAS");
+		lblEntradas.setForeground(Color.BLACK);
+		lblEntradas.setFont(new Font("Arial", Font.PLAIN, 25));
+		lblEntradas.setBounds(400,-13, 500,500);
 		
-		lblAsteriscos5 = new JLabel("*  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *");
-		lblAsteriscos5.setFont(new Font( "Arial", Font.PLAIN, 20));
-		lblAsteriscos5.setBounds(300, 425, 500, 500);
-		
-		
-		lblPelicula = new JLabel("PELICULA                   " + String.valueOf(VentanaSeleccionEntradas.getMayores()) + "                " + String.valueOf(VentanaSeleccionEntradas.getMenores()*4));
+		lblPelicula = new JLabel("Pelicula                     " + String.valueOf(VentanaEntradas.getComboTitulos()));
 		lblPelicula.setForeground(Color.BLACK);
 		lblPelicula.setFont(new Font( "Arial", Font.PLAIN, 25));
 		lblPelicula.setBounds(300,100,500,500);
 		
-		lblSala = new JLabel("SALA                  " + String.valueOf(VentanaSeleccionEntradas.getEntreanios()) + "                " + String.valueOf(VentanaSeleccionEntradas.getEntreanios()*7));
+		lblSala = new JLabel("Sala                                 ");
 		lblSala.setForeground(Color.BLACK);
 		lblSala.setFont(new Font( "Arial", Font.PLAIN, 25));
-		lblSala.setBounds(300,150,500,500);
+		lblSala.setBounds(300,250,500,500);
 		
 		
-		lblAsiento = new JLabel("ASIENTO                  " + String.valueOf(VentanaSeleccionEntradas.getMayores()) + "                " + String.valueOf(VentanaSeleccionEntradas.getMayores()*5));
-		lblAsiento.setForeground(Color.BLACK); 
-		lblAsiento.setFont(new Font( "Arial", Font.PLAIN, 25));
-		lblEntradasMayores.setBounds(300,200,500,500);
+		lblAsientos = new JLabel("Asientos                  " );
+		lblAsientos.setForeground(Color.BLACK); 
+		lblAsientos.setFont(new Font( "Arial", Font.PLAIN, 25));
+		lblAsientos.setBounds(300,300,500,500);
 		
-		lblHorario = new JLabel("HORA                 " + String.valueOf(VentanaSeleccionEntradas.getMayores()) + "                " + String.valueOf(VentanaSeleccionEntradas.getMayores()*5));
-		lblHorario.setForeground(Color.BLACK); 
-		lblHorario.setFont(new Font( "Arial", Font.PLAIN, 25));
-		lblHorario.setBounds(300,200,500,500);
+		lblHora = new JLabel("Hora                                  " + String.valueOf(VentanaEntradas.getComboHorarios()));
+		lblHora.setForeground(Color.BLACK); 
+		lblHora.setFont(new Font( "Arial", Font.PLAIN, 25));
+		lblHora.setBounds(300,150,500,500);
+		
+		lblNumEntradas = new JLabel("Num Entradas                          " + String.valueOf(VentanaSeleccionEntradas.getTotalEntradas()));
+		lblNumEntradas.setForeground(Color.BLACK);
+		lblNumEntradas.setFont(new Font("Arial",Font.PLAIN, 25));
+		lblNumEntradas.setBounds(300, 200, 500, 500);
+		
 		
 		
 		pCentro.add(lblEntradasEntreanios);
@@ -186,20 +189,21 @@ public class VentanaPago extends JFrame {
 		pCentro.add(lblTotal);
 		pCentro.add(lblNumPrec);
 		
+		pCentro.add(lblAsteriscos6);
+		pCentro.add(lblAsteriscos7);
+		pCentro.add(lblAsteriscos8);
+		pCentro.add(lblEntradas);
 		pCentro.add(lblSala);
-		pCentro.add(lblAsiento);
-		pCentro.add(lblHorario);
-		pCentro.add(lblAsteriscos1);
-		pCentro.add(lblAsteriscos2);
-		pCentro.add(lblAsteriscos3);
-		pCentro.add(lblAsteriscos4);
-		pCentro.add(lblAsteriscos5);
-		
+		pCentro.add(lblAsientos);
+		pCentro.add(lblHora);
+		pCentro.add(lblPelicula);
+		pCentro.add(lblNumEntradas);
+	
+		System.out.println(Cine.getEntradas());
 		pSur.add(btnAtras);
 		pSur.add(btnFinalizarCompra);
-		pNorte.add(lblTitulo);
-//		pCentro.add(pEste);
-//		pCentro.add(pOeste);	
+		pNorte.add(lblTituloRecibo);
+	
 		
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
 		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();

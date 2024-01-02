@@ -1,39 +1,60 @@
 package screen;
 
-import java.awt.BorderLayout; 
+import java.awt.BorderLayout;
+
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import domain.Cine;
+import domain.PuestoTrabajo;
+import domain.Trabajador;
 import domain.Usuario;
+
+
 import javax.swing.border.EmptyBorder;
 
-import domain.Usuario;
 
 
 
 public class VentanaPrincipal extends JFrame{
-	private JPanel PanelNorte, PanelCentro;
+	private JPanel pNorte, pCentro,pEste, pOeste, pSur;
 	private JButton btnPrecios, btnIniciarSesion, btnCartelera;
+	private JComboBox<PuestoTrabajo> puestoComboBox;
 	private JFrame vAnterior,vActual;
+	private JLabel lblImg;
+	private JMenu menu;
+	private JMenuBar menuBar;
+	private JMenuItem itPersonal;
+	private static final String nomfichTrabajadores = "ficheros/Trabajadores.csv";
+	private Trabajador trabajador;
 	private VentanaPrincipal vp;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
-	
+	PanelConFondo panelFondo;
 	/*@Override
     public void paint(Graphics g){
         Dimension dimension = this.getSize();
@@ -49,26 +70,105 @@ public class VentanaPrincipal extends JFrame{
 		vAnterior= va;
 		vActual=this;
 		
-		PanelNorte = new JPanel();
-		PanelCentro = new JPanel();
-		getContentPane().add(PanelNorte, BorderLayout.NORTH);
-		getContentPane().add(PanelCentro,BorderLayout.CENTER);
-		
-				
-		btnPrecios = new JButton("Precios");
-		btnIniciarSesion = new JButton("Iniciar Sesion");
-		btnCartelera = new JButton("Cartelera");
-		
-		 
+		Cine.cargarTrabajadoresEnLista(nomfichTrabajadores);
 
-		PanelNorte.add(btnIniciarSesion);
-		PanelNorte.add(btnPrecios);
-		PanelNorte.add(btnCartelera);
+		pNorte = new JPanel();
+		pCentro = new JPanel();
+		pEste = new JPanel();
+		pOeste = new JPanel();
+		pSur = new JPanel();
+
 		
 
+		panelFondo = new PanelConFondo(new ImageIcon("imagenes/ImagenFondoVPrincipal.jpg").getImage());
+		
+		puestoComboBox = new JComboBox<>(PuestoTrabajo.values());
+		
+		menuBar = new JMenuBar();
+		menu = new JMenu ("Area del personal");
+		menu.setFont(new Font("Arial", Font.BOLD, 15));
+		menu.setBackground(new Color(125,192,230));
+		menu.setForeground(Color.BLACK);
+		itPersonal = new JMenuItem("Personal");
+		itPersonal.setFont(new Font ("Arial", Font.BOLD, 15));
+		itPersonal.addActionListener(new ActionListener() {
+			
+	    	 @Override
+			    public void actionPerformed(ActionEvent e) {
+			        String dni = "";
+			        Trabajador t = null;
+
+			        while (t == null) {
+			            dni = JOptionPane.showInputDialog("Ingrese su DNI:");
+
+			            if (dni == null) {
+			                break;
+			            }
+
+			            if (dni.isEmpty()) {
+			                JOptionPane.showMessageDialog(null, "Inserte el DNI", "ERROR", JOptionPane.ERROR_MESSAGE);
+			            } else {
+			                t = Cine.buscarTrabajador(dni);
+
+			                if (t == null) {
+			                    JOptionPane.showMessageDialog(null, "Trabajador no encontrado", "ERROR", JOptionPane.WARNING_MESSAGE);
+			                }
+			            }
+			        }
+			       
+			        if (t != null) {
+			            PuestoTrabajo selectedCargo = null;
+			            while (selectedCargo == null) {
+			                puestoComboBox.setSelectedItem(t.getPuesto());
+			                Object[] mensaje = {
+			                        "Nombre y Apellidos:", t.getNombreApellidosTrabajador(),
+			                        "Teléfono:", t.getTelefonoTrabajador(),
+			                        "DNI:", dni,
+			                        "Seleccione el cargo:", puestoComboBox
+			                };
+
+			                int result = JOptionPane.showConfirmDialog(null, mensaje, "Ingrese su información",
+			                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+			                if (result == JOptionPane.OK_OPTION) {
+			                    selectedCargo = (PuestoTrabajo) puestoComboBox.getSelectedItem();
+
+			                    if (!dni.equals(t.getDni()) || !selectedCargo.equals(t.getPuesto())) {
+			                        JOptionPane.showMessageDialog(null, "Cargo incorrecto", "ERROR", JOptionPane.WARNING_MESSAGE);
+
+			                        selectedCargo = null;
+			                    } else {
+			                        JOptionPane.showMessageDialog(null, "¡Bienvenido!", "SESIÓN INICIADA", JOptionPane.INFORMATION_MESSAGE);
+			                        trabajador = t;
+			                       // new VentanaVerCompras(vActual);
+			                        vActual.setVisible(false);
+			                    }
+			                } else {
+			                   
+			                    break;
+			                }
+			            }
+			        }
+			    }
+		});
+		
+		menu.add(itPersonal);
+		menuBar.add(menu);
+		setJMenuBar(menuBar);
+		
+		panelFondo.add(pCentro, BorderLayout.CENTER);
+		panelFondo.add(pNorte, BorderLayout.NORTH);
+		panelFondo.add(pSur, BorderLayout.SOUTH);
+		panelFondo.add(pEste, BorderLayout.EAST);
+		panelFondo.add(pOeste, BorderLayout.WEST);
+
+		int espacioEntrePeneles = 200;
+		pNorte.setBorder(new EmptyBorder(espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles));
 		
 		//Eventos Botones
-		
+		btnPrecios = new JButton("PRECIOS");
+		btnPrecios.setForeground(new Color(255, 255, 255));
+		btnPrecios.setBackground(new Color(0, 0, 0));
 		btnPrecios.addActionListener((e)->{
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON PRECIOS");
 			new VentanaPrecios(vActual);
@@ -76,6 +176,9 @@ public class VentanaPrincipal extends JFrame{
 			vActual.dispose();
 		});
 		
+		btnIniciarSesion = new JButton("INICIAR SESION");
+		btnIniciarSesion.setForeground(new Color(255, 255, 255));
+		btnIniciarSesion.setBackground(new Color(0, 0, 0));
 		btnIniciarSesion.addActionListener((e)->{
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON INICIAR SESION");
 			new VentanaInicioSesion(vActual);
@@ -83,6 +186,9 @@ public class VentanaPrincipal extends JFrame{
 			vActual.dispose();
 		});
 		
+		btnCartelera = new JButton("CARTELERA");
+		btnCartelera.setForeground(new Color(255, 255, 255));
+		btnCartelera.setBackground(new Color(0, 0, 0));
 		btnCartelera.addActionListener((e)-> {
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON CARTELERA");
 			new VentanaCartelera(vActual);
@@ -91,6 +197,14 @@ public class VentanaPrincipal extends JFrame{
 			
 		});
 		
+		pOeste.add(btnIniciarSesion);
+		pOeste.add(btnPrecios);
+		pOeste.add(btnCartelera);
+		pNorte.setOpaque(false);
+		pCentro.setOpaque(false);
+		pSur.setOpaque(false);
+		pEste.setOpaque(false);
+		pOeste.setOpaque(false);
 		
 		
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
@@ -101,14 +215,15 @@ public class VentanaPrincipal extends JFrame{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(600, 300, 450, 300);
 		setTitle("INICIO");
+		setContentPane(panelFondo);
 		setVisible(true);
 		
 	}
 	
 
-
+public static void main(String[] args) {
+	VentanaPrincipal vp = new VentanaPrincipal(null);
+}
 	
 
 }
-
-

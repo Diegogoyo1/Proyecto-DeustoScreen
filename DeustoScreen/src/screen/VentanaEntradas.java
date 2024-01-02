@@ -1,10 +1,11 @@
 package screen;
 
-import javax.swing.JFrame;
+import javax.swing.JFrame; 
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import domain.Cine;
+import domain.Entrada;
 import domain.Peliculas;
 import domain.Usuario;
 
@@ -18,6 +19,9 @@ import javax.swing.JComboBox;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -33,16 +37,20 @@ import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 
 public class VentanaEntradas extends JFrame{
 	protected JPanel panelNorth, panelEast, panelWest, panelCenter, panelSouth;
 	protected JButton BtnAtras, BtnSiguiente;
 	private JLabel lblEntradas, lblPelicula, lblHorarios;
 	private JFrame vActual, vAnterior;
-	//private List<Peliculas> listaPeliculas; 
+	private List<String> listaPeliHora; 
 
 	private static JComboBox<String> cbTitulos;
-	private JComboBox<String> cbHorarios;
+	private static JComboBox<String> cbHorarios;
 
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 
@@ -95,15 +103,88 @@ public class VentanaEntradas extends JFrame{
 		
 		cbHorarios = new JComboBox<>();
         cbHorarios.setPreferredSize(comboBoxSizeT);
-        
         panelCenter.add(cbHorarios);
+        
         lblEntradas.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblPelicula.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblHorarios.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-		
+		cbTitulos.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount()==1) {
+					Object PeliculaSeleccionada = ((JComboBox<String>) e.getSource()).getSelectedItem();
+					listaPeliHora.add(PeliculaSeleccionada.toString());
+
+				}
+
+			}
+		});
+
+
+		cbHorarios.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getClickCount()==1) {
+					Object horaSeleccinada = ((JComboBox<String>) e.getSource()).getSelectedItem();
+					listaPeliHora.add(horaSeleccinada.toString());
+
+				}
+				
+			}
+		});
 	
 
+		System.out.println(listaPeliHora);
 		BtnAtras = new JButton("Atrás");
 		BtnSiguiente = new JButton("Siguiente");
 		panelSouth.add(BtnAtras);
@@ -126,7 +207,7 @@ public class VentanaEntradas extends JFrame{
 		});
 		
 		BtnSiguiente.addActionListener((e)->{
-
+			Cine.aniadirEntrada((Entrada) listaPeliHora);
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON SIGUIENTE");
 			new VentanaSeleccionEntradas(vActual, u);
 
@@ -152,6 +233,7 @@ public class VentanaEntradas extends JFrame{
 		return (String) cbTitulos.getSelectedItem();
 	}
 	
+	
 	private void cargarComboHorarios() {
 		cbHorarios.removeAllItems();
 		String pelicula = cbTitulos.getSelectedItem().toString();
@@ -164,6 +246,10 @@ public class VentanaEntradas extends JFrame{
 				
 			}
 		}
+	}
+	
+	public static String getComboHorarios() {
+		return (String) cbHorarios.getSelectedItem();
 	}
 	
 	public static void main(String[] args) {

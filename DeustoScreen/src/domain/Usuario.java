@@ -54,7 +54,7 @@ public class Usuario implements Comparable<Usuario> {
 		
 	}*/
 
-
+	
 
 	// getters y setters
 	public String getNombre() {

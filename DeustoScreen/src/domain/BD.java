@@ -1,7 +1,5 @@
 package domain;
-
 import java.sql.Connection;
-
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,55 +8,48 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-
-
-
 public class BD {
 /**
- * Metodo que inicializa la base dde datos
+ * Metodo que inicializa la base de datos
  * @param nombreBD
- * @return
+ * @return devuelve la conexion de la base de datos
  */
 	public static Connection initBD(String nombreBD) {
 		Connection con = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
 			con = DriverManager.getConnection("jdbc:sqlite:"+nombreBD);
-
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return con;
 	}
-
 	/**
 	 * Metodo que crea las tablas de la Base de Datos
-	 * @param conn
-	 * @throws SQLException
+	 * @param con Conexion de la base de datos
+	 * @throws SQLException Excepcion si no se actualiza la tabla en la base de datos
 	 */
-	public static void crearTabla (Connection conn) throws SQLException{
+	public static void crearTabla (Connection con) throws SQLException{
 		String sqlUsuario = "CREATE TABLE IF NOT EXISTS Usuario (Nombre String, Apellido String,FechaNacimiento String, Teléfono String,CorreoElectronico String,Contrasenia String,ContadorPuntos String )";
 		String sqlPeliculas = "CREATE TABLE IF NOT EXISTS Peliculas (titulo String, Reparto String,Duracion String, FechaDeEstreno String,Categoria String )";
+		String sqlActorres = "CREATE TABLE IF NOT EXISTS Actores(nombre String , FechaNacimiento String )";
+		String sqlHorarios = "CREATE TABLE IF NOR EXISTS horarios()";
 		try {
-			Statement st = conn.createStatement();
+			Statement st = con.createStatement();
 			st.executeUpdate(sqlUsuario);
 			st.close();
-
 		} catch (SQLException e) {
 			throw e;
 		}
 	}
 	/**
 	 * Inserta usuario en la base de datos
-	 * @param con
-	 * @param usuario
+	 * @param con Conxion de la basee de datos
+	 * @param usuario Usuario que queremos insertar en la base de datos
 	 */
 		public static void insertarUsuario(Connection con, Usuario usuario){
-
 			if(buscarUsario(con,usuario.getCorreoElectronico())==null){
 				String sql = String.format("INSERT INTO USUARIO VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s')", 
 						usuario.getNombre(), usuario.getApellido(), usuario.getTlf(),usuario.getCorreoElectronico(),usuario.getContrasenia(),usuario.getContadorPuntos());
@@ -71,11 +62,10 @@ public class BD {
 				}
 			}
 		}
-
 		/**
 		 * Busca usuario mediante el valor de correo electronico
-		 * @param con
-		 * @param CorreoElectronico
+		 * @param con Conexion de la base de datos
+		 * @param CorreoElectronico correo electronico con el cual vamos a buscar el usuario
 		 * @return devuelve el usuario que ha buscado en la base de datos
 		 */
 	public static Usuario buscarUsario(Connection con, String CorreoElectronico) {
@@ -92,7 +82,6 @@ public class BD {
 				String CorreoEle = rs.getString("CorreoElectronico");
 				String contrasenia = rs.getString("Contraseña");
 				String ContadorPuntos = rs.getString("ContadorPuntos");
-
 				usuario = new Usuario(nombre, apellido, fNac, tlf, CorreoEle, contrasenia, ContadorPuntos);
 			}
 			rs.close();
@@ -102,11 +91,10 @@ public class BD {
 		}
 		return usuario;
 	}
-
 	
 	/**
 	 * Metodo que obtiene la lista de usuarios 
-	 * @param con
+	 * @param con Conexion de la base de datos
 	 */
 	public static List<Usuario> obtenerListaUsario(Connection con){
 		String sql = "SELECT * FROM Usuario";
@@ -128,16 +116,16 @@ public class BD {
 			rs.close();
 			st.close();
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		}
 		return l;
 	}
 
 	
+	
 	/**
 	 * Metodo que cierra la base de datos
-	 * @param con 
+	 * @param con Conexion de labase de datos
 	 */
 	public static void cerrarBD(Connection con) {
 		if(con != null) {
@@ -146,8 +134,6 @@ public class BD {
 			} catch (SQLException e) {
 			}
 		}
-
 	}
 	
-
 }
