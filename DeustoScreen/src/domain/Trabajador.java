@@ -37,6 +37,10 @@ public class Trabajador {
 		this.contraseniaTrabajador = null;
 		this.dni = null;
 	}
+	public Trabajador(String horasTrabajadas2, String sueldo2, String nombreApellidos, String telefono,
+			String contrasenia, String dni2, String puesto2) {
+	}
+
 	public double getHorasTrabajadas() {
 		return horasTrabajadas;
 	}

@@ -33,9 +33,10 @@ public class BD {
 	 */
 	public static void crearTabla (Connection con) throws SQLException{
 		String sqlUsuario = "CREATE TABLE IF NOT EXISTS Usuario (Nombre String, Apellido String,FechaNacimiento String, Teléfono String,CorreoElectronico String,Contrasenia String,ContadorPuntos String )";
-		String sqlPeliculas = "CREATE TABLE IF NOT EXISTS Peliculas (titulo String, Reparto String,Duracion String, FechaDeEstreno String,Categoria String )";
+		String sqlPeliculas = "CREATE TABLE IF NOT EXISTS Peliculas (titulo String, Reparto String,Duracion String, FechaDeEstreno String, Categoria String )";
 		String sqlActorres = "CREATE TABLE IF NOT EXISTS Actores(nombre String , FechaNacimiento String )";
-		String sqlHorarios = "CREATE TABLE IF NOR EXISTS horarios()";
+		String sqlHorarios = "CREATE TABLE IF NOT EXISTS Horarios()";
+		String sqlTrabajador = "CREATE TABLE IF NOT EXISTS Trabajador(NombreApellidosTrabajor String, Dni String, CotraseniaTrabajador String, TelefonoTrabajador String, Puesto PuestoTrabajo, HorasTrabajadas double, Sueldo double)";
 		try {
 			Statement st = con.createStatement();
 			st.executeUpdate(sqlUsuario);
@@ -46,7 +47,7 @@ public class BD {
 	}
 	/**
 	 * Inserta usuario en la base de datos
-	 * @param con Conxion de la basee de datos
+	 * @param con Conexion de la base de datos
 	 * @param usuario Usuario que queremos insertar en la base de datos
 	 */
 		public static void insertarUsuario(Connection con, Usuario usuario){
@@ -108,7 +109,7 @@ public class BD {
 				String tlf = rs.getString("Teléfono");
 				String fNac = rs.getString("fechaNacimineto");
 				String correoElectronico = rs.getString("CorreoElectronico");
-				String contrasenia = rs.getString("Contraseña");
+				String contrasenia = rs.getString("Contrasenia");
 				String puntosAcumulados = rs.getString("PuntosAcumulados");
 				Usuario usuario = new Usuario(nombre, apellidos,fNac,tlf,correoElectronico,contrasenia,puntosAcumulados);
 				l.add(usuario);
@@ -120,9 +121,58 @@ public class BD {
 		}
 		return l;
 	}
+	
+	/**
+	 * Inserta trabajador en la base de datos
+	 * @param con Conexion de la base de datos
+	 * @param trabajador Trabajador que queremos insertar en la base de datos
+	 */
+	public static void insertarTrabajador (Connection con, Trabajador trabajador) {
+		if(buscarTrabajador(con, trabajador.getDni()) == null) {
+			String sql = String.format("INSERT INTO TRABAJADOR VALUES('%s','%s','%s','%s','%s','%,.2f','%,.2f')",
+					trabajador.getNombreApellidosTrabajador(), trabajador.getDni(), trabajador.getContraseniaTrabajador(), trabajador.getTelefonoTrabajador(), trabajador.getPuesto(), trabajador.getHorasTrabajadas(), trabajador.getSueldo());
+			try {
+				Statement st = con.createStatement();
+				st.executeUpdate(sql);
+				st.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/**
+	 * Busca trabajador mediante el valor del dni
+	 * @param con Conexion de la base de datos
+	 * @param Dni dni con el cual vamos a buscar el trabajador
+	 * @return devuelve el trabajador que ha buscado en la base de datos
+	 */
+	public static Trabajador buscarTrabajador(Connection con, String dni) {
+		String sql = String.format("SELECT * FROM TRABAJADOR WHERE Dni = '%s'", dni);
+		Trabajador trabajador = null;
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next()) {
+				String nombreApellidosTrabajador = rs.getString("NombreApellidos");
+				String dniTra = rs.getString("Dni");
+				String contraseniaTrabajador = rs.getString("Contraseña");
+				String telefonoTrabajador = rs.getString("Telefono");
+				String puesto = rs.getString("Puesto");
+				String horasTrabajadas = rs.getString("HorasTrabajadas");
+				String sueldo = rs.getString("Sueldo");	
+			}
+			rs.close();
+			st.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return trabajador;
+		
+	}
 
-	
-	
 	/**
 	 * Metodo que cierra la base de datos
 	 * @param con Conexion de labase de datos

@@ -261,7 +261,7 @@ public class Cine{
 		}
 		
 		/**
-		 * Metodo que vuelca toso los Usuarios del fichero a la base de datos
+		 * Metodo que vuelca todos los Usuarios del fichero a la base de datos
 		 * 
 		 * @param con conexion con la base de datos
 		 * @param nomFich nombre del fichero en este caso Usuarios.csv
@@ -289,6 +289,66 @@ public class Cine{
 				//logger.log(Level.WARNING, "Ruta del fichero no encontrada");
 			}
 		}
+
+		
+		/**
+		 * Metodo que vuelca todos los Trabajadores del fichero a la base de datos
+		 * 
+		 * @param con conexion con la base de datos
+		 * @param nomFich nombre del fichero en este caso Trabajadores.csv
+		 */
+		
+		public static void volcado_FichCSV_Trabajadores_a_BD(Connection con, String nomFich) {
+			try {
+				Scanner sc = new Scanner(new FileReader(nomFich));
+				String linea;
+				while (sc.hasNext()) {
+					linea = sc.nextLine();
+					String []partes = linea.split(";");
+					String NombreApellidos = partes[2];
+					String Dni = partes[5];
+					String Contrasenia = partes[4];
+					String Telefono = partes[3];
+					String Puesto = partes[6];
+					String HorasTrabajadas = partes[0];
+					String Sueldo = partes[1];
+					
+					Trabajador t = new Trabajador(HorasTrabajadas, Sueldo, NombreApellidos, Telefono, Contrasenia, Dni, Puesto);
+					BD.insertarTrabajador(con, t);
+				}
+				sc.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+/*
+ * 		
+		public static void volcado_FichCSV_Usuarios_a_BD(Connection con,String nomFich) {
+			try {
+				Scanner sc = new Scanner(new FileReader(nomFich));
+				String linea;
+				while(sc.hasNext()) {
+					linea = sc.nextLine();
+					String []partes = linea.split(";");
+					String Nombre = partes[0];
+					String Apellido = partes[1];
+					String FechaNacimiento = partes[2];
+					String tlf = partes[3];
+					String CorreoElectronico = partes[4];
+					String Contrasenia = partes[5];
+					String ContadorPuntos = partes[6];	
+
+					Usuario u = new Usuario(Nombre, Apellido, FechaNacimiento, tlf, CorreoElectronico, Contrasenia, ContadorPuntos);
+					BD.insertarUsuario(con, u);
+				}
+				sc.close();
+			}catch (FileNotFoundException e) {
+				//logger.log(Level.WARNING, "Ruta del fichero no encontrada");
+			}
+		}
+
+ */
 
 
 
