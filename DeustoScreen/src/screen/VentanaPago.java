@@ -199,7 +199,7 @@ public class VentanaPago extends JFrame {
 		pCentro.add(lblPelicula);
 		pCentro.add(lblNumEntradas);
 	
-		
+		System.out.println(Cine.getEntradas());
 		pSur.add(btnAtras);
 		pSur.add(btnFinalizarCompra);
 		pNorte.add(lblTituloRecibo);

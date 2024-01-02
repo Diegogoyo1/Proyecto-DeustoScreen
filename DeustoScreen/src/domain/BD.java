@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Map;
 public class BD {
 /**
- * Metodo que inicializa la base dde datos
+ * Metodo que inicializa la base de datos
  * @param nombreBD
- * @return
+ * @return devuelve la conexion de la base de datos
  */
 	public static Connection initBD(String nombreBD) {
 		Connection con = null;
@@ -28,16 +28,16 @@ public class BD {
 	}
 	/**
 	 * Metodo que crea las tablas de la Base de Datos
-	 * @param conn
-	 * @throws SQLException
+	 * @param con Conexion de la base de datos
+	 * @throws SQLException Excepcion si no se actualiza la tabla en la base de datos
 	 */
-	public static void crearTabla (Connection conn) throws SQLException{
+	public static void crearTabla (Connection con) throws SQLException{
 		String sqlUsuario = "CREATE TABLE IF NOT EXISTS Usuario (Nombre String, Apellido String,FechaNacimiento String, Teléfono String,CorreoElectronico String,Contrasenia String,ContadorPuntos String )";
 		String sqlPeliculas = "CREATE TABLE IF NOT EXISTS Peliculas (titulo String, Reparto String,Duracion String, FechaDeEstreno String,Categoria String )";
 		String sqlActorres = "CREATE TABLE IF NOT EXISTS Actores(nombre String , FechaNacimiento String )";
 		String sqlHorarios = "CREATE TABLE IF NOR EXISTS horarios()";
 		try {
-			Statement st = conn.createStatement();
+			Statement st = con.createStatement();
 			st.executeUpdate(sqlUsuario);
 			st.close();
 		} catch (SQLException e) {
@@ -46,8 +46,8 @@ public class BD {
 	}
 	/**
 	 * Inserta usuario en la base de datos
-	 * @param con
-	 * @param usuario
+	 * @param con Conxion de la basee de datos
+	 * @param usuario Usuario que queremos insertar en la base de datos
 	 */
 		public static void insertarUsuario(Connection con, Usuario usuario){
 			if(buscarUsario(con,usuario.getCorreoElectronico())==null){
@@ -64,8 +64,8 @@ public class BD {
 		}
 		/**
 		 * Busca usuario mediante el valor de correo electronico
-		 * @param con
-		 * @param CorreoElectronico
+		 * @param con Conexion de la base de datos
+		 * @param CorreoElectronico correo electronico con el cual vamos a buscar el usuario
 		 * @return devuelve el usuario que ha buscado en la base de datos
 		 */
 	public static Usuario buscarUsario(Connection con, String CorreoElectronico) {
@@ -94,7 +94,7 @@ public class BD {
 	
 	/**
 	 * Metodo que obtiene la lista de usuarios 
-	 * @param con
+	 * @param con Conexion de la base de datos
 	 */
 	public static List<Usuario> obtenerListaUsario(Connection con){
 		String sql = "SELECT * FROM Usuario";
@@ -125,7 +125,7 @@ public class BD {
 	
 	/**
 	 * Metodo que cierra la base de datos
-	 * @param con 
+	 * @param con Conexion de labase de datos
 	 */
 	public static void cerrarBD(Connection con) {
 		if(con != null) {

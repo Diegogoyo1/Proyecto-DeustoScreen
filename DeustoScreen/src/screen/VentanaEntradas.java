@@ -179,10 +179,6 @@ public class VentanaEntradas extends JFrame{
 					listaPeliHora.add(horaSeleccinada.toString());
 
 				}
-
-
-
-			
 				
 			}
 		});
