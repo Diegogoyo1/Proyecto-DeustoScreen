@@ -100,6 +100,7 @@ public class VentanaHorario extends JFrame{
 				if(dia == 0) {
 					dia = 7;
 				}
+				
 				dia--;
 				modelo.setRowCount(0);
 				TreeMap<String, HashMap<Integer, ArrayList<String>>> mapa = new TreeMap<>(Cine.getMapaHorarios());
