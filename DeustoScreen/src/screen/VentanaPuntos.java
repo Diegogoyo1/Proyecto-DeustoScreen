@@ -29,7 +29,7 @@ public class VentanaPuntos extends JFrame{
 	private JFrame vActual, vAnterior;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 	
-	public VentanaPuntos(JFrame va, Usuario u) {
+	public VentanaPuntos(JFrame va, Usuario u,int sala, int asiento) {
 		super();
 		vActual=this;
 		vAnterior=va;
@@ -82,7 +82,7 @@ public class VentanaPuntos extends JFrame{
 		//EVENTOS BOTONES
 		btnOmitir.addActionListener((e)->{
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON ATRAS");
-			new VentanaPago(vActual);
+			new VentanaPago(vActual,sala,asiento);
 			vActual.setVisible(false);
 			vActual.dispose();//Este DISPOSE cerrara la ventana y nos llevara a la de PAGO directamente sin AÑADIR los puntos
 			 
@@ -91,7 +91,7 @@ public class VentanaPuntos extends JFrame{
 		btnAniadir.addActionListener((e)-> {
 
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON AÑADIR");
-			new VentanaPago(vActual);
+			new VentanaPago(vActual,sala,asiento);
 			vActual.setVisible(false);
 			vActual.dispose();//Este DISPOSE cerrara la ventana y nos llevara a la de PAGO AÑADIENDO los puntos
 			 

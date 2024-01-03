@@ -28,7 +28,7 @@ public class VentanaPago extends JFrame {
 	private JLabel  lblSala, lblHora, lblAsientos, lblPelicula, lblNumEntradas, lblEntradas,
 					lblAsteriscos6, lblAsteriscos7, lblAsteriscos8;
 	
-	public VentanaPago(JFrame va) {
+	public VentanaPago(JFrame va, int sala, int asiento) {
 		vActual=this;
 		vAnterior=va;
 		
@@ -153,13 +153,13 @@ public class VentanaPago extends JFrame {
 		lblPelicula.setFont(new Font( "Arial", Font.PLAIN, 25));
 		lblPelicula.setBounds(300,100,500,500);
 		
-		lblSala = new JLabel("Sala                                 ");
+		lblSala = new JLabel("Sala                                 "+sala);
 		lblSala.setForeground(Color.BLACK);
 		lblSala.setFont(new Font( "Arial", Font.PLAIN, 25));
 		lblSala.setBounds(300,250,500,500);
 		
 		
-		lblAsientos = new JLabel("Asientos                  " );
+		lblAsientos = new JLabel("Asientos                  " +asiento);
 		lblAsientos.setForeground(Color.BLACK); 
 		lblAsientos.setFont(new Font( "Arial", Font.PLAIN, 25));
 		lblAsientos.setBounds(300,300,500,500);
@@ -217,7 +217,7 @@ public class VentanaPago extends JFrame {
 		
 	}
 	public static void main(String[] args) {
-		new VentanaPago(null);
+		new VentanaPago(null,1,1);
 	}
 
 }
