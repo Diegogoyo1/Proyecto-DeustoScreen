@@ -320,38 +320,10 @@ public class Cine{
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-		}
-/*
- * 		
-		public static void volcado_FichCSV_Usuarios_a_BD(Connection con,String nomFich) {
-			try {
-				Scanner sc = new Scanner(new FileReader(nomFich));
-				String linea;
-				while(sc.hasNext()) {
-					linea = sc.nextLine();
-					String []partes = linea.split(";");
-					String Nombre = partes[0];
-					String Apellido = partes[1];
-					String FechaNacimiento = partes[2];
-					String tlf = partes[3];
-					String CorreoElectronico = partes[4];
-					String Contrasenia = partes[5];
-					String ContadorPuntos = partes[6];	
-
-					Usuario u = new Usuario(Nombre, Apellido, FechaNacimiento, tlf, CorreoElectronico, Contrasenia, ContadorPuntos);
-					BD.insertarUsuario(con, u);
-				}
-				sc.close();
-			}catch (FileNotFoundException e) {
 				//logger.log(Level.WARNING, "Ruta del fichero no encontrada");
 			}
 		}
-
- */
-
-
-
+		
 
 		/**
 		 * Metodo que registra a los usuarios y los guarda en el fichero

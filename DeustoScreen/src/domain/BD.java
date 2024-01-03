@@ -172,7 +172,39 @@ public class BD {
 		return trabajador;
 		
 	}
-
+	
+	
+	/**
+	 * Metodo que obtiene la lista de trabajadores 
+	 * @param con Conexion de la base de datos
+	 */
+	
+	public static List<Trabajador> obtenerListaTrabajador (Connection con){
+		String sql = "SELECT * FROM Trabajador";
+		List<Trabajador> lt = new ArrayList<>();
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				String horasTrabajadas = rs.getString("HorasTrabajadas");
+				String sueldo = rs.getString("Sueldo");
+				String nombreApellidosTrabajador = rs.getString("nombreApellidosTrabajador");
+				String telefonoTrabajador = rs.getString("telefonoTrabajador");
+				String contraseniaTrabajador = rs.getString("contraseniaTrabajador");
+				String dni = rs.getString("dni");
+				String puesto = rs.getString("Puesto");
+				Trabajador trabajador = new Trabajador(horasTrabajadas, sueldo, nombreApellidosTrabajador, telefonoTrabajador, contraseniaTrabajador, dni, puesto);
+				lt.add(trabajador);					
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return lt;
+	}
+	
+	
 	/**
 	 * Metodo que cierra la base de datos
 	 * @param con Conexion de labase de datos
