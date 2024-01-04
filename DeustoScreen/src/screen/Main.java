@@ -25,7 +25,7 @@ public class Main {
 			logger.log(Level.WARNING, "NO SE HA PODIDO CARAGAR LA VENTANA CARGA");
 		}
 		
-		Connection con = BD.initBD("deustoscreen.db");
+		/*Connection con = BD.initBD("deustoscreen.db");
 		try {
 			BD.crearTabla(con);
 		} catch (SQLException e) {
@@ -35,7 +35,7 @@ public class Main {
 		Cine.volcado_FichCSV_Trabajadores_a_BD(con, "ficheros/Trabajadores.csv");
 		
 		BD.cerrarBD(con);
-
+*/
 		
 	Properties properties = new Properties();
 	try {
