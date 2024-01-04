@@ -1,6 +1,8 @@
 package screen;
 
 import java.awt.BorderLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -17,6 +19,7 @@ public class VentanaPerfilUsuario extends JFrame {
 	private JLabel lblNombre,lblApellido,lblFechaNaciminto,lbltlf,lblCorreoElectronico,lblPuntos,lblImagen;
 	private JFrame vActual, vAnterior;
 	private JButton btnAtras;
+	private static Logger logger = Logger.getLogger(Main.class.getName());
 	
 	public VentanaPerfilUsuario(JFrame va, Usuario u) {
 		vActual=this;
@@ -57,6 +60,7 @@ public class VentanaPerfilUsuario extends JFrame {
 		pCentro.setBorder(new EmptyBorder(50,150,150,150));
 
 		btnAtras.addActionListener((e)-> {
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON ATRAS");
 			
 			vActual.dispose();
 			vAnterior.setVisible(true);

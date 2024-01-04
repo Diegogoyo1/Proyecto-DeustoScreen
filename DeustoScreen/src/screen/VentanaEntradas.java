@@ -119,8 +119,11 @@ public class VentanaEntradas extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA CAMBIADO DE PELICULA");
 				cargarComboHorarios();
+				
 			}
+			
 		});
 		
 		
@@ -167,6 +170,7 @@ public class VentanaEntradas extends JFrame{
 			for(int sala: mapa.get(hora).keySet()) {
 				if(mapa.get(hora).get(sala).get(VentanaHorario.dia).equals(pelicula)) {
 					cbHorarios.addItem(hora);
+					logger.log(Level.INFO, "SE HA CARGADO EN LA COMBO LOS HORARIOS");
 				}
 				
 			}

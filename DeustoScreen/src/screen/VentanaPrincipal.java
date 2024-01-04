@@ -75,6 +75,8 @@ public class VentanaPrincipal extends JFrame{
 			
 	    	 @Override
 			    public void actionPerformed(ActionEvent e) {
+	    		 	logger.log(Level.INFO, "SE HA CLICKADO EN PERSONAL");
+	    		 
 			        String dni = "";
 			        Trabajador t = null;
 
@@ -82,16 +84,19 @@ public class VentanaPrincipal extends JFrame{
 			            dni = JOptionPane.showInputDialog("Ingrese su DNI:");
 
 			            if (dni == null) {
+			            	logger.log(Level.INFO, "SE HA INTENADO ENTRAR EN PERSONAL");
 			                break;
 			            }
 
 			            if (dni.isEmpty()) {
 			                JOptionPane.showMessageDialog(null, "Inserte el DNI", "ERROR", JOptionPane.ERROR_MESSAGE);
+			                logger.log(Level.INFO, "NO SE HA INSERTADO DNI");
 			            } else {
 			                t = Cine.buscarTrabajador(dni);
 
 			                if (t == null) {
 			                    JOptionPane.showMessageDialog(null, "Trabajador no encontrado", "ERROR", JOptionPane.WARNING_MESSAGE);
+			                    logger.log(Level.INFO, "NO SE HA ENCONTRADO EL DNI");
 			                }
 			            }
 			        }
@@ -115,10 +120,12 @@ public class VentanaPrincipal extends JFrame{
 
 			                    if (!dni.equals(t.getDni()) || !selectedCargo.equals(t.getPuesto())) {
 			                        JOptionPane.showMessageDialog(null, "Cargo incorrecto", "ERROR", JOptionPane.WARNING_MESSAGE);
+			                        logger.log(Level.INFO, "SE HA ESCOGIDO CARGO INCORRECTO");
 
 			                        selectedCargo = null;
 			                    } else {
 			                        JOptionPane.showMessageDialog(null, "¡Bienvenido!", "SESIÓN INICIADA", JOptionPane.INFORMATION_MESSAGE);
+			                        logger.log(Level.INFO, "PERSONAL HA INICIADO SESION");
 			                        trabajador = t;
 			                       // new VentanaVerCompras(vActual);
 			                        vActual.setVisible(false);

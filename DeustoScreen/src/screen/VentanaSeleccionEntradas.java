@@ -16,6 +16,9 @@ import javax.swing.SpinnerNumberModel;
 import domain.Usuario;
 
 import java.awt.GridLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -28,6 +31,7 @@ public class VentanaSeleccionEntradas extends JFrame{
 	private JLabel lblmenores, lblEntreAños, lblMayores, lblSelecEntradas;
 	private JSpinner spinMenores, spinEntreAños, spinMayores;
 	private JFrame vActual, vAnterior;
+	private static Logger logger = Logger.getLogger(Main.class.getName());
 	
 	private static int totalEntradas, menores, entreanios, mayores;
 	
@@ -125,21 +129,25 @@ public class VentanaSeleccionEntradas extends JFrame{
 			menores = (int) spinMenores.getValue();
 			entreanios= (int) spinEntreAños.getValue();
 			mayores = (int) spinMayores.getValue();
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON SIGUIENTE");
 			if (menores > 0 || entreanios > 0 || mayores > 0) {
 				totalEntradas = menores + mayores + entreanios;
 				vActual.setVisible(false);
 				vActual.dispose();
-
+				;
 
 				new VentanaButacas (vActual,u,1,12);
 
 			} else {
 				JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una entrada","ERROR",JOptionPane.WARNING_MESSAGE);
+				logger.log(Level.INFO, "NO SE HA SELECCIONADO AL MENOS UNA ENTRADA");
 			}
 
 		});
 		
 		btnAtras.addActionListener((e)-> {
+			
+			logger.log(Level.INFO, "SE HA CLICKADO BOTON ATRAS");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 		});

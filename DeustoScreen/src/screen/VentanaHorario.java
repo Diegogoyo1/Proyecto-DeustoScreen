@@ -4,11 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GraphicsEnvironment;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
@@ -20,6 +18,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -38,11 +37,10 @@ import com.toedter.calendar.JCalendar;
 
 import domain.Cine;
 import domain.Usuario;
-import javax.swing.SwingConstants;
 
 public class VentanaHorario extends JFrame{
 	private JPanel pCentro, pSur, pNorte,pOeste;
-	private JButton btnAtras, btnSiguiente, btnPerfilUsuario; 
+	private JButton btnAtras, btnSiguiente; 
 	private DefaultTableModel modelo;
 	private JTable tabla;
 	private JScrollPane scroll;
@@ -78,6 +76,7 @@ public class VentanaHorario extends JFrame{
 		
 		//CALENDARIO
 		calendario = new JCalendar(new Date());
+		setMinimumDate(calendario);
 		pOeste.add(calendario);
 		
 		modelo = new DefaultTableModel() {
@@ -117,7 +116,8 @@ public class VentanaHorario extends JFrame{
 					}
 					modelo.addRow(fila);
 				}
-			}
+				logger.log(Level.INFO, "SE HAN HECHO LAS ACCIONES DEL CALENDARIO");
+				}
 		});
 		
 		
@@ -126,28 +126,18 @@ public class VentanaHorario extends JFrame{
 		//BOTONES
 		btnAtras = new JButton("Atrás");
 		btnSiguiente = new JButton("Siguiente");
-		btnPerfilUsuario = new JButton("PerfilInfo");
-		ImageIcon imPerfilUser = new ImageIcon("imagenes/fotos.png");
-		btnPerfilUsuario.setIcon(imPerfilUser);
-		btnPerfilUsuario.setPreferredSize(new Dimension(imPerfilUser.getIconWidth(), imPerfilUser.getIconHeight()));
-		btnPerfilUsuario.setPreferredSize(new Dimension(60, 60));
+		
 		//ACCIONES DE BOTONES
 		btnAtras.addActionListener((e)-> {
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON ATRAS");
 			vActual.dispose();
-			vAnterior.setVisible(true);		
+			vAnterior.setVisible(true);
+						
 					});
 		btnSiguiente.addActionListener((e)-> {
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON SIGUIENTE");
 			new VentanaEntradas(vActual, u);
 			vActual.setVisible(false);
-			vActual.dispose();
-		});
-		
-		btnPerfilUsuario.addActionListener((e)->{
-			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON SIGUIENTE");
-			new VentanaPerfilUsuario(vActual,u);
-			vActual.setVisible(true);
 			vActual.dispose();
 		});
 				
@@ -158,7 +148,6 @@ public class VentanaHorario extends JFrame{
 		pCentro.add(scroll);
 		pSur.add(btnAtras);
 		pSur.add(btnSiguiente);
-		pNorte.add(btnPerfilUsuario);
 		
 		
 		//DEFINIR VENTANA
@@ -174,4 +163,11 @@ public class VentanaHorario extends JFrame{
 		setVisible(true);
 		
 	}	
+	private static void setMinimumDate(JCalendar calendario) {
+        Calendar minDate = Calendar.getInstance();
+        minDate.setTime(new Date());  // Establece la fecha mínima como la fecha y hora actuales
+
+       
+        calendario.setMinSelectableDate(minDate.getTime());
+    }
 }

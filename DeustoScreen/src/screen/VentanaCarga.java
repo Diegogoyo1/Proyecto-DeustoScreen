@@ -3,6 +3,8 @@ package screen;
 import java.awt.BorderLayout; 
 import java.awt.Color;
 import java.awt.GraphicsEnvironment;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -19,6 +21,7 @@ public class VentanaCarga extends JFrame{
 	protected JLabel lblImg;
 	protected JProgressBar barCargando;
 	protected JFrame vActual;
+	private static Logger logger = Logger.getLogger(Main.class.getName());
 	
 	public VentanaCarga() {
 		super();
@@ -64,11 +67,12 @@ public class VentanaCarga extends JFrame{
 					for (int i = 0;i<101; i++) {
 						Thread.sleep(35);
 						barCargando.setValue(i);
+						logger.log(Level.INFO, "SE ESTA CARGANDO LA VENTANA");
 					}
 					
 				}catch(InterruptedException ie){
 					JOptionPane.showMessageDialog(null, "Error al cargar ventana", "Error", JOptionPane.ERROR_MESSAGE);
-					
+					logger.log(Level.WARNING, "ERROR AL CARGAR VENTANA");
 				}
 				dispose();
 				SwingUtilities.invokeLater(new Runnable() {

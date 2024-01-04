@@ -274,6 +274,7 @@ public class VentanaButacas extends JFrame {
 						l.setIcon(im);
 				
 					}
+					logger.log(Level.INFO, "SE HA HECHO EL RENDERER ");
 				}
 				/*if(fila1!=-1 && columna1!=-1) {
 					if(columna1!=0) {
@@ -405,7 +406,9 @@ public class VentanaButacas extends JFrame {
 				modTblButacas1.addRow(fila);
 			}
 			sc.close();
+			logger.log(Level.INFO, "SE HA CARGADO LOS FICHEROS DE LAS TABLAS");
 		} catch (FileNotFoundException e) {
+			logger.log(Level.WARNING, "NO SE HA PODIDO CARGAR LOS FICHEROS DE LAS TABLAS");
 			e.printStackTrace();
 		}
 	

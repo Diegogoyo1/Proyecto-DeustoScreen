@@ -94,9 +94,11 @@ public class VentanaRegistros extends JFrame {
 				boolean numero = key >=48 && key <= 57;
 				if (!numero ) {
 					e.consume();
+					logger.log(Level.INFO, "SE HA INTENADO PONER CARACTERES NO VALIDOS");
 				}
 				if (textFieldTlf.getText().trim().length() == 9) {
 					e.consume();
+					logger.log(Level.INFO, "SE HA INTENADO PONER MAS CARATECTERES DE LOS VALIDADOS");
 				}
 			}
 		});
@@ -167,12 +169,14 @@ public class VentanaRegistros extends JFrame {
 			Usuario usuarioExistente = Cine.buscarUsuario(CorreoElectronico);
 			 if (Cine.buscarUsuario(CorreoElectronico)!= null) {
 					JOptionPane.showMessageDialog(null, "Usuario ya existe, se iniciará con ese usuario","ERROR",JOptionPane.WARNING_MESSAGE);
+					logger.log(Level.INFO, "SE HA INTENADO ACCEDER CON UN USUARIO EXISTENTE");
 					//new VentanaEntradas(vActual, usuarioExistente);
 					new VentanaHorario(va, usuarioExistente);
 					vActual.dispose();
 					} 
 			 else if (!isValidEmail(CorreoElectronico)) {
-				JOptionPane.showMessageDialog(null, "Direccion de correo electronico valido","ERROR",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Direccion de correo electronico no valido","ERROR",JOptionPane.ERROR_MESSAGE);
+				logger.log(Level.INFO, "SE HA INTENADO ACCEDER CON UN CORREO NO VALIDO");
 						}
 			
 			else {
@@ -216,7 +220,7 @@ public class VentanaRegistros extends JFrame {
 		setVisible(true);
 	}
 	 private boolean isValidEmail(String email) {
-	        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+	        String emailRegex = "[a-zA-Z0-9]{1,}@[a-z]{1,}.[a-z]{1,}";
 	        return Pattern.matches(emailRegex, email);
 	    }
 	

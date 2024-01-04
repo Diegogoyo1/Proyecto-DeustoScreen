@@ -7,6 +7,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,6 +29,7 @@ public class VentanaPago extends JFrame {
 					lblAsteriscos1, lblAsteriscos2, lblAsteriscos3, lblAsteriscos4, lblAsteriscos5;
 	private JLabel  lblSala, lblHora, lblAsientos, lblPelicula, lblNumEntradas, lblEntradas,
 					lblAsteriscos6, lblAsteriscos7, lblAsteriscos8;
+	private static Logger logger = Logger.getLogger(Main.class.getName());
 	
 	public VentanaPago(JFrame va, int sala, int asiento) {
 		vActual=this;
@@ -57,10 +60,12 @@ public class VentanaPago extends JFrame {
 		
 		btnFinalizarCompra.addActionListener((e)->{
 			JOptionPane.showMessageDialog(null, "Gracias por tu compra","PAGO FINALIZADO",JOptionPane.INFORMATION_MESSAGE);
+			logger.log(Level.INFO, "SE HA FINALIZADO LA COMPRA");
 			setVisible(false);
 		});
 		
 		btnAtras.addActionListener((e)->{
+			logger.log(Level.INFO, "SE HA CLICKADO BOTON ATRAS");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 			

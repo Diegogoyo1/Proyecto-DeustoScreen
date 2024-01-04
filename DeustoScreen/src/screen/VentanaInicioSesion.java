@@ -131,20 +131,24 @@ public class VentanaInicioSesion extends JFrame {
 		//Mira si el correo electronico esta vacio
 		 if(CorreoElectronico.isEmpty()) {
 				JOptionPane.showMessageDialog(null, "Inserte un Usuario","ERROR",JOptionPane.ERROR_MESSAGE);
+				logger.log(Level.INFO, "SE HA INTENTADO ACCEDER CON USUARIO VACIO");
 			}
 		 //Mira si la contraseña esta vacia
 		 else if (con.isEmpty()) {
 				 JOptionPane.showMessageDialog(null, "Inserte Contraseña","ERROR",JOptionPane.ERROR_MESSAGE);
+				 logger.log(Level.INFO, "SE HA INTENTADO ACCEDER CON CONTRASEÑA VACIA");
 			 }
 		Usuario u = Cine.buscarUsuario(CorreoElectronico);
 		//Compara si el correo electronico metido es igual al correo electronico que ya existe.
 		 if (u == null || !CorreoElectronico.equals(u.getCorreoElectronico())) {
 			JOptionPane.showMessageDialog(null, "Direccion de correo electronico no valido","ERROR",JOptionPane.ERROR_MESSAGE);
+			logger.log(Level.INFO, "SE HA INTENTADO ACCEDER CON UN CORREO NO VALIDO");
         }
 		// Compara la contrasenia es igual a la contrasenia que va enlazada con el correo elctronico
 		else if (CorreoElectronico.equals(u.getCorreoElectronico())) {
 			if(!con.equals(u.getContrasenia())) {
 				JOptionPane.showMessageDialog(null, "Contraseña incorrecta","ERROR",JOptionPane.WARNING_MESSAGE);
+				logger.log(Level.INFO, "SE HA INTENTADO ACCEDER CON UNA CONTRASEÑA INCORRECTA");
 			}
 
 			else {
