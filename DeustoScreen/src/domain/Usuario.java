@@ -1,9 +1,6 @@
 package domain;
 
-import java.util.Date;
 import java.util.Objects;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -15,6 +12,7 @@ public class Usuario implements Comparable<Usuario> {
 	private String CorreoElectronico;
 	private String Contrasenia;
 	private String ContadorPuntos;
+	@SuppressWarnings("unused")
 	private static final String nomfichUsuarios = "src/ficheros/Usuarios.csv";
 
 	//private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
