@@ -1,11 +1,9 @@
 package domain;
 
 import java.io.File;  
-import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
-import java.lang.System.Logger;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,9 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
-import java.util.logging.Level;
-
-import screen.Main;
 
 
 
