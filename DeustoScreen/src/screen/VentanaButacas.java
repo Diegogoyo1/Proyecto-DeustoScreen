@@ -44,6 +44,7 @@ public class VentanaButacas extends JFrame {
 	private JPanel pNorte, pSur, pEste, pOeste,pCentro;
 	private JButton btnSiguiente, btnAtras;
 	private JTable tblButacas1, tblButacas2;
+	private JLabel lblPantalla;
 	private DefaultTableModel modTblButacas1, modTblButacas2;
 	//private FlowLayout layoutTabButacas1, layoutTabButacas2;
 	private JFrame vActual, vAnterior;
@@ -52,17 +53,17 @@ public class VentanaButacas extends JFrame {
 	private static int cont;
 	private int fila1, columna1, fila2, columna2;
 	private boolean [][]m1;
-	private boolean [][]m2;
+	//private boolean [][]m2;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 
-	public VentanaButacas(JFrame va,Usuario u, int sala, int butacasA, int butacasB) {
+	public VentanaButacas(JFrame va,Usuario u, int sala, int butacasA) {
 		super();
-		m1 = new boolean[5][butacasA];
-		m2 = new boolean[5][butacasB];
+		m1 = new boolean[7][butacasA];
+		//m2 = new boolean[5][butacasB];
 		fila1 = -1;
-		fila2 = -1;
+		//fila2 = -1;
 		columna1 = -1;
-		columna2 = -1;
+		//columna2 = -1;
 		cont = 0;
 		vActual = this;
 		vAnterior = va;
@@ -82,7 +83,7 @@ public class VentanaButacas extends JFrame {
 		getContentPane().add(pCentro, BorderLayout.CENTER);
 
 		// LABELS
-
+		lblPantalla = new JLabel();
 		// BOTONES
 		btnAtras = new JButton("Atras");
 		btnSiguiente = new JButton("Siguiente");
@@ -136,7 +137,7 @@ public class VentanaButacas extends JFrame {
 		layoutTabButacas1.setHgap(100);
 		pOeste.setLayout(layoutTabButacas1);
 		 */
-		pOeste.add(tblButacas1);
+		pCentro.add(tblButacas1);
 		tblButacas1.setRowHeight(100);
 		tblButacas1.getColumnModel().getColumn(0).setPreferredWidth(100);
 		tblButacas1.getColumnModel().getColumn(1).setPreferredWidth(100);
@@ -144,48 +145,54 @@ public class VentanaButacas extends JFrame {
 		tblButacas1.getColumnModel().getColumn(3).setPreferredWidth(100);
 		tblButacas1.getColumnModel().getColumn(4).setPreferredWidth(100);
 		tblButacas1.getColumnModel().getColumn(5).setPreferredWidth(100);
+		tblButacas1.getColumnModel().getColumn(6).setPreferredWidth(75);
+		tblButacas1.getColumnModel().getColumn(7).setPreferredWidth(100);
+		tblButacas1.getColumnModel().getColumn(8).setPreferredWidth(100);
+		tblButacas1.getColumnModel().getColumn(9).setPreferredWidth(100);
+		tblButacas1.getColumnModel().getColumn(10).setPreferredWidth(100);
+		tblButacas1.getColumnModel().getColumn(11).setPreferredWidth(100);
 		
 
 		cargarFichero1(nomfich1);
 
 		// CREACION SEGUNDA TABLA BUTACAS
 		//Object[] titulos2 = { "", "", "", "", "" };
-		Object[] titulos2 = new Object[butacasB];
-		for(int i=0;i<butacasB;i++) {
-			titulos1[i] = "";
-		}
-		modTblButacas2 = new DefaultTableModel() {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		};
-		modTblButacas2.setColumnIdentifiers(titulos2);
-
-		tblButacas2 = new JTable(modTblButacas2);
-
-		/*layoutTabButacas2 = new FlowLayout();
-		layoutTabButacas2.setVgap(250);
-		layoutTabButacas2.setHgap(200);
-		pEste.setLayout(layoutTabButacas2);
-		 */
-		pEste.add(tblButacas2);
-		tblButacas2.setRowHeight(100);
-		tblButacas2.getColumnModel().getColumn(0).setPreferredWidth(100);
-		tblButacas2.getColumnModel().getColumn(1).setPreferredWidth(100);
-		tblButacas2.getColumnModel().getColumn(2).setPreferredWidth(100);
-		tblButacas2.getColumnModel().getColumn(3).setPreferredWidth(100);
-		tblButacas2.getColumnModel().getColumn(4).setPreferredWidth(100);
-
-		cargarFichero2(nomfich2);
-		
-		JLabel l = new JLabel("P");
-		pCentro.add(l);
+//		Object[] titulos2 = new Object[butacasB];
+//		for(int i=0;i<butacasB;i++) {
+//			titulos1[i] = "";
+//		}
+//		modTblButacas2 = new DefaultTableModel() {
+//			/**
+//			 * 
+//			 */
+//			private static final long serialVersionUID = 1L;
+//
+//			@Override
+//			public boolean isCellEditable(int row, int column) {
+//				return false;
+//			}
+//		};
+//		modTblButacas2.setColumnIdentifiers(titulos2);
+//
+//		tblButacas2 = new JTable(modTblButacas2);
+//
+//		/*layoutTabButacas2 = new FlowLayout();
+//		layoutTabButacas2.setVgap(250);
+//		layoutTabButacas2.setHgap(200);
+//		pEste.setLayout(layoutTabButacas2);
+//		 */
+//		pEste.add(tblButacas2);
+//		tblButacas2.setRowHeight(100);
+//		tblButacas2.getColumnModel().getColumn(0).setPreferredWidth(100);
+//		tblButacas2.getColumnModel().getColumn(1).setPreferredWidth(100);
+//		tblButacas2.getColumnModel().getColumn(2).setPreferredWidth(100);
+//		tblButacas2.getColumnModel().getColumn(3).setPreferredWidth(100);
+//		tblButacas2.getColumnModel().getColumn(4).setPreferredWidth(100);
+//
+//		cargarFichero2(nomfich2);
+//		
+//		JLabel l = new JLabel("P");
+//		pCentro.add(l);
 
 		// MOUSE LISTENER DE LAS TABLAS
 		tblButacas1.addMouseListener(new MouseAdapter() {
@@ -212,28 +219,28 @@ public class VentanaButacas extends JFrame {
 				}
 			}
 		});
-		tblButacas2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Point p = e.getPoint();
-				fila2 = tblButacas2.rowAtPoint(p);
-				columna2 = tblButacas2.columnAtPoint(p);
-				if(!m2[fila2][columna2]) {
-					
-					cont++;
-				}else {
-					cont--;
-				}
-				m2[fila2][columna2] = !m2[fila2][columna2];
-				tblButacas2.repaint();
-				logger.log(Level.INFO, "SE HA ESCOGIDO UNA BUTACA");
-				Entrada en = new Entrada(sala, fila1*columna1);
-				if(!Cine.getMapaCompras().containsKey(VentanaInicioSesion.getUsuario())) {
-					Cine.getMapaCompras().put(VentanaInicioSesion.getUsuario(), new ArrayList<>());
-				}
-				Cine.getMapaCompras().get(VentanaInicioSesion.getUsuario()).add(en);
-			}
-		});
+//		tblButacas2.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				Point p = e.getPoint();
+//				fila2 = tblButacas2.rowAtPoint(p);
+//				columna2 = tblButacas2.columnAtPoint(p);
+//				if(!m2[fila2][columna2]) {
+//					
+//					cont++;
+//				}else {
+//					cont--;
+//				}
+//				m2[fila2][columna2] = !m2[fila2][columna2];
+//				tblButacas2.repaint();
+//				logger.log(Level.INFO, "SE HA ESCOGIDO UNA BUTACA");
+//				Entrada en = new Entrada(sala, fila1*columna1);
+//				if(!Cine.getMapaCompras().containsKey(VentanaInicioSesion.getUsuario())) {
+//					Cine.getMapaCompras().put(VentanaInicioSesion.getUsuario(), new ArrayList<>());
+//				}
+//				Cine.getMapaCompras().get(VentanaInicioSesion.getUsuario()).add(en);
+//			}
+//		});
 		// RENDERER DE LAS TABLAS
 
 		tblButacas1.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
@@ -251,7 +258,7 @@ public class VentanaButacas extends JFrame {
 				l.setOpaque(true);
 				if(column==0) {
 					return l;
-				}else if(row==0) {
+				}else if(column==6) {
 					return l;
 				}else {
 					if(row==fila1 && column==columna1){
@@ -317,68 +324,70 @@ public class VentanaButacas extends JFrame {
 			}
 		});
 
-		tblButacas2.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-					boolean hasFocus, int row, int column) {
-				JLabel l = new JLabel(value.toString());
-				l.setHorizontalAlignment(JLabel.CENTER);
-				l.setOpaque(true);
-				if(fila2!=-1 && columna2!=-1) {
-					if (row == fila2 && column == columna2) {
-						if(m2[fila2][columna2]) {
-							l.setBackground(table.getSelectionBackground());
-							l.setSize(100, 100);
-							ImageIcon im = new ImageIcon("imagenes/ButacaVerde.png");
-							ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
-							l.setIcon(imtam);
-						}
-						else {
-							l.setBackground(table.getBackground());
-							l.setSize(100, 100);
-							ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
-							ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
-							l.setIcon(imtam);
-						}
-					} else {
-						if(m2[row][column]) {
-							l.setBackground(table.getSelectionBackground());
-							l.setSize(100, 100);
-							ImageIcon im = new ImageIcon("imagenes/ButacaVerde.png");
-							ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
-							l.setIcon(imtam);
-						}
-						else {
-							l.setBackground(table.getBackground());
-							l.setSize(100, 100);
-							ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
-							ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
-							l.setIcon(imtam);
-						}
-					}
-				}
-			else {
-				l.setBackground(table.getBackground());
-				l.setSize(100, 100);
-				ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
-				ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
-				l.setIcon(imtam);
-				
-			}
-			return l;
-		}
-	});
+//		tblButacas2.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+//
+//			/**
+//			 * 
+//			 */
+//			private static final long serialVersionUID = 1L;
+//
+//			@Override
+//			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+//					boolean hasFocus, int row, int column) {
+//				JLabel l = new JLabel(value.toString());
+//				l.setHorizontalAlignment(JLabel.CENTER);
+//				l.setOpaque(true);
+//				if(fila2!=-1 && columna2!=-1) {
+//					if (row == fila2 && column == columna2) {
+//						if(m2[fila2][columna2]) {
+//							l.setBackground(table.getSelectionBackground());
+//							l.setSize(100, 100);
+//							ImageIcon im = new ImageIcon("imagenes/ButacaVerde.png");
+//							ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
+//							l.setIcon(imtam);
+//						}
+//						else {
+//							l.setBackground(table.getBackground());
+//							l.setSize(100, 100);
+//							ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
+//							ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
+//							l.setIcon(imtam);
+//						}
+//					} else {
+//						if(m2[row][column]) {
+//							l.setBackground(table.getSelectionBackground());
+//							l.setSize(100, 100);
+//							ImageIcon im = new ImageIcon("imagenes/ButacaVerde.png");
+//							ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
+//							l.setIcon(imtam);
+//						}
+//						else {
+//							l.setBackground(table.getBackground());
+//							l.setSize(100, 100);
+//							ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
+//							ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
+//							l.setIcon(imtam);
+//						}
+//					}
+//				}
+//			else {
+//				l.setBackground(table.getBackground());
+//				l.setSize(100, 100);
+//				ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
+//				ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
+//				l.setIcon(imtam);
+//				
+//			}
+//			return l;
+//		}
+//	});
 
 		// ANYADIR LOS COMPONENTES A LOS PANELES
 		//pOeste.add(tblButacas1);
 		//pEste.add(tblButacas2);
-
+		ImageIcon imPantalla = new ImageIcon("imagenes/Pantalla.png");
+		lblPantalla.setIcon(imPantalla);
+		pNorte.add(lblPantalla);
 		pSur.add(btnAtras);
 		pSur.add(btnSiguiente);
 	}
@@ -399,22 +408,23 @@ public class VentanaButacas extends JFrame {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-	}
+	
 
-	public void cargarFichero2(String nomfich2) {
-
-		try {
-			Scanner sc = new Scanner(new FileReader(nomfich2));
-			String linea;
-			while (sc.hasNext()) {
-				linea = sc.nextLine();
-				String[] fila = linea.split(";");
-				modTblButacas2.addRow(fila);
-			}
-			sc.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+//	public void cargarFichero2(String nomfich2) {
+//
+//		try {
+//			Scanner sc = new Scanner(new FileReader(nomfich2));
+//			String linea;
+//			while (sc.hasNext()) {
+//				linea = sc.nextLine();
+//				String[] fila = linea.split(";");
+//				modTblButacas2.addRow(fila);
+//			}
+//			sc.close();
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 		// DEFINIR LA VENTANA
 
