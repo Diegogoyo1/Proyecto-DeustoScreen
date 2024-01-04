@@ -3,21 +3,14 @@ package screen;
 import java.awt.BorderLayout;
 
 
+
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.HashMap;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -28,14 +21,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
 import domain.Cine;
 import domain.PuestoTrabajo;
 import domain.Trabajador;
-import domain.Usuario;
-
-
 import javax.swing.border.EmptyBorder;
 
 
@@ -43,7 +31,7 @@ import javax.swing.border.EmptyBorder;
 
 public class VentanaPrincipal extends JFrame{
 	private JPanel pNorte, pCentro,pEste, pOeste, pSur;
-	private JButton btnPrecios, btnIniciarSesion, btnCartelera,btnPerfilUser;
+	private JButton btnPrecios, btnIniciarSesion, btnCartelera;
 	private JComboBox<PuestoTrabajo> puestoComboBox;
 	private JFrame vAnterior,vActual;
 	private JLabel lblImg;
@@ -55,14 +43,6 @@ public class VentanaPrincipal extends JFrame{
 	private VentanaPrincipal vp;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 	PanelConFondo panelFondo;
-	/*@Override
-    public void paint(Graphics g){
-        Dimension dimension = this.getSize();
-        ImageIcon icon = new ImageIcon("src/imagenes/FondoCartelera.jpg");
-        g.drawImage(icon.getImage(), 0, 0, dimension.width, dimension.height, null);
-        vp.setOpaque(false);
-        super.paintComponents(g);
-    }*/
 
 
 	public VentanaPrincipal(JFrame va) {
@@ -200,7 +180,6 @@ public class VentanaPrincipal extends JFrame{
 		pOeste.add(btnIniciarSesion);
 		pOeste.add(btnPrecios);
 		pOeste.add(btnCartelera);
-		//pNorte.add(btnPerfilUser);
 		pNorte.setOpaque(false);
 		pCentro.setOpaque(false);
 		pSur.setOpaque(false);

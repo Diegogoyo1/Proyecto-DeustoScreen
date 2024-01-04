@@ -1,9 +1,10 @@
 package screen;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
 
 import javax.swing.Box;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -12,9 +13,10 @@ import javax.swing.border.EmptyBorder;
 import domain.Usuario;
 
 public class VentanaPerfilUsuario extends JFrame {
-	private JPanel pCentro, pNorte,pSur;
-	private JLabel lblNombre,lblApellido,lblFechaNaciminto,lbltlf,CorreoElectronico,lblPuntos,txtNombre,txtApellido,txtfNac,txtTlf,txtPuntos;
+	private JPanel pCentro,pSur,pEste;
+	private JLabel lblNombre,lblApellido,lblFechaNaciminto,lbltlf,lblCorreoElectronico,lblPuntos,lblImagen;
 	private JFrame vActual, vAnterior;
+	private JButton btnAtras;
 	
 	public VentanaPerfilUsuario(JFrame va, Usuario u) {
 		vActual=this;
@@ -23,42 +25,42 @@ public class VentanaPerfilUsuario extends JFrame {
 		//CREACIÓN PANELES
 		pCentro = new JPanel ();
 		pSur = new JPanel();
-		pNorte = new JPanel();
+		pEste = new JPanel();
+		
 		
 		getContentPane().add(pCentro, BorderLayout.CENTER);
 		getContentPane().add(pSur, BorderLayout.SOUTH);
+		getContentPane().add(pEste,BorderLayout.EAST);
 
-		getContentPane().add(pNorte, BorderLayout.NORTH);
+        //ImageIcon imagen = new ImageIcon("imagenes/foto.png");
+		//lblImagen = new JLabel(imagen);
+		lblNombre = new JLabel("NOMBRE: " + u.getNombre());
+		lblApellido = new JLabel ("APELLIDO: " +u.getApellido());
+		lblFechaNaciminto = new JLabel("FECHA DE NACIMIENTO: "+ u.getFechaNacimientoStr());
+		lbltlf = new JLabel ("TELÉFONO: " + u.getTlf());
+		lblCorreoElectronico = new JLabel("CORREO ELECTRONICO" + u.getCorreoElectronico());
+		lblPuntos = new JLabel ("PUNTOS: " +u.getContadorPuntos());
 		
-		lblNombre = new JLabel(" NOMBRE: " + u.getNombre());
-		lblApellido = new JLabel (" APELLIDO: " +u.getApellido());
-		lblFechaNaciminto = new JLabel(" FECHA DE NACIMIENTO: ");
-		lbltlf = new JLabel (" TELÉFONO: ");
-		lblPuntos = new JLabel (" PUNTOS: ");
 		
-		txtNombre = new JLabel(u.getCorreoElectronico());
-		txtApellido = new JLabel(u.getCorreoElectronico());
-		txtfNac = new JLabel(u.getCorreoElectronico());
-		txtTlf = new JLabel(u.getCorreoElectronico());
-		txtPuntos = new JLabel(u.getCorreoElectronico());
+		
+		btnAtras = new JButton("Atras");
 				
-		
+		//pEste.add(lblImagen);
 		pCentro.add(lblNombre);
-		pCentro.add(txtNombre);
 		pCentro.add(lblApellido);
-		pCentro.add(txtApellido);
 		pCentro.add(lblFechaNaciminto);
-		pCentro.add(txtfNac);
 		pCentro.add(lbltlf);
-		pCentro.add(txtTlf);
 		pCentro.add(lblPuntos);
-		pCentro.add(txtPuntos);
-		pCentro.add(Box.createVerticalStrut(30));
+		pCentro.add(Box.createVerticalStrut(60));
+		pSur.add(btnAtras);
 		
-		pCentro.setBorder(new EmptyBorder(150, 150, 150, 150 ));
+		pCentro.setBorder(new EmptyBorder(50,150,150,150));
 
-
-		
+		btnAtras.addActionListener((e)-> {
+			
+			vActual.dispose();
+			vAnterior.setVisible(true);
+		});
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds (600,300,380,400);
