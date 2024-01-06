@@ -127,7 +127,7 @@ public class VentanaPrincipal extends JFrame{
 			                        JOptionPane.showMessageDialog(null, "¡Bienvenido!", "SESIÓN INICIADA", JOptionPane.INFORMATION_MESSAGE);
 			                        logger.log(Level.INFO, "PERSONAL HA INICIADO SESION");
 			                        trabajador = t;
-			                       // new VentanaVerCompras(vActual);
+			                       new VentanaTrabajadores(vActual);
 			                        vActual.setVisible(false);
 			                    }
 			                } else {
