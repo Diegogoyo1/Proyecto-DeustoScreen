@@ -261,7 +261,7 @@ public class VentanaButacas extends JFrame {
 				}else if(column==6) {
 					return l;
 				}else {
-					if(row==fila1 && column==columna1){
+					/*if(row==fila1 && column==columna1){
 						if(isSelected) {
 							ImageIcon im = new ImageIcon("imagenes/ButacaVerde.png");
 							l.setIcon(im);
@@ -269,11 +269,15 @@ public class VentanaButacas extends JFrame {
 							ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
 							l.setIcon(im);
 						}
-					}else {
-						ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
-						l.setIcon(im);
-				
-					}
+					}else {*/
+						if(m1[row][column]) {
+							ImageIcon im = new ImageIcon("imagenes/ButacaVerde.png");
+							l.setIcon(im);
+						}else {
+							ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
+							l.setIcon(im);
+						}
+					//}
 					logger.log(Level.INFO, "SE HA HECHO EL RENDERER ");
 				}
 				/*if(fila1!=-1 && columna1!=-1) {
