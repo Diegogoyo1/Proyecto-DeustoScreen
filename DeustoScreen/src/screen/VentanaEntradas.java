@@ -54,9 +54,9 @@ public class VentanaEntradas extends JFrame{
 
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 
-	
+	private static String hora;
 
-	public VentanaEntradas(JFrame va, Usuario u) {
+	public VentanaEntradas(JFrame va, Usuario u, int dia, int mes, int anio) {
 		
 		Cine.crearMapaHorarios();
 		vActual=this;
@@ -126,6 +126,16 @@ public class VentanaEntradas extends JFrame{
 			
 		});
 		
+		cbHorarios.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				logger.log(Level.INFO, "SE HA SELECCIONADO EL HORARIO");
+				String sel = cbHorarios.getSelectedItem().toString();
+				hora = sel.split(":")[0]+"_"+sel.split(":")[1];
+			}
+		});
+		
 		
 		//ActionListener de los botones
 		BtnAtras.addActionListener((e)->{
@@ -137,7 +147,8 @@ public class VentanaEntradas extends JFrame{
 		BtnSiguiente.addActionListener((e)->{
 			//Cine.aniadirEntrada((Entrada) listaPeliHora);
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON SIGUIENTE");
-			new VentanaSeleccionEntradas(vActual, u);
+			int sala = Integer.parseInt(cbHorarios.getSelectedItem().toString().split("-")[0]);
+			new VentanaSeleccionEntradas(vActual, u, sala,dia,mes,anio,hora);
 
 			vActual.setVisible(false);
 			vActual.dispose();
@@ -169,7 +180,7 @@ public class VentanaEntradas extends JFrame{
 		for(String hora: mapa.keySet()) {
 			for(int sala: mapa.get(hora).keySet()) {
 				if(mapa.get(hora).get(sala).get(VentanaHorario.dia).equals(pelicula)) {
-					cbHorarios.addItem(hora);
+					cbHorarios.addItem(sala+"-"+hora);
 					logger.log(Level.INFO, "SE HA CARGADO EN LA COMBO LOS HORARIOS");
 				}
 				
@@ -182,6 +193,6 @@ public class VentanaEntradas extends JFrame{
 	}
 	
 	public static void main(String[] args) {
-		new VentanaEntradas(null, null);
+		new VentanaEntradas(null, null,0,0,0);
 	}
 }

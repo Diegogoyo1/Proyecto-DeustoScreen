@@ -1,6 +1,9 @@
 package domain;
 
-public class Entrada {
+import java.io.Serializable;
+
+public class Entrada implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private int numeroDeSala;
 	private int numeroDeAsiento;
 	

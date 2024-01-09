@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,7 +32,7 @@ public class VentanaPago extends JFrame {
 					lblAsteriscos6, lblAsteriscos7, lblAsteriscos8;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 	
-	public VentanaPago(JFrame va, int sala, int asiento) {
+	public VentanaPago(JFrame va, int sala, ArrayList<String> asientosSeleccionados) {
 		vActual=this;
 		vAnterior=va;
 		
@@ -163,8 +164,11 @@ public class VentanaPago extends JFrame {
 		lblSala.setFont(new Font( "Arial", Font.PLAIN, 25));
 		lblSala.setBounds(300,250,500,500);
 		
-		
-		lblAsientos = new JLabel("Asientos                  " +asiento);
+		String asientos = "";
+		for(String a: asientosSeleccionados) {
+			asientos = asientos+a+" ";
+		}
+		lblAsientos = new JLabel("Asientos                  " +asientos);
 		lblAsientos.setForeground(Color.BLACK); 
 		lblAsientos.setFont(new Font( "Arial", Font.PLAIN, 25));
 		lblAsientos.setBounds(300,300,500,500);
@@ -222,7 +226,7 @@ public class VentanaPago extends JFrame {
 		
 	}
 	public static void main(String[] args) {
-		new VentanaPago(null,1,1);
+		new VentanaPago(null,1,new ArrayList<>());
 	}
 
 }

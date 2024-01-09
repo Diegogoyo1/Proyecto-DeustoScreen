@@ -1,8 +1,15 @@
 package domain;
 
-import java.io.File;  
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -28,9 +35,11 @@ public class Cine{
 	private static Usuario u;
 	private static TreeMap<String, HashMap<Integer, ArrayList<String>>> mapaHorarios ;
 	public static int sala;
+	private static int [][] m1;
 	
 	
 	static {
+		m1 = new int[7][12];
 		entradas = new ArrayList<>();
 		usuarios = new ArrayList<>();
 		mapaCompras = new TreeMap<>();
@@ -39,6 +48,79 @@ public class Cine{
 		mapaHorarios = new TreeMap<>();
 	}
 	
+	
+	
+	public static int[][] getM1() {
+		return m1;
+	}
+	
+
+
+	public static void setM1(int[][] m1) {
+		Cine.m1 = m1;
+	}
+
+
+	public static void guardarMapaCompras(String nomfich) {
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(nomfich)));
+			oos.writeObject(mapaCompras);
+			oos.flush();
+			oos.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void cargarMapaCompras(String nomfich) {
+		File f = new File(nomfich);
+		if(f.exists()) {
+			try {
+				ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)));
+				mapaCompras = (Map<Usuario, List<Entrada>>) ois.readObject();
+				ois.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	}
+
+	public static void guardarButacasEnFichero(String nomfich) {
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(nomfich)));
+			oos.writeObject(m1);
+			oos.flush();
+			oos.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void cargarButacasDesdeFichero(String nomfich) {
+		File f = new File(nomfich);
+		if(f.exists()) {
+			try {
+				ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)));
+				m1 = (int[][]) ois.readObject();
+				ois.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	}
+
 	public static TreeMap<String, HashMap<Integer, ArrayList<String>>> getMapaHorarios() {
 		return mapaHorarios;
 	}

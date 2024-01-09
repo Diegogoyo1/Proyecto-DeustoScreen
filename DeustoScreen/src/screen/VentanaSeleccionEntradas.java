@@ -54,7 +54,7 @@ public class VentanaSeleccionEntradas extends JFrame{
 
 	
 
-	public VentanaSeleccionEntradas(JFrame va,Usuario u) {
+	public VentanaSeleccionEntradas(JFrame va,Usuario u, int sala, int dia, int mes, int anio, String hora) {
 
 		super();
 		totalEntradas = 0;
@@ -136,7 +136,7 @@ public class VentanaSeleccionEntradas extends JFrame{
 				vActual.dispose();
 				;
 
-				new VentanaButacas (vActual,u,1,12);
+				new VentanaButacas (vActual,u,sala,12,dia,mes,anio,hora);
 
 			} else {
 				JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una entrada","ERROR",JOptionPane.WARNING_MESSAGE);

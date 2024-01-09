@@ -1,10 +1,12 @@
 package domain;
 
 import java.util.Objects;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Usuario implements Comparable<Usuario> {
+public class Usuario implements Comparable<Usuario>, Serializable {
+	private static final long serialVersionUID = 1L;
 	private String nombre;
 	private String apellido;
 	private LocalDate FechaNacimiento;

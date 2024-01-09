@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,7 +30,7 @@ public class VentanaPuntos extends JFrame{
 	private JFrame vActual, vAnterior;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 	
-	public VentanaPuntos(JFrame va, Usuario u,int sala, int asiento) {
+	public VentanaPuntos(JFrame va, Usuario u,int sala, ArrayList<String> asientosSeleccionados) {
 		super();
 		vActual=this;
 		vAnterior=va;
@@ -82,7 +83,7 @@ public class VentanaPuntos extends JFrame{
 		//EVENTOS BOTONES
 		btnOmitir.addActionListener((e)->{
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON ATRAS");
-			new VentanaPago(vActual,sala,asiento);
+			new VentanaPago(vActual,sala,asientosSeleccionados);
 			vActual.setVisible(false);
 			vActual.dispose();//Este DISPOSE cerrara la ventana y nos llevara a la de PAGO directamente sin AÑADIR los puntos
 			 
@@ -91,7 +92,7 @@ public class VentanaPuntos extends JFrame{
 		btnAniadir.addActionListener((e)-> {
 
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON AÑADIR");
-			new VentanaPago(vActual,sala,asiento);
+			new VentanaPago(vActual,sala,asientosSeleccionados);
 			vActual.setVisible(false);
 			vActual.dispose();//Este DISPOSE cerrara la ventana y nos llevara a la de PAGO AÑADIENDO los puntos
 			 

@@ -35,7 +35,7 @@ public class Main {
 		Cine.volcado_FichCSV_Trabajadores_a_BD(con, "ficheros/Trabajadores.csv");
 		
 		BD.cerrarBD(con);
-*/
+		 */
 		
 	Properties properties = new Properties();
 	try {
@@ -49,5 +49,6 @@ public class Main {
 		logger.log(Level.WARNING, "SE HA INTERRUMPIDO LA OPERACIÓN DE CARGA DEL FICHERO PROPERTIES");	
 		
 	}
+	
 }
 }

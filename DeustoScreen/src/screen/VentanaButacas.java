@@ -52,13 +52,17 @@ public class VentanaButacas extends JFrame {
 	private static final String nomfich2 = "ficheros/Butacas2.csv";
 	private static int cont;
 	private int fila1, columna1, fila2, columna2;
-	private boolean [][]m1;
+	private int [][]m1;
+	ArrayList<String> asientosSeleccionados;
 	//private boolean [][]m2;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 
-	public VentanaButacas(JFrame va,Usuario u, int sala, int butacasA) {
+	public VentanaButacas(JFrame va,Usuario u, int sala, int butacasA, int dia, int mes, int anio, String hora) {
 		super();
-		m1 = new boolean[7][butacasA];
+		//m1 = new int[7][butacasA];
+		Cine.cargarButacasDesdeFichero("ficheros/ButacasSala"+sala+"_"+dia+"_"+mes+"_"+anio+"_"+hora+".dat");
+		m1 = Cine.getM1();
+		asientosSeleccionados = new ArrayList<>();
 		//m2 = new boolean[5][butacasB];
 		fila1 = -1;
 		//fila2 = -1;
@@ -99,7 +103,16 @@ public class VentanaButacas extends JFrame {
 		btnSiguiente.addActionListener((e) -> {
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON SIGUIENTE");
 			if (cont == VentanaSeleccionEntradas.getTotalEntradas()) {
-				new VentanaPuntos(vActual, u,sala, fila1*columna1);
+				new VentanaPuntos(vActual, u,sala, asientosSeleccionados);
+				for(int i=0;i<m1.length;i++) {
+					for(int j=0;j<m1[i].length;j++) {
+						if(m1[i][j]!=0) {
+							m1[i][j] = 2;
+						}
+					}
+				}
+				Cine.setM1(m1);
+				Cine.guardarButacasEnFichero("ficheros/ButacasSala"+sala+"_"+dia+"_"+mes+"_"+anio+"_"+hora+".dat");
 				vActual.setVisible(false);
 				vActual.dispose();
 			} else {
@@ -198,24 +211,33 @@ public class VentanaButacas extends JFrame {
 		tblButacas1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				String letras = "ABCDEF";
+				
 				Point p = e.getPoint();
 				fila1 = tblButacas1.rowAtPoint(p);
 				columna1 = tblButacas1.columnAtPoint(p);
 				if(columna1!=0) {
-					if(!m1[fila1][columna1]) {
-						cont++;
-					}else {
-						cont--;
+					if(m1[fila1][columna1] != 2) {
+						String asiento = letras.charAt(fila1)+String.valueOf(columna1);
+						
+						if(m1[fila1][columna1]==0) {
+							cont++;
+							asientosSeleccionados.add(asiento);
+						}else if(m1[fila1][columna1]==1){
+							cont--;
+							asientosSeleccionados.remove(asiento);
+						}
+						System.out.print(cont+" - "+VentanaSeleccionEntradas.getTotalEntradas());
+						m1[fila1][columna1] = 1;
+						tblButacas1.repaint();
+						logger.log(Level.INFO, "SE HA ESCOGIDO UNA BUTACA");
+						Entrada en = new Entrada(sala, fila1*columna1);
+						if(!Cine.getMapaCompras().containsKey(VentanaInicioSesion.getUsuario())) {
+							Cine.getMapaCompras().put(VentanaInicioSesion.getUsuario(), new ArrayList<>());
+						}
+						Cine.getMapaCompras().get(VentanaInicioSesion.getUsuario()).add(en);
+						Cine.guardarMapaCompras("ficheros/Compras.dat");
 					}
-					System.out.print(cont+" - "+VentanaSeleccionEntradas.getTotalEntradas());
-					m1[fila1][columna1] = !m1[fila1][columna1];
-					tblButacas1.repaint();
-					logger.log(Level.INFO, "SE HA ESCOGIDO UNA BUTACA");
-					Entrada en = new Entrada(sala, fila1*columna1);
-					if(!Cine.getMapaCompras().containsKey(VentanaInicioSesion.getUsuario())) {
-						Cine.getMapaCompras().put(VentanaInicioSesion.getUsuario(), new ArrayList<>());
-					}
-					Cine.getMapaCompras().get(VentanaInicioSesion.getUsuario()).add(en);
 				}
 			}
 		});
@@ -270,11 +292,14 @@ public class VentanaButacas extends JFrame {
 							l.setIcon(im);
 						}
 					}else {*/
-						if(m1[row][column]) {
+						if(m1[row][column]==1) {
 							ImageIcon im = new ImageIcon("imagenes/ButacaVerde.png");
 							l.setIcon(im);
-						}else {
+						}else if(m1[row][column]==0){
 							ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
+							l.setIcon(im);
+						}else {
+							ImageIcon im = new ImageIcon("imagenes/ButacaRoja.png");
 							l.setIcon(im);
 						}
 					//}

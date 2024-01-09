@@ -16,6 +16,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 
+import domain.Cine;
+
 public class VentanaCarga extends JFrame{
 	protected JPanel pCentro;
 	protected JLabel lblImg;
@@ -25,6 +27,7 @@ public class VentanaCarga extends JFrame{
 	
 	public VentanaCarga() {
 		super();
+		Cine.cargarMapaCompras("ficheros/Compras.dat");
 		vActual = this;
 		
 		pCentro = new JPanel();
@@ -67,9 +70,9 @@ public class VentanaCarga extends JFrame{
 					for (int i = 0;i<101; i++) {
 						Thread.sleep(35);
 						barCargando.setValue(i);
-						logger.log(Level.INFO, "SE ESTA CARGANDO LA VENTANA");
+						
 					}
-					
+					logger.log(Level.INFO, "SE ESTA CARGANDO LA VENTANA");
 				}catch(InterruptedException ie){
 					JOptionPane.showMessageDialog(null, "Error al cargar ventana", "Error", JOptionPane.ERROR_MESSAGE);
 					logger.log(Level.WARNING, "ERROR AL CARGAR VENTANA");

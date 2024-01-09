@@ -16,6 +16,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -49,7 +50,7 @@ public class VentanaHorario extends JFrame{
 	private JFrame vActual, vAnterior;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 	private JCalendar calendario; 
-	public static int dia;
+	public static int dia,mes,anio,dia2;
 	public VentanaHorario(JFrame va, Usuario u) {
 		super();
 		vActual=this;
@@ -99,6 +100,14 @@ public class VentanaHorario extends JFrame{
 			public void propertyChange(PropertyChangeEvent evt) {
 				Date d = calendario.getDate();
 				dia = d.getDay(); 
+				//mes = d.getMonth();
+				//anio = d.getYear();
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+				String fecha = sdf.format(d);
+				dia2 = Integer.parseInt(fecha.split("-")[0]);
+				mes = Integer.parseInt(fecha.split("-")[1]);
+				anio = Integer.parseInt(fecha.split("-")[2]);
+				System.out.println(dia+"-"+mes+"-"+anio);
 				if(dia == 0) {
 					dia = 7;
 				}
@@ -136,7 +145,8 @@ public class VentanaHorario extends JFrame{
 					});
 		btnSiguiente.addActionListener((e)-> {
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON SIGUIENTE");
-			new VentanaEntradas(vActual, u);
+			
+			new VentanaEntradas(vActual, u, dia2, mes , anio);
 			vActual.setVisible(false);
 			vActual.dispose();
 		});
