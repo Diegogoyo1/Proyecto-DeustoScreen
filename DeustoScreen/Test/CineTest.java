@@ -94,7 +94,7 @@ import static org.junit.Assert.assertEquals;
 	    public void testBuscarUsuario() {
 	        Usuario usuario = new Usuario("Nombre", "Apellido", "FechaNacimiento", "Telefono", "CorreoElectronico", "Contrasenia", "ContadorPuntos");
 	        Cine.aniadirUsuario(usuario);
-	        assertEquals(usuario, Cine.buscarUsuario("CorreoElectronico"));
+	        assertEquals(usuario, Cine.buscarUsuario("CorreoElectronico", "Contrasenia"));
 	    }
 	    
 	}

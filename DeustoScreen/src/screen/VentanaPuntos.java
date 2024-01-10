@@ -26,7 +26,7 @@ import domain.Usuario;
 public class VentanaPuntos extends JFrame{
 	private JPanel pSur, pCentro, pNorte; 
 	private JLabel lblUsuario, lblNumPuntos, txtUsuario, txtNumPuntos;
-	private JButton btnAniadir, btnOmitir;
+	private JButton btnAniadir, btnOmitir, btnAtras;
 	private JFrame vActual, vAnterior;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 	
@@ -76,8 +76,10 @@ public class VentanaPuntos extends JFrame{
 		//BOTONES
 		btnAniadir = new JButton("AÑADIR");
 		btnOmitir = new JButton ("OMITIR");
+		btnAtras = new JButton("ATRAS");
 		pSur.add(btnOmitir);
 		pSur.add(btnAniadir);
+		pSur.add(btnAtras);
 		
 		
 		//EVENTOS BOTONES
@@ -96,6 +98,12 @@ public class VentanaPuntos extends JFrame{
 			vActual.setVisible(false);
 			vActual.dispose();//Este DISPOSE cerrara la ventana y nos llevara a la de PAGO AÑADIENDO los puntos
 			 
+		});
+		
+		btnAtras.addActionListener((e)-> {
+			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON ATRAS");
+			vActual.dispose();
+			vAnterior.setVisible(true);
 		});
 		
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();

@@ -1,5 +1,7 @@
 package domain;
 
+import java.awt.Image;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -20,6 +22,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 
 
@@ -49,7 +54,14 @@ public class Cine{
 	}
 	
 	
-	
+	public static void miIcono(JFrame ventana, String rutaIcono) {
+		try {
+			Image icon = new ImageIcon(Cine.class.getResource(rutaIcono)).getImage();
+			ventana.setIconImage(icon);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public static int[][] getM1() {
 		return m1;
 	}
@@ -269,13 +281,13 @@ public class Cine{
 		 * @param CorreoElectronico
 		 * @return Devuelve el usuario si se ha encontrado
 		 */
-		public static Usuario buscarUsuario(String CorreoElectronico) {
+		public static Usuario buscarUsuario(String CorreoElectronico, String contrasenia) {
 			boolean enc = false;
 			int pos = 0;
 			Usuario u = null;
 			while(!enc && pos<usuarios.size()) {
 				u =usuarios.get(pos);
-				if(u.getCorreoElectronico().equals(CorreoElectronico)) {
+				if(u.getCorreoElectronico().equals(CorreoElectronico) && u.getContrasenia().equals(contrasenia)) {
 					enc = true;
 				}else {
 					pos++;
@@ -292,6 +304,8 @@ public class Cine{
 		 * @param nomfich nombre del fichero Donde vamos a guardar los usuarios
 		 */
 		 
+		
+		
 		public static void cargarUsuarioEnLista(String nomfich) {
 			//linea = nom;apellido;fNac;tlf;correo;contraseña;puntos
 			try {
@@ -308,7 +322,7 @@ public class Cine{
 					String Contrasenia = partes[5];
 					String ContadorPuntos = partes[6];
 					Usuario u = new Usuario(Nombre,Apellido,FechaNacimiento,tlf,CorreoElectronico,Contrasenia,ContadorPuntos);
-					if(buscarUsuario(CorreoElectronico)== null) {
+					if(buscarUsuario(CorreoElectronico, Contrasenia)== null) {
 						usuarios.add(u);
 						}
 					}

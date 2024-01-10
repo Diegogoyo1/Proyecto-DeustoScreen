@@ -212,25 +212,24 @@ public class VentanaButacas extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String letras = "ABCDEF";
-				
 				Point p = e.getPoint();
 				fila1 = tblButacas1.rowAtPoint(p);
 				columna1 = tblButacas1.columnAtPoint(p);
-				if(columna1!=0) {
+				if(columna1!=0 || columna1!=6) {
 					if(m1[fila1][columna1] != 2) {
 						String asiento = letras.charAt(fila1)+String.valueOf(columna1);
-						
 						if(m1[fila1][columna1]==0) {
+							logger.log(Level.INFO, "SE HA ESCOGIDO UNA BUTACA");
 							cont++;
 							asientosSeleccionados.add(asiento);
 						}else if(m1[fila1][columna1]==1){
+							logger.log(Level.INFO, "SE HA QUITADO UNA BUTACA");
 							cont--;
 							asientosSeleccionados.remove(asiento);
 						}
 						System.out.print(cont+" - "+VentanaSeleccionEntradas.getTotalEntradas());
 						m1[fila1][columna1] = 1;
 						tblButacas1.repaint();
-						logger.log(Level.INFO, "SE HA ESCOGIDO UNA BUTACA");
 						Entrada en = new Entrada(sala, fila1*columna1);
 						if(!Cine.getMapaCompras().containsKey(VentanaInicioSesion.getUsuario())) {
 							Cine.getMapaCompras().put(VentanaInicioSesion.getUsuario(), new ArrayList<>());

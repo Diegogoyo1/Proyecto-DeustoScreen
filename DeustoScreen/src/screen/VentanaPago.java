@@ -159,7 +159,7 @@ public class VentanaPago extends JFrame {
 		lblPelicula.setFont(new Font( "Arial", Font.PLAIN, 25));
 		lblPelicula.setBounds(300,100,500,500);
 		
-		lblSala = new JLabel("Sala                                 "+sala);
+		lblSala = new JLabel("Sala                                         "+sala);
 		lblSala.setForeground(Color.BLACK);
 		lblSala.setFont(new Font( "Arial", Font.PLAIN, 25));
 		lblSala.setBounds(300,250,500,500);
@@ -173,7 +173,7 @@ public class VentanaPago extends JFrame {
 		lblAsientos.setFont(new Font( "Arial", Font.PLAIN, 25));
 		lblAsientos.setBounds(300,300,500,500);
 		
-		lblHora = new JLabel("Hora                                  " + String.valueOf(VentanaEntradas.getComboHorarios()));
+		lblHora = new JLabel("Hora                                  " + String.valueOf(VentanaEntradas.getComboHorarios().split("-")[1]));
 		lblHora.setForeground(Color.BLACK); 
 		lblHora.setFont(new Font( "Arial", Font.PLAIN, 25));
 		lblHora.setBounds(300,150,500,500);

@@ -96,7 +96,7 @@ public class VentanaEntradas extends JFrame{
         panelCenter.add(cbTitulos);
         panelCenter.add(Box.createVerticalStrut(100));
         
-		lblHorarios = new JLabel("Horarios", SwingConstants.CENTER);
+		lblHorarios = new JLabel("Sala y Horarios", SwingConstants.CENTER);
 		lblHorarios.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panelCenter.add(lblHorarios);
 		panelCenter.add(Box.createVerticalStrut(50));

@@ -2,6 +2,7 @@ package screen;
 
 import java.awt.BorderLayout; 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,11 +20,12 @@ import javax.swing.plaf.basic.BasicProgressBarUI;
 import domain.Cine;
 
 public class VentanaCarga extends JFrame{
-	protected JPanel pCentro;
+	protected JPanel pCentro, pSur;
 	protected JLabel lblImg;
 	protected JProgressBar barCargando;
 	protected JFrame vActual;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
+	PanelConFondo panelFondo;
 	
 	public VentanaCarga() {
 		super();
@@ -31,20 +33,21 @@ public class VentanaCarga extends JFrame{
 		vActual = this;
 		
 		pCentro = new JPanel();
-		
-		getContentPane().add(pCentro, BorderLayout.CENTER);
+		pSur = new JPanel();
+		panelFondo = new PanelConFondo(new ImageIcon("imagenes/8V9H.gif").getImage());
+		panelFondo.add(pCentro, BorderLayout.CENTER);
+		panelFondo.add(pSur, BorderLayout.SOUTH);
 		int espacioEntrePeneles = 200;
 		pCentro.setBorder(new EmptyBorder(espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles,espacioEntrePeneles));
 		
 		
 		
 		
-		lblImg = new JLabel(new ImageIcon ("imagenes/Logo.jpg"));
-		lblImg.setLayout(new BorderLayout());
+		
 		
 		barCargando = new JProgressBar(0,100);
 		barCargando.setStringPainted(true);
-		barCargando.setForeground(new Color(164, 241, 242));
+		barCargando.setForeground(new Color(0,0,0));
 		
 		barCargando.setUI(new BasicProgressBarUI() {
 			protected Color getSelectionBackground() {
@@ -52,14 +55,16 @@ public class VentanaCarga extends JFrame{
 			}
 			
 			protected Color getSelectionForeground() {
-				return new Color(0, 0, 0);
+				return new Color(255,255,255);
 			}
 		});
-		
-		lblImg.add(barCargando, BorderLayout.SOUTH);
-		getContentPane().setBackground(new Color(253,243,228));
-		getContentPane().add(lblImg);
-		
+		barCargando.setPreferredSize(new Dimension(1000,25));
+		barCargando.setSize(300, 300);
+		pSur.add(barCargando);
+		pCentro.setOpaque(false);
+		pSur.setOpaque(false);
+
+
         Thread hilo = new Thread(new Runnable() {
 
         	
@@ -93,7 +98,8 @@ public class VentanaCarga extends JFrame{
 		
 		setVisible(true);
         
-        
+		
+
 		
         int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
         int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
@@ -102,6 +108,7 @@ public class VentanaCarga extends JFrame{
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(50, 50, 1600, 800);
+		setContentPane(panelFondo);
 		setTitle("CARGANDO");
 		setVisible(true);
 		
