@@ -60,7 +60,7 @@ public class VentanaPrincipal extends JFrame{
 
 		
 
-		panelFondo = new PanelConFondo(new ImageIcon("imagenes/ImagenFondoVPrincipal.jpg").getImage());
+		panelFondo = new PanelConFondo(new ImageIcon("imagenes/imagenFonndoVentPrin.png").getImage());
 		
 		puestoComboBox = new JComboBox<>(PuestoTrabajo.values());
 		
@@ -184,9 +184,9 @@ public class VentanaPrincipal extends JFrame{
 			
 		});
 		
-		pOeste.add(btnIniciarSesion);
-		pOeste.add(btnPrecios);
-		pOeste.add(btnCartelera);
+		pSur.add(btnIniciarSesion);
+		pSur.add(btnPrecios);
+		pSur.add(btnCartelera);
 		pNorte.setOpaque(false);
 		pCentro.setOpaque(false);
 		pSur.setOpaque(false);
