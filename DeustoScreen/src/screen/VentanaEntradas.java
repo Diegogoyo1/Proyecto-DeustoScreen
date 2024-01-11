@@ -6,7 +6,7 @@ import javax.swing.SwingConstants;
 
 import domain.Cine;
 import domain.Entrada;
-import domain.Peliculas;
+import domain.Pelicula;
 import domain.Usuario;
 
 import java.awt.BorderLayout;

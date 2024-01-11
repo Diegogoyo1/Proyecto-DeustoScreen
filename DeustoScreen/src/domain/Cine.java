@@ -14,6 +14,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -22,9 +23,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
+import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 
@@ -33,7 +36,7 @@ import javax.swing.JFrame;
 public class Cine{
 	private static List<Entrada> entradas;
 	private static List<Usuario> usuarios; 
-	private static List<Peliculas> Pelicula;
+	private static List<Pelicula> Pelicula;
 	private static Map<Usuario, List<Entrada>> mapaCompras;
 	private static List<String> titulosPeliculas;
 	private static List<Trabajador> listaTrabajadores;
@@ -218,7 +221,7 @@ public class Cine{
 	 * 
 	 * @param e
 	 */
-	public static void aniadirPelicula(Peliculas e) {
+	public static void aniadirPelicula(Pelicula e) {
 		Pelicula.add(e);
 	}
 	/**
@@ -281,13 +284,13 @@ public class Cine{
 		 * @param CorreoElectronico
 		 * @return Devuelve el usuario si se ha encontrado
 		 */
-		public static Usuario buscarUsuario(String CorreoElectronico, String contrasenia) {
+		public static Usuario buscarUsuario(String CorreoElectronico) {
 			boolean enc = false;
 			int pos = 0;
 			Usuario u = null;
 			while(!enc && pos<usuarios.size()) {
 				u =usuarios.get(pos);
-				if(u.getCorreoElectronico().equals(CorreoElectronico) && u.getContrasenia().equals(contrasenia)) {
+				if(u.getCorreoElectronico().equals(CorreoElectronico)) {
 					enc = true;
 				}else {
 					pos++;
@@ -322,7 +325,7 @@ public class Cine{
 					String Contrasenia = partes[5];
 					String ContadorPuntos = partes[6];
 					Usuario u = new Usuario(Nombre,Apellido,FechaNacimiento,tlf,CorreoElectronico,Contrasenia,ContadorPuntos);
-					if(buscarUsuario(CorreoElectronico, Contrasenia)== null) {
+					if(buscarUsuario(CorreoElectronico)== null) {
 						usuarios.add(u);
 						}
 					}
@@ -378,6 +381,7 @@ public class Cine{
 				sc.close();
 			}catch (FileNotFoundException e) {
 				//logger.log(Level.WARNING, "Ruta del fichero no encontrada");
+				e.printStackTrace();
 			}
 		}
 
@@ -396,15 +400,13 @@ public class Cine{
 				while (sc.hasNext()) {
 					linea = sc.nextLine();
 					String []partes = linea.split(";");
-					String NombreApellidos = partes[2];
-					String Dni = partes[5];
-					String Contrasenia = partes[4];
-					String Telefono = partes[3];
-					String Puesto = partes[6];
-					String HorasTrabajadas = partes[0];
-					String Sueldo = partes[1];
-					
-					Trabajador t = new Trabajador(HorasTrabajadas, Sueldo, NombreApellidos, Telefono, Contrasenia, Dni, Puesto);
+					String Dni = partes[0];
+					String NombreApellidos = partes[1];
+					String Telefono = partes[2];
+					String Contrasenia = partes[3];
+					PuestoTrabajo Puesto = PuestoTrabajo.valueOf(partes[4]);
+					double Sueldo = Double.parseDouble(partes[5]);
+					Trabajador t = new Trabajador(Dni, NombreApellidos,Telefono, Contrasenia, Puesto, Sueldo);
 					BD.insertarTrabajador(con, t);
 				}
 				sc.close();
@@ -415,6 +417,52 @@ public class Cine{
 			}
 		}
 		
+		public static void volcado_FichCSV_Horarios_a_BD(Connection con, String nomFich) {
+			try {
+				Scanner sc = new Scanner(new FileReader(nomFich));
+				String linea;
+				while (sc.hasNext()) {
+					linea = sc.nextLine();
+					String []partes = linea.split(";");
+					String Hora = partes[0];
+					int Sala = Integer.parseInt(partes[1]);
+					String DiasSemana = partes[2];
+					Horario h = new Horario(Hora, Sala, DiasSemana);
+					BD.insertarHorario(con, h);
+				}
+				sc.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				//logger.log(Level.WARNING, "Ruta del fichero no encontrada");
+			}
+		}
+		
+		public static void volcado_FichCSV_Peliculas_a_BD(Connection con,String nomFich) {
+			try {
+				Scanner sc = new Scanner(new FileReader(nomFich));
+				String linea;
+				while(sc.hasNext()) {
+					linea = sc.nextLine();
+					String []partes = linea.split(";");
+					String tituloPelicula = partes[0];
+					String tituloVentana = partes[1];
+					String imagenCartelera = partes[2];
+					String imagenPelicula = partes[3];
+					String descripcion = partes[4];
+					String categoria = partes[5];
+					String duracion = partes[6];	
+					String reparto = partes[7];
+
+					Pelicula p = new Pelicula(tituloPelicula, tituloVentana, imagenCartelera, imagenPelicula, descripcion, categoria, duracion, reparto);
+					BD.insertarPelicula(con, p);
+				}
+				sc.close();
+			}catch (FileNotFoundException e) {
+				//logger.log(Level.WARNING, "Ruta del fichero no encontrada");
+				e.printStackTrace();
+			}
+		}
 
 		/**
 		 * Metodo que registra a los usuarios y los guarda en el fichero
@@ -429,34 +477,50 @@ public class Cine{
 		 * @param contador puntos acomulados que tiene el usuario
 		 * @return devuelve true cuando estos se guardan
 		 */
-		public static boolean registroUsuario(String nomfich, String nombre, String apellido, String fechaNac,
-				String tlf, String correoElectronico, String cont, String contador) {
-			
-			Usuario u = new Usuario(nombre, apellido, fechaNac, tlf, correoElectronico, cont, contador);
-			usuarios.add(u);
-			guardarUsuariosEnFichero(nomfich);
-			return true;
-		}
+		 public static boolean registroUsuario(String nomfichUsuarios, String nombre, String apellido, 
+				 String fNac, String tlf, String CorreoElectronico, String contrasenia, String ContadorPuntos, JFrame frame) {
+			 if(isValidEmail(CorreoElectronico) && isValidContrasenia(contrasenia) && buscarUsuario(CorreoElectronico)==null) {
+				 Usuario nuevoUsuario = new Usuario(nombre, apellido, fNac, tlf, CorreoElectronico, contrasenia, ContadorPuntos);
+				 usuarios.add(nuevoUsuario);
+				 System.out.println(nuevoUsuario.getContadorPuntos());
+				 guardarUsuariosEnFichero(nomfichUsuarios);
+				 
+				 Connection con = BD.initBD("deustoscreen.db");
+				 Cine.volcado_FichCSV_Usuarios_a_BD(con, nomfichUsuarios);
+				 BD.cerrarBD(con);
+				 
+				 return true;
+			 }else {
+				 JOptionPane.showMessageDialog(null, "Usuario ya regitrado", "ERROR", JOptionPane.ERROR_MESSAGE);
+			 }
+			 return false;
+		 }
 		
 		/**
 		 * Metodo que carga las peliculas en una lista.
 		 * @param nomfich
 		 */
-		public static void cargarPeliculasEnLista(String nomfich) {
-			try {
-				Scanner sc =  new Scanner(new FileReader(nomfich));
-				String linea;
-				titulosPeliculas.clear();
-				while(sc.hasNext()) {
-					linea = sc.nextLine();
-					titulosPeliculas.add(linea);
+		 public static void cargarPeliculasEnLista(String nomfich) {
+			 try {
+					Scanner sc = new Scanner(new File(nomfich));
+					while(sc.hasNextLine()) {
+						String linea = sc.nextLine();
+						String[]partes = linea.split(";");
+						String tituloPelicula = partes[0];
+						String tituloVentana = partes[1];
+						String imagenCartelera = partes[2];
+						String imagenPelicula = partes[3];
+						String descripcion = partes[4];
+						String categoria = partes[5];
+						String duracion = partes[7];
+						String reparto = partes[8];
+						Pelicula p = new Pelicula(tituloPelicula, tituloVentana, imagenCartelera, imagenPelicula, descripcion, categoria, duracion, reparto);
+						Pelicula.add(p);
+					}
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
 				}
-				sc.close();
-				
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
-		}
+		 }
 		/**
 		 * Metodo que obtiene los titulos de las peliculas
 		 * @return Devuelve el titulo de la pelicula
@@ -475,7 +539,7 @@ public class Cine{
 		 * Metodo que Obtiene la lista de peliculas
 		 * @return Devuelve la lista de peliculas
 		 */
-		 public static List<Peliculas> obtenerListaPeliculas() {
+		 public static List<Pelicula> obtenerListaPeliculas() {
 		        return Pelicula;
 		 }
 		 
@@ -515,17 +579,35 @@ public class Cine{
 					while(sc.hasNextLine()) {
 						String linea = sc.nextLine();
 						String[]partes = linea.split(";");
-						String nombreApellidos = partes[0];
-						String telefono = partes[1];
-						PuestoTrabajo puesto = PuestoTrabajo.valueOf(partes[2]);
-						String dni = partes[3];
-						Trabajador t = new Trabajador(nombreApellidos, telefono, puesto, dni );
+						String dni = partes[0];
+						String nombreApellidos = partes[1];
+						String telefono = partes[2];
+						String contrasenia = partes[3];
+						PuestoTrabajo puesto = PuestoTrabajo.valueOf(partes[4]);
+						double sueldo = Double.parseDouble(partes[5]);
+						
+						Trabajador t = new Trabajador(dni, nombreApellidos, telefono, contrasenia,  puesto, sueldo);
 						listaTrabajadores.add(t);
 					}
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
 		 }
+		 
+		 public static boolean isValidEmail(String email) {
+		        String emailRegex = "[a-zA-Z0-9]{1,}@[a-z]{1,}.[a-z]{1,}";
+		        return Pattern.matches(emailRegex, email);
+		    }
+		 
+		 public static boolean isValidContrasenia(String contrasenia) {
+			 if(contrasenia.length() < 6 || !contrasenia.matches(".*[0-9].*") || !contrasenia.matches(".*[a-zA-Z].*") || !contrasenia.matches(".*[!@#$%^&*()-_=+{};:,<.>/?`~].*")) {
+					JOptionPane.showMessageDialog(null, "La contraseña no contiene los caracteres necesarios", "ERROR", JOptionPane.ERROR_MESSAGE);
+					return false;
+				}
+				return true;
+			}
+		 
+		
 
 	 /*public void actualizarPuntos(String ContadorPuntos) {
 				int puntosInt = Integer.parseInt(ContadorPuntos);

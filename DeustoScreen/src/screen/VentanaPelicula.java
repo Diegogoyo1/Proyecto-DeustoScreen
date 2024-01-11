@@ -1,6 +1,7 @@
 package screen;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
@@ -62,17 +63,18 @@ public class VentanaPelicula extends JFrame {
 		//TEXTAREA
 		txtSinp = new JTextArea(16, 58);
 		txtSinp = new JTextArea(ta);
+		txtSinp.setPreferredSize(new Dimension (1000, 16));
 		txtSinp.setLineWrap(true);
 		txtSinp.setWrapStyleWord(true);
 		txtSinp.setEditable(false);
-		/*scrollTxtArea = new JScrollPane(txtSinp);
-		getContentPane().add(scrollTxtArea, BorderLayout.CENTER);*/
+		scrollTxtArea = new JScrollPane(txtSinp);
+		getContentPane().add(scrollTxtArea, BorderLayout.EAST);
 		
 		//IMAGEN
 		pCentroDe = new JPanel();
 		pCentroDe.setLayout(new FlowLayout(FlowLayout.LEFT));
-		ImageIcon imBarbie = new ImageIcon(im);
-		Image imagen = imBarbie.getImage();
+		ImageIcon img = new ImageIcon(im);
+		Image imagen = img.getImage();
 		Image imagenRedimensionada = imagen.getScaledInstance(500, 700, Image.SCALE_SMOOTH);
 		ImageIcon imagenRedimensionadaIcon = new ImageIcon(imagenRedimensionada);
 		lblImg = new JLabel(imagenRedimensionadaIcon);

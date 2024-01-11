@@ -2,6 +2,7 @@ package screen;
 
 import java.awt.BorderLayout;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -9,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.awt.GridLayout;
 import java.awt.image.PackedColorModel;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -24,8 +26,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+
+
 import domain.Cine;
 import domain.Usuario;
+
 
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
@@ -34,9 +39,9 @@ import java.awt.Dimension;
 
 public class VentanaRegistros extends JFrame {
 	private JPanel pNorte,pCentro,pSur,pCentroIzquierda;
-	private JLabel lblNombre,lblApellido ,lblFechaNacimiento, lbltlf, lblCorreoElectronico,lblCotraseniaR,lblTituloIS; 
+	private JLabel lblNombre,lblApellido ,lblFechaNacimiento, lbltlf, lblCorreoElectronico,lblCotraseniaR,lblTituloIS, lblRepetirContrasenia; 
 	private JTextField txtNombre,txtApellido,txtFechaNacimiento,txtCorreoElectronico;
-	private JTextField textFieldTlf;
+	private JTextField txtFieldTlf, txtRepetirContrasenia;
 	private JButton btnSalir, btnRegistro;
 	private JPasswordField contraseniaR;
 	private JFrame vActual, vAnterior;
@@ -77,7 +82,7 @@ public class VentanaRegistros extends JFrame {
 		lblCotraseniaR.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lbltlf.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblFechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		
+		lblRepetirContrasenia = new JLabel("REPETIR CONTRASEÑA");
 		
 		//TextField nuevos
 		txtNombre = new JTextField();
@@ -86,8 +91,9 @@ public class VentanaRegistros extends JFrame {
 		txtNombre.setHorizontalAlignment(SwingConstants.LEFT);
 		txtApellido= new JTextField();
 		txtFechaNacimiento= new JTextField();
-		textFieldTlf = new JTextField();
-		textFieldTlf.addKeyListener(new KeyAdapter() {
+		txtFieldTlf = new JTextField();
+		txtRepetirContrasenia = new JPasswordField(20);
+		txtFieldTlf.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				int key = e.getKeyChar();
@@ -96,7 +102,7 @@ public class VentanaRegistros extends JFrame {
 					e.consume();
 					logger.log(Level.INFO, "SE HA INTENADO PONER CARACTERES NO VALIDOS");
 				}
-				if (textFieldTlf.getText().trim().length() == 9) {
+				if (txtFieldTlf.getText().trim().length() == 9) {
 					e.consume();
 					logger.log(Level.INFO, "SE HA INTENADO PONER MAS CARATECTERES DE LOS VALIDADOS");
 				}
@@ -108,7 +114,7 @@ public class VentanaRegistros extends JFrame {
 		txtNombre.setPreferredSize(new Dimension(400,30));
 		txtApellido.setPreferredSize(new Dimension(400,30));
 		txtFechaNacimiento.setPreferredSize(new Dimension(400,30));
-		textFieldTlf.setPreferredSize(new Dimension(400,30));
+		txtFieldTlf.setPreferredSize(new Dimension(400,30));
 		contraseniaR.setPreferredSize(new Dimension(400,30));
 		
 		
@@ -130,7 +136,7 @@ public class VentanaRegistros extends JFrame {
 		pCentro.add(Box.createVerticalStrut(30));
 		pCentro.add(lbltlf);
 		pCentro.add(Box.createVerticalStrut(30));
-		pCentro.add(textFieldTlf);
+		pCentro.add(txtFieldTlf);
 		pCentro.add(Box.createVerticalStrut(30));
 		pCentro.add(lblCorreoElectronico);
 		pCentro.add(Box.createVerticalStrut(30));
@@ -142,7 +148,9 @@ public class VentanaRegistros extends JFrame {
 		pCentro.add(Box.createVerticalStrut(30));
 		pCentro.add(contraseniaR);
 		pCentro.add(Box.createVerticalStrut(30));
-		
+		pCentro.add(lblRepetirContrasenia);
+		pCentro.add(txtRepetirContrasenia);
+		pCentro.add(Box.createVerticalStrut(30));
 		
 		pNorte.add(lblTituloIS);
 		
@@ -160,13 +168,29 @@ public class VentanaRegistros extends JFrame {
 			String nombre = txtNombre.getText();
 			String apellido = txtApellido.getText();
 			String fNac = txtFechaNacimiento.getText();
-			String tlf = textFieldTlf.getText();
+			String tlf = txtFieldTlf.getText();
 			String CorreoElectronico = txtCorreoElectronico.getText();
 			String contrasenia = contraseniaR.getText();
-			String ContadorPuntos = "20";
-		
+			String ContadorPuntos = "100";
+			String contRep = new String(txtRepetirContrasenia.getText());
 		//  Verificar si existe el usuarios
-			Usuario usuarioExistente = Cine.buscarUsuario(CorreoElectronico, contrasenia);
+			
+			if(contrasenia.equals(contRep)) {
+				
+				if (Cine.registroUsuario(nomfichUsuarios, nombre, apellido, fNac, tlf, CorreoElectronico, contrasenia, ContadorPuntos, vActual)){
+					JOptionPane.showMessageDialog(vActual, "Registro realizado correctamente", "REGISTRO", JOptionPane.INFORMATION_MESSAGE);
+					new VentanaInicioSesion(vActual);
+					vActual.dispose();
+					logger.log(Level.INFO, "SE HA REALIZADO EL REGISTRO");
+					
+				} else {
+					
+				}
+			}else {
+				JOptionPane.showMessageDialog(vActual, "Las contraseñas no coinciden", "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
+			
+			/*Usuario usuarioExistente = Cine.buscarUsuario(CorreoElectronico, contrasenia);
 			 if (Cine.buscarUsuario(CorreoElectronico, contrasenia)!= null) {
 					JOptionPane.showMessageDialog(null, "Usuario ya existe, se iniciará con ese usuario","ERROR",JOptionPane.WARNING_MESSAGE);
 					logger.log(Level.INFO, "SE HA INTENADO ACCEDER CON UN USUARIO EXISTENTE");
@@ -174,9 +198,9 @@ public class VentanaRegistros extends JFrame {
 					new VentanaHorario(va, usuarioExistente);
 					vActual.dispose();
 					} 
-			 else if (!isValidEmail(CorreoElectronico)) {
+			 else if (!Cine.isValidEmail(CorreoElectronico) || !Cine.isValidContrasenia(contrasenia)) {
 				JOptionPane.showMessageDialog(null, "Direccion de correo electronico no valido","ERROR",JOptionPane.ERROR_MESSAGE);
-				logger.log(Level.INFO, "SE HA INTENADO ACCEDER CON UN CORREO NO VALIDO");
+				logger.log(Level.INFO, "SE HA INTENADO ACCEDER CON UN CORREO O CONTRASEÑA NO VALIDO");
 				}
 			
 			else {
@@ -193,7 +217,7 @@ public class VentanaRegistros extends JFrame {
 				vActual.dispose();
 			}
 			
-			Cine.registroUsuario(nomfichUsuarios, nombre, apellido, fNac, tlf, CorreoElectronico, contrasenia, ContadorPuntos);
+			Cine.registroUsuario(nomfichUsuarios, nombre, apellido, fNac, tlf, CorreoElectronico, contrasenia, ContadorPuntos);*/
 			
 			
 				
@@ -219,9 +243,6 @@ public class VentanaRegistros extends JFrame {
 		setTitle("REGISTRO");
 		setVisible(true);
 	}
-	 private boolean isValidEmail(String email) {
-	        String emailRegex = "[a-zA-Z0-9]{1,}@[a-z]{1,}.[a-z]{1,}";
-	        return Pattern.matches(emailRegex, email);
-	    }
+	 
 	
 }

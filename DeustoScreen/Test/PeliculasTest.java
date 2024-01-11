@@ -13,14 +13,14 @@ import org.junit.Test;
 
 import domain.Actores;
 import domain.Categoria;
-import domain.Peliculas;
+import domain.Pelicula;
 
 public class PeliculasTest { 
-	private Peliculas p;
+	private Pelicula p;
 	
 	@Before
 	public void setUp() {
-		 p = new Peliculas("Oppenheimer", new ArrayList<Actores>(), "3h", "21-07-2023", Categoria.ACCIÓN);
+		 p = new Pelicula("Oppenheimer", new ArrayList<Actores>(), "3h", "21-07-2023", Categoria.ACCIÓN);
 
 	}
 	

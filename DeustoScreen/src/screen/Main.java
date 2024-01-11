@@ -22,20 +22,23 @@ public class Main {
 			logger.log(Level.INFO, "SE INICIA EL PROGRAMA DEUSTOSCREEN");
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.log(Level.WARNING, "NO SE HA PODIDO CARAGAR LA VENTANA CARGA");
+			logger.log(Level.WARNING, "NO SE HA PODIDO CARGAR LA VENTANA CARGA");
 		}
 		
-		/*Connection con = BD.initBD("deustoscreen.db");
+		Connection con = BD.initBD("Datos/deustoscreen.db");
 		try {
+			BD.borrarTabla(con);
 			BD.crearTabla(con);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		Cine.volcado_FichCSV_Usuarios_a_BD(con, "ficheros/Usuario.csv");
+		Cine.volcado_FichCSV_Usuarios_a_BD(con, "ficheros/Usuarios.csv");
 		Cine.volcado_FichCSV_Trabajadores_a_BD(con, "ficheros/Trabajadores.csv");
+		Cine.volcado_FichCSV_Horarios_a_BD(con, "ficheros/Horarios.csv");
+		Cine.volcado_FichCSV_Peliculas_a_BD(con, "ficheros/Peliculas.csv");
 		
 		BD.cerrarBD(con);
-		 */
+		 
 		
 	Properties properties = new Properties();
 	try {

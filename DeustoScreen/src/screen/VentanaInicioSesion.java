@@ -138,7 +138,7 @@ public class VentanaInicioSesion extends JFrame {
 				 JOptionPane.showMessageDialog(null, "Inserte Contraseña","ERROR",JOptionPane.ERROR_MESSAGE);
 				 logger.log(Level.INFO, "SE HA INTENTADO ACCEDER CON CONTRASEÑA VACIA");
 			 }
-		Usuario u = Cine.buscarUsuario(CorreoElectronico, con);
+		Usuario u = Cine.buscarUsuario(CorreoElectronico);
 		//Compara si el correo electronico metido es igual al correo electronico que ya existe.
 		 if (u == null || !CorreoElectronico.equals(u.getCorreoElectronico())) {
 			JOptionPane.showMessageDialog(null, "Direccion de correo electronico no valido","ERROR",JOptionPane.ERROR_MESSAGE);

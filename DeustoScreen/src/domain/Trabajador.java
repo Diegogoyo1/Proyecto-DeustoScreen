@@ -1,54 +1,42 @@
 package domain;
 
 public class Trabajador {
-	private double horasTrabajadas;
-	private double sueldo;
+	private String dni;
 	private String nombreApellidosTrabajador;
 	private String telefonoTrabajador;
 	private String contraseniaTrabajador;
-	private String dni;
 	private PuestoTrabajo puesto;
+	private double sueldo;
 	
 	
-	public Trabajador(double horasTrabajadas, double sueldo, String nombreApellidosTrabajador,String telefonoTrabajador, String contraseniaTrabajador,
-			String dni, PuestoTrabajo puesto) {
+	
+	public Trabajador(String dni, String nombreApellidosTrabajador,String telefonoTrabajador, String contraseniaTrabajador, PuestoTrabajo puesto, double sueldo) {
 		super();
-		this.horasTrabajadas = horasTrabajadas;
-		this.sueldo = sueldo;
+		this.dni = dni;
 		this.nombreApellidosTrabajador = nombreApellidosTrabajador;
 		this.telefonoTrabajador = telefonoTrabajador;
 		this.contraseniaTrabajador = contraseniaTrabajador;
-		this.dni = dni;
 		this.puesto = puesto;
+		this.sueldo = sueldo;
 	}
 	
-	public Trabajador (String nombreApellidos, String telefonoTrabajador, PuestoTrabajo puesto, String dni) {
+	public Trabajador (String dni, String nombreApellidos, String telefonoTrabajador, PuestoTrabajo puesto) {
+		this.dni = dni;
 		this.nombreApellidosTrabajador = nombreApellidos;
 		this.telefonoTrabajador = telefonoTrabajador;
 		this.puesto = puesto;
-		this.dni = dni;
+		
 	}
 	
 	public Trabajador() {
 		super();
-		this.horasTrabajadas = 0;
-		this.sueldo = 0;
+		this.dni = null;
 		this.nombreApellidosTrabajador = null;
 		this.contraseniaTrabajador = null;
-		this.dni = null;
+		this.sueldo = 0;
 	}
-	public Trabajador(String horasTrabajadas2, String sueldo2, String nombreApellidos, String telefono,
-			String contrasenia, String dni2, String puesto2) {
-	}
-
-	public double getHorasTrabajadas() {
-		return horasTrabajadas;
-	}
-
-	public void setHorasTrabajadas(double horasTrabajadas) {
-		this.horasTrabajadas = horasTrabajadas;
-	}
-
+	
+	
 	public double getSueldo() {
 	return sueldo;
 	}
@@ -98,7 +86,7 @@ public class Trabajador {
 
 	@Override
 	public String toString() {
-		return "Trabajador [horasTrabajadas=" + horasTrabajadas + ", sueldo=" + sueldo + ", nombreTrabajador=" + nombreApellidosTrabajador + ", telefonoTrabajador="+ telefonoTrabajador +", contraseñaTrabajador="
+		return "Trabajador [sueldo=" + sueldo + ", nombreTrabajador=" + nombreApellidosTrabajador + ", telefonoTrabajador="+ telefonoTrabajador +", contraseñaTrabajador="
 				+ contraseniaTrabajador + ", dni=" + dni + ", puesto=" + puesto + "]";
 	}
 }

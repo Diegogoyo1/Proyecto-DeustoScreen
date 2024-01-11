@@ -1,12 +1,11 @@
 package screen;
 
-import java.awt.BorderLayout;
+import java.awt.BorderLayout; 
 
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -43,15 +42,14 @@ public class VentanaButacas extends JFrame {
 	private static final long serialVersionUID = 2821724812420567703L;
 	private JPanel pNorte, pSur, pEste, pOeste,pCentro;
 	private JButton btnSiguiente, btnAtras;
-	private JTable tblButacas1, tblButacas2;
+	private JTable tblButacas1;
 	private JLabel lblPantalla;
-	private DefaultTableModel modTblButacas1, modTblButacas2;
+	private DefaultTableModel modTblButacas1;
 	//private FlowLayout layoutTabButacas1, layoutTabButacas2;
 	private JFrame vActual, vAnterior;
 	private static final String nomfich1 = "ficheros/Butacas1.csv";
-	private static final String nomfich2 = "ficheros/Butacas2.csv";
 	private static int cont;
-	private int fila1, columna1, fila2, columna2;
+	private int fila1, columna1;
 	private int [][]m1;
 	ArrayList<String> asientosSeleccionados;
 	//private boolean [][]m2;
@@ -222,13 +220,16 @@ public class VentanaButacas extends JFrame {
 							logger.log(Level.INFO, "SE HA ESCOGIDO UNA BUTACA");
 							cont++;
 							asientosSeleccionados.add(asiento);
+							m1[fila1][columna1] = 1;
+							
 						}else if(m1[fila1][columna1]==1){
 							logger.log(Level.INFO, "SE HA QUITADO UNA BUTACA");
 							cont--;
 							asientosSeleccionados.remove(asiento);
+							m1[fila1][columna1] = 0;
+							
 						}
 						System.out.print(cont+" - "+VentanaSeleccionEntradas.getTotalEntradas());
-						m1[fila1][columna1] = 1;
 						tblButacas1.repaint();
 						Entrada en = new Entrada(sala, fila1*columna1);
 						if(!Cine.getMapaCompras().containsKey(VentanaInicioSesion.getUsuario())) {
