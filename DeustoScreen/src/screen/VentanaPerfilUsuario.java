@@ -59,16 +59,10 @@ public class VentanaPerfilUsuario extends JFrame {
 		pCentro.add(lbltlf);
 		pCentro.add(lblPuntos);
 		pCentro.add(Box.createVerticalStrut(60));
-		pSur.add(btnAtras);
+		
 		
 		pCentro.setBorder(new EmptyBorder(50,150,150,150));
 
-		btnAtras.addActionListener((e)-> {
-			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON ATRAS");
-			
-			vActual.dispose();
-			vAnterior.setVisible(true);
-		});
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds (600,300,380,400);
