@@ -41,7 +41,7 @@ import domain.Usuario;
 
 public class VentanaHorario extends JFrame{
 	private JPanel pCentro, pSur, pNorte,pOeste;
-	private JButton btnAtras, btnSiguiente; 
+	private JButton btnAtras, btnSiguiente,btnInfo; 
 	private DefaultTableModel modelo;
 	private JTable tabla;
 	private JScrollPane scroll;
@@ -135,6 +135,7 @@ public class VentanaHorario extends JFrame{
 		//BOTONES
 		btnAtras = new JButton("Atrás");
 		btnSiguiente = new JButton("Siguiente");
+		btnInfo = new JButton("perfil");
 		
 		//ACCIONES DE BOTONES
 		btnAtras.addActionListener((e)-> {
@@ -150,7 +151,10 @@ public class VentanaHorario extends JFrame{
 			vActual.setVisible(false);
 			vActual.dispose();
 		});
-				
+			
+		btnInfo.addActionListener((e)->{
+			new VentanaPerfilUsuario(va, u);
+		});
 		//LABEL
 		pNorte.add(lblTituloH);
 		
@@ -158,6 +162,7 @@ public class VentanaHorario extends JFrame{
 		pCentro.add(scroll);
 		pSur.add(btnAtras);
 		pSur.add(btnSiguiente);
+		pSur.add(btnInfo);
 		
 		
 		//DEFINIR VENTANA
