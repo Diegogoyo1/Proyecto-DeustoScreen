@@ -3,6 +3,7 @@ package screen;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
@@ -13,19 +14,23 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import domain.Cine;
 import domain.Usuario;
 
 public class VentanaPuntos extends JFrame{
-	private JPanel pSur, pCentro, pNorte; 
-	private JLabel lblUsuario, lblNumPuntos, txtUsuario, txtNumPuntos;
+	private JPanel pSur, pNorte, pEste, pOeste ; 
+	private JLabel lblUsuario, lblNumPuntos, txtUsuario, txtNumPuntos, lblImg;
 	private JButton btnAniadir, btnOmitir, btnAtras;
 	private JFrame vActual, vAnterior;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
@@ -37,41 +42,60 @@ public class VentanaPuntos extends JFrame{
 		
 		
 		//CREACIÓN PANELES
-		pCentro = new JPanel (new GridLayout (2, 2));
 		pSur = new JPanel();
 		pNorte = new JPanel();
 		
-		getContentPane().add(pCentro, BorderLayout.CENTER);
+		pOeste = new JPanel();
+		pOeste.setLayout(new BoxLayout(pOeste, BoxLayout.Y_AXIS));
+		
+		pEste = new JPanel();
+		pEste.setLayout(new BoxLayout(pEste, BoxLayout.Y_AXIS));
+		
+		
 		getContentPane().add(pSur, BorderLayout.SOUTH);
 		getContentPane().add(pNorte, BorderLayout.NORTH);
 		
 		
 		//LABELS
 		lblUsuario = new JLabel(" USUARIO: ");
+		lblUsuario.setBorder(new EmptyBorder(0, 0, 10, 20));
+		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		
 		lblNumPuntos = new JLabel (" NÚMERO DE PUNTOS: ");
+		lblNumPuntos.setBorder(new EmptyBorder(0, 0, 10, 20));
+		lblNumPuntos.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		
+		lblImg = new JLabel();
 		
 		//TEXTFIELD
 		txtUsuario = new JLabel(u.getCorreoElectronico());
-		txtUsuario.setBackground(new Color(255, 255, 255));
+		txtUsuario.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
+		/*txtUsuario.setBackground(new Color(255, 255, 255));
 		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		txtUsuario.setHorizontalAlignment(SwingConstants.LEFT);
+		txtUsuario.setHorizontalAlignment(SwingConstants.LEFT);*/
 		
 		//txtUsuario.setSize(2, 4);
 		//txtUsuario.setPreferredSize(new Dimension(2, 4));
 		
 		txtNumPuntos = new JLabel(u.getContadorPuntos());
-		txtNumPuntos.setBackground(new Color(255, 255, 255));
+		txtNumPuntos.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
+		/*txtNumPuntos.setBackground(new Color(255, 255, 255));
 		txtNumPuntos.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		txtNumPuntos.setHorizontalAlignment(SwingConstants.LEFT);
+		txtNumPuntos.setHorizontalAlignment(SwingConstants.LEFT);*/
 
 		
 		
 		//ENLAZAR PANELES CON LABELS Y TEXTFIELDS
-		pCentro.add(lblUsuario);
-		pCentro.add(txtUsuario);
-		pCentro.add(lblNumPuntos);
-		pCentro.add(txtNumPuntos);
+		pEste.add(lblUsuario);
+		pEste.add(txtUsuario);
+		pEste.add(lblNumPuntos);
+		pEste.add(txtNumPuntos);
+		pEste.add(Box.createVerticalStrut(30));
+		pEste.setBorder(new EmptyBorder(150, 150, 150, 150 ));
 		
+		pOeste.add(lblImg);
+		ImageIcon imEntradas = new ImageIcon("imagenes/entradas.png");
+		lblImg.setIcon(imEntradas);
 		
 		//BOTONES
 		btnAniadir = new JButton("AÑADIR");
