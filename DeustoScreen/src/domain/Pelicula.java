@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Pelicula {
+	private String id;
 	private String tituloPelicula;
 	private String tituloVentana;
 	private String imagenCartelera;
@@ -15,9 +16,10 @@ public class Pelicula {
 	private String duracion;
 	private String reparto;
 	
-	public Pelicula(String tituloPelicula, String tituloVentana, String imagenCartelera, String imagenPelicula,
+	public Pelicula(String id, String tituloPelicula, String tituloVentana, String imagenCartelera, String imagenPelicula,
 			String descripcion, String categoria, String duracion, String reparto) {
 		super();
+		this.id = id;
 		this.tituloPelicula = tituloPelicula;
 		this.tituloVentana = tituloVentana;
 		this.imagenCartelera = imagenCartelera;
@@ -29,7 +31,28 @@ public class Pelicula {
 		
 		
 	}
+	
+	public Pelicula (String tituloPelicula, String tituloVentana, String imagenCartelera, String imagenPelicula,
+			String descripcion, String categoria, String duracion, String reparto) {
+		super();
+		this.tituloPelicula = tituloPelicula;
+		this.tituloVentana = tituloVentana;
+		this.imagenCartelera = imagenCartelera;
+		this.imagenPelicula = imagenPelicula;
+		this.descripcion = descripcion;
+		this.categoria = categoria;
+		this.duracion = duracion;
+		this.reparto = reparto;
+	}
 
+	public  String getId() {
+		return id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
+	}
+	
 	public String getTituloPelicula() {
 		return tituloPelicula;
 	}
@@ -96,7 +119,7 @@ public class Pelicula {
 
 	@Override
 	public String toString() {
-		return "Peliculas [tituloPelicula=" + tituloPelicula + ", tituloVentana=" + tituloVentana + ", imagenCartelera="
+		return "Peliculas [id=" + id + ",tituloPelicula=" + tituloPelicula + ", tituloVentana=" + tituloVentana + ", imagenCartelera="
 				+ imagenCartelera + ", imagenPelicula=" + imagenPelicula + ", descripcion=" + descripcion
 				+ ", categoria=" + categoria + ", duracion=" + duracion + ", reparto=" + reparto + "]";
 	}

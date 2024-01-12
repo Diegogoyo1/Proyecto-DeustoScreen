@@ -37,6 +37,7 @@ public class Cine{
 	private static List<Entrada> entradas;
 	private static List<Usuario> usuarios; 
 	private static List<Pelicula> Pelicula;
+	private static Map<String, List<Pelicula>> mapaPeliculas;
 	private static Map<Usuario, List<Entrada>> mapaCompras;
 	private static List<String> titulosPeliculas;
 	private static List<Trabajador> listaTrabajadores;
@@ -44,7 +45,15 @@ public class Cine{
 	private static TreeMap<String, HashMap<Integer, ArrayList<String>>> mapaHorarios ;
 	public static int sala;
 	private static int [][] m1;
-	
+	public static String tituloPelicula;
+	public static String tituloVentana;
+	public static String imagenCartelera;
+	public static String imagenPelicula;
+	public static String descripcion;
+	public static String categoria;
+	public static String duracion;
+	public static String reparto;
+	public static String id;
 	
 	static {
 		m1 = new int[7][12];
@@ -56,6 +65,64 @@ public class Cine{
 		mapaHorarios = new TreeMap<>();
 	}
 	
+	
+	
+	public static String getTituloPelicula() {
+		return tituloPelicula;
+	}
+	public static void setTituloPelicula(String tituloPelicula) {
+		Cine.tituloPelicula = tituloPelicula;
+	}
+	public static String getTituloVentana() {
+		return tituloVentana;
+	}
+	public static void setTituloVentana(String tituloVentana) {
+		Cine.tituloVentana = tituloVentana;
+	}
+	public static String getImagenCartelera() {
+		return imagenCartelera;
+	}
+	public static void setImagenCartelera(String imagenCartelera) {
+		Cine.imagenCartelera = imagenCartelera;
+	}
+	public static String getImagenPelicula() {
+		return imagenPelicula;
+	}
+	public static void setImagenPelicula(String imagenPelicula) {
+		Cine.imagenPelicula = imagenPelicula;
+	}
+	public static String getDescripcion() {
+		return descripcion;
+	}
+	public static void setDescripcion(String descripcion) {
+		Cine.descripcion = descripcion;
+	}
+	public static String getCategoria() {
+		return categoria;
+	}
+	public static void setCategoria(String categoria) {
+		Cine.categoria = categoria;
+	}
+	public static String getDuracion() {
+		return duracion;
+	}
+	public static void setDuracion(String duracion) {
+		Cine.duracion = duracion;
+	}
+	public static String getReparto() {
+		return reparto;
+	}
+	public static void setReparto(String reparto) {
+		Cine.reparto = reparto;
+	}
+	
+	public static String getId() {
+		return id;
+	}
+	
+	public static void setId(String id) {
+		Cine.id = id;
+	}
 	
 	public static void miIcono(JFrame ventana, String rutaIcono) {
 		try {
@@ -438,7 +505,7 @@ public class Cine{
 			}
 		}
 		
-		public static void volcado_FichCSV_Peliculas_a_BD(Connection con,String nomFich) {
+		/*public static void volcado_FichCSV_Peliculas_a_BD(Connection con,String nomFich) {
 			try {
 				Scanner sc = new Scanner(new FileReader(nomFich));
 				String linea;
@@ -462,7 +529,7 @@ public class Cine{
 				//logger.log(Level.WARNING, "Ruta del fichero no encontrada");
 				e.printStackTrace();
 			}
-		}
+		}*/
 
 		/**
 		 * Metodo que registra a los usuarios y los guarda en el fichero
@@ -496,31 +563,22 @@ public class Cine{
 			 return false;
 		 }
 		
-		/**
-		 * Metodo que carga las peliculas en una lista.
-		 * @param nomfich
-		 */
-		 public static void cargarPeliculasEnLista(String nomfich) {
-			 try {
-					Scanner sc = new Scanner(new File(nomfich));
-					while(sc.hasNextLine()) {
-						String linea = sc.nextLine();
-						String[]partes = linea.split(";");
-						String tituloPelicula = partes[0];
-						String tituloVentana = partes[1];
-						String imagenCartelera = partes[2];
-						String imagenPelicula = partes[3];
-						String descripcion = partes[4];
-						String categoria = partes[5];
-						String duracion = partes[7];
-						String reparto = partes[8];
-						Pelicula p = new Pelicula(tituloPelicula, tituloVentana, imagenCartelera, imagenPelicula, descripcion, categoria, duracion, reparto);
-						Pelicula.add(p);
+		 
+		 public static void cargarTitulosPeliculasEnLista(String nomfich) {
+				try {
+					Scanner sc =  new Scanner(new FileReader(nomfich));
+					String linea;
+					titulosPeliculas.clear();
+					while(sc.hasNext()) {
+						linea = sc.nextLine();
+						titulosPeliculas.add(linea);
 					}
+					sc.close();
+					
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
-		 }
+			}
 		/**
 		 * Metodo que obtiene los titulos de las peliculas
 		 * @return Devuelve el titulo de la pelicula
@@ -606,6 +664,44 @@ public class Cine{
 				}
 				return true;
 			}
+		 
+		 public static void crearMapaPeliculas() {
+				try {
+					Scanner sc = new Scanner(new FileReader("ficheros/Peliculas.csv"));
+					while(sc.hasNext()) {
+						String linea = sc.nextLine();
+						String[] partes1 = linea.split(":");
+						id = partes1[0];
+						if(!mapaPeliculas.containsKey(partes1[0])) {
+							mapaPeliculas.put(partes1[0], new ArrayList<>());
+						}
+						String [] partes2 = partes1[1].split(";");
+						if(mapaPeliculas.containsKey(partes1[0])) {
+							for(Pelicula p: mapaPeliculas.get(id)) {
+								tituloPelicula = partes2[0];
+								tituloVentana = partes2[1];
+								imagenCartelera = partes2[2];
+								imagenPelicula = partes2[3];
+								descripcion = partes2[4];
+								categoria = partes2[5];
+								duracion = partes2[6];
+								reparto = partes2[7];
+								p = new Pelicula(tituloPelicula, tituloVentana, imagenCartelera, imagenPelicula, descripcion, categoria, duracion ,reparto);
+								mapaPeliculas.get(partes1[0]).add(p);
+							}
+							
+						}
+						
+					}
+					sc.close();
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+				
+			}
+		 
+
+
 		 
 		
 

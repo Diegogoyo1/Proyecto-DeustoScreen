@@ -15,6 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import domain.Categoria;
+import domain.Cine;
+import domain.Pelicula;
 
 public class VentanaCartelera extends JFrame {
 	private JPanel pNorte, pSur, pEste, pOeste, pCentro;
@@ -64,22 +66,23 @@ public class VentanaCartelera extends JFrame {
 		});
 		
 		
-		
-		btnOppenheimer = new JButton("Oppenhaimer");
-		ImageIcon imOppenheimer = new ImageIcon("imagenes/Oppenheimer.jpg");
-		btnOppenheimer.setIcon(imOppenheimer);
-		btnOppenheimer.setPreferredSize(new Dimension(imOppenheimer.getIconWidth(), imOppenheimer.getIconHeight()));
-		btnOppenheimer.setPreferredSize(new Dimension(250, 445));
-		String textoOp ="En tiempos de guerra, el brillante físico estadounidense \n Julius Robert Oppenheimer (Cillian Murphy), al frente del \"Proyecto Manhattan\", \n lidera los ensayos nucleares para construir la bomba atómica para su país. \n Impactado por su poder destructivo, Oppenheimer se cuestiona las consecuencias \n morales de su creación. Desde entonces y el resto de su vida, se opondría \n firmemente al uso de armas nucleares.";
-		btnOppenheimer.addActionListener((e)->{
-			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON OPPENHAIMER");
-			new VentanaPelicula(vActual, textoOp, "imagenes/PortadaOppenheimer.jpg", "OPPENHEIMER", "Oppenheimer", Categoria.ACCIÓN.toString(), "3h", "Cillian Murphy");
-			vActual.setVisible(false);
-			vActual.dispose();
+		//if(Cine.getId()=="1") {
+			btnOppenheimer = new JButton(Cine.getTituloPelicula());
+			ImageIcon imOppenheimer = new ImageIcon(Cine.getImagenCartelera());
+			btnOppenheimer.setIcon(imOppenheimer);
+			btnOppenheimer.setPreferredSize(new Dimension(imOppenheimer.getIconWidth(), imOppenheimer.getIconHeight()));
+			btnOppenheimer.setPreferredSize(new Dimension(250, 445));
+			String textoOp ="En tiempos de guerra, el brillante físico estadounidense \n Julius Robert Oppenheimer (Cillian Murphy), al frente del \"Proyecto Manhattan\", \n lidera los ensayos nucleares para construir la bomba atómica para su país. \n Impactado por su poder destructivo, Oppenheimer se cuestiona las consecuencias \n morales de su creación. Desde entonces y el resto de su vida, se opondría \n firmemente al uso de armas nucleares.";
+			pCentro.add(btnOppenheimer);
+			btnOppenheimer.addActionListener((e)->{
+				logger.log(Level.INFO, "SE HA CLICKADO EL BOTON OPPENHAIMER");
+				new VentanaPelicula(vActual, textoOp, "imagenes/PortadaOppenheimer.jpg", "OPPENHEIMER", "Oppenheimer", Categoria.ACCIÓN.toString(), "3h", "Cillian Murphy");
+				vActual.setVisible(false);
+				vActual.dispose();
 			
 			
-		});
-		
+			});
+		//}
 		
 		btnBarbie = new JButton("Barbie");
 		ImageIcon imBarbie = new ImageIcon("imagenes/Barbie.jpg");
@@ -148,7 +151,7 @@ public class VentanaCartelera extends JFrame {
 		
 		pSur.add(btnAtras);
 		pNorte.add(lblPeliculas);
-		pCentro.add(btnOppenheimer);
+		
 		pCentro.add(btnBarbie);
 		pCentro.add(btnSawX);
 		pCentro.add(btnCampeonex);

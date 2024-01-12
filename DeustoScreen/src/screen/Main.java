@@ -35,7 +35,7 @@ public class Main {
 		Cine.volcado_FichCSV_Usuarios_a_BD(con, "ficheros/Usuarios.csv");
 		Cine.volcado_FichCSV_Trabajadores_a_BD(con, "ficheros/Trabajadores.csv");
 		Cine.volcado_FichCSV_Horarios_a_BD(con, "ficheros/Horarios.csv");
-		Cine.volcado_FichCSV_Peliculas_a_BD(con, "ficheros/Peliculas.csv");
+		//Cine.volcado_FichCSV_Peliculas_a_BD(con, "ficheros/Peliculas.csv");
 		
 		BD.cerrarBD(con);
 		 
