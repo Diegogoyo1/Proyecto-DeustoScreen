@@ -1,6 +1,6 @@
 package domain;
 
-import java.awt.Image;
+import java.awt.Image; 
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -28,6 +28,9 @@ import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import domain.Entrada;
+import screen.VentanaSeleccionEntradas;
 
 
 
@@ -705,22 +708,26 @@ public class Cine{
 		 
 		
 
-	 /*public void actualizarPuntos(String ContadorPuntos) {
-				int puntosInt = Integer.parseInt(ContadorPuntos);
-				
-				if (getCompras()!= null) {
-					puntosInt = puntosInt + value.size()*2;				}
-				
-	 }
+//	 public void actualizarPuntos(String ContadorPuntos) {
+//				int puntosInt = Integer.parseInt(ContadorPuntos);
+//				
+//				if (getMapaCompras()!= null) {
+//					puntosInt = puntosInt + value.size()*2;				}
+//				
+//	 }
 	public static int getSumaPuntos() {
-			String puntosStr = Usuario.getContadorPuntos();
+			String puntosStr = u.getContadorPuntos();
 			int puntos = Integer.parseInt(puntosStr);
-			int numeroEntradas = Entradas.size();
-			int puntosFinal = puntos +10*numeroEntradas;
+			int precioTotal = (VentanaSeleccionEntradas.getEntreanios()*7) 
+					+ (VentanaSeleccionEntradas.getMayores()*5) 
+					+ (VentanaSeleccionEntradas.getMenores()*4);
+			int puntosFinal = puntos +10*precioTotal;
 	        String numeroEnString = String.valueOf(puntosFinal);
-			Usuario.setContadorPuntos(numeroEnString);
+			u.setContadorPuntos(numeroEnString);
 			return puntosFinal;
-		}*/
+		}
+	
+	
 		
 		
 			

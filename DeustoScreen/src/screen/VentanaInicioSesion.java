@@ -1,5 +1,5 @@
 package screen;
-import java.awt.BorderLayout;
+import java.awt.BorderLayout; 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -26,8 +26,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import domain.Cine;
 import domain.Entrada;
+import domain.Cine;
 import domain.Usuario;
 
 

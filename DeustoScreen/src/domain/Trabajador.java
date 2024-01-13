@@ -20,23 +20,6 @@ public class Trabajador {
 		this.sueldo = sueldo;
 	}
 	
-	public Trabajador (String dni, String nombreApellidos, String telefonoTrabajador, PuestoTrabajo puesto) {
-		this.dni = dni;
-		this.nombreApellidosTrabajador = nombreApellidos;
-		this.telefonoTrabajador = telefonoTrabajador;
-		this.puesto = puesto;
-		
-	}
-	
-	public Trabajador() {
-		super();
-		this.dni = null;
-		this.nombreApellidosTrabajador = null;
-		this.contraseniaTrabajador = null;
-		this.sueldo = 0;
-	}
-	
-	
 	public double getSueldo() {
 	return sueldo;
 	}
@@ -86,7 +69,7 @@ public class Trabajador {
 
 	@Override
 	public String toString() {
-		return "Trabajador [sueldo=" + sueldo + ", nombreTrabajador=" + nombreApellidosTrabajador + ", telefonoTrabajador="+ telefonoTrabajador +", contraseñaTrabajador="
-				+ contraseniaTrabajador + ", dni=" + dni + ", puesto=" + puesto + "]";
+		return "Trabajador [dni=" + dni + ", nombreApellidos=" + nombreApellidosTrabajador + ", telefono="+ telefonoTrabajador +", contrasenia="
+				+ contraseniaTrabajador + ", puesto=" + puesto + ", sueldo=" + sueldo + "]";
 	}
 }

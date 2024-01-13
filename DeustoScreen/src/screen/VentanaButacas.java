@@ -1,6 +1,6 @@
 package screen;
 
-import java.awt.BorderLayout; 
+import java.awt.BorderLayout;  
 
 import java.awt.Color;
 import java.awt.Component;
@@ -30,8 +30,8 @@ import javax.swing.border.Border;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import domain.Cine;
 import domain.Entrada;
+import domain.Cine;
 import domain.Usuario;
 
 

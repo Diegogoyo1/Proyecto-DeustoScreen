@@ -4,8 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import domain.Cine;
 import domain.Entrada;
+import domain.Cine;
 import domain.Pelicula;
 import domain.Usuario;
 

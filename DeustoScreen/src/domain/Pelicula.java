@@ -12,12 +12,12 @@ public class Pelicula {
 	private String imagenCartelera;
 	private String imagenPelicula;
 	private String descripcion;
-	private String categoria;
+	private Categoria categoria;
 	private String duracion;
 	private String reparto;
 	
 	public Pelicula(String id, String tituloPelicula, String tituloVentana, String imagenCartelera, String imagenPelicula,
-			String descripcion, String categoria, String duracion, String reparto) {
+			String descripcion, Categoria categoria, String duracion, String reparto) {
 		super();
 		this.id = id;
 		this.tituloPelicula = tituloPelicula;
@@ -40,7 +40,7 @@ public class Pelicula {
 		this.imagenCartelera = imagenCartelera;
 		this.imagenPelicula = imagenPelicula;
 		this.descripcion = descripcion;
-		this.categoria = categoria;
+		this.categoria = Categoria.valueOf(categoria);
 		this.duracion = duracion;
 		this.reparto = reparto;
 	}
@@ -93,11 +93,11 @@ public class Pelicula {
 		this.descripcion = descripcion;
 	}
 
-	public String getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(String categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
@@ -119,7 +119,7 @@ public class Pelicula {
 
 	@Override
 	public String toString() {
-		return "Peliculas [id=" + id + ",tituloPelicula=" + tituloPelicula + ", tituloVentana=" + tituloVentana + ", imagenCartelera="
+		return "Pelicula [id=" + id + ",tituloPelicula=" + tituloPelicula + ", tituloVentana=" + tituloVentana + ", imagenCartelera="
 				+ imagenCartelera + ", imagenPelicula=" + imagenPelicula + ", descripcion=" + descripcion
 				+ ", categoria=" + categoria + ", duracion=" + duracion + ", reparto=" + reparto + "]";
 	}

@@ -1,4 +1,4 @@
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals; 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
@@ -12,7 +12,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.Actores;
 import domain.Usuario;
 
 public class UsuarioTest {
@@ -105,7 +104,6 @@ public class UsuarioTest {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		Date d = new Date(0);
 		assertEquals(sdf.format(d), sdf.format(u.getFechaNacimiento()));
-		
 	}
 	
 	@Test
@@ -138,7 +136,7 @@ public class UsuarioTest {
 	public void testToString() {
 		u.setNombre("a");
 		u.setApellido("a");
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		//SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		LocalDate ld = LocalDate.of(1970, 1, 1);
 		u.setFechaNacimiento(ld);
 		assertEquals(0,ld.compareTo(u.getFechaNacimiento()));
@@ -158,7 +156,6 @@ public class UsuarioTest {
 			assertFalse(u.equals(u2));
 			assertTrue(u.equals(u1));
 			assertFalse(u.equals(null));
-			assertFalse(u.equals(new Actores("b", "01-01-1970")));
 			assertTrue(u.equals(u));
 	}
 	

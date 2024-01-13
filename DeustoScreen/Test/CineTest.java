@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import domain.Cine;
-import domain.Entrada;
 import domain.Usuario;
 
 import static org.junit.Assert.assertEquals;
