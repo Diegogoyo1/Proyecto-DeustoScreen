@@ -15,7 +15,7 @@ public class PeliculasTest {
 
 	@Before
 	public void setUp() {
-		 p = new Pelicula("1", "Oppenheimer",  "OPPENHEIMER","imagenes/Oppenheimer.jpg" , "imagenes/PortadaOppenheimer.jpg",
+		 p = new Pelicula("Oppenheimer",  "OPPENHEIMER","imagenes/Oppenheimer.jpg" , "imagenes/PortadaOppenheimer.jpg",
 				 "En tiempos de guerra, el brillante físico estadounidense...", Categoria.ACCIÓN, "3h", "Cillian Murphy");
 		 
 		 p2 = new Pelicula("Oppenheimer",  "OPPENHEIMER","imagenes/Oppenheimer.jpg" , "imagenes/PortadaOppenheimer.jpg",
@@ -23,12 +23,6 @@ public class PeliculasTest {
 
 	}
 	
-	@Test
-	public void testSetId() {
-		String id = "1";
-		p.setId(id);
-		assertEquals(id, p.getId());
-	}
 	
 	
 	@Test
@@ -129,7 +123,6 @@ public class PeliculasTest {
 	
 	@Test
 	public void testToString() {
-		p.setId("1");
 		p.setTituloPelicula("Oppenheimer");
 		p.setTituloVentana("OPPENHEIMER");
 		p.setImagenCartelera("imagenes/Oppenheimer.jpg");

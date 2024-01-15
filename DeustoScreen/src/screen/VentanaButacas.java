@@ -1,6 +1,6 @@
 package screen;
 
-import java.awt.BorderLayout;  
+import java.awt.BorderLayout;   
 
 import java.awt.Color;
 import java.awt.Component;
@@ -29,8 +29,6 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-
-import domain.Entrada;
 import domain.Cine;
 import domain.Usuario;
 
@@ -47,7 +45,7 @@ public class VentanaButacas extends JFrame {
 	private DefaultTableModel modTblButacas1;
 	//private FlowLayout layoutTabButacas1, layoutTabButacas2;
 	private JFrame vActual, vAnterior;
-	private static final String nomfich1 = "ficheros/Butacas1.csv";
+	private static final String nomfich1 = "ficheros/Butacas.csv";
 	private static int cont;
 	private int fila1, columna1;
 	private int [][]m1;
@@ -163,47 +161,7 @@ public class VentanaButacas extends JFrame {
 		tblButacas1.getColumnModel().getColumn(10).setPreferredWidth(100);
 		tblButacas1.getColumnModel().getColumn(11).setPreferredWidth(100);
 		
-
 		cargarFichero1(nomfich1);
-
-		// CREACION SEGUNDA TABLA BUTACAS
-		//Object[] titulos2 = { "", "", "", "", "" };
-//		Object[] titulos2 = new Object[butacasB];
-//		for(int i=0;i<butacasB;i++) {
-//			titulos1[i] = "";
-//		}
-//		modTblButacas2 = new DefaultTableModel() {
-//			/**
-//			 * 
-//			 */
-//			private static final long serialVersionUID = 1L;
-//
-//			@Override
-//			public boolean isCellEditable(int row, int column) {
-//				return false;
-//			}
-//		};
-//		modTblButacas2.setColumnIdentifiers(titulos2);
-//
-//		tblButacas2 = new JTable(modTblButacas2);
-//
-//		/*layoutTabButacas2 = new FlowLayout();
-//		layoutTabButacas2.setVgap(250);
-//		layoutTabButacas2.setHgap(200);
-//		pEste.setLayout(layoutTabButacas2);
-//		 */
-//		pEste.add(tblButacas2);
-//		tblButacas2.setRowHeight(100);
-//		tblButacas2.getColumnModel().getColumn(0).setPreferredWidth(100);
-//		tblButacas2.getColumnModel().getColumn(1).setPreferredWidth(100);
-//		tblButacas2.getColumnModel().getColumn(2).setPreferredWidth(100);
-//		tblButacas2.getColumnModel().getColumn(3).setPreferredWidth(100);
-//		tblButacas2.getColumnModel().getColumn(4).setPreferredWidth(100);
-//
-//		cargarFichero2(nomfich2);
-//		
-//		JLabel l = new JLabel("P");
-//		pCentro.add(l);
 
 		// MOUSE LISTENER DE LAS TABLAS
 		tblButacas1.addMouseListener(new MouseAdapter() {
@@ -231,38 +189,13 @@ public class VentanaButacas extends JFrame {
 						}
 						System.out.print(cont+" - "+VentanaSeleccionEntradas.getTotalEntradas());
 						tblButacas1.repaint();
-						Entrada en = new Entrada(sala, fila1*columna1);
-						if(!Cine.getMapaCompras().containsKey(VentanaInicioSesion.getUsuario())) {
-							Cine.getMapaCompras().put(VentanaInicioSesion.getUsuario(), new ArrayList<>());
-						}
-						Cine.getMapaCompras().get(VentanaInicioSesion.getUsuario()).add(en);
-						Cine.guardarMapaCompras("ficheros/Compras.dat");
+						
 					}
 				}
 			}
 		});
-//		tblButacas2.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				Point p = e.getPoint();
-//				fila2 = tblButacas2.rowAtPoint(p);
-//				columna2 = tblButacas2.columnAtPoint(p);
-//				if(!m2[fila2][columna2]) {
-//					
-//					cont++;
-//				}else {
-//					cont--;
-//				}
-//				m2[fila2][columna2] = !m2[fila2][columna2];
-//				tblButacas2.repaint();
-//				logger.log(Level.INFO, "SE HA ESCOGIDO UNA BUTACA");
-//				Entrada en = new Entrada(sala, fila1*columna1);
-//				if(!Cine.getMapaCompras().containsKey(VentanaInicioSesion.getUsuario())) {
-//					Cine.getMapaCompras().put(VentanaInicioSesion.getUsuario(), new ArrayList<>());
-//				}
-//				Cine.getMapaCompras().get(VentanaInicioSesion.getUsuario()).add(en);
-//			}
-//		});
+
+		
 		// RENDERER DE LAS TABLAS
 
 		tblButacas1.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
@@ -283,134 +216,25 @@ public class VentanaButacas extends JFrame {
 				}else if(column==6) {
 					return l;
 				}else {
-					/*if(row==fila1 && column==columna1){
-						if(isSelected) {
-							ImageIcon im = new ImageIcon("imagenes/ButacaVerde.png");
-							l.setIcon(im);
-						}else {
-							ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
-							l.setIcon(im);
-						}
-					}else {*/
-						if(m1[row][column]==1) {
-							ImageIcon im = new ImageIcon("imagenes/ButacaVerde.png");
-							l.setIcon(im);
-						}else if(m1[row][column]==0){
-							ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
-							l.setIcon(im);
-						}else {
-							ImageIcon im = new ImageIcon("imagenes/ButacaRoja.png");
-							l.setIcon(im);
-						}
-					//}
-					logger.log(Level.INFO, "SE HA HECHO EL RENDERER ");
-				}
-				/*if(fila1!=-1 && columna1!=-1) {
-					if(columna1!=0) {
-						if (row == fila1 && column == columna1) {
-							if(m1[fila1][columna1]) {
-								l.setBackground(table.getSelectionBackground());
-								l.setSize(100, 100);
-								ImageIcon im = new ImageIcon("imagenes/ButacaVerde.png");
-								ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
-								l.setIcon(imtam);
-							}
-							else {
-								l.setBackground(table.getBackground());
-								l.setSize(100, 100);
-								ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
-								ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
-								l.setIcon(imtam);
-							}
-						} else {
-							if(m1[row][column]) {
-								l.setBackground(table.getSelectionBackground());
-								l.setSize(100, 100);
-								ImageIcon im = new ImageIcon("imagenes/ButacaVerde.png");
-								ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
-								l.setIcon(imtam);
-							}
-							else {
-								l.setBackground(table.getBackground());
-								l.setSize(100, 100);
-								ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
-								ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
-								l.setIcon(imtam);
-							}
-						}
+					if(m1[row][column]==1) {
+						ImageIcon im = new ImageIcon("imagenes/ButacaVerde.png");
+						l.setIcon(im);
+					}else if(m1[row][column]==0){
+						ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
+						l.setIcon(im);
 					}else {
-						l.setBackground(table.getBackground());
+						ImageIcon im = new ImageIcon("imagenes/ButacaRoja.png");
+						l.setIcon(im);
 					}
-				}
-				else {
-					l.setBackground(table.getBackground());
-					l.setSize(100, 100);
-					ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
-					ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
-					l.setIcon(imtam);
 					
-				}*/
+				}
+				logger.log(Level.INFO, "SE HA HECHO EL RENDERER ");
 				return l;
+				
 			}
 		});
 
-//		tblButacas2.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-//
-//			/**
-//			 * 
-//			 */
-//			private static final long serialVersionUID = 1L;
-//
-//			@Override
-//			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-//					boolean hasFocus, int row, int column) {
-//				JLabel l = new JLabel(value.toString());
-//				l.setHorizontalAlignment(JLabel.CENTER);
-//				l.setOpaque(true);
-//				if(fila2!=-1 && columna2!=-1) {
-//					if (row == fila2 && column == columna2) {
-//						if(m2[fila2][columna2]) {
-//							l.setBackground(table.getSelectionBackground());
-//							l.setSize(100, 100);
-//							ImageIcon im = new ImageIcon("imagenes/ButacaVerde.png");
-//							ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
-//							l.setIcon(imtam);
-//						}
-//						else {
-//							l.setBackground(table.getBackground());
-//							l.setSize(100, 100);
-//							ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
-//							ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
-//							l.setIcon(imtam);
-//						}
-//					} else {
-//						if(m2[row][column]) {
-//							l.setBackground(table.getSelectionBackground());
-//							l.setSize(100, 100);
-//							ImageIcon im = new ImageIcon("imagenes/ButacaVerde.png");
-//							ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
-//							l.setIcon(imtam);
-//						}
-//						else {
-//							l.setBackground(table.getBackground());
-//							l.setSize(100, 100);
-//							ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
-//							ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
-//							l.setIcon(imtam);
-//						}
-//					}
-//				}
-//			else {
-//				l.setBackground(table.getBackground());
-//				l.setSize(100, 100);
-//				ImageIcon im = new ImageIcon("imagenes/ButacaGris.png");
-//				ImageIcon imtam = new ImageIcon(im.getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_DEFAULT));
-//				l.setIcon(imtam);
-//				
-//			}
-//			return l;
-//		}
-//	});
+
 
 		// ANYADIR LOS COMPONENTES A LOS PANELES
 		//pOeste.add(tblButacas1);
@@ -440,23 +264,6 @@ public class VentanaButacas extends JFrame {
 			logger.log(Level.WARNING, "NO SE HA PODIDO CARGAR LOS FICHEROS DE LAS TABLAS");
 			e.printStackTrace();
 		}
-	
-
-//	public void cargarFichero2(String nomfich2) {
-//
-//		try {
-//			Scanner sc = new Scanner(new FileReader(nomfich2));
-//			String linea;
-//			while (sc.hasNext()) {
-//				linea = sc.nextLine();
-//				String[] fila = linea.split(";");
-//				modTblButacas2.addRow(fila);
-//			}
-//			sc.close();
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//		}
-//	}
 
 		// DEFINIR LA VENTANA
 
@@ -473,9 +280,5 @@ public class VentanaButacas extends JFrame {
 		setVisible(true);
 
 	}
-	
-	/*public static void main(String[] args) {
-		new VentanaButacas(null, null, 0, 0, 0);
-	}*/
 
 }

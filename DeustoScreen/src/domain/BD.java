@@ -1,5 +1,5 @@
 package domain;
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.TreeMap;
 public class BD {
 /**
@@ -53,7 +52,7 @@ public class BD {
 	 */
 	public static void crearTabla (Connection con) throws SQLException{
 		String sqlUsuario = "CREATE TABLE IF NOT EXISTS Usuario (Nombre String, Apellido String,FechaNacimiento String, Telefono String,CorreoElectronico String,Contrasenia String,ContadorPuntos String )";
-		String sqlPeliculas = "CREATE TABLE IF NOT EXISTS Peliculas (Id String, TituloPelicula String, TituloVentana String, ImagenCartelera String, ImagenPelicula String, Descripcion String, Categoria String, Duracion String, Reparto String)";
+		String sqlPeliculas = "CREATE TABLE IF NOT EXISTS Peliculas (TituloPelicula String, TituloVentana String, ImagenCartelera String, ImagenPelicula String, Descripcion String, Categoria String, Duracion String, Reparto String)";
 		String sqlHorarios = "CREATE TABLE IF NOT EXISTS Horarios(Hora String, Sala int, DiasSemana String)";
 		String sqlTrabajador = "CREATE TABLE IF NOT EXISTS Trabajador(Dni String, NombreApellidos String, Telefono String,  Contrasenia String, Puesto String, Sueldo double)";
 		try {
@@ -182,14 +181,15 @@ public class BD {
 				String nombreApellidosTrabajador = rs.getString("NombreApellidos");
 				String contraseniaTrabajador = rs.getString("Contrasenia");
 				String telefonoTrabajador = rs.getString("Telefono");
-				String puesto = rs.getString("Puesto");
-				String sueldo = rs.getString("Sueldo");	
+				PuestoTrabajo puesto = PuestoTrabajo.valueOf(rs.getString("Puesto"));
+				double sueldo = Double.parseDouble(rs.getString("Sueldo"));	
+				trabajador = new Trabajador (dniTra, nombreApellidosTrabajador, contraseniaTrabajador, telefonoTrabajador, puesto, sueldo);
+
 			}
 			rs.close();
 			st.close();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return trabajador;
@@ -252,7 +252,7 @@ public class BD {
 	
 	public static void insertarPelicula (Connection con, Pelicula pelicula) {
 		if(buscarTrabajador(con, pelicula.getTituloPelicula()) == null) {
-			String sql = String.format("INSERT INTO Peliculas VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+			String sql = String.format("INSERT INTO Peliculas VALUES('%s','%s','%s','%s','%s','%s','%s','%s')",
 					pelicula.getTituloPelicula(), pelicula.getTituloVentana(), pelicula.getImagenCartelera(), pelicula.getImagenPelicula(), pelicula.getDescripcion(), pelicula.getCategoria(), pelicula.getDuracion(), pelicula.getReparto());
 			try {
 				Statement st = con.createStatement();
@@ -271,7 +271,6 @@ public class BD {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql); 
 			if(rs.next()) {
-				String id = rs.getString("Id");
 				String tituloPeliculaTP = rs.getString("TituloPelicula");
 				String tituloVentana = rs.getString("TituloVentana");
 				String imagenCartelera = rs.getString("ImagenCartelera");
@@ -280,7 +279,7 @@ public class BD {
 				Categoria categoria = Categoria.valueOf(rs.getString("Categoria"));
 				String duracion = rs.getString("Duracion");
 				String reparto = rs.getString("Reparto");
-				pelicula = new Pelicula(id, tituloPeliculaTP, tituloVentana, imagenCartelera, imagenPelicula, descripcion, categoria, duracion, reparto);
+				pelicula = new Pelicula(tituloPeliculaTP, tituloVentana, imagenCartelera, imagenPelicula, descripcion, categoria, duracion, reparto);
 			}
 			rs.close();
 			st.close();
@@ -299,7 +298,6 @@ public class BD {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			while(rs.next()) {
-				String id = rs.getString("Id");
 				String tituloPeliculaTP = rs.getString("TituloPelicula");
 				String tituloVentana = rs.getString("TituloVentana");
 				String imagenCartelera = rs.getString("ImagenCartelera");
@@ -308,7 +306,7 @@ public class BD {
 				Categoria categoria = Categoria.valueOf(rs.getString("Categoria"));
 				String duracion = rs.getString("Duracion");
 				String reparto = rs.getString("Reparto");
-				Pelicula pelicula = new Pelicula(id,tituloPeliculaTP, tituloVentana, imagenCartelera, imagenPelicula, descripcion, categoria, duracion, reparto);
+				Pelicula pelicula = new Pelicula(tituloPeliculaTP, tituloVentana, imagenCartelera, imagenPelicula, descripcion, categoria, duracion, reparto);
 				l.add(pelicula);
 			}
 			rs.close();

@@ -1,5 +1,5 @@
 package screen;
-import java.awt.BorderLayout; 
+import java.awt.BorderLayout;  
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -25,8 +25,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
-import domain.Entrada;
 import domain.Cine;
 import domain.Usuario;
 
@@ -42,13 +40,9 @@ public class VentanaInicioSesion extends JFrame {
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 	
 	private static Usuario usuario;
-	private static List<Entrada> carrito;
 	
 	public static Usuario getUsuario() {
 		return usuario;
-	}
-	public static List<Entrada> getCarrito() {
-		return carrito;
 	}
 	
 	
@@ -154,7 +148,6 @@ public class VentanaInicioSesion extends JFrame {
 			else {
 				JOptionPane.showMessageDialog(null, "¡Bienvenido!","SESIÓN INICIADA",JOptionPane.INFORMATION_MESSAGE);
 				usuario = u; //Guardamos la información del usuario que ha iniciado sesión
-				carrito = new ArrayList<>(); //Inicializamos su carrito a una lista vacía (Instanciamos la lista que hace referencia al carrito)
 				new VentanaHorario(vActual, u);
 				vActual.setVisible(false);
 				txtCorreoElectronico.setText("");

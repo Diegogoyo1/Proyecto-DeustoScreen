@@ -18,6 +18,32 @@ public class Main {
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 	public static void main(String[] args) {
 		VentanaCarga va = new VentanaCarga();
+		Properties properties = new Properties();
+		String nombreBD,nombreU,nombreT,nombreH,nombreP;
+		try {
+			properties.load(new FileReader("conf/config.properties"));
+			nombreBD = properties.getProperty("nombreBD");
+			nombreU = properties.getProperty("nombreFUsuarios");
+			nombreT  = properties.getProperty("nombreFTrabajadores");
+			nombreH = properties.getProperty("nombreFHorarios");
+			nombreP = properties.getProperty("nombreFPeliculas");
+		} catch (FileNotFoundException e1) {
+			logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO");
+			nombreBD = "Datos/deustoscreen.db";
+			nombreU = "ficheros/Usuarios.csv";
+			nombreT = "ficheros/Trabajadores.csv";
+		    nombreH =  "ficheros/Horarios.csv";
+		    nombreP = "ficheros/Peliculas.csv";
+		} catch (IOException e2) {
+			logger.log(Level.WARNING, "SE HA INTERRUMPIDO LA OPERACIÓN DE CARGA DEL FICHERO PROPERTIES");	
+			nombreBD = "Datos/deustoscreen.db";
+			nombreU = "ficheros/Usuarios.csv";
+			nombreT = "ficheros/Trabajadores.csv";
+		    nombreH =  "ficheros/Horarios.csv";
+		    nombreP = "ficheros/Peliculas.csv";
+			
+		}
+		
 		try {
 			logger.log(Level.INFO, "SE INICIA EL PROGRAMA DEUSTOSCREEN");
 		} catch (Exception e) {
@@ -25,33 +51,20 @@ public class Main {
 			logger.log(Level.WARNING, "NO SE HA PODIDO CARGAR LA VENTANA CARGA");
 		}
 		
-		Connection con = BD.initBD("Datos/deustoscreen.db");
+		Connection con = BD.initBD(nombreBD);
 		try {
 			BD.borrarTabla(con);
 			BD.crearTabla(con);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		Cine.volcado_FichCSV_Usuarios_a_BD(con, "ficheros/Usuarios.csv");
-		Cine.volcado_FichCSV_Trabajadores_a_BD(con, "ficheros/Trabajadores.csv");
-		Cine.volcado_FichCSV_Horarios_a_BD(con, "ficheros/Horarios.csv");
-		//Cine.volcado_FichCSV_Peliculas_a_BD(con, "ficheros/Peliculas.csv");
-		
+		Cine.volcado_FichCSV_Usuarios_a_BD(con, nombreU);
+		Cine.volcado_FichCSV_Trabajadores_a_BD(con, nombreT);
+		Cine.volcado_FichCSV_Horarios_a_BD(con,nombreH);
+		Cine.volcado_FichCSV_Peliculas_a_BD(con, nombreP);
 		BD.cerrarBD(con);
+		Cine.crearMapaPeliculas();
 		 
-		
-	Properties properties = new Properties();
-	try {
-		properties.load(new FileReader("conf/config.properties"));
-		String nombreBD = properties.getProperty("nombreBD");
-		String nombreAplicacion = properties.getProperty("nombreAplicacion");
-		String fechaCreacion = properties.getProperty("fechaCreacion");
-	} catch (FileNotFoundException e1) {
-		logger.log(Level.WARNING, "NO SE HA ENCONTRADO LA RUTA DEL FICHERO");
-	} catch (IOException e2) {
-		logger.log(Level.WARNING, "SE HA INTERRUMPIDO LA OPERACIÓN DE CARGA DEL FICHERO PROPERTIES");	
-		
-	}
 	
-}
+	}
 }

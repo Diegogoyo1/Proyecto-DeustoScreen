@@ -1,99 +1,243 @@
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
-import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 
+import static org.junit.Assert.*;
+
+import java.io.File;
+
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import domain.Cine;
+import domain.Compra;
 import domain.Usuario;
 
-import static org.junit.Assert.assertEquals;
-	import static org.junit.Assert.assertTrue;
+public class CineTest {
 
-	import java.io.ByteArrayOutputStream;
-	import java.io.PrintStream;
-	import java.util.ArrayList;
-	import java.util.HashMap;
-	import java.util.List;
-	import java.util.Map;
-	import java.util.TreeMap;
-
-	import org.junit.Before;
-	import org.junit.Test;
-
-	public class CineTest {
-
-	    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	    private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-
-	    @Before
-	    public void setUpStreams() {
-	        System.setOut(new PrintStream(outContent));
-	        System.setErr(new PrintStream(errContent));
-	    }
-
-	    /*@Test
-	    public void testAniadirEntrada() {
-	        Cine.crearMapaHorarios();  // Asegúrate de que el mapa de horarios esté inicializado
-	        Entrada entrada = new Entrada("Pelicula1", "Sala1", "Horario1");
-	        Cine.aniadirEntrada(entrada);
-	        assertTrue(Cine.getEntradas().contains(entrada));
-	    }*/
-
-	   /* @Test
-	    public void testImprimirEntrada() {
-	        Cine.crearMapaHorarios();  // Asegúrate de que el mapa de horarios esté inicializado
-	        Entrada entrada = new Entrada("Pelicula1", "Sala1", "Horario1");
-	        Cine.aniadirEntrada(entrada);
-	        Cine.imprimirEntrada();
-	        assertTrue(outContent.toString().contains(entrada.toString()));
-	    }*/
-
-	    @Test
-	    public void testAniadirUsuario() {
-	        Usuario usuario = new Usuario("Nombre", "Apellido", "FechaNacimiento", "Telefono", "CorreoElectronico", "Contrasenia", "ContadorPuntos");
-	        Cine.aniadirUsuario(usuario);
-	        assertTrue(Cine.getListaUsuarios().contains(usuario));
-	    }
-
-	    @Test
-	    public void testImprimirUsuario() {
-	        Usuario usuario = new Usuario("Nombre", "Apellido", "FechaNacimiento", "Telefono", "CorreoElectronico", "Contrasenia", "ContadorPuntos");
-	        Cine.aniadirUsuario(usuario);
-	        Cine.imprimirUsuario();
-	        assertTrue(outContent.toString().contains(usuario.toString()));
-	    }
-
-	   /* @Test
-	    public void testAniadirCompra() {
-	        Usuario usuario = new Usuario("Nombre", "Apellido", "FechaNacimiento", "Telefono", "CorreoElectronico", "Contrasenia", "ContadorPuntos");
-	        Entrada entrada = new Entrada("Pelicula1", "Sala1", "Horario1");
-	        Cine.aniadirCompra(usuario, entrada);
-	        assertTrue(Cine.getMapaCompras().containsKey(usuario));
-	        assertTrue(Cine.getMapaCompras().get(usuario).contains(entrada));
-	    }*/
-
-	    /*@Test
-	    public void testImprimirCompras() {
-	        Usuario usuario = new Usuario("Nombre", "Apellido", "FechaNacimiento", "Telefono", "CorreoElectronico", "Contrasenia", "ContadorPuntos");
-	        Entrada entrada = new Entrada("Pelicula1", "Sala1", "Horario1");
-	        Cine.aniadirCompra(usuario, entrada);
-	        Cine.imprimirCompras();
-	        assertTrue(outContent.toString().contains(usuario.toString()));
-	        assertTrue(outContent.toString().contains(entrada.toString()));
-	    }*/
-
-	    @Test
-	    public void testBuscarUsuario() {
-	        Usuario usuario = new Usuario("Nombre", "Apellido", "FechaNacimiento", "Telefono", "CorreoElectronico", "Contrasenia", "ContadorPuntos");
-	        Cine.aniadirUsuario(usuario);
-	        assertEquals(usuario, Cine.buscarUsuario("CorreoElectronico"));
-	    }
-	    
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
 	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+
+	@Test
+	public void testGetM1() {
+		assertNotNull(Cine.getM1());
+	}
+
+	@Test
+	public void testSetM1() {
+		Cine.setM1(null);
+		assertNull(Cine.getM1());
+	}
+
+	@Test
+	public void testGuardarMapaCompras() {
+		Cine.guardarMapaCompras("ficheros/prueba.dat");
+		File f = new File("ficheros/prueba.dat");
+		assertTrue(f.exists());
+	}
+
+	@Test
+	public void testCargarMapaCompras() {
+		Cine.cargarMapaCompras("ficheros/prueba.dat");
+		assertNotNull(Cine.getMapaCompras());
+	}
+
+	@Test
+	public void testGuardarButacasEnFichero() {
+		Cine.guardarButacasEnFichero("ficheros/prueba.csv");
+		File f = new File("ficheros/prueba.csv");
+		assertTrue(f.exists());
+	}
+
+	@Test
+	public void testCargarButacasDesdeFichero() {
+		Cine.cargarButacasDesdeFichero("ficheros/ButacasSala1_14_1_2024_1-16_00.dat");
+		assertNotNull(Cine.getM1());
+	}
+
+	@Test
+	public void testGetMapaHorarios() {
+		assertNotNull(Cine.getMapaHorarios());
+	}
+
+	@Test
+	public void testCrearMapaHorarios() {
+		Cine.crearMapaHorarios();
+		assertNotNull(Cine.getMapaHorarios());
+		
+	}
+
+	@Test
+	public void testGetListaUsuarios() {
+		assertNotNull(Cine.getListaUsuarios());
+	}
+
+	@Test
+	public void testGetTitulosPeliculas() {
+		assertNotNull(Cine.getTitulosPeliculas());
+	}
+
+	@Test
+	public void testGetMapaCompras() {
+		assertNotNull(Cine.getMapaCompras());
+	}
+
+	@Test
+	public void testAniadirUsuario() {
+		int tam = Cine.getListaUsuarios().size();
+		Cine.aniadirUsuario(new Usuario("A", "A", "10-10-2000", "123456789", "A@A.com", "Aa-20", "0"));
+		int tam2 = Cine.getListaUsuarios().size();
+		assertTrue(tam+1==tam2);
+	}
+
+	@Test
+	public void testOrdenarListaUsuarios() {
+		Cine.cargarUsuarioEnLista("ficheros/Usuarios.csv");
+		Cine.ordenarListaUsuarios();
+		assertTrue(Cine.getListaUsuarios().get(0).getCorreoElectronico().compareTo(Cine.getListaUsuarios().get(1).getCorreoElectronico())<0);
+	}
+
+	@Test
+	public void testAniadirCompra() {
+		int tam = Cine.getMapaCompras().size();
+		Cine.aniadirCompra(new Usuario("A", "A", "10-10-2000", "123456789", "A@A.com", "Aa-20", "0"), new Compra(new Usuario("A", "A", "10-10-2000", "123456789", "A@A.com", "Aa-20", "0"), "10:00", "Oppenheimer", 1, 4, "A1,B2"));
+		int tam2 = Cine.getMapaCompras().size();
+		assertTrue(tam+1==tam2);
+	}
+
+
+	@Test
+	public void testBuscarUsuario() {
+		Cine.aniadirUsuario(new Usuario("A", "A", "10-10-2000", "123456789", "A@A.com", "Aa-20", "0"));
+		Usuario u = Cine.buscarUsuario("A@A.com");
+		assertNotNull(u);
+		u = Cine.buscarUsuario("");
+		assertNull(u);
+		
+	}
+
+	@Test
+	public void testCargarUsuarioEnLista() {
+		Cine.cargarUsuarioEnLista("ficheros/Usuarios.csv");
+		assertNotNull(Cine.getListaUsuarios());
+	}
+
+	@Test
+	public void testGuardarUsuariosEnFichero() {
+	}
+
+	
+	@Test
+	public void testRegistroUsuario() {
+		assertFalse(Cine.registroUsuario("ficheros/Usuarios.csv","B", "B", "10-10-2000", "123456789", "B@B.com", "Aa-20", "0",null));
+	}
+
+	@Test
+	public void testCargarTitulosPeliculasEnLista() {
+	}
+
+	@Test
+	public void testObtenerTitulos() {
+	}
+
+	@Test
+	public void testActualizarPuntosUsuarios() {
+	}
+
+	@Test
+	public void testBuscarTrabajador() {
+	}
+
+	@Test
+	public void testCargarTrabajadoresEnLista() {
+	}
+
+	@Test
+	public void testIsValidEmail() {
+	}
+
+	@Test
+	public void testIsValidContrasenia() {
+		
+	}
+
+	@Test
+	public void testGetMapaPeliculas() {
+	}
+
+	@Test
+	public void testCrearMapaPeliculas() {
+	}
+
+	@Test
+	public void testGetSumaPuntos() {
+	}
+
+
+   /* @Test
+    public void testImprimirEntrada() {
+        Cine.crearMapaHorarios();  // Asegúrate de que el mapa de horarios esté inicializado
+        Entrada entrada = new Entrada("Pelicula1", "Sala1", "Horario1");
+        Cine.aniadirEntrada(entrada);
+        Cine.imprimirEntrada();
+        assertTrue(outContent.toString().contains(entrada.toString()));
+    }*/
+
+   /* @Test
+    public void testAniadirUsuario() {
+        Usuario usuario = new Usuario("Nombre", "Apellido", "FechaNacimiento", "Telefono", "CorreoElectronico", "Contrasenia", "ContadorPuntos");
+        Cine.aniadirUsuario(usuario);
+        assertTrue(Cine.getListaUsuarios().contains(usuario));
+    }
+
+    @Test
+    public void testImprimirUsuario() {
+        Usuario usuario = new Usuario("Nombre", "Apellido", "FechaNacimiento", "Telefono", "CorreoElectronico", "Contrasenia", "ContadorPuntos");
+        Cine.aniadirUsuario(usuario);
+        Cine.imprimirUsuario();
+        assertTrue(outContent.toString().contains(usuario.toString()));
+    }
+
+   @Test
+    public void testAniadirCompra() {
+        Usuario usuario = new Usuario("Nombre", "Apellido", "FechaNacimiento", "Telefono", "CorreoElectronico", "Contrasenia", "ContadorPuntos");
+        Entrada entrada = new Entrada("Pelicula1", "Sala1", "Horario1");
+        Cine.aniadirCompra(usuario, entrada);
+        assertTrue(Cine.getMapaCompras().containsKey(usuario));
+        assertTrue(Cine.getMapaCompras().get(usuario).contains(entrada));
+    }*/
+
+    /*@Test
+    public void testImprimirCompras() {
+        Usuario usuario = new Usuario("Nombre", "Apellido", "FechaNacimiento", "Telefono", "CorreoElectronico", "Contrasenia", "ContadorPuntos");
+        Entrada entrada = new Entrada("Pelicula1", "Sala1", "Horario1");
+        Cine.aniadirCompra(usuario, entrada);
+        Cine.imprimirCompras();
+        assertTrue(outContent.toString().contains(usuario.toString()));
+        assertTrue(outContent.toString().contains(entrada.toString()));
+    }
+
+    @Test
+    public void testBuscarUsuario() {
+        Usuario usuario = new Usuario("Nombre", "Apellido", "FechaNacimiento", "Telefono", "CorreoElectronico", "Contrasenia", "ContadorPuntos");
+        Cine.aniadirUsuario(usuario);
+        assertEquals(usuario, Cine.buscarUsuario("CorreoElectronico"));
+    }*/
+
+}

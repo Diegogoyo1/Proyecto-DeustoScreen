@@ -1,10 +1,8 @@
 package screen;
 
-import javax.swing.JFrame; 
+import javax.swing.JFrame;  
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
-import domain.Entrada;
 import domain.Cine;
 import domain.Pelicula;
 import domain.Usuario;
@@ -88,7 +86,8 @@ public class VentanaEntradas extends JFrame{
 		panelCenter.add(lblPelicula);
 		panelCenter.add(Box.createVerticalStrut(50));
 		
-		Cine.cargarTitulosPeliculasEnLista("ficheros/TitulosPeliculas.csv");
+		//Cine.cargarTitulosPeliculasEnLista("ficheros/TitulosPeliculas.csv");
+		//String []  titulos = Cine.obtenerTitulos();
 		String []  titulos = Cine.obtenerTitulos();
 		cbTitulos = new JComboBox<>(titulos);
 		Dimension comboBoxSizeT = new Dimension(400, 40);
