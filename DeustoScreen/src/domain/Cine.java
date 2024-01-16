@@ -660,7 +660,7 @@ public class Cine {
 	public static String restarPuntos() {
 		Usuario u = VentanaInicioSesion.getUsuario();
 		int puntosUsuario = Integer.parseInt(u.getContadorPuntos());
-		int puntosRestados = puntosUsuario - VentanaPuntos.puntosSpinner/2;
+		int puntosRestados = puntosUsuario - VentanaPuntos.puntosSpinner;
 		String puntosRestadosStr = String.valueOf(puntosRestados);
 		u.setContadorPuntos(puntosRestadosStr);
 		return puntosRestadosStr;

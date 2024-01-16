@@ -46,7 +46,7 @@ public class Horario {
 
 
 
-	public void setLunes(String diasSemana) {
+	public void setDiasSemana(String diasSemana) {
 		this.diasSemana = diasSemana;
 	}
 

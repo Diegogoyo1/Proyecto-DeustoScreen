@@ -1,8 +1,9 @@
 package screen;
 
-import java.awt.BorderLayout;  
+import java.awt.BorderLayout; 
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +18,7 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel; 
+import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
 import domain.Cine;
@@ -37,13 +38,14 @@ public class VentanaTrabajadores extends JFrame {
 	private JPanel pSur,pCentro, pOeste;
 	private JScrollPane scroll;
 	private JTree arbolUsuarios;
+	private HashMap<String, Usuario> mapa;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 	
 	public VentanaTrabajadores(JFrame va) {
 		super();
 		vActual = this;
 		vAnterior = va; 
-		 
+		mapa = new HashMap<>();
 		Cine.cargarMapaCompras("ficheros/Compras.dat");
 		
 		//CREAR PANELES
@@ -95,14 +97,14 @@ public class VentanaTrabajadores extends JFrame {
 		pCentro.add(scroll);
 		pOeste.add(arbolUsuarios);
 		
-		
+	
 		arbolUsuarios.addTreeSelectionListener(new TreeSelectionListener() {
 			
 				@Override
 				public void valueChanged(TreeSelectionEvent e) {
 					TreePath tp = e.getPath();
 					String nick = tp.getLastPathComponent().toString();
-					List<Compra> compraDelUsuario = Cine.getMapaCompras().get(nick);
+					List<Compra> compraDelUsuario = Cine.getMapaCompras().get(mapa.get(nick));
 					tblCompras.setModel(new ModeloCompra(compraDelUsuario));
 				}
 			});
@@ -134,8 +136,8 @@ public class VentanaTrabajadores extends JFrame {
 		arbolUsuarios = new JTree();
 		
 		for(Usuario u: usuarios) {
-			//DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(u); Si queremos que los nodos contengan el objeto usuario
 			DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(u.getCorreoElectronico());
+			mapa.put(u.getCorreoElectronico(), u);
 			modeloArbol.insertNodeInto(nodo, raiz, i);
 			i++;
 		}

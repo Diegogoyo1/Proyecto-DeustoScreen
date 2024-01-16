@@ -1,4 +1,4 @@
-import static org.junit.Assert.assertEquals; 
+import static org.junit.Assert.assertEquals;  
 import org.junit.Before;
 import org.junit.Test;
 
@@ -125,17 +125,7 @@ public class PeliculasTest {
 		p.setCategoria(Categoria.ACCION);
 		p.setDuracion("3h");
 		p.setReparto("Cillian Murphy");
-		String expectedToString = "Pelicula [id=1,tituloPelicula=Oppenheimer, tituloVentana=OPPENHEIMER, imagenCartelera=imagenes/Oppenheimer.jpg, imagenPelicula=imagenes/PortadaOppenheimer.jpg, descripcion=En tiempos de guerra, el brillante fisico estadounidense..., categoria=" + Categoria.ACCION + ", duracion=3h, reparto=Cillian Murphy]";		
+		String expectedToString = "Pelicula [tituloPelicula=Oppenheimer, tituloVentana=OPPENHEIMER, imagenCartelera=imagenes/Oppenheimer.jpg, imagenPelicula=imagenes/PortadaOppenheimer.jpg, descripcion=En tiempos de guerra, el brillante fisico estadounidense..., categoria=" + Categoria.ACCION + ", duracion=3h, reparto=Cillian Murphy]";		
 		assertEquals(expectedToString, p.toString());
 	}
-	
-	
-	
-	
-	/*@Test
-	public void testGetReparto() {
-		List<String> actores = Arrays.asList();
-		assertEquals(actores, p.getReparto());
-	}*/
-
 }
