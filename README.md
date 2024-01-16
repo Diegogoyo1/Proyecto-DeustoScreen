@@ -25,8 +25,12 @@ Además, en esta misma ventana, en la parte superior podemos encontrar, a lo que
 nos llevará a la Ventana Trabajador, en la que encontraremos información de las reservas hechas por los diferentes usuarios.
 
 Personas Contribuyentes
+
 Ainara Maroto ainara.maroto@opendeusto.es
+
 Nicolas Presa nico.p.cueva@opendeusto.es
+
 Diego Goyoaga diego.goyoaga@opendeusto.es
+
 Gorka Ortuzar ortuzar.gorka@opendeusto.es
 
