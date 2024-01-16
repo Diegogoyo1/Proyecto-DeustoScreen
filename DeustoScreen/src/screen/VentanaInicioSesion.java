@@ -1,19 +1,11 @@
 package screen;
-import java.awt.BorderLayout;  
-import java.awt.Color;
+import java.awt.BorderLayout;   
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -23,15 +15,18 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import domain.Cine;
 import domain.Usuario;
 
 
 public class VentanaInicioSesion extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel pSur, pEste, pOeste, pPrincipal;
-	private JLabel lblTituloIS ,lblCorreoElectronico,lblContraseniaIs, lblRegistrarse;
+	private JLabel lblCorreoElectronico,lblContraseniaIs, lblRegistrarse;
 	private JTextField txtCorreoElectronico;
 	private JButton btnAtras, btnIniciarSesion, btnRegistrarse;
 	private JPasswordField txtContraseniaIs;
@@ -65,8 +60,6 @@ public class VentanaInicioSesion extends JFrame {
 		pSur.setLayout(new FlowLayout(FlowLayout.CENTER));
 
 		//Labels
-		lblTituloIS = new JLabel("     INICIAR SESION");
-
 		lblCorreoElectronico = new JLabel("  Correo electronico: ");
 		lblCorreoElectronico.setBorder(new EmptyBorder(0, 0, 10, 20));
 		lblCorreoElectronico.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -122,6 +115,7 @@ public class VentanaInicioSesion extends JFrame {
 		//Eventos
 		btnIniciarSesion.addActionListener((e)->{
 		String CorreoElectronico = txtCorreoElectronico.getText();
+		@SuppressWarnings("deprecation")
 		String con = txtContraseniaIs.getText();
 		//Mira si el correo electronico esta vacio
 		 if(CorreoElectronico.isEmpty()) {

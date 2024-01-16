@@ -20,6 +20,10 @@ import javax.swing.plaf.basic.BasicProgressBarUI;
 import domain.Cine;
 
 public class VentanaCarga extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected JPanel pCentro, pSur;
 	protected JLabel lblImg;
 	protected JProgressBar barCargando;

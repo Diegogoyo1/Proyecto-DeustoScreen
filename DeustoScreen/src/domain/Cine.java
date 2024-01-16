@@ -19,10 +19,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import screen.Main;
 import screen.VentanaInicioSesion;
 import screen.VentanaPuntos;
 import screen.VentanaSeleccionEntradas;
@@ -36,10 +39,12 @@ public class Cine {
 	private static Map<Usuario, List<Compra>> mapaCompras;
 	private static List<String> titulosPeliculas;
 	private static List<Trabajador> listaTrabajadores;
-	private static List<Compra> listaCompras;
 	private static TreeMap<String, HashMap<Integer, ArrayList<String>>> mapaHorarios;
 	public static int sala;
 	private static int[][] m1;
+	private static Logger logger = Logger.getLogger(Main.class.getName());
+
+	
 
 	static {
 		m1 = new int[7][12];
@@ -47,19 +52,30 @@ public class Cine {
 		mapaCompras = new TreeMap<>();
 		titulosPeliculas = new ArrayList<>();
 		listaTrabajadores = new ArrayList<>();
-		listaCompras = new ArrayList<>();
 		mapaHorarios = new TreeMap<>();
 		mapaPeliculas = new HashMap<>();
 	}
 
+	/**
+	 * Metodo que coge la matriz para las butacas
+	 * @return devuelve la matriz de las butacas
+	 */
 	public static int[][] getM1() {
 		return m1;
 	}
 
+	/**
+	 * Metodo que establece la matriz para las butacas
+	 * @param m1 matriz que se usa para las butacas
+	 */
 	public static void setM1(int[][] m1) {
 		Cine.m1 = m1;
 	}
 
+	/**
+	 * Metodo que guarda el mapa de las compras
+	 * @param nomfich nombre del fichero
+	 */
 	public static void guardarMapaCompras(String nomfich) {
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(nomfich)));
@@ -67,11 +83,16 @@ public class Cine {
 			oos.flush();
 			oos.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			logger.log(Level.WARNING, "Ruta del fichero no encontrada");
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Metodo que carga el mapa de compras
+	 * @param nomfich nombre del fichero
+	 */
+	@SuppressWarnings("unchecked")
 	public static void cargarMapaCompras(String nomfich) {
 		File f = new File(nomfich);
 		if (f.exists()) {
@@ -80,14 +101,20 @@ public class Cine {
 				mapaCompras = (Map<Usuario, List<Compra>>) ois.readObject();
 				ois.close();
 			} catch (IOException e) {
+				logger.log(Level.WARNING, "Clase no encontrada");
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
+				logger.log(Level.WARNING, "Ruta del fichero no encontrada");
 				e.printStackTrace();
 			}
 
 		}
 	}
 	
+	/**
+	 * Metodo que guarda en un fichero las butacas de una sala con un horario y dia
+	 * @param nomfich nombre del fichero
+	 */
 	public static void guardarButacasEnFichero(String nomfich) {
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(nomfich)));
@@ -95,11 +122,15 @@ public class Cine {
 			oos.flush();
 			oos.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			logger.log(Level.WARNING, "Ruta del fichero no encontrada");
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Metodo que carga las butacas desde el fichero de cada sala hora  y dia
+	 * @param nomfich nombre del fichero
+	 */
 	public static void cargarButacasDesdeFichero(String nomfich) {
 		File f = new File(nomfich);
 		if (f.exists()) {
@@ -108,16 +139,20 @@ public class Cine {
 				m1 = (int[][]) ois.readObject();
 				ois.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				logger.log(Level.WARNING, "Clase no encontrada");
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
+				logger.log(Level.WARNING, "Ruta del fichero no encontrada");
 				e.printStackTrace();
 			}
 
 		}
 	}
 
+	/**
+	 * Metodo que devuelve el mapa con los horarios
+	 * @return devuelve el mapa de horarios
+	 */
 	public static TreeMap<String, HashMap<Integer, ArrayList<String>>> getMapaHorarios() {
 		return mapaHorarios;
 	}
@@ -145,27 +180,40 @@ public class Cine {
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {
+			logger.log(Level.WARNING, "Ruta del fichero no encontrada");
 			e.printStackTrace();
 		}
 
 	}
 
+	/**
+	 * Metodo que devuelve la lista de usuarios
+	 * @return devuelve la lista de usuarios
+	 */
 	public static List<Usuario> getListaUsuarios() {
 		return listaUsuarios;
 	}
 
+	/**
+	 * Metodo que devuelve la lista de los titulos de las peliculas
+	 * @return devuelve las lista de los titulos de las peliculas
+	 */
 	public static List<String> getTitulosPeliculas() {
 		return titulosPeliculas;
 	}
 
+	/**
+	 * Metodo que devuelve el mapa de las compras
+	 * @return devuelve el mapa de las compras
+	 */
 	public static Map<Usuario, List<Compra>> getMapaCompras() {
 		return mapaCompras;
 	}
 
 
 	/**
-	 * 
-	 * @param u
+	 * Metodo que añade un usuario a la lista de usuarios
+	 * @param u usuario que se le pasa al metodo
 	 */
 	public static void aniadirUsuario(Usuario u) {
 		listaUsuarios.add(u);
@@ -175,7 +223,7 @@ public class Cine {
 
 	
 	/**
-	 * 
+	 * Metodo que ordena la lista de usuarios
 	 */
 	public static void ordenarListaUsuarios() {
 		Comparator<Usuario> U = new Comparator<Usuario>() {
@@ -206,7 +254,7 @@ public class Cine {
 	/**
 	 * Busca los usuarios pr el correo electronico
 	 * 
-	 * @param CorreoElectronico
+	 * @param CorreoElectronico correo electronico que se le pasa al metodo
 	 * @return Devuelve el usuario si se ha encontrado
 	 */
 	public static Usuario buscarUsuario(String CorreoElectronico) {
@@ -257,6 +305,7 @@ public class Cine {
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {
+			logger.log(Level.WARNING, "Ruta del fichero no encontrada");
 			e.printStackTrace();
 		}
 
@@ -279,6 +328,7 @@ public class Cine {
 			pw.flush();
 			pw.close();
 		} catch (FileNotFoundException e) {
+			logger.log(Level.WARNING, "Ruta del fichero no encontrada");
 			e.printStackTrace();
 		}
 	}
@@ -286,8 +336,8 @@ public class Cine {
 	/**
 	 * Metodo que vuelca todos los Usuarios del fichero a la base de datos
 	 * 
-	 * @param con     conexion con la base de datos
-	 * @param nomFich nombre del fichero en este caso Usuarios.csv
+	 * @param con conexion con la BD  
+	 * @param nomFich  nombre del fichero
 	 */
 	public static void volcado_FichCSV_Usuarios_a_BD(Connection con, String nomFich) {
 		try {
@@ -310,7 +360,7 @@ public class Cine {
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {
-			// logger.log(Level.WARNING, "Ruta del fichero no encontrada");
+			logger.log(Level.WARNING, "Ruta de la BD no encontrada");
 			e.printStackTrace();
 		}
 	}
@@ -318,8 +368,8 @@ public class Cine {
 	/**
 	 * Metodo que vuelca todos los Trabajadores del fichero a la base de datos
 	 * 
-	 * @param con     conexion con la base de datos
-	 * @param nomFich nombre del fichero en este caso Trabajadores.csv
+	 * @param con   conexion con la BD   
+	 * @param nomFich nombre del fichero
 	 */
 
 	public static void volcado_FichCSV_Trabajadores_a_BD(Connection con, String nomFich) {
@@ -340,12 +390,16 @@ public class Cine {
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			logger.log(Level.WARNING, "Ruta de la BD no encontrada");
 			e.printStackTrace();
-			// logger.log(Level.WARNING, "Ruta del fichero no encontrada");
 		}
 	}
 
+	/**
+	 * Metodo que vuelca el fichero de horarios a la BD
+	 * @param con conexion con la BD
+	 * @param nomFich nombre del fichero
+	 */
 	public static void volcado_FichCSV_Horarios_a_BD(Connection con, String nomFich) {
 		try {
 			Scanner sc = new Scanner(new FileReader(nomFich));
@@ -361,12 +415,16 @@ public class Cine {
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			// logger.log(Level.WARNING, "Ruta del fichero no encontrada");
+			 logger.log(Level.WARNING, "Ruta de la BD no encontrada");
 		}
 	}
 
+	/**
+	 * Metodo que vuelca el fichero de peliculas a la BD
+	 * @param con conexion con la Bd
+	 * @param nomFich nombre del fichero
+	 */
 	public static void volcado_FichCSV_Peliculas_a_BD(Connection con, String nomFich) {
 		try {
 			Scanner sc = new Scanner(new FileReader(nomFich));
@@ -389,7 +447,7 @@ public class Cine {
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {
-			// logger.log(Level.WARNING, "Ruta del fichero no encontrada");
+			logger.log(Level.WARNING, "Ruta de la BD no encontrada");
 			e.printStackTrace();
 		}
 	}
@@ -397,14 +455,14 @@ public class Cine {
 	/**
 	 * Metodo que registra a los usuarios y los guarda en el fichero
 	 * 
-	 * @param nomfich           nombre de l fichero
-	 * @param nombre            nombre de usuario
-	 * @param apellido          aoellido del usuario
-	 * @param fechaNac          fecha de nacimiento del usuario
-	 * @param tlf               telefono del usuario
-	 * @param correoElectronico
-	 * @param cont              contraseña del usuario
-	 * @param contador          puntos acomulados que tiene el usuario
+	 * @param nomfich   nombre del fichero        
+	 * @param nombre     nombre del usuario
+	 * @param apellido   apellido del usuario
+	 * @param fechaNac   fecha de nacimiento del usuario
+	 * @param tlf        telefono del usuario
+	 * @param correoElectronico correo electronico del usuario
+	 * @param cont       contraseña del usuario
+	 * @param contador     contador de los puntos del usuario
 	 * @return devuelve true cuando estos se guardan
 	 */
 	public static boolean registroUsuario(String nomfichUsuarios, String nombre, String apellido, String fNac,
@@ -428,6 +486,10 @@ public class Cine {
 		return false;
 	}
 
+	/**
+	 * Metodo que carga los titulos de las peliculas en una lista
+	 * @param nomfich nombre del fichero
+	 */
 	public static void cargarTitulosPeliculasEnLista(String nomfich) {
 		try {
 			Scanner sc = new Scanner(new FileReader(nomfich));
@@ -440,7 +502,9 @@ public class Cine {
 			sc.close();
 
 		} catch (FileNotFoundException e) {
+			logger.log(Level.WARNING, "Ruta del fichero no encontrada");
 			e.printStackTrace();
+			
 		}
 	}
 
@@ -450,12 +514,6 @@ public class Cine {
 	 * @return Devuelve el titulo de la pelicula
 	 */
 	public static String[] obtenerTitulos() {
-		/*
-		 * String [] titulos = new String[titulosPeliculas.size()];
-		 * 
-		 * for(int i=0;i<titulosPeliculas.size();i++) { titulos[i] =
-		 * titulosPeliculas.get(i); } return titulos;
-		 */
 		String[] titulos = new String[mapaPeliculas.size()];
 		int i = 0;
 		for (Pelicula p : mapaPeliculas.values()) {
@@ -477,6 +535,11 @@ public class Cine {
 		}
 	}
 
+	/**
+	 * Metodo que busca un trabajador en la lista de trabajadores
+	 * @param inicio el inicio de la lista que se va a recorrer
+	 * @return devuleve el trabajador encontrado o si no lo ha encontrado un null
+	 */
 	public static Trabajador buscarTrabajador(String inicio) {
 		boolean enc = false;
 		int pos = 0;
@@ -497,6 +560,10 @@ public class Cine {
 		}
 	}
 
+	/**
+	 * Metodo que carga los trabajadores en una lista
+	 * @param nomfich nombre del fichero
+	 */
 	public static void cargarTrabajadoresEnLista(String nomfich) {
 		try {
 			Scanner sc = new Scanner(new File(nomfich));
@@ -514,15 +581,26 @@ public class Cine {
 				listaTrabajadores.add(t);
 			}
 		} catch (FileNotFoundException e) {
+			logger.log(Level.WARNING, "Ruta del fichero no encontrada");
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Metodo que verifica el correo dependiendo de unas condiciones
+	 * @param email correo del usuario
+	 * @return devuelve verdadero si cumple las condiciones y falso si no las cumples
+	 */
 	public static boolean isValidEmail(String email) {
 		String emailRegex = "[a-zA-Z0-9]{1,}@[a-z]{1,}.[a-z]{1,}";
 		return Pattern.matches(emailRegex, email);
 	}
 
+	/**
+	 * Metodo que verifica la contraseña dependiendo de unas condiciones
+	 * @param contrasenia contraseña del usuario
+	 * @return devuelve un verdadero si cumple las condiciones y falso si no las cumple
+	 */
 	public static boolean isValidContrasenia(String contrasenia) {
 		if (contrasenia.length() < 6 || !contrasenia.matches(".*[0-9].*") || !contrasenia.matches(".*[a-zA-Z].*")
 				|| !contrasenia.matches(".*[!@#$%^&*()-_=+{};:,<.>/?`~].*")) {
@@ -533,10 +611,18 @@ public class Cine {
 		return true;
 	}
 
+	/**
+	 * Metodo que obtiene el mapa de las peliculas
+	 * @return devuelve el mapa de las pelicuals
+	 */
 	public static Map<String, Pelicula> getMapaPeliculas() {
 		return mapaPeliculas;
 	}
 
+	
+	/**
+	 * Metodo que crea el mapa de peliculas
+	 */
 	public static void crearMapaPeliculas() {
 		try {
 			Scanner sc = new Scanner(new FileReader("ficheros/Peliculas.csv"));
@@ -561,11 +647,16 @@ public class Cine {
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {
+			logger.log(Level.WARNING, "Ruta del fichero no encontrada");
 			e.printStackTrace();
 		}
 
 	}
 	
+	/**
+	 * Metodo que resta los puntos seleccionados 
+	 * @return devuelve los puntos restados
+	 */
 	public static String restarPuntos() {
 		Usuario u = VentanaInicioSesion.getUsuario();
 		int puntosUsuario = Integer.parseInt(u.getContadorPuntos());
@@ -576,7 +667,7 @@ public class Cine {
 	}
 	
 	/**
-	 * 
+	 * Metodo que coge la suma de los puntos despues de hacer la compra
 	 * @return puntosFinal devuelve los puntos del usuario añadiendo los puntos de la compra que esta realizando
 	 */
 	
@@ -591,22 +682,4 @@ public class Cine {
 		u.setContadorPuntos(numeroEnString);
 		return puntosFinal;
 	}
-
-//	 public void actualizarPuntos(String ContadorPuntos) {
-//				int puntosInt = Integer.parseInt(ContadorPuntos);
-//				
-//				if (getMapaCompras()!= null) {
-//					puntosInt = puntosInt + value.size()*2;				}
-//				
-//	 }
-	
-
-
-
-
-	// Logger logger = java.util.logging.Logger.getLogger("logger");
-	// try {
-	// }catch{
-	// }
-	// }
 }

@@ -1,10 +1,5 @@
 package domain;
 
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-
 public class Pelicula {
 	private String tituloPelicula;
 	private String tituloVentana;

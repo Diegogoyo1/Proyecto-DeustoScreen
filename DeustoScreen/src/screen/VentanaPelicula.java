@@ -1,6 +1,6 @@
 package screen;
 
-import java.awt.BorderLayout;
+import java.awt.BorderLayout; 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GraphicsEnvironment;
@@ -17,9 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import domain.Categoria;
-
 public class VentanaPelicula extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel pNorte, pSur, pCentro, pCentroIz, pCentroDe; 
 	private JLabel lblImg, lblSetNom, lblSetCat, lblSetDur, lblSetRep, lblSetSip, lblNom, lblCat, lblDur, lblRep;
 	private JButton btnA;
@@ -50,7 +52,7 @@ public class VentanaPelicula extends JFrame {
 		
 		//LABELS
 		lblSetNom = new JLabel(" NOMBRE: ");
-		lblSetCat = new JLabel (" CATEGORÍA: ");
+		lblSetCat = new JLabel (" CATEGORIA: ");
 		lblSetDur = new JLabel(" DURACIÓN: ");
 		lblSetRep = new JLabel (" REPARTO: ");
 		lblSetSip = new JLabel (" SINOPSIS: ");
@@ -98,7 +100,7 @@ public class VentanaPelicula extends JFrame {
 		
 		
 		//BOTONES
-		btnA = new JButton("ATRÁS");
+		btnA = new JButton("ATRAS");
 		pSur.add(btnA);
 		
 		
@@ -120,7 +122,6 @@ public class VentanaPelicula extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds (600,300,380,400);
-		//setTitle("BARBIE");
 		setTitle(ti);
 		setVisible(true);
 		

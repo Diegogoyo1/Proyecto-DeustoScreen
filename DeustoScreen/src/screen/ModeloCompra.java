@@ -8,6 +8,10 @@ import javax.swing.table.DefaultTableModel;
 import domain.Compra;
 
 public class ModeloCompra extends DefaultTableModel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<Compra> lista;
 	private List<String> titulos = (List<String>) Arrays.asList("FECHA","HORA","PELICULA","SALA","USUARIO","Nº ENTRADAS");
 	

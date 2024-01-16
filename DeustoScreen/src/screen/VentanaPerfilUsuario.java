@@ -2,12 +2,9 @@ package screen;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Image;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,12 +15,12 @@ import javax.swing.border.EmptyBorder;
 import domain.Usuario;
 
 public class VentanaPerfilUsuario extends JFrame {
+	private static final long serialVersionUID = 1L;
 	private JPanel pCentro,pSur,pOeste;
 	private JLabel imagenUsuario, lblNombre,lblApellido,lblFechaNaciminto,lbltlf,lblCorreoElectronico,lblPuntos;
 	private JFrame vActual, vAnterior;
 	private JButton btnAtras;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
-	
 	public VentanaPerfilUsuario(JFrame va, Usuario u) {
 		vActual=this;
 		vAnterior=va;
@@ -48,7 +45,12 @@ public class VentanaPerfilUsuario extends JFrame {
 		lblCorreoElectronico = new JLabel("-> CORREO ELECTRONICO" + u.getCorreoElectronico());
 		lblPuntos = new JLabel ("-> PUNTOS: " +u.getContadorPuntos());
 		
-		
+		btnAtras = new JButton("ATRAS");
+		btnAtras.addActionListener((e) -> {
+			logger.log(Level.INFO, "SE HA CLICKADO BOTON ATRAS");
+			vActual.dispose();
+			vAnterior.setVisible(true);
+		});
 		
 		
 			
@@ -56,6 +58,7 @@ public class VentanaPerfilUsuario extends JFrame {
 		pCentro.add(lblNombre);
 		pCentro.add(lblApellido);
 		pCentro.add(lblFechaNaciminto);
+		pCentro.add(lblCorreoElectronico);
 		pCentro.add(lbltlf);
 		pCentro.add(lblPuntos);
 		pCentro.add(Box.createVerticalStrut(60));
@@ -72,7 +75,4 @@ public class VentanaPerfilUsuario extends JFrame {
 		setVisible(true);
 		
 	}
-	/*public static void main(String[] args) {
-		VentanaPerfilUsuario vpu = new VentanaPerfilUsuario(null, null);
-	}*/
 }

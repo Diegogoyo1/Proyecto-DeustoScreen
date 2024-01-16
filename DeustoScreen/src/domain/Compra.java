@@ -15,8 +15,8 @@ public class Compra implements Serializable{
 	private String asientos;
 	public Compra() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+	
 	public Compra(Usuario usuario, String hora, String pelicula, int sala, int numEntradas, String asientos) {
 		super();
 		this.usuario = usuario;

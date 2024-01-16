@@ -17,6 +17,7 @@ import domain.Cine;
 public class Main {
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
 		VentanaCarga va = new VentanaCarga();
 		Properties properties = new Properties();
 		String nombreBD,nombreU,nombreT,nombreH,nombreP;

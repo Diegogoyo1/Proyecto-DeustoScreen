@@ -1,19 +1,13 @@
 package screen;
 
-import java.awt.BorderLayout;
+import java.awt.BorderLayout; 
 
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.GridLayout;
-import java.awt.image.PackedColorModel;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -25,20 +19,18 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
-
-
 import domain.Cine;
-import domain.Usuario;
-
-
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.Color;
 import java.awt.Dimension;
 
 public class VentanaRegistros extends JFrame {
-	private JPanel pNorte,pCentro,pSur,pCentroIzquierda;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel pNorte,pCentro,pSur;
 	private JLabel lblNombre,lblApellido ,lblFechaNacimiento, lbltlf, lblCorreoElectronico,lblCotraseniaR,lblTituloIS, lblRepetirContrasenia; 
 	private JTextField txtNombre,txtApellido,txtFechaNacimiento,txtCorreoElectronico;
 	private JTextField txtFieldTlf, txtRepetirContrasenia;
@@ -54,7 +46,7 @@ public class VentanaRegistros extends JFrame {
 		vAnterior=va;
 		
 		
-	//CREACIÓN DE PANELES Y COMPONENTES
+		//CREACIÓN DE PANELES Y COMPONENTES
 		pNorte = new JPanel(new GridLayout(1, 2));
 		pCentro = new JPanel();
 		pSur = new JPanel();
@@ -68,7 +60,7 @@ public class VentanaRegistros extends JFrame {
 		getContentPane().add(pCentro, BorderLayout.CENTER);
 		getContentPane().add(pSur, BorderLayout.SOUTH);
 		
-		//Labels
+		//LABELS
 		lblNombre= new JLabel("  Nombre ");
 		lblApellido= new JLabel("  Apellido");
 		lblFechaNacimiento = new JLabel("  Fecha de nacimiento (dd-mm-yyyy)");
@@ -84,7 +76,7 @@ public class VentanaRegistros extends JFrame {
 		lblFechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblRepetirContrasenia = new JLabel("REPETIR CONTRASEÑA");
 		
-		//TextField nuevos
+		//TEXTFIELD NUEVOS
 		txtNombre = new JTextField();
 		txtNombre.setBackground(new Color(255, 255, 255));
 		txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -154,7 +146,7 @@ public class VentanaRegistros extends JFrame {
 		
 		pNorte.add(lblTituloIS);
 		
-		//botones
+		//BOTONES
 		btnRegistro = new JButton("Registrarse");
 		btnSalir = new JButton("Atras");
 		pSur.add(btnSalir);
@@ -163,18 +155,17 @@ public class VentanaRegistros extends JFrame {
 	
 
 		
-		//eventos botones 
+		//EVENTOS BOTONES 
 		btnRegistro.addActionListener((e)->{
 			String nombre = txtNombre.getText();
 			String apellido = txtApellido.getText();
 			String fNac = txtFechaNacimiento.getText();
 			String tlf = txtFieldTlf.getText();
 			String CorreoElectronico = txtCorreoElectronico.getText();
+			@SuppressWarnings("deprecation")
 			String contrasenia = contraseniaR.getText();
 			String ContadorPuntos = "100";
 			String contRep = new String(txtRepetirContrasenia.getText());
-		//  Verificar si existe el usuarios
-			
 			if(contrasenia.equals(contRep)) {
 				
 				if (Cine.registroUsuario(nomfichUsuarios, nombre, apellido, fNac, tlf, CorreoElectronico, contrasenia, ContadorPuntos, vActual)){
@@ -190,39 +181,6 @@ public class VentanaRegistros extends JFrame {
 				JOptionPane.showMessageDialog(vActual, "Las contraseñas no coinciden", "ERROR", JOptionPane.ERROR_MESSAGE);
 			}
 			
-			/*Usuario usuarioExistente = Cine.buscarUsuario(CorreoElectronico, contrasenia);
-			 if (Cine.buscarUsuario(CorreoElectronico, contrasenia)!= null) {
-					JOptionPane.showMessageDialog(null, "Usuario ya existe, se iniciará con ese usuario","ERROR",JOptionPane.WARNING_MESSAGE);
-					logger.log(Level.INFO, "SE HA INTENADO ACCEDER CON UN USUARIO EXISTENTE");
-					//new VentanaEntradas(vActual, usuarioExistente);
-					new VentanaHorario(va, usuarioExistente);
-					vActual.dispose();
-					} 
-			 else if (!Cine.isValidEmail(CorreoElectronico) || !Cine.isValidContrasenia(contrasenia)) {
-				JOptionPane.showMessageDialog(null, "Direccion de correo electronico no valido","ERROR",JOptionPane.ERROR_MESSAGE);
-				logger.log(Level.INFO, "SE HA INTENADO ACCEDER CON UN CORREO O CONTRASEÑA NO VALIDO");
-				}
-			
-			else {
-
-				//crear usuario nuevo
-				Usuario usuarioNuevo = new Usuario(nombre, apellido,fNac,tlf, CorreoElectronico, contrasenia, ContadorPuntos);
-				System.out.println(usuarioNuevo);
-				Cine.aniadirUsuario(usuarioNuevo);
-				Cine.guardarUsuariosEnFichero( nomfichUsuarios);
-				JOptionPane.showMessageDialog(null, "Usuario registrado con éxito","REGISTRADO",JOptionPane.INFORMATION_MESSAGE);
-				logger.log(Level.INFO, "SE HA CREADO UN NUEVO USUARIO");
-				//new VentanaEntradas(vActual, usuarioNuevo);
-				new VentanaHorario(va, usuarioNuevo);
-				vActual.dispose();
-			}
-			
-			Cine.registroUsuario(nomfichUsuarios, nombre, apellido, fNac, tlf, CorreoElectronico, contrasenia, ContadorPuntos);*/
-			
-			
-				
-				
-		
 			
 	});
 		btnSalir.addActionListener((e)->{
@@ -243,6 +201,4 @@ public class VentanaRegistros extends JFrame {
 		setTitle("REGISTRO");
 		setVisible(true);
 	}
-	 
-	
 }

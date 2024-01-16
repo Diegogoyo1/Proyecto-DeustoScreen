@@ -1,13 +1,9 @@
 package screen;
 
-import java.awt.BorderLayout; 
+import java.awt.BorderLayout;  
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +17,7 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.DefaultTreeModel; 
 import javax.swing.tree.TreePath;
 
 import domain.Cine;
@@ -30,6 +26,10 @@ import domain.Usuario;
 
 
 public class VentanaTrabajadores extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JFrame vActual, vAnterior;
 	private JButton btnAtras,btnEliminar;
 	private JTable tblCompras;
@@ -70,6 +70,11 @@ public class VentanaTrabajadores extends JFrame {
 		
 		//CREACION DE LA TABLA
 		modelo = new DefaultTableModel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -117,7 +122,9 @@ public class VentanaTrabajadores extends JFrame {
 	}
 	
 	
-	
+	/**
+	 * Metodo que carga el arbol con los usuarios
+	 */
 	private void cargarArbol() {
 		Cine.cargarUsuarioEnLista("ficheros/Usuarios.csv");
 		List<Usuario> usuarios = Cine.getListaUsuarios();

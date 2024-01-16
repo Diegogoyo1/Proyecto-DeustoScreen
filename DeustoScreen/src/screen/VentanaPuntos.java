@@ -1,7 +1,6 @@
 package screen;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.BorderLayout; 
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
@@ -169,16 +168,4 @@ public class VentanaPuntos extends JFrame{
 		setVisible(true);
 	
 	}
-	
-//	public static int getValorSpinner() {
-//		int valorSpinner = spinnerPuntos.getValue();
-//		System.out.println(valorSpinner);
-//		return valorSpinner;
-//	}
-	
-//	public static String aplicarPuntos() {
-//		
-//	}
-	
-	
 }

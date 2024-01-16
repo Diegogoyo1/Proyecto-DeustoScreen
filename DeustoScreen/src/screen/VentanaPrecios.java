@@ -16,6 +16,10 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 public class VentanaPrecios  extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected JFrame vAnterior, vActual;
 	protected JPanel PanelNorth, PanelCentral, PanelCentIzq, panel;
 	protected JButton btnAtras;
@@ -27,16 +31,16 @@ public class VentanaPrecios  extends JFrame{
 		vActual=this;
 		vAnterior=va;
 		
-		//Creacion de Paneles
+		//CREACION PANELES
 		PanelNorth = new JPanel();
 		PanelCentral = new JPanel();
 		PanelCentIzq = new JPanel();
 		panel = new JPanel();
 		
-		//Creacion de boton de atras
+		//CREACION BOTON ATRAS
 		btnAtras = new JButton("Atrás");
 		
-		//Creacion de Labels
+		//CRACION LABELS
 		lblPrecios = new JLabel("PRECIOS", SwingConstants.CENTER);
 		lblMenores = new JLabel("Menores de 18 años:" ,SwingConstants.CENTER);
 		lblPreciosMenores_1 = new JLabel("4€", SwingConstants.CENTER);
@@ -46,14 +50,14 @@ public class VentanaPrecios  extends JFrame{
 		lblPrecioMayores_1 = new JLabel("5€", SwingConstants.CENTER);
 		
 		
-		//Añadir y editar Panels 
+		//AÑADIR EDITAR PANELES
 		getContentPane().add(PanelNorth, BorderLayout.NORTH);
 		getContentPane().add(PanelCentral, BorderLayout.CENTER);
 		getContentPane().add(panel, BorderLayout.SOUTH);
 		PanelCentral.add(PanelCentIzq);
 		PanelCentIzq.setLayout(new GridLayout(0, 2, 0, 50));
 		
-		//Añadir a los paneles boton los lbl y boton 
+		//AÑADIR A LOS PANELES BOTON, LABELS
 		PanelNorth.add(lblPrecios);
 		PanelCentIzq.add(lblMenores);
 		PanelCentIzq.add(lblPreciosMenores_1);
@@ -63,7 +67,7 @@ public class VentanaPrecios  extends JFrame{
 		PanelCentIzq.add(lblPrecioMayores_1);
 		panel.add(btnAtras);
 		
-		//Cambiar el tamaño de la fuente
+		//CAMBIAR EL TAMAÑO DE LA FUENTE
 		lblPrecios.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblMenores.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblEntreAnios.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -74,12 +78,12 @@ public class VentanaPrecios  extends JFrame{
 		lblPrecioMayores_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		PanelCentral.setBorder(BorderFactory.createEmptyBorder(200, 100, 40, 100));
 		
-		//Cambiar la alineacion de al centro
+		//CAMBIAR ALINEACION AL CENTRO
 		lblPreciosMenores_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPreciosEntre_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPrecioMayores_1.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		//Añadir actionListener para Boton atras
+		//AÑADIR ACTINLISTENER BOTON ATRAS
 		btnAtras.addActionListener((e)->{
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON ATRAS");
 			vActual.dispose();

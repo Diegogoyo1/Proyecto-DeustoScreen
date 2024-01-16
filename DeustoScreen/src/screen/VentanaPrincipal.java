@@ -1,6 +1,6 @@
 package screen;
 
-import java.awt.BorderLayout;
+import java.awt.BorderLayout; 
 
 
 
@@ -15,7 +15,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -30,24 +29,26 @@ import javax.swing.border.EmptyBorder;
 
 
 public class VentanaPrincipal extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel pNorte, pCentro,pEste, pOeste, pSur;
 	private JButton btnPrecios, btnIniciarSesion, btnCartelera;
 	private JComboBox<PuestoTrabajo> puestoComboBox;
-	private JFrame vAnterior,vActual;
-	private JLabel lblImg;
+	private JFrame vActual;
 	private JMenu menu;
 	private JMenuBar menuBar;
 	private JMenuItem itPersonal;
 	private static final String nomfichTrabajadores = "ficheros/Trabajadores.csv";
+	@SuppressWarnings("unused")
 	private Trabajador trabajador;
-	private VentanaPrincipal vp;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 	PanelConFondo panelFondo;
 
 
 	public VentanaPrincipal(JFrame va) {
 		super();
-		vAnterior= va;
 		vActual=this;
 		
 		Cine.cargarTrabajadoresEnLista(nomfichTrabajadores);
@@ -102,7 +103,7 @@ public class VentanaPrincipal extends JFrame{
 			        }
 			       
 			        if (t != null) {
-			            PuestoTrabajo selectedCargo = null;
+			        	PuestoTrabajo selectedCargo = null;
 			            while (selectedCargo == null) {
 			                puestoComboBox.setSelectedItem(t.getPuesto());
 			                Object[] mensaje = {
@@ -206,11 +207,4 @@ public class VentanaPrincipal extends JFrame{
 		setVisible(true);
 		
 	}
-	
-
-public static void main(String[] args) {
-	VentanaPrincipal vp = new VentanaPrincipal(null);
-}
-	
-
 }

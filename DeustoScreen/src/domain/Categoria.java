@@ -1,6 +1,9 @@
 package domain;
 
+/**
+ * Metodo que establece la categoria de la pelicula
+ */
 public enum Categoria {
-	ACCIÓN, COMEDIA, DRAMA, TERROR, ANIMACIÓN
+	ACCION, COMEDIA, DRAMA, TERROR, ANIMACION
 
 }

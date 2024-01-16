@@ -1,38 +1,26 @@
 package screen;
 
-import javax.swing.JFrame; 
+import javax.swing.JFrame;  
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.GraphicsEnvironment;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JComboBox;
 
 import com.toedter.calendar.JCalendar;
 
@@ -40,12 +28,15 @@ import domain.Cine;
 import domain.Usuario;
 
 public class VentanaHorario extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel pCentro, pSur, pNorte,pOeste;
 	private JButton btnAtras, btnSiguiente,btnInfo; 
 	private DefaultTableModel modelo;
 	private JTable tabla;
 	private JScrollPane scroll;
-	private FlowLayout layoutTabla;
 	private JLabel lblTituloH;
 	private JFrame vActual, vAnterior;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
@@ -69,7 +60,6 @@ public class VentanaHorario extends JFrame{
 		pOeste = new JPanel();
 		
 		//POSICION DE PANELES
-		
 		getContentPane().add(pCentro, BorderLayout.CENTER);
 		getContentPane().add(pSur, BorderLayout.SOUTH);
 		getContentPane().add(pNorte, BorderLayout.NORTH);
@@ -81,6 +71,11 @@ public class VentanaHorario extends JFrame{
 		pOeste.add(calendario);
 		
 		modelo = new DefaultTableModel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -96,12 +91,12 @@ public class VentanaHorario extends JFrame{
 		//ACCIONES DE CALENDARIO
 		calendario.addPropertyChangeListener(new PropertyChangeListener() {
 			
+			@SuppressWarnings("deprecation")
 			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
 				Date d = calendario.getDate();
 				dia = d.getDay(); 
-				//mes = d.getMonth();
-				//anio = d.getYear();
+				
 				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 				String fecha = sdf.format(d);
 				dia2 = Integer.parseInt(fecha.split("-")[0]);
@@ -166,7 +161,6 @@ public class VentanaHorario extends JFrame{
 		
 		
 		//DEFINIR VENTANA
-		
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
 		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
 		setSize(anchoP, altoP);
@@ -178,11 +172,13 @@ public class VentanaHorario extends JFrame{
 		setVisible(true);
 		
 	}	
+	/**
+	 * Metodo que coge la fecha minima del calendario
+	 * @param calendario
+	 */
 	private static void setMinimumDate(JCalendar calendario) {
         Calendar minDate = Calendar.getInstance();
-        minDate.setTime(new Date());  // Establece la fecha mínima como la fecha y hora actuales
-
-       
+        minDate.setTime(new Date());
         calendario.setMinSelectableDate(minDate.getTime());
     }
 }

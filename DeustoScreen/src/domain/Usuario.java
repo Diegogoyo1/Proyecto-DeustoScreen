@@ -35,28 +35,6 @@ public class Usuario implements Comparable<Usuario>, Serializable {
 
 	}
 	
-	
-
-	/*public Usuario() {
-		super();
-		this.nombre = "";
-		this.apellido = "";
-		this.FechaNacimiento = new Date(0);
-
-		this.tlf = "";
-		this.CorreoElectronico = "";
-		this.Contrasenia = "";
-		this.ContadorPuntos = "";
-	}*/
-
-	/*public Usuario() {
-		super();
-		
-	}*/
-
-	
-
-	// getters y setters
 	public String getNombre() {
 		return nombre;
 	}
@@ -123,7 +101,6 @@ public class Usuario implements Comparable<Usuario>, Serializable {
 		ContadorPuntos = String.valueOf(p);
 	}
 
-	// toString
 	@Override
 	public String toString() {
 		return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", fechanacimiento=" + getFechaNacimientoStr()

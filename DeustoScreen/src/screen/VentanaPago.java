@@ -1,6 +1,5 @@
 package screen;
-import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.BorderLayout; 
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
@@ -9,7 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,17 +17,20 @@ import javax.swing.border.EmptyBorder;
 import domain.Cine;
 import domain.Compra;
 import domain.Usuario;
-import javax.swing.SwingConstants;
 public class VentanaPago extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton btnFinalizarCompra, btnAtras;
 	private JPanel pSur, pCentro, pNorte,pEntradas,pRecibo;
 	private JFrame vActual, vAnterior;
-	private JLabel  lblDescuento,lblPagoFinal, lblEntradasMenores, lblEntradasEntreanios, lblEntradasMayores, lblTotal, lblRecibo, lblGracias,
+	private JLabel  lblDescuento,lblPagoFinal, lblEntradasMenores, lblEntradasEntreanios, lblEntradasMayores, lblTotal, lblRecibo,
 					lblAsteriscos1, lblAsteriscos2, lblAsteriscos3, lblAsteriscos4, lblAsteriscos5;
 	private JLabel  lblSala, lblHora, lblAsientos, lblPelicula, lblNumEntradas, lblEntradas,
-					lblAsteriscos6, lblAsteriscos7, lblAsteriscos8;
-	private JLabel lblTitulo;
-	private JLabel lblNewLabel;	private static Logger logger = Logger.getLogger(Main.class.getName());
+					lblAsteriscos6;
+	private JLabel lblTitulo;	
+	private static Logger logger = Logger.getLogger(Main.class.getName());
 
 
 
@@ -49,8 +50,8 @@ public class VentanaPago extends JFrame {
 		pEntradas = new JPanel();
 		pRecibo = new JPanel();
 
-		pEntradas = new JPanel(/*new BoxLayout(pEntradas, BoxLayout.Y_AXIS)*/);
-		pRecibo = new JPanel(/*new BoxLayout(pRecibo, BoxLayout.Y_AXIS)*/);
+		pEntradas = new JPanel();
+		pRecibo = new JPanel();
 
 
 
@@ -153,16 +154,18 @@ public class VentanaPago extends JFrame {
 		lblEntradasMayores.setFont(new Font( "Arial", Font.PLAIN, 20));
 		lblAsteriscos5 = new JLabel("***************************************************");
 		lblAsteriscos5.setFont(new Font( "Arial", Font.PLAIN, 20));
-		lblTotal = new JLabel("TOTAL:  " + String.valueOf((VentanaSeleccionEntradas.getMenores()*4)  + (VentanaSeleccionEntradas.getEntreanios()*7) + (VentanaSeleccionEntradas.getMayores()*5)));
+		int total = (VentanaSeleccionEntradas.getMenores()*4)  + (VentanaSeleccionEntradas.getEntreanios()*7) + (VentanaSeleccionEntradas.getMayores()*5);
+		lblTotal = new JLabel("TOTAL:  " + String.valueOf(total));
 
 		lblTitulo.setFont(new Font( "Arial", Font.PLAIN, 20));
 
 		lblTotal.setFont(new Font( "Arial", Font.PLAIN, 20));
 		lblAsteriscos6 = new JLabel("***************************************************");
 		lblAsteriscos6.setFont(new Font( "Arial", Font.PLAIN, 20));
-		lblDescuento = new JLabel("Descuento: " /* + VentanaPuntos.puntosSpinner() * 0,01*/);
+		double descuento = VentanaPuntos.puntosSpinner * 0.01/2;
+		lblDescuento = new JLabel("Descuento: "  + String.valueOf(descuento));
 		lblDescuento.setFont(new Font( "Arial", Font.PLAIN, 20));
-		lblPagoFinal = new JLabel("Pago Final: "  /* + VentanaPuntos.puntosSpinner()*/);
+		lblPagoFinal = new JLabel("Pago Final: "   + String.valueOf(total - descuento));
 		lblPagoFinal.setFont(new Font( "Arial", Font.PLAIN, 20));
 
 
@@ -172,13 +175,14 @@ public class VentanaPago extends JFrame {
 		pRecibo.add(lblEntradasMenores);
 		pRecibo.add(lblEntradasEntreanios);
 		pRecibo.add(lblEntradasMayores);
-		pRecibo.add(Box.createVerticalStrut(60));
+		
 
 		pRecibo.add(lblAsteriscos5);
 		pRecibo.add(lblTotal);
 		pRecibo.add(lblAsteriscos6);
 		pRecibo.add(lblDescuento);
 		pRecibo.add(lblPagoFinal);
+		pRecibo.add(Box.createVerticalStrut(60));
 		pRecibo.setBorder(new EmptyBorder(150,300,300,300));
 
 

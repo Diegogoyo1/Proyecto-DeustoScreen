@@ -1,14 +1,17 @@
 package screen;
 
-import java.awt.BorderLayout;
+import java.awt.BorderLayout; 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridLayout;
 import java.awt.Image;
 
 import javax.swing.JPanel;
 
 public class PanelConFondo extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Image imagen;
 	
 	public PanelConFondo(Image i) {

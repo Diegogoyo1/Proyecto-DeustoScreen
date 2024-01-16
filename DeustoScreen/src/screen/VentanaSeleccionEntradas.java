@@ -1,6 +1,6 @@
 package screen;
 
-import java.awt.BorderLayout;
+import java.awt.BorderLayout; 
 
 import java.awt.Dimension;
 
@@ -15,7 +15,6 @@ import javax.swing.SpinnerNumberModel;
 
 import domain.Usuario;
 
-import java.awt.GridLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,10 +25,14 @@ import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
 public class VentanaSeleccionEntradas extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton btnSiguiente, btnAtras;
 	private JPanel pCentro, pNorte, pSur, pEste, pOeste;;
-	private JLabel lblmenores, lblEntreAños, lblMayores, lblSelecEntradas;
-	private JSpinner spinMenores, spinEntreAños, spinMayores;
+	private JLabel lblmenores, lblEntreAnios, lblMayores, lblSelecEntradas;
+	private JSpinner spinMenores, spinEntreAnios, spinMayores;
 	private JFrame vActual, vAnterior;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 	
@@ -91,10 +94,10 @@ public class VentanaSeleccionEntradas extends JFrame{
 		Dimension spinner = new Dimension(400, 40);
 		spinMenores.setPreferredSize(spinner);
 		
-		lblEntreAños = new JLabel("Entre 18 y 65 años");
-		lblEntreAños.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		spinEntreAños = new JSpinner(spinnerModel3);
-		spinEntreAños.setPreferredSize(spinner);
+		lblEntreAnios = new JLabel("Entre 18 y 65 años");
+		lblEntreAnios.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		spinEntreAnios = new JSpinner(spinnerModel3);
+		spinEntreAnios.setPreferredSize(spinner);
 		
 		lblMayores = new JLabel("Mayores de 65 años");
 		lblMayores.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -114,9 +117,9 @@ public class VentanaSeleccionEntradas extends JFrame{
 		
 		pCentro.add(spinMenores);
 		pCentro.add(Box.createVerticalStrut(50));
-		pCentro.add(lblEntreAños);
+		pCentro.add(lblEntreAnios);
 
-		pCentro.add(spinEntreAños);
+		pCentro.add(spinEntreAnios);
 		pCentro.add(Box.createVerticalStrut(50));
 		pCentro.add(lblMayores);
 		pCentro.add(spinMayores);
@@ -127,7 +130,7 @@ public class VentanaSeleccionEntradas extends JFrame{
 		//ActionListener de los botones
 		btnSiguiente.addActionListener((e)->{
 			menores = (int) spinMenores.getValue();
-			entreanios= (int) spinEntreAños.getValue();
+			entreanios= (int) spinEntreAnios.getValue();
 			mayores = (int) spinMayores.getValue();
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON SIGUIENTE");
 			if (menores > 0 || entreanios > 0 || mayores > 0) {

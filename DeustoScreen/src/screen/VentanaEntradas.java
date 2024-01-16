@@ -1,10 +1,9 @@
 package screen;
 
-import javax.swing.JFrame;  
+import javax.swing.JFrame;   
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import domain.Cine;
-import domain.Pelicula;
 import domain.Usuario;
 
 import java.awt.BorderLayout;
@@ -14,33 +13,25 @@ import java.awt.GraphicsEnvironment;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 
 public class VentanaEntradas extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected JPanel panelNorth, panelEast, panelWest, panelCenter, panelSouth;
 	protected JButton BtnAtras, BtnSiguiente;
 	private JLabel lblEntradas, lblPelicula, lblHorarios;
@@ -60,15 +51,14 @@ public class VentanaEntradas extends JFrame{
 		vActual=this;
 		vAnterior=va;
 		
-		//Creacion de Paneles
+		//CREACION DE PANELES
 		 panelNorth = new JPanel();
 		 panelEast = new JPanel();
 		 panelWest = new JPanel();
 		 panelCenter = new JPanel();
 		 panelSouth = new JPanel();
 		 
-		//Añadimos localizacion a paneles y columnas
-
+		//AÑADIMOS LOCALIZACION A PANELES Y COLUMNAS
 		getContentPane().add(panelNorth, BorderLayout.NORTH);
 		getContentPane().add(panelEast, BorderLayout.EAST);
 		getContentPane().add(panelEast, BorderLayout.EAST);
@@ -76,7 +66,7 @@ public class VentanaEntradas extends JFrame{
 		getContentPane().add(panelSouth, BorderLayout.SOUTH);
 		 panelCenter.setBorder(BorderFactory.createEmptyBorder(40, 1000, 10, 1000));
 
-		//Creacion de Labels, ComboBox y Botones
+		//CREACION DE LABELS, COMBOBOX Y BOTONES
 		lblEntradas = new JLabel("Entradas", SwingConstants.CENTER);
 		lblEntradas.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		panelNorth.add(lblEntradas);
@@ -86,8 +76,6 @@ public class VentanaEntradas extends JFrame{
 		panelCenter.add(lblPelicula);
 		panelCenter.add(Box.createVerticalStrut(50));
 		
-		//Cine.cargarTitulosPeliculasEnLista("ficheros/TitulosPeliculas.csv");
-		//String []  titulos = Cine.obtenerTitulos();
 		String []  titulos = Cine.obtenerTitulos();
 		cbTitulos = new JComboBox<>(titulos);
 		Dimension comboBoxSizeT = new Dimension(400, 40);
@@ -136,7 +124,7 @@ public class VentanaEntradas extends JFrame{
 		});
 		
 		
-		//ActionListener de los botones
+		//ACTIONLISTENER DE LOS BOTONES
 		BtnAtras.addActionListener((e)->{
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON ATRAS");
 			vActual.dispose();
@@ -144,7 +132,6 @@ public class VentanaEntradas extends JFrame{
 		});
 		
 		BtnSiguiente.addActionListener((e)->{
-			//Cine.aniadirEntrada((Entrada) listaPeliHora);
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON SIGUIENTE");
 			int sala = Integer.parseInt(cbHorarios.getSelectedItem().toString().split("-")[0]);
 			new VentanaSeleccionEntradas(vActual, u, sala,dia,mes,anio,hora);
@@ -167,11 +154,17 @@ public class VentanaEntradas extends JFrame{
 		setVisible(true);
 	}
 	
+	/**
+	 * Metodo que obtiene el item del combo titulos
+	 * @return devuelve el item del combo titulos
+	 */
 	public static String getComboTitulos() {
 		return (String) cbTitulos.getSelectedItem();
 	}
 	
-	
+	/**
+	 * Metodo que carga el combo de horarios
+	 */
 	private void cargarComboHorarios() {
 		cbHorarios.removeAllItems();
 		String pelicula = cbTitulos.getSelectedItem().toString();
@@ -187,11 +180,8 @@ public class VentanaEntradas extends JFrame{
 		}
 	}
 	
+	
 	public static String getComboHorarios() {
 		return (String) cbHorarios.getSelectedItem();
-	}
-	
-	public static void main(String[] args) {
-		new VentanaEntradas(null, null,0,0,0);
 	}
 }

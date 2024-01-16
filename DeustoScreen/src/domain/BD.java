@@ -1,17 +1,15 @@
 package domain;
-import java.sql.Connection; 
+import java.sql.Connection;  
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.TreeMap;
 public class BD {
 /**
  * Metodo que inicializa la base de datos
- * @param nombreBD
+ * @param nombreBD nombre de la BD
  * @return devuelve la conexion de la base de datos
  */
 	public static Connection initBD(String nombreBD) {
@@ -26,6 +24,12 @@ public class BD {
 		}
 		return con;
 	}
+	
+	/**
+	 * Borra las tablas cada vez que se inicia
+	 * @param con conexion a la BD
+	 * @throws SQLException excepcion si no se borran las tablas
+	 */
 	
 	public static void borrarTabla(Connection con) throws SQLException{
 		String sqlUsuario = "DROP TABLE IF EXISTS Usuario";
@@ -84,12 +88,12 @@ public class BD {
 				}
 			}
 		}
-		/**
-		 * Busca usuario mediante el valor de correo electronico
-		 * @param con Conexion de la base de datos
-		 * @param CorreoElectronico correo electronico con el cual vamos a buscar el usuario
-		 * @return devuelve el usuario que ha buscado en la base de datos
-		 */
+	/**
+	 * Busca usuario mediante el valor de correo electronico
+	 * @param con Conexion de la base de datos
+	 * @param CorreoElectronico correo electronico con el cual vamos a buscar el usuario
+	 * @return devuelve el usuario que ha buscado en la base de datos
+	 */
 	public static Usuario buscarUsario(Connection con, String CorreoElectronico) {
 		String sql = String.format("SELECT * FROM Usuario WHERE CorreoElectronico = '%s'", CorreoElectronico);
 		Usuario usuario= null;
@@ -117,6 +121,7 @@ public class BD {
 	/**
 	 * Metodo que obtiene la lista de usuarios 
 	 * @param con Conexion de la base de datos
+	 * @return devuelve el usuario de la lista
 	 */
 	public static List<Usuario> obtenerListaUsario(Connection con){
 		String sql = "SELECT * FROM Usuario";
@@ -167,7 +172,7 @@ public class BD {
 	/**
 	 * Busca trabajador mediante el valor del dni
 	 * @param con Conexion de la base de datos
-	 * @param Dni dni con el cual vamos a buscar el trabajador
+	 * @param dni dni con el cual vamos a buscar el trabajador
 	 * @return devuelve el trabajador que ha buscado en la base de datos
 	 */
 	public static Trabajador buscarTrabajador(Connection con, String dni) {
@@ -200,6 +205,7 @@ public class BD {
 	/**
 	 * Metodo que obtiene la lista de trabajadores 
 	 * @param con Conexion de la base de datos
+	 * @return devuelve la lista de trabajadores
 	 */
 	
 	public static List<Trabajador> obtenerListaTrabajador (Connection con){
@@ -225,30 +231,12 @@ public class BD {
 		}
 		return lt;
 	}
-	
-	public static TreeMap<String, HashMap<Integer, ArrayList<String>>> obtenerListaHorarios (Connection con){
-		String sql = "SELECT * FROM Horarios";
-		TreeMap<String, HashMap<Integer, ArrayList<String>>> th = new TreeMap<>();
-		try {
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
-			while (rs.next()) {
-				/*String dni = rs.getString("Dni");
-				String nombreApellidosTrabajador = rs.getString("NombreApellidosTrabajador");
-				String telefonoTrabajador = rs.getString("TelefonoTrabajador");
-				String contraseniaTrabajador = rs.getString("ContraseniaTrabajador");
-				PuestoTrabajo puesto = PuestoTrabajo.valueOf(rs.getString("Puesto"));
-				double sueldo = rs.getDouble("Sueldo");
-				Trabajador trabajador = new Trabajador(dni, nombreApellidosTrabajador, telefonoTrabajador, contraseniaTrabajador,  puesto, sueldo);*/
-				//th.add(horario);					
-			}
-			rs.close();
-			st.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return th;
-	}
+
+	/**
+	 * Metodo que inserta una pelicula en la tabla Peliculas
+	 * @param con conexion a BD
+	 * @param pelicula pelicula que se añade a la BD
+	 */
 	
 	public static void insertarPelicula (Connection con, Pelicula pelicula) {
 		if(buscarTrabajador(con, pelicula.getTituloPelicula()) == null) {
@@ -263,6 +251,13 @@ public class BD {
 			}
 		}
 	}
+	
+	/**
+	 * Metodo que busca una pelicula en la BD por el nombre
+	 * @param con conexion con la Bd
+	 * @param tituloPelicula titulo de la pelicula 
+	 * @return devuelve la pelicula seleccionada de la BD
+	 */
 	
 	public static Pelicula buscarPelicula(Connection con, String tituloPelicula) {
 		String sql = String.format("SELECT * FROM Peliculas WHERE TituloPelicula = '%s'", tituloPelicula);
@@ -290,7 +285,11 @@ public class BD {
 	}
 	
 	
-	
+	/**
+	 * Metodo que obtiene una pelicula con todos sus datos
+	 * @param con conexion con la BD
+	 * @return devuleve la pelicula obtenida
+	 */
 	public static List<Pelicula> obtenerListaPeliculas(Connection con){
 		String sql = "SELECT * FROM Peliculas";
 		List<Pelicula> l = new ArrayList<>();
@@ -318,7 +317,11 @@ public class BD {
 	}
 	
 	
-	
+	/**
+	 * Metodo que inserta un horario en la tabla Horarios
+	 * @param con conexion con la BD
+	 * @param horario horario que se inserta en la tabla
+	 */
 	public static void insertarHorario (Connection con, Horario horario) {
 		if(buscarTrabajador(con, horario.getHora()) == null) {
 			String sql = String.format("INSERT INTO Horarios VALUES('%s','%d','%s')",
@@ -332,6 +335,13 @@ public class BD {
 			}
 		}
 	}
+	
+	/**
+	 * Metodo que busca un horario por su hora
+	 * @param con conexion con la Bd
+	 * @param hora hora que se le pasa al metodo para buscarla en la BD
+	 * @return devuleve el horario buscado
+	 */
 	
 	public static Horario buscarHorario(Connection con, String hora) {
 		String sql = String.format("SELECT * FROM Horarios WHERE Hora = '%s'", hora);
@@ -354,7 +364,11 @@ public class BD {
 	}
 	
 	
-	
+	/**
+	 * Metodo que obtiene un horario de la tabla de Horarios
+	 * @param con conexion con la BD
+	 * @return devuelve el horario obtenido
+	 */
 	public static List<Horario> obtenerListaHorario(Connection con){
 		String sql = "SELECT * FROM Horarios";
 		List<Horario> l = new ArrayList<>();
@@ -390,5 +404,4 @@ public class BD {
 			}
 		}
 	}
-	
 }

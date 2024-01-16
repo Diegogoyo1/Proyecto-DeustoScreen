@@ -1,7 +1,4 @@
-import static org.junit.Assert.assertEquals;
-
-import java.lang.annotation.Repeatable;
-
+import static org.junit.Assert.assertEquals; 
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,17 +6,14 @@ import domain.Categoria;
 import domain.Pelicula;
 
 public class PeliculasTest { 
-	private Pelicula p, p2;
+	private Pelicula p;
 	
 
 
 	@Before
 	public void setUp() {
 		 p = new Pelicula("Oppenheimer",  "OPPENHEIMER","imagenes/Oppenheimer.jpg" , "imagenes/PortadaOppenheimer.jpg",
-				 "En tiempos de guerra, el brillante físico estadounidense...", Categoria.ACCIÓN, "3h", "Cillian Murphy");
-		 
-		 p2 = new Pelicula("Oppenheimer",  "OPPENHEIMER","imagenes/Oppenheimer.jpg" , "imagenes/PortadaOppenheimer.jpg",
-				 "En tiempos de guerra, el brillante físico estadounidense...", "ACCIÓN", "3h", "Cillian Murphy");
+				 "En tiempos de guerra, el brillante fisico estadounidense...", Categoria.ACCION, "3h", "Cillian Murphy");
 
 	}
 	
@@ -54,14 +48,14 @@ public class PeliculasTest {
 	
 	@Test
 	public void testSetDescripcion() {
-		String descripcion = "En tiempos de guerra, el brillante físico estadounidense...";
+		String descripcion = "En tiempos de guerra, el brillante fisico estadounidense...";
 		p.setDescripcion(descripcion);
 		assertEquals(descripcion, p.getDescripcion());
 	}
 	
 	@Test
 	public void testSetCategoria() {
-		Categoria categoria = Categoria.ACCIÓN;
+		Categoria categoria = Categoria.ACCION;
 		p.setCategoria(categoria);
 		assertEquals(categoria, p.getCategoria());
 	}
@@ -103,12 +97,12 @@ public class PeliculasTest {
 	
 	@Test
 	public void testGetDescripcion() {
-		assertEquals("En tiempos de guerra, el brillante físico estadounidense...", p.getDescripcion());
+		assertEquals("En tiempos de guerra, el brillante fisico estadounidense...", p.getDescripcion());
 	}
 	
 	@Test
 	public void testGetCategoria() {
-		assertEquals(Categoria.ACCIÓN, p.getCategoria());
+		assertEquals(Categoria.ACCION, p.getCategoria());
 	}
 	
 	@Test
@@ -127,11 +121,11 @@ public class PeliculasTest {
 		p.setTituloVentana("OPPENHEIMER");
 		p.setImagenCartelera("imagenes/Oppenheimer.jpg");
 		p.setImagenPelicula("imagenes/PortadaOppenheimer.jpg");
-		p.setDescripcion("En tiempos de guerra, el brillante físico estadounidense...");
-		p.setCategoria(Categoria.ACCIÓN);
+		p.setDescripcion("En tiempos de guerra, el brillante fisico estadounidense...");
+		p.setCategoria(Categoria.ACCION);
 		p.setDuracion("3h");
 		p.setReparto("Cillian Murphy");
-		String expectedToString = "Pelicula [id=1,tituloPelicula=Oppenheimer, tituloVentana=OPPENHEIMER, imagenCartelera=imagenes/Oppenheimer.jpg, imagenPelicula=imagenes/PortadaOppenheimer.jpg, descripcion=En tiempos de guerra, el brillante físico estadounidense..., categoria=" + Categoria.ACCIÓN + ", duracion=3h, reparto=Cillian Murphy]";		
+		String expectedToString = "Pelicula [id=1,tituloPelicula=Oppenheimer, tituloVentana=OPPENHEIMER, imagenCartelera=imagenes/Oppenheimer.jpg, imagenPelicula=imagenes/PortadaOppenheimer.jpg, descripcion=En tiempos de guerra, el brillante fisico estadounidense..., categoria=" + Categoria.ACCION + ", duracion=3h, reparto=Cillian Murphy]";		
 		assertEquals(expectedToString, p.toString());
 	}
 	
