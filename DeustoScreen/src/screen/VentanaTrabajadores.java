@@ -91,29 +91,17 @@ public class VentanaTrabajadores extends JFrame {
 		pOeste.add(arbolUsuarios);
 		
 		
-//		arbolUsuarios.addTreeSelectionListener(new TreeSelectionListener() {
-//			
-//				@Override
-//				public void valueChanged(TreeSelectionEvent e) {
-//					TreePath tp = e.getPath();
-//					String nick = tp.getLastPathComponent().toString();
-//			
-//					/*Cargamos la primera tabla*/
-//					Map<Usuario, List<Compra>> compras = Cine.getMapaCompras();
-//					List<Compra> compraDelUsuario = new ArrayList<>();
-//					List<Compra> co = Cine.Lis
-//					for(Usuario u: compras.keySet()) {
-//						if(!compras.containsKey(u)) {
-//							compras.put(u, compraDelUsuario);
-//						}else {
-//							compras.get(u).add();
-//						}
-//					}
-//					tblCompras.getModel();
-//				
-//				}
-//			});
-//	
+		arbolUsuarios.addTreeSelectionListener(new TreeSelectionListener() {
+			
+				@Override
+				public void valueChanged(TreeSelectionEvent e) {
+					TreePath tp = e.getPath();
+					String nick = tp.getLastPathComponent().toString();
+					List<Compra> compraDelUsuario = Cine.getMapaCompras().get(nick);
+					tblCompras.setModel(new ModeloCompra(compraDelUsuario));
+				}
+			});
+	
 		
 		
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();

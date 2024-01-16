@@ -22,6 +22,8 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import domain.Cine;
 import domain.Usuario;
@@ -36,7 +38,8 @@ public class VentanaPuntos extends JFrame{
 	private JTextField txtUsuario, txtNumPuntos;
 	private JButton btnAniadir, btnOmitir, btnAtras;
 	private JFrame vActual, vAnterior;
-	private static JSpinner spinnerPuntos;
+	private JSpinner spinnerPuntos;
+	public static int puntosSpinner;
 	private static Logger logger = Logger.getLogger(Main.class.getName());
 	PanelConFondo panelFondo;
 
@@ -110,7 +113,6 @@ public class VentanaPuntos extends JFrame{
 
 			logger.log(Level.INFO, "SE HA CLICKADO EL BOTON AÑADIR");
 			Cine.restarPuntos();
-			System.out.println(Cine.restarPuntos());
 			new VentanaPago(vActual,sala,asientosSeleccionados);
 			vActual.setVisible(false);
 			vActual.dispose();//Este DISPOSE cerrara la ventana y nos llevara a la de PAGO AÑADIENDO los puntos
@@ -123,6 +125,13 @@ public class VentanaPuntos extends JFrame{
 			vAnterior.setVisible(true);
 		});
 		
+		spinnerPuntos.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				puntosSpinner = (int) spinnerPuntos.getValue();
+			}
+		});
 		
 		pEste.add(lblUsuario);
 		pEste.add(txtUsuario);
@@ -161,11 +170,11 @@ public class VentanaPuntos extends JFrame{
 	
 	}
 	
-	public static int getValorSpinner() {
-		int valorSpinner = (Integer)spinnerPuntos.getValue();
-		System.out.println(valorSpinner);
-		return valorSpinner;
-	}
+//	public static int getValorSpinner() {
+//		int valorSpinner = spinnerPuntos.getValue();
+//		System.out.println(valorSpinner);
+//		return valorSpinner;
+//	}
 	
 //	public static String aplicarPuntos() {
 //		

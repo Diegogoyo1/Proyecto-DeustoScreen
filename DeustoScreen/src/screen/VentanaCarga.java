@@ -96,10 +96,6 @@ public class VentanaCarga extends JFrame{
         	
         });hilo.start();
 		
-		setVisible(true);
-        
-		
-
 		
         int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
         int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();

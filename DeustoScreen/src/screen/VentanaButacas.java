@@ -38,7 +38,7 @@ public class VentanaButacas extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 2821724812420567703L;
-	private JPanel pNorte, pSur, pEste, pOeste,pCentro;
+	private JPanel pNorte, pSur, pEste, pOeste,pCentro, pPrincipal;
 	private JButton btnSiguiente, btnAtras;
 	private JTable tblButacas1;
 	private JLabel lblPantalla;
@@ -69,6 +69,11 @@ public class VentanaButacas extends JFrame {
 		vAnterior = va;
 
 		// PANELES
+		JPanel panelContenedor = new JPanel();
+		panelContenedor.setLayout(new BorderLayout());
+		pPrincipal = new JPanel();
+		pPrincipal.setLayout(new BorderLayout());
+		
 		pNorte = new JPanel();
 		pSur = new JPanel();
 		pEste = new JPanel();
@@ -140,12 +145,8 @@ public class VentanaButacas extends JFrame {
 		tblButacas1 = new JTable(modTblButacas1);
 		Border b = BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.BLACK	, Color.DARK_GRAY);
 		tblButacas1.setBorder(b);
-
-		/*layoutTabButacas1 = new FlowLayout();
-		layoutTabButacas1.setVgap(250);
-		layoutTabButacas1.setHgap(100);
-		pOeste.setLayout(layoutTabButacas1);
-		 */
+		
+		
 		pCentro.add(tblButacas1);
 		tblButacas1.setRowHeight(100);
 		tblButacas1.getColumnModel().getColumn(0).setPreferredWidth(100);
@@ -162,7 +163,15 @@ public class VentanaButacas extends JFrame {
 		tblButacas1.getColumnModel().getColumn(11).setPreferredWidth(100);
 		
 		cargarFichero1(nomfich1);
-
+		
+		panelContenedor.add(pCentro, BorderLayout.CENTER);
+		panelContenedor.add(pNorte, BorderLayout.NORTH);
+		panelContenedor.add(pSur, BorderLayout.SOUTH);
+		panelContenedor.add(pEste, BorderLayout.EAST);
+		panelContenedor.add(pOeste, BorderLayout.WEST);
+		pPrincipal.add(panelContenedor, BorderLayout.CENTER);
+		getContentPane().add(pPrincipal);
+		
 		// MOUSE LISTENER DE LAS TABLAS
 		tblButacas1.addMouseListener(new MouseAdapter() {
 			@Override
