@@ -63,7 +63,8 @@ public class VentanaPerfilUsuario extends JFrame {
 		
 		pCentro.setBorder(new EmptyBorder(50,150,150,150));
 
-		setResizable(false);
+		
+		setResizable(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds (600,300,380,400);
 		setTitle("Usuario");

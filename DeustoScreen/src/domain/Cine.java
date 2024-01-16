@@ -23,6 +23,10 @@ import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import screen.VentanaInicioSesion;
+import screen.VentanaPuntos;
+import screen.VentanaSeleccionEntradas;
+
 
 //Ventnana contenedora
 
@@ -32,6 +36,7 @@ public class Cine {
 	private static Map<Usuario, List<Compra>> mapaCompras;
 	private static List<String> titulosPeliculas;
 	private static List<Trabajador> listaTrabajadores;
+	private static List<Compra> listaCompras;
 	private static TreeMap<String, HashMap<Integer, ArrayList<String>>> mapaHorarios;
 	public static int sala;
 	private static int[][] m1;
@@ -42,6 +47,7 @@ public class Cine {
 		mapaCompras = new TreeMap<>();
 		titulosPeliculas = new ArrayList<>();
 		listaTrabajadores = new ArrayList<>();
+		listaCompras = new ArrayList<>();
 		mapaHorarios = new TreeMap<>();
 		mapaPeliculas = new HashMap<>();
 	}
@@ -79,6 +85,21 @@ public class Cine {
 				e.printStackTrace();
 			}
 
+		}
+	}
+	
+	public static void cargarListaCompras(String nomFich) {
+		File f = new File(nomFich);
+		if(f.exists()) {
+			try {
+				ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)));
+				listaCompras = (List<Compra>) ois.readObject();
+				ois.close();
+			}catch(IOException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -558,6 +579,32 @@ public class Cine {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public static String restarPuntos() {
+		Usuario u = VentanaInicioSesion.getUsuario();
+		int puntosUsuario = Integer.parseInt(u.getContadorPuntos());
+		int puntosRestados = puntosUsuario - VentanaPuntos.getValorSpinner();
+		String puntosRestadosStr = String.valueOf(puntosRestados);
+		u.setContadorPuntos(puntosRestadosStr);
+		return puntosRestadosStr;
+	}
+	
+	/**
+	 * 
+	 * @return puntosFinal devuelve los puntos del usuario añadiendo los puntos de la compra que esta realizando
+	 */
+	
+	public static int getSumaPuntos() {
+		Usuario u = VentanaInicioSesion.getUsuario();
+		String puntosStr = u.getContadorPuntos();
+		int puntos = Integer.parseInt(puntosStr);
+		int precioTotal = (VentanaSeleccionEntradas.getEntreanios() * 7) + (VentanaSeleccionEntradas.getMayores() * 5)
+				+ (VentanaSeleccionEntradas.getMenores() * 4);
+		int puntosFinal = puntos + 10 * precioTotal;
+		String numeroEnString = String.valueOf(puntosFinal);
+		u.setContadorPuntos(numeroEnString);
+		return puntosFinal;
 	}
 
 //	 public void actualizarPuntos(String ContadorPuntos) {

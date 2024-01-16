@@ -167,7 +167,7 @@ public class VentanaButacas extends JFrame {
 		tblButacas1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String letras = "ABCDEF";
+				String letras = "ABCDEFG";
 				Point p = e.getPoint();
 				fila1 = tblButacas1.rowAtPoint(p);
 				columna1 = tblButacas1.columnAtPoint(p);
@@ -228,9 +228,7 @@ public class VentanaButacas extends JFrame {
 					}
 					
 				}
-				logger.log(Level.INFO, "SE HA HECHO EL RENDERER ");
 				return l;
-				
 			}
 		});
 

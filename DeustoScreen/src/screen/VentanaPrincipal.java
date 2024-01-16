@@ -77,26 +77,26 @@ public class VentanaPrincipal extends JFrame{
 			    public void actionPerformed(ActionEvent e) {
 	    		 	logger.log(Level.INFO, "SE HA CLICKADO EN PERSONAL");
 	    		 
-			        String dni = "";
+			        String contrasenia = "";
 			        Trabajador t = null;
 
 			        while (t == null) {
-			            dni = JOptionPane.showInputDialog("Ingrese su DNI:");
+			            contrasenia = JOptionPane.showInputDialog("Ingrese su CONTRASEÑA:");
 
-			            if (dni == null) {
+			            if (contrasenia == null) {
 			            	logger.log(Level.INFO, "SE HA INTENADO ENTRAR EN PERSONAL");
 			                break;
 			            }
 
-			            if (dni.isEmpty()) {
-			                JOptionPane.showMessageDialog(null, "Inserte el DNI", "ERROR", JOptionPane.ERROR_MESSAGE);
-			                logger.log(Level.INFO, "NO SE HA INSERTADO DNI");
+			            if (contrasenia.isEmpty()) {
+			                JOptionPane.showMessageDialog(null, "Inserte la Contraseña", "ERROR", JOptionPane.ERROR_MESSAGE);
+			                logger.log(Level.INFO, "NO SE HA INSERTADO CONTRASEÑA");
 			            } else {
-			                t = Cine.buscarTrabajador(dni);
+			                t = Cine.buscarTrabajador(contrasenia);
 
 			                if (t == null) {
 			                    JOptionPane.showMessageDialog(null, "Trabajador no encontrado", "ERROR", JOptionPane.WARNING_MESSAGE);
-			                    logger.log(Level.INFO, "NO SE HA ENCONTRADO EL DNI");
+			                    logger.log(Level.INFO, "NO SE HA ENCONTRADO EL CONTRASEÑA");
 			                }
 			            }
 			        }
@@ -108,7 +108,7 @@ public class VentanaPrincipal extends JFrame{
 			                Object[] mensaje = {
 			                        "Nombre y Apellidos:", t.getNombreApellidosTrabajador(),
 			                        "Teléfono:", t.getTelefonoTrabajador(),
-			                        "DNI:", dni,
+			                        "DNI:", t.getDni(),
 			                        "Seleccione el cargo:", puestoComboBox
 			                };
 
@@ -118,7 +118,7 @@ public class VentanaPrincipal extends JFrame{
 			                if (result == JOptionPane.OK_OPTION) {
 			                    selectedCargo = (PuestoTrabajo) puestoComboBox.getSelectedItem();
 
-			                    if (!dni.equals(t.getDni()) || !selectedCargo.equals(t.getPuesto())) {
+			                    if (!contrasenia.equals(t.getContraseniaTrabajador()) || !selectedCargo.equals(t.getPuesto())) {
 			                        JOptionPane.showMessageDialog(null, "Cargo incorrecto", "ERROR", JOptionPane.WARNING_MESSAGE);
 			                        logger.log(Level.INFO, "SE HA ESCOGIDO CARGO INCORRECTO");
 

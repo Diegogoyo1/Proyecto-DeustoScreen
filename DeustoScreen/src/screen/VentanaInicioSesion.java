@@ -100,6 +100,7 @@ public class VentanaInicioSesion extends JFrame {
 		pOeste.add(Box.createVerticalStrut(30));
 		pOeste.setBorder(new EmptyBorder(150, 150, 150, 150 ));
 
+		
 		pEste.add(lblRegistrarse);
 		pEste.add(btnRegistrarse);
 		pEste.add(Box.createVerticalStrut(30));
