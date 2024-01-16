@@ -42,10 +42,9 @@ public class VentanaTrabajadores extends JFrame {
 	public VentanaTrabajadores(JFrame va) {
 		super();
 		vActual = this;
-		vAnterior = va;
-		
+		vAnterior = va; 
+		 
 		Cine.cargarMapaCompras("ficheros/Compras.dat");
-
 		
 		//CREAR PANELES
 		pCentro = new JPanel(new GridLayout(1,1));
@@ -90,7 +89,7 @@ public class VentanaTrabajadores extends JFrame {
 		pSur.add(btnEliminar);
 		pCentro.add(scroll);
 		pOeste.add(arbolUsuarios);
-		setVisible(true);
+		
 		
 //		arbolUsuarios.addTreeSelectionListener(new TreeSelectionListener() {
 //			

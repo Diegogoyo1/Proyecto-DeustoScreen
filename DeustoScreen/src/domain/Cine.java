@@ -88,21 +88,6 @@ public class Cine {
 		}
 	}
 	
-	public static void cargarListaCompras(String nomFich) {
-		File f = new File(nomFich);
-		if(f.exists()) {
-			try {
-				ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)));
-				listaCompras = (List<Compra>) ois.readObject();
-				ois.close();
-			}catch(IOException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
 	public static void guardarButacasEnFichero(String nomfich) {
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(nomfich)));
