@@ -53,6 +53,7 @@ public class VentanaPago extends JFrame {
 		pRecibo = new JPanel(/*new BoxLayout(pRecibo, BoxLayout.Y_AXIS)*/);
 
 
+
 		asientos = "";
 		for(String a: asientosSeleccionados) {
 			asientos = asientos+a+" ";
@@ -96,7 +97,6 @@ public class VentanaPago extends JFrame {
 				setVisible(false);
 
 
-
 			});
 
 		btnAtras.addActionListener((e)->{
@@ -131,7 +131,9 @@ public class VentanaPago extends JFrame {
 		pEntradas.add(lblSala);
 		pEntradas.add(lblAsientos);
 		pEntradas.add(Box.createVerticalStrut(60));
+
 		pEntradas.setBorder(new EmptyBorder(150,150,150,150));
+
 		pEntradas.setBorder(new EmptyBorder(150,300,300,300));
 
 
@@ -152,7 +154,9 @@ public class VentanaPago extends JFrame {
 		lblAsteriscos5 = new JLabel("***************************************************");
 		lblAsteriscos5.setFont(new Font( "Arial", Font.PLAIN, 20));
 		lblTotal = new JLabel("TOTAL:  " + String.valueOf((VentanaSeleccionEntradas.getMenores()*4)  + (VentanaSeleccionEntradas.getEntreanios()*7) + (VentanaSeleccionEntradas.getMayores()*5)));
+
 		lblTitulo.setFont(new Font( "Arial", Font.PLAIN, 20));
+
 		lblTotal.setFont(new Font( "Arial", Font.PLAIN, 20));
 		lblAsteriscos6 = new JLabel("***************************************************");
 		lblAsteriscos6.setFont(new Font( "Arial", Font.PLAIN, 20));
