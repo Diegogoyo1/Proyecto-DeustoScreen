@@ -22,6 +22,7 @@ public class Main {
 		Properties properties = new Properties();
 		String nombreBD,nombreU,nombreT,nombreH,nombreP;
 		try {
+			
 			properties.load(new FileReader("conf/config.properties"));
 			nombreBD = properties.getProperty("nombreBD");
 			nombreU = properties.getProperty("nombreFUsuarios");
@@ -56,7 +57,9 @@ public class Main {
 		try {
 			BD.borrarTabla(con);
 			BD.crearTabla(con);
+			logger.log(Level.INFO, "Se ha podido conectar con la BD");
 		} catch (SQLException e) {
+			logger.log(Level.WARNING, "No se ha podido conectar con la BD");
 			e.printStackTrace();
 		}
 		Cine.volcado_FichCSV_Usuarios_a_BD(con, nombreU);

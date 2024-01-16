@@ -101,6 +101,7 @@ public class VentanaPago extends JFrame {
 			});
 
 		btnAtras.addActionListener((e)->{
+			logger.log(Level.INFO, "Se ha pulsado boton atras");
 			vActual.dispose();
 			vAnterior.setVisible(true);
 

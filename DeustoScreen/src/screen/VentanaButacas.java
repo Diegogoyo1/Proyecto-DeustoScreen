@@ -219,8 +219,9 @@ public class VentanaButacas extends JFrame {
 					}
 					
 				}
+				logger.log(Level.INFO, "Renderer hecho");
 				return l;
-			}
+			} 
 		});
 
 

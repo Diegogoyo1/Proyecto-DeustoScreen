@@ -80,6 +80,7 @@ public class Cine {
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(nomfich)));
 			oos.writeObject(mapaCompras);
+			logger.log(Level.INFO, "Ruta del fichero encontrada");
 			oos.flush();
 			oos.close();
 		} catch (IOException e) {
@@ -100,6 +101,7 @@ public class Cine {
 				ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)));
 				mapaCompras = (Map<Usuario, List<Compra>>) ois.readObject();
 				ois.close();
+				logger.log(Level.INFO, "Ruta del fichero y clase encontrada");
 			} catch (IOException e) {
 				logger.log(Level.WARNING, "Clase no encontrada");
 				e.printStackTrace();
@@ -121,6 +123,7 @@ public class Cine {
 			oos.writeObject(m1);
 			oos.flush();
 			oos.close();
+			logger.log(Level.INFO, "Ruta del fichero encontrada");
 		} catch (IOException e) {
 			logger.log(Level.WARNING, "Ruta del fichero no encontrada");
 			e.printStackTrace();
@@ -137,7 +140,9 @@ public class Cine {
 			try {
 				ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(f)));
 				m1 = (int[][]) ois.readObject();
+				
 				ois.close();
+				logger.log(Level.INFO, "Ruta del fichero y clase encontrada");
 			} catch (IOException e) {
 				logger.log(Level.WARNING, "Clase no encontrada");
 				e.printStackTrace();
@@ -178,6 +183,7 @@ public class Cine {
 					mapaHorarios.get(partes[0]).get(sala).add(p);
 				}
 			}
+			logger.log(Level.INFO, "Ruta del fichero encontrada y cargado en el mapa");
 			sc.close();
 		} catch (FileNotFoundException e) {
 			logger.log(Level.WARNING, "Ruta del fichero no encontrada");
@@ -234,6 +240,7 @@ public class Cine {
 		};
 
 		Collections.sort(listaUsuarios, U);
+		logger.log(Level.INFO, "Lista de usuarios ordenada");
 	}
 
 	/**
@@ -248,6 +255,7 @@ public class Cine {
 		}
 
 		mapaCompras.get(u).add(c);
+		logger.log(Level.INFO, "Añadida las compra del usuario al mapa Compras");
 	}
 	
 
@@ -303,6 +311,7 @@ public class Cine {
 					listaUsuarios.add(u);
 				}
 			}
+			logger.log(Level.INFO, "Usuario cargado en lista");
 			sc.close();
 		} catch (FileNotFoundException e) {
 			logger.log(Level.WARNING, "Ruta del fichero no encontrada");
@@ -325,6 +334,7 @@ public class Cine {
 				pw.println(u.getNombre() + ";" + u.getApellido() + ";" + u.getFechaNacimientoStr() + ";" + u.getTlf()
 						+ ";" + u.getCorreoElectronico() + ";" + u.getContrasenia() + ";" + u.getContadorPuntos());
 			}
+			logger.log(Level.INFO, "Usuario guardado en fichero");
 			pw.flush();
 			pw.close();
 		} catch (FileNotFoundException e) {
@@ -358,6 +368,7 @@ public class Cine {
 						ContadorPuntos);
 				BD.insertarUsuario(con, u);
 			}
+			logger.log(Level.INFO, "Todos los Usuarios volcados en la BD");
 			sc.close();
 		} catch (FileNotFoundException e) {
 			logger.log(Level.WARNING, "Ruta de la BD no encontrada");
@@ -388,6 +399,7 @@ public class Cine {
 				Trabajador t = new Trabajador(Dni, NombreApellidos, Telefono, Contrasenia, Puesto, Sueldo);
 				BD.insertarTrabajador(con, t);
 			}
+			logger.log(Level.INFO, "Todos los Trabajadores volcados en la BD");
 			sc.close();
 		} catch (FileNotFoundException e) {
 			logger.log(Level.WARNING, "Ruta de la BD no encontrada");
@@ -413,6 +425,7 @@ public class Cine {
 				Horario h = new Horario(Hora, Sala, DiasSemana);
 				BD.insertarHorario(con, h);
 			}
+			logger.log(Level.INFO, "Todos los horarios volcados en la BD");
 			sc.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -445,6 +458,7 @@ public class Cine {
 						categoria, duracion, reparto);
 				BD.insertarPelicula(con, p);
 			}
+			logger.log(Level.INFO, "Todas las peliculas volcadas en la BD");
 			sc.close();
 		} catch (FileNotFoundException e) {
 			logger.log(Level.WARNING, "Ruta de la BD no encontrada");
@@ -478,10 +492,12 @@ public class Cine {
 			Connection con = BD.initBD("deustoscreen.db");
 			Cine.volcado_FichCSV_Usuarios_a_BD(con, nomfichUsuarios);
 			BD.cerrarBD(con);
-
+			logger.log(Level.INFO, "Usuario registrado");
 			return true;
+			
 		} else {
 			JOptionPane.showMessageDialog(null, "Usuario ya regitrado", "ERROR", JOptionPane.ERROR_MESSAGE);
+			logger.log(Level.INFO, "Usuario ya regitrado");
 		}
 		return false;
 	}
@@ -500,7 +516,7 @@ public class Cine {
 				titulosPeliculas.add(linea);
 			}
 			sc.close();
-
+			logger.log(Level.INFO, "Titulos de las peliculas cargados en la lista");
 		} catch (FileNotFoundException e) {
 			logger.log(Level.WARNING, "Ruta del fichero no encontrada");
 			e.printStackTrace();
@@ -520,6 +536,7 @@ public class Cine {
 			titulos[i] = p.getTituloPelicula();
 			i++;
 		}
+		logger.log(Level.INFO, "Titulos de las peliculas obtenidas");
 		return titulos;
 	}
 	
@@ -532,7 +549,9 @@ public class Cine {
 			int p = mapaCompras.get(u).size();
 			int pos = listaUsuarios.indexOf(u);
 			listaUsuarios.get(pos).actualizarPuntos(String.valueOf(p));
+			
 		}
+		logger.log(Level.INFO, "Contador de puntos actualizado");
 	}
 
 	/**
@@ -578,6 +597,7 @@ public class Cine {
 				double sueldo = Double.parseDouble(partes[5]);
 
 				Trabajador t = new Trabajador(dni, nombreApellidos, telefono, contrasenia, puesto, sueldo);
+				logger.log(Level.INFO, "Trabajadores cargado en lista");
 				listaTrabajadores.add(t);
 			}
 		} catch (FileNotFoundException e) {
@@ -593,7 +613,9 @@ public class Cine {
 	 */
 	public static boolean isValidEmail(String email) {
 		String emailRegex = "[a-zA-Z0-9]{1,}@[a-z]{1,}.[a-z]{1,}";
+		logger.log(Level.INFO, "Email verificado");
 		return Pattern.matches(emailRegex, email);
+		
 	}
 
 	/**
@@ -608,6 +630,7 @@ public class Cine {
 					JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
+		logger.log(Level.INFO, "Contraseña con caracteres necesarios");
 		return true;
 	}
 
@@ -645,6 +668,7 @@ public class Cine {
 				}
 
 			}
+			logger.log(Level.INFO, "Mapa de Peliculas creado");
 			sc.close();
 		} catch (FileNotFoundException e) {
 			logger.log(Level.WARNING, "Ruta del fichero no encontrada");
@@ -663,6 +687,7 @@ public class Cine {
 		int puntosRestados = puntosUsuario - VentanaPuntos.puntosSpinner;
 		String puntosRestadosStr = String.valueOf(puntosRestados);
 		u.setContadorPuntos(puntosRestadosStr);
+		logger.log(Level.INFO, "Puntos restados");
 		return puntosRestadosStr;
 	}
 	
@@ -680,6 +705,8 @@ public class Cine {
 		int puntosFinal = puntos + 10 * precioTotal;
 		String numeroEnString = String.valueOf(puntosFinal);
 		u.setContadorPuntos(numeroEnString);
+		logger.log(Level.INFO, "Puntos sumados");
 		return puntosFinal;
+		
 	}
 }
