@@ -35,8 +35,8 @@ public class VentanaPago extends JFrame {
 	private JLabel  lblSala, lblHora, lblAsientos, lblPelicula, lblNumEntradas, lblEntradas,
 					lblAsteriscos6, lblAsteriscos7, lblAsteriscos8;
 	private JLabel lblTitulo;
-	private JLabel lblNewLabel;
-	private static Logger logger = Logger.getLogger(Main.class.getName());
+	private JLabel lblNewLabel;	private static Logger logger = Logger.getLogger(Main.class.getName());
+
 
 	private String asientos;
 	
@@ -79,6 +79,7 @@ public class VentanaPago extends JFrame {
 		
 		
 		btnFinalizarCompra.addActionListener((e)->{
+
 			logger.log(Level.INFO, "SE HA FINALIZADO LA COMPRA");	
 			JOptionPane.showMessageDialog(null, "Gracias por tu compra", "PAGO FINALIZADO",
 						JOptionPane.INFORMATION_MESSAGE);
@@ -98,6 +99,7 @@ public class VentanaPago extends JFrame {
 				Cine.guardarUsuariosEnFichero("ficheros/Usuarios.csv");
 				setVisible(false);
 				
+
 			});
 		
 		btnAtras.addActionListener((e)->{
@@ -184,4 +186,6 @@ public class VentanaPago extends JFrame {
 		
 	}
 	
+
 }
+
