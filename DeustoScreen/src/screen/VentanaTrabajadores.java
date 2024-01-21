@@ -1,6 +1,6 @@
 package screen;
 
-import java.awt.BorderLayout; 
+import java.awt.BorderLayout;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.util.HashMap;
@@ -83,7 +83,7 @@ public class VentanaTrabajadores extends JFrame {
 			}
 			
 		};
-		String [] titulos = {"FECHA","HORA","PELICULA","SALA","USUARIO","Nº ENTRADAS"};
+		String [] titulos = {"USUARIO","PELICULA","SALA","HORA","Nº ENTRADAS", "ASIENTOS"};
 		modelo.setColumnIdentifiers(titulos);
 		tblCompras = new JTable(modelo);
 		scroll = new JScrollPane(tblCompras);
