@@ -163,7 +163,7 @@ public class VentanaPago extends JFrame {
 		lblTotal.setFont(new Font( "Arial", Font.PLAIN, 20));
 		lblAsteriscos6 = new JLabel("***************************************************");
 		lblAsteriscos6.setFont(new Font( "Arial", Font.PLAIN, 20));
-		double descuento = VentanaPuntos.puntosSpinner * 0.01/2;
+		double descuento = VentanaPuntos.puntosSpinner * 0.01;
 		lblDescuento = new JLabel("Descuento: "  + String.valueOf(descuento));
 		lblDescuento.setFont(new Font( "Arial", Font.PLAIN, 20));
 		lblPagoFinal = new JLabel("Pago Final: "   + String.valueOf(total - descuento));
